@@ -1,0 +1,10 @@
+.button{
+    width: 100%;
+    display: flex;
+    gap:5px;
+}
+
+.button:hover img {
+    transition: all 0.5s;
+    transform: rotate(360deg);
+}

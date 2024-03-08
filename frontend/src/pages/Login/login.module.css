@@ -1,0 +1,11 @@
+
+.container_right {
+  display: flex;
+  width: 50%;
+  justify-content: left;
+  align-items: center;
+  background-image: url("../../assets/images/bg-shape-01.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

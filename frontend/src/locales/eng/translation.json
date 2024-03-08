@@ -1,0 +1,13 @@
+{
+    "Đăng nhập" : "login",
+    "Ngôn ngữ" :"Language",
+    "Quảng lý phòng khám và bệnh viện" :"Management of clinics and hospitals",
+    "Quản lý thông tin khách hàng" : "Customer Information Management",
+    "Quên mật khẩu" : "Forgot password" ,
+    "Chọn phòng khám": "Choose a clinic",
+    "Mật khẩu": "Password",
+    "Tên tài khoản": "Username",
+    "Vui lòng nhập tài khoản của bạn": "Please enter your account",
+    "Vui lòng nhập mật khẩu": "Please enter a password",
+    "Vui lòng chọn phòng khám": "Please select a clinic"
+}
