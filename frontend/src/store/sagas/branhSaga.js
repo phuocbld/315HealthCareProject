@@ -12,4 +12,11 @@ export function* branchSaga () {
             console.log(error);
         }
     })
+
+    yield takeLatest('DEMO_MODAL',function* changeModal({type,payload}){
+        // yield console.log(payload);
+        yield put({
+            type:"TRUE_MODAL"
+        })
+    } )
 }

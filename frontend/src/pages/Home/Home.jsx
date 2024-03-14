@@ -1,13 +1,21 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { demoModalCAction } from '../../store/actions/BranchAction'
+import Layout from '../../HOCs/Layout'
 
 const Home = () => {
+  const dispatch = useDispatch()
+  const demoAction = () => {
+    dispatch(demoModalCAction({value:123}))
+  }
   return (
-    <div className='flex justify-center p-10 flex-col h-screen'>
+    <Layout>
+      <div className='flex justify-center p-10 flex-col h-screen'>
       <nav className='h-1/6 text-center '>
-      <NavLink className='bg-blue-500 rounded-md px-5 py-2 text-lg text-white hover:bg-blue-400 duration-300 mr-5 '>
+      <button onClick={demoAction} className='bg-blue-500 rounded-md px-5 py-2 text-lg text-white hover:bg-blue-400 duration-300 mr-5 '>
           Home
-        </NavLink>
+        </button>
         <NavLink to={'/login'} className='bg-blue-500 rounded-md px-5 py-2 text-lg text-white hover:bg-blue-400 duration-300 mr-10'>
           Login
         </NavLink>
@@ -17,6 +25,8 @@ const Home = () => {
       </div>
       
     </div>
+    </Layout>
+    
     
   )
 }
