@@ -1,6 +1,7 @@
 export const Narbar = [
     {
       label: "Hệ thống",
+      child:['Đăng nhập', 'Nhân viên', 'Vai trò người dùng', 'chức danh']
     },
     {
       label: "Danh mục",
@@ -14,31 +15,6 @@ export const Narbar = [
     {
       label: "Phòng khám",
     },
-    {
-      label: "Tiêm chủng",
-    },
-    {
-      label: "Cận lâm sàn",
-    },
-    {
-      label: "Nhà thuốc",
-    },
-    {
-      label: "Tài sản",
-    },
-    {
-      label: "Tài Chính",
-    },
-    {
-      label: "Quản trị",
-    },
-    {
-      label: "Báo cáo",
-    },
-    {
-      label: "Tiện ích",
-    },
-    {
-      label: "trợ giúp",
-    },
+    
+
   ];

@@ -66,7 +66,7 @@ const Login = () => {
         </div>
         <div className={style.container_right}>
           <div className=" absolute top-10 right-10 ">
-            <ButtonLang />
+            <ButtonLang label = 'Ngôn ngữ' />
           </div>
 
           <motion.div
