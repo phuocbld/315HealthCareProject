@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Narbar } from "../../../data/header/hearderData";
 import Avatars from "../../common/Avatar/Avatars";
-import ButtonLang from '../../common/ButtonLang/ButtonLang'
+import ButtonLang from '../../common/ButtonLang/ButtonLang';
+import Notification from '../../common/Notificaton/Notification'
 const className_isActive = " text-blue-500 border-b-2 border-blue-500";
 const className_btn =
   "text-black text-center px-2 py-4 font-medium hover:bg-sky-100 duration-300 cursor-pointer";
@@ -13,7 +14,7 @@ const Header = () => {
     setIsActive(label);
   };
   return (
-    <header className="header bg-[#00ADEF]  border border-transparent px-4 border-b-gray-300 ">
+    <header className="fixed w-full top-0 z-50 bg-[#00ADEF]  border border-transparent px-4 border-b-gray-300 ">
       <div className="flex justify-between ">
         <ul className="flex gap-2 h-full ">
           <li className="py-2 flex items-center">
@@ -23,8 +24,9 @@ const Header = () => {
             </h2>
           </li>
         </ul>
-        <ul className=" flex justify-center  items-center">
-          <li><ButtonLang label = ''/></li>
+        <ul className=" flex justify-center gap-4  items-center">
+          <li className="w-10"><ButtonLang label = ''/></li>
+          <li><Notification/></li>
           <li><Avatars/></li>
         </ul>
       </div>

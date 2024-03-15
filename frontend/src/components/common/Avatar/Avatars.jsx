@@ -77,13 +77,12 @@ const stringName = (name) => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar children={stringName('admin')}/>
-            <div className='text-start ml-2'>
+            <Avatar sx={{bgcolor:'white',color:'#3b82f6'}} children={stringName('admin')}/>
+            <div className='text-start flex flex-col ml-2 justify-center'>
               <p className='font-semibold text-gray-100 text-sm'>Admin</p>
-              <span className='text-sm text-gray-200 font-semibold'>Quản trị hệ thống</span>
+              <span className='text-sm text-gray-300 font-semibold'>Quản trị hệ thống</span>
             </div>
           </IconButton>
-         
         </Tooltip>
         <StyledMenu
         id="demo-customized-menu"
