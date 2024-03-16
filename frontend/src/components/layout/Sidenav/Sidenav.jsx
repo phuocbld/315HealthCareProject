@@ -1,27 +1,20 @@
 import React, { useState } from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Navbar } from "../../../data/header/hearderData";
+import StarBorder from "@mui/icons-material/StarBorder";
+import StarPurple500RoundedIcon from '@mui/icons-material/StarPurple500Rounded';
 const drawerWidth = 250;
 
 const openedMixin = (theme) => ({
@@ -87,13 +80,18 @@ const Sidenav = (props) => {
   // * xử lí mở rộng hoặc thu gọn các thư mục con của mỗi ListItem
   const handleItem = (index) => {
     setOpenIndex(openIndex === index ? null : index);
-    setOpen(true)
+    setOpen(true);
   };
   return (
-    <Box  sx={{ display: "flex", height:'100vh',paddingTop:'75px'}}>
-      <Drawer sx={{height:'100%'}} variant="permanent" className=" flex justify-between }" open={open}>
-        <List sx={{maxHeight:'100%',overflow:'auto'}} >
-          {Navbar.map(({label,icon},index) => (
+    <Box sx={{ display: "flex", height: "100vh", paddingTop: "75px" }}>
+      <Drawer
+        sx={{ height: "100%", }}
+        variant="permanent"
+        className=" flex justify-center}"
+        open={open}
+      >
+        <List sx={{ maxHeight: "93%",overflowX:'hidden', overflowY:'auto' }}>
+          {Navbar.map(({ label, icon }, index) => (
             <>
               <ListItem
                 onClick={() => handleItem(index)}
@@ -105,48 +103,82 @@ const Sidenav = (props) => {
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? "initial" : "center",
-                    px: 2.5,
+                    px: 1.5,
+                    mx: 1,
+                    borderRadius: "8px",
+                    transition: "all .2s",
+                    color:'#727272',
+                    "&:hover": { backgroundColor: "#00ADEF", color: "#FFFF" },
                   }}
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {icon}
-                  </ListItemIcon>
-                  {open ? <ListItemText primary={label}  /> : ''}
-                  {open ? openIndex === index ? <ExpandLess /> : <ExpandMore /> : '' }
+                  <div className="mr-3">{icon}</div>
+                  <ListItemText primary={label} sx={{ opacity: open ? 1 : 0}} /> 
+                  
+                  {open ? (
+                    openIndex === index ? (
+                      <ExpandLess fontSize='small' />
+                    ) : (
+                      <ExpandMore  fontSize='small' />
+                    )
+                  ) : (
+                    ""
+                  )}
                 </ListItemButton>
               </ListItem>
-              <Collapse className="" in={openIndex === index} timeout="auto" unmountOnExit>
+              <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItem button>
+                  <ListItemButton
+                    className="bg-[#00ADEF] text-white"
+                    sx={{
+                      pl:3,
+                      mx: 1,
+                      borderRadius: "8px",
+                      transition: "all .2s",
+                      "&:hover": {
+                        backgroundColor: "#00ADEF",
+                        color: "#FFFF",
+                      },
+                    }}
+                  >
+                    <div className="mr-2">
+                      <StarPurple500RoundedIcon />
+                    </div>
+
                     <ListItemText primary="Thư mục con 1" />
-                  </ListItem>
-                  <ListItem button>
+                  </ListItemButton>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <div className="mr-2">
+                      <StarPurple500RoundedIcon />
+                    </div>
                     <ListItemText primary="Thư mục con 2" />
-                  </ListItem>
-                  <ListItem button>
+                  </ListItemButton>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <div className="mr-2">
+                      <StarPurple500RoundedIcon />
+                    </div>
                     <ListItemText primary="Thư mục con 1" />
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemText primary="Thư mục con 2" />
-                  </ListItem>
+                  </ListItemButton>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <div className="mr-2">
+                      <StarPurple500RoundedIcon />
+                    </div>
+                    <ListItemText primary="Thư mục con 1" />
+                  </ListItemButton>
                 </List>
               </Collapse>
             </>
           ))}
         </List>
-        <DrawerHeader className="bg-sky-200 absolute w-full bottom-0 "  onClick={handleDrawer}>
+        <DrawerHeader
+          className="bg-sky-200 absolute w-full bottom-0 "
+          onClick={handleDrawer}
+        >
           <IconButton>
             {isActive ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
       </Drawer>
-      <Box component="main" className="w-screen h-full" >
+      <Box component="main" className="w-screen h-full">
         {props.children}
       </Box>
     </Box>

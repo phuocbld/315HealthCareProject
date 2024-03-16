@@ -6,7 +6,10 @@ const Layout = (props) => {
   return (
     <>
         <Header/>
-        <Sidenav  children = {props.children}/>      
+        <div className='hidden lg:block'>
+        <Sidenav  children = {props.children}/> 
+        </div>
+             
     </>
   )
 }

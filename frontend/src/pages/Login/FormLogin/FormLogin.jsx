@@ -14,12 +14,18 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { useTranslation } from "react-i18next";
 import { loginSchema } from "../../../schemas/loginSchema";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../../store/actions/userAction";
+import { useNavigate } from "react-router-dom";
 const FormLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { t } = useTranslation("translation");
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const handleLogin = (values, action) => {
     action.resetForm()
     // Xử lí đăng nhập
+    dispatch(loginUser(values,navigate))
     console.log(values);
   };
   // xử lý selelect chọn phòng khám

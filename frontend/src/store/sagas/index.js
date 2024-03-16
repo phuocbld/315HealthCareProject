@@ -1,19 +1,12 @@
-import axios from "axios";
-import {
-  call,
-  delay,
-  fork,
-  put,
-  take,
-  takeEvery,
-  takeLatest,
-  all,
-} from "redux-saga/effects";
+
+import {all,} from "redux-saga/effects";
 import { branchSaga } from "./branhSaga";
+import { authSaga } from "./authSaga";
 
 
 export function* rootSaga() {
     yield all ([
         branchSaga(),
+        authSaga(),
     ])
 }
