@@ -84,14 +84,14 @@ const Sidenav = (props) => {
     setOpen(true);
   };
   return (
-    <Box sx={{ display: "flex", height: "100vh", paddingTop: "75px" }}>
+    <Box sx={{display: "flex", height: "100vh", paddingTop: "75px" }}>
       <Drawer
-        sx={{ height: "100%", }}
+        sx={{ height: "100%",  }}
         variant="permanent"
-        className=" flex justify-center}"
+        className=" flex justify-center relative}"
         open={open}
       >
-        <List sx={{ maxHeight: "93%",overflowX:'hidden', overflowY:'auto' }}>
+        <List sx={{ maxHeight:'90%', overflowX:'hidden', overflowY:'auto' }}>
           {Navbar.map(({ label, icon,child }, index) => (
             <>
               <ListItem
@@ -165,7 +165,7 @@ const Sidenav = (props) => {
           </IconButton>
         </DrawerHeader>
       </Drawer>
-      <Box component="main" className="w-screen h-full">
+      <Box component="main" className="  w-full h-full hidden lg:block bg-[#F4F5F7] ">
         {props.children}
       </Box>
     </Box>

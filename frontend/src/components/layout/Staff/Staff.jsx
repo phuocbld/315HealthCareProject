@@ -3,26 +3,26 @@ import Layout from "../../../HOCs/Layout";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import { DataGrid, GridActionsCellItem, GridToolbarContainer, GridToolbarExport } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridActionsCellItem,
+  GridToolbarContainer,
+  GridToolbarExport,
+} from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import EmailIcon from '@mui/icons-material/Email';
-import RoomIcon from '@mui/icons-material/Room';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import Button from '@mui/material/Button';
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import EmailIcon from "@mui/icons-material/Email";
+import RoomIcon from "@mui/icons-material/Room";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import AddIcon from "@mui/icons-material/Add";
+import GetAppIcon from "@mui/icons-material/GetApp";
+import Button from "@mui/material/Button";
 import { staffData } from "../../../data/staff/staffData";
 import { Box } from "@mui/material";
 const Staff = () => {
   function handleClick(event) {
     event.preventDefault();
     console.info("You clicked a breadcrumb.");
-  }
-  function CustomToolbar() {
-    return (
-      <GridToolbarContainer>
-        <GridToolbarExport printOptions={{ disableToolbarButton: true }} />
-      </GridToolbarContainer>
-    );
   }
   const deteleUser = (id) => {
     console.log(id);
@@ -32,8 +32,8 @@ const Staff = () => {
   };
   return (
     <Layout>
-      <div className="p-5 h-full">
-        <div className=" flex justify-between">
+      <div className="p-5 h-full w-full ">
+        <div className=" flex justify-between pb-5">
           <h2 className="text-lg font-medium ">Nhân viên</h2>
           <div role="presentation" onClick={handleClick}>
             <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -44,39 +44,73 @@ const Staff = () => {
             </Breadcrumbs>
           </div>
         </div>
-        <div className="flex gap-5 justify-between" >
-          <Box className="p-10 bg-white rounded-md mt-5 w-full h-[80vh]" >
-            <Box>
-              <Button variant="contained" >
-                + Thêm nhân viên
-              </Button>
+        <div className="flex w-full gap-5 justify-between max-h-[90%]">
+          <Box className=" p-5 bg-white rounded-md w-full">
+            <Box sx={{ paddingBottom: 1, display:'flex' , justifyContent:'space-between', alignItems:'center' }}>
+              <div class="flex items-center justify-center">
+                <div class="rounded-lg ">
+                  <div class="flex ">
+                    <div class="flex w-8 bg-[#e8e8e8]  items-center justify-center rounded-tl-lg rounded-bl-lg border-r border-white p-5 px-4">
+                      <svg
+                        viewBox="0 0 20 20"
+                        aria-hidden="true"
+                        class="pointer-events-none absolute w-5 fill-gray-500 transition"
+                      >
+                        <path d="M16.72 17.78a.75.75 0 1 0 1.06-1.06l-1.06 1.06ZM9 14.5A5.5 5.5 0 0 1 3.5 9H2a7 7 0 0 0 7 7v-1.5ZM3.5 9A5.5 5.5 0 0 1 9 3.5V2a7 7 0 0 0-7 7h1.5ZM9 3.5A5.5 5.5 0 0 1 14.5 9H16a7 7 0 0 0-7-7v1.5Zm3.89 10.45 3.83 3.83 1.06-1.06-3.83-3.83-1.06 1.06ZM14.5 9a5.48 5.48 0 0 1-1.61 3.89l1.06 1.06A6.98 6.98 0 0 0 16 9h-1.5Zm-1.61 3.89A5.48 5.48 0 0 1 9 14.5V16a6.98 6.98 0 0 0 4.95-2.05l-1.06-1.06Z"></path>
+                      </svg>
+                    </div>
+                    <input
+                      type="text"
+                      class="w-full max-w-[160px]  bg-[#e8e8e8] pl-2 text-base font-normal outline-0"
+                      placeholder="Nhập tên tìm kiếm"
+                      id=""
+                    />
+                    <input
+                      type="button"
+                      value="Search"
+                      class="bg-blue-500 p-2 cursor-pointer rounded-tr-lg rounded-br-lg text-white font-normal hover:bg-blue-800 transition-colors"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <Button size="small" color="success">
+                  <GetAppIcon /> Xuất exel
+                </Button>
+                <Button size="small" variant="contained">
+                  {" "}
+                  <AddIcon />
+                  Thêm nhân viên
+                </Button>
+              </div>
             </Box>
             <DataGrid
-            slots={{
-              toolbar: CustomToolbar,
-            }}
+              
+              sx={{ maxHeight: "90%", maxWidth:'1200px'}}
               rows={staffData}
               columns={[
                 { field: "MANV", headerName: "Mã nhân viên", width: 130 },
                 { field: "TENNV", headerName: "Tên nhân viên", width: 250 },
                 { field: "NGUOITAO", headerName: "Người tạo", width: 130 },
                 { field: "NGAYTAO", headerName: "Ngày tạo", width: 130 },
+                { field: "SDT", headerName: "Số điện thoại", width: 130 },
+                { field: "EMAIL", headerName: "email", width: 130 },
                 { field: "GHICHU", headerName: "Ghi chú", width: 250 },
                 {
                   field: "action",
                   headerName: "Hành động",
                   type: "actions",
-                  width: 130 ,
+                  width: 130,
                   getActions: (params) => [
                     <GridActionsCellItem
-                      icon={<DeleteIcon />}
+                      icon={<DeleteIcon color="error" />}
                       label="xoá"
                       onClick={() => {
                         deteleUser(params.id);
                       }}
                     />,
                     <GridActionsCellItem
-                      icon={<BorderColorIcon />}
+                      icon={<BorderColorIcon color="success" />}
                       label="Sửa"
                       onClick={() => {
                         editUser(params.id);
@@ -87,7 +121,8 @@ const Staff = () => {
               ]}
             />
           </Box>
-          <Box className=" p-10 bg-white rounded-md mt-5 w-[500px]">
+        </div>
+        {/* <Box className=" p-10 bg-white rounded-md mt-5 w-[500px]">
               <div className="flex items-center gap-2">
                 <img
                   className="w-20 h-20  rounded-full border-2 border-gray-200"
@@ -115,8 +150,8 @@ const Staff = () => {
               <Button variant="contained">Chỉnh sửa</Button>
               <Button variant="outlined">Xoá</Button>
               </div>
-            </Box>
-        </div>
+            </Box> */}
+
       </div>
     </Layout>
   );
