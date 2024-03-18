@@ -1,4 +1,5 @@
 import './App.css';
+import 'devextreme/dist/css/dx.light.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { routes } from './routes/router';
 import NotFound from './pages/NotFound/NotFound';

@@ -13,8 +13,8 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Navbar } from "../../../data/header/hearderData";
-import StarBorder from "@mui/icons-material/StarBorder";
 import StarPurple500RoundedIcon from '@mui/icons-material/StarPurple500Rounded';
+import { useNavigate } from "react-router-dom";
 const drawerWidth = 250;
 
 const openedMixin = (theme) => ({
@@ -71,6 +71,7 @@ const Sidenav = (props) => {
   const [open, setOpen] = React.useState(true);
   const [isActive, setActive] = useState(false);
   const [openIndex, setOpenIndex] = useState(null);
+  const navigate = useNavigate()
   // * xử lí show bản sideNav trên page
   const handleDrawer = () => {
     setOpen(!open);
@@ -91,7 +92,7 @@ const Sidenav = (props) => {
         open={open}
       >
         <List sx={{ maxHeight: "93%",overflowX:'hidden', overflowY:'auto' }}>
-          {Navbar.map(({ label, icon }, index) => (
+          {Navbar.map(({ label, icon,child }, index) => (
             <>
               <ListItem
                 onClick={() => handleItem(index)}
@@ -127,7 +128,9 @@ const Sidenav = (props) => {
               </ListItem>
               <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton
+                  {child?.map(({label,path}) => ( 
+                    <ListItemButton
+                    onClick={()=>{navigate(path)}}
                     className="bg-[#00ADEF] text-white"
                     sx={{
                       pl:3,
@@ -144,26 +147,10 @@ const Sidenav = (props) => {
                       <StarPurple500RoundedIcon />
                     </div>
 
-                    <ListItemText primary="Thư mục con 1" />
+                    <ListItemText primary={label} />
                   </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <div className="mr-2">
-                      <StarPurple500RoundedIcon />
-                    </div>
-                    <ListItemText primary="Thư mục con 2" />
-                  </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <div className="mr-2">
-                      <StarPurple500RoundedIcon />
-                    </div>
-                    <ListItemText primary="Thư mục con 1" />
-                  </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <div className="mr-2">
-                      <StarPurple500RoundedIcon />
-                    </div>
-                    <ListItemText primary="Thư mục con 1" />
-                  </ListItemButton>
+                  ))}
+                  
                 </List>
               </Collapse>
             </>
