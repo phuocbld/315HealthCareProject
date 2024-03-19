@@ -6,6 +6,6 @@ const https = axios.create({
 })
 export const authService = {
     login: (form) => {
-        https.get('login',form)
+      return  https.get('login',form)
     }
 }
