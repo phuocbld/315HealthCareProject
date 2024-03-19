@@ -25,6 +25,7 @@ const Toast = Swal.mixin({
   },
 });
 export function* authSaga() {
+  //login user
   yield takeLatest(
     typeAction.GET_LOGIN_API,
     function* login({ type, payload, navigate }) {
@@ -35,9 +36,10 @@ export function* authSaga() {
         });
         yield put({
           type: typeAction.DISPATCH_INFO_LOGIN,
-          payload: infoUser,
+          payload: infoUser.data,
         });
-        yield delay(1000);
+        localStorage.setItem('USER_INFO',JSON.stringify(infoUser.data))
+        yield delay(500);
         yield put({
           type: typeAction.CLOSE_LOADING,
         });
@@ -50,6 +52,31 @@ export function* authSaga() {
         Toast.fire({
           icon: "error",
           title: "Tài Khoản hoặc mật khẩu khôgn đúng !",
+        });
+        console.log(err);
+      }
+    }
+  );
+
+  //logout user
+  yield takeLatest(
+    typeAction.LOGOUT_USER,
+    function* logout({  navigate }) {
+      try {
+        yield localStorage.removeItem("USER_INFO")
+        yield put({
+          type: typeAction.DISPATCH_LOGOUT_USER,
+          payload: null
+      })
+        yield navigate("/login");
+        Toast.fire({
+          icon: "success",
+          title: "Đăng xuất thành công !",
+        });
+      } catch (err) {
+        Toast.fire({
+          icon: "error",
+          title: "Đăng xuất thật bại !",
         });
         console.log(err);
       }

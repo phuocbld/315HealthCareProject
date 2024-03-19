@@ -5,3 +5,8 @@ export const loginUser = (payload,navigate) =>({
     payload,
     navigate
 })
+
+export const logoutUser = (navigate) =>({
+    type: typeAction.LOGOUT_USER,
+    navigate
+})

@@ -21,6 +21,10 @@ builder.Services.AddScoped<IChiNhanhService, ChiNhanhService>();
 //builder.Services.AddScoped<IAuthService, AuthService>();
 //builder.Services.AddScoped<INguoiDungRepository, NguoiDungRepository>();
 
+
+builder.Services.AddCors(p => p.AddPolicy("MyCors", build => {
+    build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 var app = builder.Build();
 
 // Định nghĩa một action kiểm tra kết nối database
@@ -42,7 +46,7 @@ Action checkDatabaseConnection = () =>
 };
 
 
-
+app.UseCors("MyCors");
 // Gọi action để kiểm tra kết nối khi ứng dụng khởi động
 checkDatabaseConnection();
 
@@ -60,13 +64,3 @@ app.MapControllers();
 app.Run();
 
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigin",
-        builder =>
-        {
-            builder.WithOrigins("localhost:3000") 
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
-});

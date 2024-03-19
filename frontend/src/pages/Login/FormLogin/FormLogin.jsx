@@ -14,12 +14,13 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { useTranslation } from "react-i18next";
 import { loginSchema } from "../../../schemas/loginSchema";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../store/actions/userAction";
 import { useNavigate } from "react-router-dom";
 const FormLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { t } = useTranslation("translation");
+  const {listBranch} = useSelector (state => state.branchReducer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleLogin = (values, action) => {
@@ -31,7 +32,7 @@ const FormLogin = () => {
   // xử lý selelect chọn phòng khám
   const handleSelect = (event, props) => {
     let value = event.target.value;
-    props.setFieldValue("maPhongKham", value); // setFieldValue maPhongKham vào >>>> form formik
+    props.setFieldValue("idChiNhanh", value); // setFieldValue maPhongKham vào >>>> form formik
   };
 
   // show password
@@ -45,7 +46,7 @@ const FormLogin = () => {
       initialValues={{
         username: "",
         password: "",
-        maPhongKham: "",
+        idChiNhanh: "",
       }}
       onSubmit={handleLogin}
       validationSchema={loginSchema}
@@ -108,19 +109,23 @@ const FormLogin = () => {
               </InputLabel>
               <Select
                 labelId="demo-select-small-label"
-                value={props.values.maPhongKham}
+                value={props.values.idChiNhanh}
                 id="demo-select-small"
                 label={t("Chọn phòng khám")}
-                name="maPhongkham"
+                name="idChiNhanh"
+                MenuProps={{style:{maxHeight:300}}}
                 onChange={(e) => {
                   handleSelect(e, props);
                 }}
               >
-                <MenuItem value={"PS_HD"}>Phụ sản - Hoàng Diệu</MenuItem>
+                {listBranch?.map((items) => (<MenuItem key={items.idChiNhanh} value={items.idChiNhanh}>
+                  {items.tenChiNhanh}
+                </MenuItem>))}
+                {/* <MenuItem value={"PS_HD"}>Phụ sản - Hoàng Diệu</MenuItem>
                 <MenuItem value={"VP_HVT"}>VP - 207b Hoàng Văn Thụ</MenuItem>
-                <MenuItem value={"ND_QT"}>Nhi - Quang Trung</MenuItem>
+                <MenuItem value={"ND_QT"}>Nhi - Quang Trung</MenuItem> */}
               </Select>
-              {props.touched.maPhongKham && props.errors.maPhongKham && <span className="text-left text-red-500">* {t(props.errors.maPhongKham)}</span> }
+              {props.touched.idChiNhanh && props.errors.idChiNhanh && <span className="text-left text-red-500">* {t(props.errors.idChiNhanh)}</span> }
             </FormControl>
             <Box>
               <p className="p-3 text-blue-500 cursor-pointer">

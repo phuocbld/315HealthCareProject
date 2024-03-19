@@ -5,7 +5,7 @@ import Login from "../pages/Login/Login";
 
 //Tạo các route
 export const routes = [ 
-    {path:"/", Component: Home},
-    {path:'/login', Component: Login},
-    {path:'/nhan-vien',Component: Staff}
+    {path:"/", Component: Home, isAuth: true, redirectPath: '/login' },
+    {path:'/login', Component: Login },
+    {path:'/nhan-vien',Component: Staff, isAuth: true, redirectPath: '/login'}
 ]

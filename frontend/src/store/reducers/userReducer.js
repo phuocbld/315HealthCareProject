@@ -10,7 +10,9 @@ const userReducer = (state = initialState, { type, payload }) => {
       case typeAction.DISPATCH_INFO_LOGIN:
         draft.infoUser = payload;
         break;
-
+        case typeAction.DISPATCH_LOGOUT_USER:
+          draft.infoUser = null;
+          break;
       default:
         return state;
     }

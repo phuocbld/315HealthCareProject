@@ -7,7 +7,7 @@ export const loginSchema = Yup.object().shape({
     password: Yup
     .string()
     .required("Vui lòng nhập mật khẩu"),
-    maPhongKham: Yup
+    idChiNhanh: Yup
     .string()
     .required('Vui lòng chọn phòng khám'),
 

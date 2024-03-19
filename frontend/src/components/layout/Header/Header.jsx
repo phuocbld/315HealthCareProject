@@ -3,6 +3,7 @@ import { Narbar } from "../../../data/header/hearderData";
 import Avatars from "../../common/Avatar/Avatars";
 import ButtonLang from '../../common/ButtonLang/ButtonLang';
 import Notification from '../../common/Notificaton/Notification'
+import { useSelector } from "react-redux";
 const className_isActive = " text-blue-500 border-b-2 border-blue-500";
 const className_btn =
   "text-black text-center px-2 py-4 font-medium hover:bg-sky-100 duration-300 cursor-pointer";
@@ -10,6 +11,7 @@ const className_btn =
 const Header = () => {
   const [isActive, setIsActive] = useState(null);
   //xử lí click Navbar
+  const {infoUser} = useSelector(state => state.userReducer)
   const hanldClick = (label) => {
     setIsActive(label);
   };
@@ -27,7 +29,7 @@ const Header = () => {
         <ul className=" flex justify-center gap-4  items-center">
           <li className="w-10"><ButtonLang label = ''/></li>
           <li><Notification/></li>
-          <li><Avatars/></li>
+          <li><Avatars info={infoUser} /></li>
         </ul>
       </div>
       <div></div>

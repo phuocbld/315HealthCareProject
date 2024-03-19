@@ -5,5 +5,5 @@ export const demoModalCAction = (value) => ({
 });
 
 export const listBranchAction = () => ({
-  type: typeAction.DISPATCH_LIST_BRANCH,
+  type: typeAction.GET_LIST_BRANCH_API,
 });
