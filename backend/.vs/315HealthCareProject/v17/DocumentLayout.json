@@ -3,20 +3,64 @@
   "WorkspaceRootPath": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\315healthcareproject.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:315healthcareproject.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\controllers\\calamvieccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:controllers\\calamvieccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\controllers\\chinhanhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:controllers\\chinhanhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\repositories\\nguoidungrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\nguoidungrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\dto\\nguoidungdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:dto\\nguoidungdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\dto\\chinhanhdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:dto\\chinhanhdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\models\\chinhanh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:models\\chinhanh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\models\\chinhanh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:models\\chinhanh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\repositories\\chinhanhrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\chinhanhrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\315healthcareproject.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:315healthcareproject.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\models\\calamviec.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,28 +79,8 @@
       "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\calamviecservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\repositories\\nguoidungrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\nguoidungrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\repositories\\inguoidungrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\inguoidungrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -67,10 +91,6 @@
       "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\ichinhanhrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\services\\icalamviecservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\icalamviecservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -79,28 +99,12 @@
       "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\calamviecrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\controllers\\calamvieccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:controllers\\calamvieccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\repositories\\icalamviecrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\icalamviecrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\controllers\\chinhanhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:controllers\\chinhanhcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\dto\\chinhanhdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:dto\\chinhanhdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\services\\ichinhanhservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\ichinhanhservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repos\\315healthcare\\backend\\repositories\\chinhanhrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\chinhanhrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -110,74 +114,154 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 9,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "NguoiDungDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\DTO\\NguoiDungDTO.cs",
+              "RelativeDocumentMoniker": "DTO\\NguoiDungDTO.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\DTO\\NguoiDungDTO.cs",
+              "RelativeToolTip": "DTO\\NguoiDungDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T04:45:35.042Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "315HealthCareProject",
-              "DocumentMoniker": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
-              "RelativeDocumentMoniker": "315HealthCareProject.csproj",
-              "ToolTip": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
-              "RelativeToolTip": "315HealthCareProject.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-03-19T03:06:59.268Z"
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAxwAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T02:16:29.451Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
+              "Title": "LoginDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\DTO\\LoginDTO.cs",
+              "RelativeDocumentMoniker": "DTO\\LoginDTO.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\DTO\\LoginDTO.cs",
+              "RelativeToolTip": "DTO\\LoginDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T11:04:58.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ChiNhanhDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\DTO\\ChiNhanhDTO.cs",
+              "RelativeDocumentMoniker": "DTO\\ChiNhanhDTO.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\DTO\\ChiNhanhDTO.cs",
+              "RelativeToolTip": "DTO\\ChiNhanhDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T10:29:21.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NguoiDungRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\NguoiDungRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\NguoiDungRepository.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\NguoiDungRepository.cs",
+              "RelativeToolTip": "Repositories\\NguoiDungRepository.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAAwCEAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T10:48:58.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "Services\\AuthService.cs",
               "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\AuthService.cs",
               "RelativeToolTip": "Services\\AuthService.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAuwC8AAAAzAAAA",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAuwC8AAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T10:41:27.736Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\IAuthService.cs",
-              "RelativeDocumentMoniker": "Services\\IAuthService.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\IAuthService.cs",
-              "RelativeToolTip": "Services\\IAuthService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T10:50:35.121Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CaLamViecService.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\CaLamViecService.cs",
-              "RelativeDocumentMoniker": "Services\\CaLamViecService.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\CaLamViecService.cs",
-              "RelativeToolTip": "Services\\CaLamViecService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T08:25:58.208Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ChiNhanhService.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\ChiNhanhService.cs",
-              "RelativeDocumentMoniker": "Services\\ChiNhanhService.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\ChiNhanhService.cs",
-              "RelativeToolTip": "Services\\ChiNhanhService.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABYAAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T09:07:22.9Z"
+              "WhenOpened": "2024-03-18T10:41:27.736Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "ChiNhanhController.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\ChiNhanhController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ChiNhanhController.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\ChiNhanhController.cs",
+              "RelativeToolTip": "Controllers\\ChiNhanhController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T09:09:50.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CaLamViecController.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\CaLamViecController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CaLamViecController.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\CaLamViecController.cs",
+              "RelativeToolTip": "Controllers\\CaLamViecController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T08:14:14.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-19T01:15:40.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAuwEcAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T09:24:34.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ChiNhanh.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Models\\ChiNhanh.cs",
+              "RelativeDocumentMoniker": "Models\\ChiNhanh.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Models\\ChiNhanh.cs",
+              "RelativeToolTip": "Models\\ChiNhanh.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAA5wBUAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T09:05:21.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "CaLamViec.cs",
               "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Models\\CaLamViec.cs",
               "RelativeDocumentMoniker": "Models\\CaLamViec.cs",
@@ -185,11 +269,38 @@
               "RelativeToolTip": "Models\\CaLamViec.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAQwB0AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T08:19:22.239Z"
+              "WhenOpened": "2024-03-18T08:19:22.239Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 12,
+              "Title": "ChiNhanhRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\ChiNhanhRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\ChiNhanhRepository.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\ChiNhanhRepository.cs",
+              "RelativeToolTip": "Repositories\\ChiNhanhRepository.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwB0AAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T09:08:38.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "NguoiDung.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Models\\NguoiDung.cs",
+              "RelativeDocumentMoniker": "Models\\NguoiDung.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Models\\NguoiDung.cs",
+              "RelativeToolTip": "Models\\NguoiDung.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAA7wDIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T10:36:31.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -202,67 +313,58 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAAAAgAAAACAAAA",
+              "DocumentIndex": 17,
+              "Title": "ChiNhanhService.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\ChiNhanhService.cs",
+              "RelativeDocumentMoniker": "Services\\ChiNhanhService.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\ChiNhanhService.cs",
+              "RelativeToolTip": "Services\\ChiNhanhService.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAABQwBYAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T09:24:34.799Z"
+              "WhenOpened": "2024-03-18T09:07:22.9Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABMAAAAAAAAA",
+              "DocumentIndex": 18,
+              "Title": "CaLamViecService.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\CaLamViecService.cs",
+              "RelativeDocumentMoniker": "Services\\CaLamViecService.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\CaLamViecService.cs",
+              "RelativeToolTip": "Services\\CaLamViecService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T02:16:29.451Z"
+              "WhenOpened": "2024-03-18T08:25:58.208Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ChiNhanh.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Models\\ChiNhanh.cs",
-              "RelativeDocumentMoniker": "Models\\ChiNhanh.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Models\\ChiNhanh.cs",
-              "RelativeToolTip": "Models\\ChiNhanh.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAqwD8AAAAAAAAA",
+              "DocumentIndex": 16,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\IAuthService.cs",
+              "RelativeDocumentMoniker": "Services\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\IAuthService.cs",
+              "RelativeToolTip": "Services\\IAuthService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T09:05:21.06Z"
+              "WhenOpened": "2024-03-18T10:50:35.121Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NguoiDung.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Models\\NguoiDung.cs",
-              "RelativeDocumentMoniker": "Models\\NguoiDung.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Models\\NguoiDung.cs",
-              "RelativeToolTip": "Models\\NguoiDung.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAgwCMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T10:36:31.661Z"
+              "DocumentIndex": 14,
+              "Title": "315HealthCareProject",
+              "DocumentMoniker": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
+              "RelativeDocumentMoniker": "315HealthCareProject.csproj",
+              "ToolTip": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
+              "RelativeToolTip": "315HealthCareProject.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-03-19T03:06:59.268Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "NguoiDungRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\NguoiDungRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\NguoiDungRepository.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\NguoiDungRepository.cs",
-              "RelativeToolTip": "Repositories\\NguoiDungRepository.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAAwCEAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T10:48:58.894Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 19,
               "Title": "INguoiDungRepository.cs",
               "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\INguoiDungRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\INguoiDungRepository.cs",
@@ -270,23 +372,12 @@
               "RelativeToolTip": "Repositories\\INguoiDungRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T10:48:32.426Z"
+              "WhenOpened": "2024-03-18T10:48:32.426Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-03-19T01:15:40.653Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
               "Title": "IChiNhanhRepository.cs",
               "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\IChiNhanhRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\IChiNhanhRepository.cs",
@@ -294,11 +385,12 @@
               "RelativeToolTip": "Repositories\\IChiNhanhRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T09:08:05.152Z"
+              "WhenOpened": "2024-03-18T09:08:05.152Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "ICaLamViecService.cs",
               "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\ICaLamViecService.cs",
               "RelativeDocumentMoniker": "Services\\ICaLamViecService.cs",
@@ -306,35 +398,25 @@
               "RelativeToolTip": "Services\\ICaLamViecService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T08:25:55.623Z"
+              "WhenOpened": "2024-03-18T08:25:55.623Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "LoginDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\DTO\\LoginDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\LoginDTO.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\DTO\\LoginDTO.cs",
-              "RelativeToolTip": "DTO\\LoginDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T11:04:58.656Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 20,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
               "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Data\\ApplicationDbContext.cs",
               "RelativeToolTip": "Data\\ApplicationDbContext.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAA5wA8AAAAEAAAA",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA1wA8AAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T08:17:03.523Z"
+              "WhenOpened": "2024-03-18T08:17:03.523Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "CaLamViecRepository.cs",
               "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\CaLamViecRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\CaLamViecRepository.cs",
@@ -342,23 +424,12 @@
               "RelativeToolTip": "Repositories\\CaLamViecRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T08:21:39.772Z"
+              "WhenOpened": "2024-03-18T08:21:39.772Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "CaLamViecController.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\CaLamViecController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CaLamViecController.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\CaLamViecController.cs",
-              "RelativeToolTip": "Controllers\\CaLamViecController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T08:14:14.004Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 24,
               "Title": "ICaLamViecRepository.cs",
               "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\ICaLamViecRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\ICaLamViecRepository.cs",
@@ -366,35 +437,12 @@
               "RelativeToolTip": "Repositories\\ICaLamViecRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T08:21:44.075Z"
+              "WhenOpened": "2024-03-18T08:21:44.075Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ChiNhanhController.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\ChiNhanhController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ChiNhanhController.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Controllers\\ChiNhanhController.cs",
-              "RelativeToolTip": "Controllers\\ChiNhanhController.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBcAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T09:09:50.174Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "ChiNhanhDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\DTO\\ChiNhanhDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\ChiNhanhDTO.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\DTO\\ChiNhanhDTO.cs",
-              "RelativeToolTip": "DTO\\ChiNhanhDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T10:29:21.066Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "IChiNhanhService.cs",
               "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Services\\IChiNhanhService.cs",
               "RelativeDocumentMoniker": "Services\\IChiNhanhService.cs",
@@ -402,19 +450,8 @@
               "RelativeToolTip": "Services\\IChiNhanhService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T09:02:11.396Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "ChiNhanhRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\ChiNhanhRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\ChiNhanhRepository.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repos\\315healthcare\\backend\\Repositories\\ChiNhanhRepository.cs",
-              "RelativeToolTip": "Repositories\\ChiNhanhRepository.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwB0AAABFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T09:08:38.943Z"
+              "WhenOpened": "2024-03-18T09:02:11.396Z",
+              "EditorCaption": ""
             }
           ]
         }

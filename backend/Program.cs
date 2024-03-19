@@ -41,6 +41,8 @@ Action checkDatabaseConnection = () =>
     }
 };
 
+
+
 // Gọi action để kiểm tra kết nối khi ứng dụng khởi động
 checkDatabaseConnection();
 
@@ -56,3 +58,15 @@ app.UseHttpsRedirection();
 app.MapControllers(); 
 
 app.Run();
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000") 
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
