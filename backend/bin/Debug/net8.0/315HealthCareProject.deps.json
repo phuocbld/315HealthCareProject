@@ -9,6 +9,7 @@
       "315HealthCareProject/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "8.0.3",
+          "Microsoft.EntityFrameworkCore": "8.0.0",
           "Oracle.EntityFrameworkCore": "8.21.121",
           "Swashbuckle.AspNetCore": "6.4.0"
         },

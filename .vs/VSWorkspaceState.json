@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\backend"
+    "\\backend",
+    "\\backend\\Services"
   ],
-  "SelectedNode": "\\backend\\315HealthCareProject.sln",
+  "SelectedNode": "\\backend\\Services\\IAuthService.cs",
   "PreviewInSolutionExplorer": false
 }

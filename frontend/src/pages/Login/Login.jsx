@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FormLogin from "./FormLogin/FormLogin";
 import style from "./login.module.css";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import ButtonLang from "../../components/common/ButtonLang/ButtonLang";
 import LoadingPage from "../../components/layout/Loading/LoadingPage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { listBranchAction } from "../../store/actions/BranchAction";
 const Login = () => {
   const { t } = useTranslation("translation");
   const {loadingPage} = useSelector(state => state.modalReducer)
+  const dispatch = useDispatch()
+  // useEffect(()=>{
+  //   // lấy dữ liệu danh sách chi nhánh 
+  //   dispatch(listBranchAction())
+  // },[])
   return (
     <>
       <div className="bg-gradient-to-r from-indigo-500 to-sky-500 h-screen flex ">

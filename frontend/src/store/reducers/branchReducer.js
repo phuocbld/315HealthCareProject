@@ -1,8 +1,9 @@
 import { produce } from "immer";
-
+import *  as  typeAction  from '../constants/constants'
 const initialState = {
   data: [],
   modal: false,
+  listBranch:null
 };
 
 const branchReducer = (state = initialState, { type, payload }) => {
@@ -13,6 +14,9 @@ const branchReducer = (state = initialState, { type, payload }) => {
         break;
       case "TRUE_MODAL":
         draft.modal = true;
+        break;
+        case typeAction.DISPATCH_LIST_BRANCH:
+        draft.listBranch = payload;
         break;
       default:
         return state;

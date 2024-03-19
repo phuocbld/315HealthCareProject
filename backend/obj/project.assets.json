@@ -1680,24 +1680,25 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.AspNetCore.OpenApi >= 8.0.3",
+      "Microsoft.EntityFrameworkCore >= 8.0.0",
       "Oracle.EntityFrameworkCore >= 8.21.121",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Software\\.nuget\\packages\\": {}
+    "C:\\Users\\Tai Nguyen\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
+      "projectUniqueName": "D:\\code Tài Nguyễn\\315 healthcare\\backend\\315HealthCareProject.csproj",
       "projectName": "315HealthCareProject",
-      "projectPath": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
-      "packagesPath": "C:\\Users\\Software\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\obj\\",
+      "projectPath": "D:\\code Tài Nguyễn\\315 healthcare\\backend\\315HealthCareProject.csproj",
+      "packagesPath": "C:\\Users\\Tai Nguyen\\.nuget\\packages\\",
+      "outputPath": "D:\\code Tài Nguyễn\\315 healthcare\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Software\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tai Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1732,6 +1733,10 @@
             "target": "Package",
             "version": "[8.0.3, )"
           },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[8.0.0, )"
+          },
           "Oracle.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.21.121, )"
@@ -1760,7 +1765,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
