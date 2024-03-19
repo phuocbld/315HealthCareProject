@@ -13,7 +13,12 @@ export function* branchSaga () {
 
     yield takeLatest(typeAction.DISPATCH_LIST_BRANCH,function* ListBranch({type,payload}){
         // yield console.log(payload);
-       const  result = yield put(branchService.getListBranch())
-        console.log(result);
-    } )
+        try{
+            const  result = yield call(() => branchService.getListBranch())
+         yield console.log(result);
+        } catch(err){
+           yield console.log(err);
+        }
+       
+    } ) 
 }

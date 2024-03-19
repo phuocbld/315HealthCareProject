@@ -5,7 +5,5 @@ const https = axios.create({
     baseURL: URL
 })
 export const branchService = {
-    getListBranch: () => {
-        https.get('chinhanh')
-    }
+    getListBranch: () => https.get('chinhanh')
 }

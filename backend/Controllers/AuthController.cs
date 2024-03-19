@@ -8,7 +8,7 @@ using _315HealthCareProject.DTO;
 namespace _315HealthCareProject.Controllers
 {
     [ApiController]
-    [Route("auth/[controller]")]
+    [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

@@ -11,10 +11,10 @@ const Login = () => {
   const { t } = useTranslation("translation");
   const {loadingPage} = useSelector(state => state.modalReducer)
   const dispatch = useDispatch()
-  // useEffect(()=>{
-  //   // lấy dữ liệu danh sách chi nhánh 
-  //   dispatch(listBranchAction())
-  // },[])
+  useEffect(()=>{
+    // lấy dữ liệu danh sách chi nhánh 
+    dispatch(listBranchAction())
+  },[])
   return (
     <>
       <div className="bg-gradient-to-r from-indigo-500 to-sky-500 h-screen flex ">

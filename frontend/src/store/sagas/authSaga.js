@@ -4,11 +4,15 @@ import  * as typeAction from'../constants/constants'
 import { authService } from "../../services/auth/authService";
 
 export function* authSaga() {
-    yield takeLatest(typeAction.LOGIN_USER, function* login({type,payload,navigate}){
+    yield takeLatest(typeAction.GET_LOGIN_API, function* login({type,payload,navigate}){
         try{
             const infoUser = yield put(authService.login(payload))
             yield put ({
                 type:typeAction.OPEN_LOADING
+            })
+            yield put ({
+                type:typeAction.DISPATCH_INFO_LOGIN,
+                payload: infoUser
             })
            yield delay(1000)
            yield put({
