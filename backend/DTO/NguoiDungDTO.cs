@@ -2,6 +2,6 @@
 {
     public class NguoiDungDTO
     {
-        public int IdNguoiDung {  get; set; }
+        public string Username {  get; set; }
     }
 }

@@ -6,14 +6,36 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
+
 public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     public DbSet<CaLamViec> CaLamViecs { get; set; }
     public DbSet<ChiNhanh> ChiNhanhs { get; set; }
-    public IEnumerable<object> Chinhanhs { get; internal set; }
+    public DbSet<TinhTP> TinhTps { get; set; }
     public DbSet<NguoiDung> NguoiDungs { get; set; }
+    public DbSet<QuanHuyen> QuanHuyens { get; set; }
+    public DbSet<PhuongXa> PhuongXas { get; set; }
+    public DbSet<DanToc> DanTocs { get; set; }
+    public DbSet<QuocTich> QuocTichs { get; set; }
+    public DbSet<DoiTuong> DoiTuongs { get; set; }
+    public DbSet<NgheNghiep> NgheNghieps { get; set; }
+    public DbSet<NguonKhachHang> NguonKHs { get; set; }
+    public DbSet<HinhThucThanhToan> HinhThucs { get; set; }
+    public DbSet<PhongKham> PhongKhams { get; set; }
+
+    public IEnumerable<object> Chinhanhs { get; internal set; }
+    public IEnumerable<object> Tinhs { get; internal set; }
+    public IEnumerable<object> Quans { get; internal set; }
+    public IEnumerable<object> Phuongs { get; internal set; }
+    public IEnumerable<object> danTocs { get; internal set; }
+    public IEnumerable<object> quocTichs { get; internal set; }
+    public IEnumerable<object> doiTuongs { get; internal set; }
+    public IEnumerable<object> ngheNghieps { get; internal set; }
+    public IEnumerable<object> nguonKHs { get; internal set; }
+    public IEnumerable<object> hinhThucs { get; internal set; }
+    public IEnumerable<object> phongKhams { get; internal set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,6 +63,7 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.TenChiNhanh).HasColumnName("TENCHINHANH");
            
         });
+
 
         base.OnModelCreating(modelBuilder);
     }

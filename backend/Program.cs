@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 //cấu hình Oracle EF Core
-builder.Services.AddDbContext<ApplicationDbContext>(options => 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("OracleDBConnection")));
 
 // Add services to the container.
@@ -18,11 +18,13 @@ builder.Services.AddScoped<ICaLamViecRepository, CaLamViecRepository>();
 builder.Services.AddScoped<ICaLamViecService, CaLamViecService>();
 builder.Services.AddScoped<IChiNhanhRepository, ChiNhanhRepository>();
 builder.Services.AddScoped<IChiNhanhService, ChiNhanhService>();
-//builder.Services.AddScoped<IAuthService, AuthService>();
-//builder.Services.AddScoped<INguoiDungRepository, NguoiDungRepository>();
+builder.Services.AddScoped<INguoiDungService, NguoiDungService>();
 
 
-builder.Services.AddCors(p => p.AddPolicy("MyCors", build => {
+
+
+builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
+{
     build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
 }));
 var app = builder.Build();
@@ -50,17 +52,22 @@ app.UseCors("MyCors");
 // Gọi action để kiểm tra kết nối khi ứng dụng khởi động
 checkDatabaseConnection();
 
-
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API 315HealthCare");
+});
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path == "/")
+    {
+        context.Response.Redirect("/swagger/index.html");
+        return;
+    }
+    await next();
+});
 app.UseHttpsRedirection();
 
-app.MapControllers(); 
+app.MapControllers();
 
 app.Run();
-
-

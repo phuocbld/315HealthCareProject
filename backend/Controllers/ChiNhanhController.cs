@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using _315HealthCareProject.Services;
 
 [ApiController]
-[Route("api/chinhanh")]
+[Route("api/[controller]")]
 public class ChiNhanhController : ControllerBase
 {
     private readonly IChiNhanhService _service;
@@ -32,5 +32,6 @@ public class ChiNhanhController : ControllerBase
         var chiNhanhs = await _service.GetAllChiNhanhAsync();
         return Ok(chiNhanhs);
     }
+
 }
 

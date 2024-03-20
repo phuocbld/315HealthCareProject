@@ -23,13 +23,13 @@ using System.ComponentModel.DataAnnotations.Schema;
         public int? IdChiNhanh { get; set; }
 
         [Column("NGUOITAO")]
-        public int? NguoiTao { get; set; }
+        public string? NguoiTao { get; set; }
 
         [Column("NGAYTAO")]
         public DateTime? NgayTao { get; set; }
 
         [Column("NGUOISUA")]
-        public int? NguoiSua { get; set; }
+        public string? NguoiSua { get; set; }
 
         [Column("NGAYSUA")]
         public DateTime? NgaySua { get; set; }
