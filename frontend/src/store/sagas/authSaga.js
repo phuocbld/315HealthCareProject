@@ -51,7 +51,7 @@ export function* authSaga() {
       } catch (err) {
         Toast.fire({
           icon: "error",
-          title: "Tài Khoản hoặc mật khẩu khôgn đúng !",
+          title: "Tài Khoản hoặc mật khẩu không đúng !",
         });
         console.log(err);
       }

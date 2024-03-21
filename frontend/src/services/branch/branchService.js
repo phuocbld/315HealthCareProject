@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const URL = 'http://localhost:5234/api/'
+//local
+// const URL = 'http://localhost:5234/api/Auth'
+// server
+const URL = 'http://14.241.244.112:5234/api/'
 const https = axios.create({
     baseURL: URL
 })

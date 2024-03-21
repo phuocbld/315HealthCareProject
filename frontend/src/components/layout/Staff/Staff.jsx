@@ -10,9 +10,6 @@ import {
   GridToolbarExport,
 } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import EmailIcon from "@mui/icons-material/Email";
-import RoomIcon from "@mui/icons-material/Room";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AddIcon from "@mui/icons-material/Add";
 import GetAppIcon from "@mui/icons-material/GetApp";
@@ -85,22 +82,21 @@ const Staff = () => {
               </div>
             </Box>
             <DataGrid
-              
-              sx={{ maxHeight: "90%", maxWidth:'1200px'}}
+              sx={{ maxHeight: "90%",}}
               rows={staffData}
               columns={[
-                { field: "MANV", headerName: "Mã nhân viên", width: 130 },
-                { field: "TENNV", headerName: "Tên nhân viên", width: 250 },
-                { field: "NGUOITAO", headerName: "Người tạo", width: 130 },
-                { field: "NGAYTAO", headerName: "Ngày tạo", width: 130 },
-                { field: "SDT", headerName: "Số điện thoại", width: 130 },
-                { field: "EMAIL", headerName: "email", width: 130 },
-                { field: "GHICHU", headerName: "Ghi chú", width: 250 },
+                { field: "MANV", headerName: "Mã nhân viên", width: '10%' },
+                { field: "TENNV", headerName: "Tên nhân viên", width: '10%' },
+                { field: "NGUOITAO", headerName: "Người tạo", width: '10%' },
+                { field: "NGAYTAO", headerName: "Ngày tạo", width: '10%' },
+                { field: "SDT", headerName: "Số điện thoại", width: '10%' },
+                { field: "EMAIL", headerName: "email", width: '10%' },
+                { field: "GHICHU", headerName: "Ghi chú", width: '40%' },
                 {
                   field: "action",
                   headerName: "Hành động",
                   type: "actions",
-                  width: 130,
+                  width: '10%',
                   getActions: (params) => [
                     <GridActionsCellItem
                       icon={<DeleteIcon color="error" />}
