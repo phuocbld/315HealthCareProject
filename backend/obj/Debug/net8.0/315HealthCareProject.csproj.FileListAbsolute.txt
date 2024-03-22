@@ -56,3 +56,4 @@ C:\Users\Software\Source\Repos\315healthcare\backend\obj\Debug\net8.0\refint\315
 C:\Users\Software\Source\Repos\315healthcare\backend\obj\Debug\net8.0\315HealthCareProject.pdb
 C:\Users\Software\Source\Repos\315healthcare\backend\obj\Debug\net8.0\315HealthCareProject.genruntimeconfig.cache
 C:\Users\Software\Source\Repos\315healthcare\backend\obj\Debug\net8.0\ref\315HealthCareProject.dll
+C:\Users\Software\Source\Repos\315healthcare\backend\bin\Debug\net8.0\Newtonsoft.Json.dll

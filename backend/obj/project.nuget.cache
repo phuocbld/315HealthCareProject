@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6sD9neilnRf1zi+hMt3Ny4BsMuo1izPTdC8P3d+gh/MdvvktOhagx1ulbgbC5wxn4qZRQc2dHfS5PLtMgbtSHQ==",
+  "dgSpecHash": "M3CWWtfnEJ+dE+a3KCSls5qyZfCGm04Ddob8YsNDiLSgmIytGpdijb+h1BwdpJlzL3ri4WSI1tXZGpP28ow2vw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Software\\source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
+  "projectFilePath": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Software\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\Software\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
@@ -27,6 +27,7 @@
     "C:\\Users\\Software\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\Software\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\Software\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\Software\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Software\\.nuget\\packages\\oracle.entityframeworkcore\\8.21.121\\oracle.entityframeworkcore.8.21.121.nupkg.sha512",
     "C:\\Users\\Software\\.nuget\\packages\\oracle.manageddataaccess.core\\3.21.120\\oracle.manageddataaccess.core.3.21.120.nupkg.sha512",
     "C:\\Users\\Software\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",

@@ -8,10 +8,12 @@ using _315HealthCareProject.Services;
 public class ChiNhanhController : ControllerBase
 {
     private readonly IChiNhanhService _service;
+    private readonly INguoiDungService _nguoiDungService; 
 
-    public ChiNhanhController(IChiNhanhService service)
+    public ChiNhanhController(IChiNhanhService service , INguoiDungService nguoiDungService)
     {
         _service = service;
+        _nguoiDungService = nguoiDungService;
     }
 
     [HttpGet("{idChiNhanh}")]
@@ -33,5 +35,20 @@ public class ChiNhanhController : ControllerBase
         return Ok(chiNhanhs);
     }
 
+    [HttpGet]
+    [Route("user/{username}")]
+    public async Task<IActionResult> GetChiNhanhIdByTaiKhoan(string username)
+    {
+        var chiNhanhId = await _nguoiDungService.GetChiNhanhIdByTaiKhoan(username);
+
+        if (chiNhanhId == null)
+        {
+            return NotFound(new { message = "User not found" });
+        }
+
+        return Ok(new { IdChiNhanh = chiNhanhId, TaiKhoan = username });
+    }
 }
+
+
 

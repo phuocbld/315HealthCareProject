@@ -24,6 +24,13 @@ public class ApplicationDbContext : DbContext
     public DbSet<NguonKhachHang> NguonKHs { get; set; }
     public DbSet<HinhThucThanhToan> HinhThucs { get; set; }
     public DbSet<PhongKham> PhongKhams { get; set; }
+    public DbSet<DangNhap> DangNhaps  { get; set; }
+    public DbSet<NhomNguoiDung> NhomNguoiDungs { get; set; }
+    public DbSet<NhomQuyen> NhomQuyens { get; set; }
+    public DbSet<Menu> Menus { get; set; }
+    public DbSet<NguoiDungNhomMenu> NGUOIDUNG_MENU_PERMISSION { get; set; }
+
+
 
     public IEnumerable<object> Chinhanhs { get; internal set; }
     public IEnumerable<object> Tinhs { get; internal set; }
@@ -36,13 +43,17 @@ public class ApplicationDbContext : DbContext
     public IEnumerable<object> nguonKHs { get; internal set; }
     public IEnumerable<object> hinhThucs { get; internal set; }
     public IEnumerable<object> phongKhams { get; internal set; }
+    public IEnumerable<object> dangNhaps { get; internal set; }
+    public IEnumerable<object> nhomNguoiDungs { get; internal set; }
+    public IEnumerable<object> nhomQuyens { get; internal set; }
+    public IEnumerable<object> menus { get; internal set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Sử dụng Fluent API để ánh xạ tên cột in hoa cho mỗi thuộc tính
         modelBuilder.Entity<CaLamViec>(entity =>
         {
-            entity.HasKey(e => e.IdCalaMviec); // Giả sử đây là khóa chính
+            entity.ToTable("CALAMVIEC");
+            entity.HasKey(e => e.IdCalaMviec);
             entity.Property(e => e.IdCalaMviec).HasColumnName("IDCALAMVIEC");
             entity.Property(e => e.MaCa).HasColumnName("MACA");
             entity.Property(e => e.TenCa).HasColumnName("TENCA");
@@ -51,18 +62,22 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.SuDung).HasColumnName("SUDUNG");
             entity.Property(e => e.GhiChu).HasColumnName("GHICHU");
         });
-
-        // Cấu hình ánh xạ cho lớp ChiNhanh
         modelBuilder.Entity<ChiNhanh>(entity =>
         {
-            entity.ToTable("CHINHANH"); // Xác định tên bảng
-            entity.HasKey(e => e.IdChiNhanh); // Xác định khóa chính
-            // Ánh xạ các thuộc tính của ChiNhanh với các cột tương ứng trong bảng CHINHANH
+            entity.ToTable("CHINHANH");
+            entity.HasKey(e => e.IdChiNhanh);
             entity.Property(e => e.IdChiNhanh).HasColumnName("IDCHINHANH");
             entity.Property(e => e.MaChiNhanh).HasColumnName("MACHINHANH");
             entity.Property(e => e.TenChiNhanh).HasColumnName("TENCHINHANH");
            
         });
+
+
+        modelBuilder.Entity<NguoiDungNhomMenu>().HasNoKey();
+
+
+
+
 
 
         base.OnModelCreating(modelBuilder);
