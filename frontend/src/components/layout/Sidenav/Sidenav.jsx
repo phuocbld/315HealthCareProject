@@ -17,7 +17,7 @@ import StarPurple500RoundedIcon from "@mui/icons-material/StarPurple500Rounded";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import ModalMoca from "../../common/ModalMoCa/ModalMoca";
-const drawerWidth = 250;
+const drawerWidth = 180;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -136,7 +136,7 @@ const Sidenav = (props) => {
                 >
                   <div className="mr-3">{icon}</div>
                   <ListItemText
-                    primary={<span className="text-sm">{label}</span>}
+                    primary={<span className="text-[12px]">{label}</span>}
                     sx={{ opacity: open ? 1 : 0,}}
                   />
 
@@ -175,7 +175,7 @@ const Sidenav = (props) => {
                         <StarPurple500RoundedIcon />
                       </div>
 
-                      <ListItemText primary={<span className="text-sm">{label}</span>} />
+                      <ListItemText primary={<span className="text-[12px]">{label}</span>} />
                     </ListItemButton>
                   ))}
                 </List>
