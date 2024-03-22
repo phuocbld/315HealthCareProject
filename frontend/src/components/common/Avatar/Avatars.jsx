@@ -16,6 +16,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../../store/actions/userAction';
+import * as typeACtion from '../../../store/constants/constants'
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -71,6 +72,12 @@ const Avatars = ( {info}) => {
   const logout = ()  =>{
     dispatch(logoutUser(navigate))
   }
+  const DongCaLamViec = () => {
+    handleClose()
+    dispatch({
+      type: typeACtion.OPEN_MODAL_MOCA,
+    });
+  };
 const stringName = (name) => {
   if(name){
     const nameString = name.split('')[0][0]+name.split('')[1][0]
@@ -94,8 +101,8 @@ const stringName = (name) => {
           >
             <Avatar sx={{bgcolor:'white',color:'#3b82f6'}} children={stringName(info?.taiKhoan)}/>
             <div className='text-start flex flex-col ml-2 justify-center'>
-              <p className='font-semibold text-gray-100 text-sm'>{info?.taiKhoan}</p>
-              <span className='text-sm text-gray-300 font-semibold'>Quản trị hệ thống</span>
+              <p className='font-semibold text-black text-sm'>{info?.taiKhoan}</p>
+              <span className='text-sm text-gray-00 font-semibold'>Quản trị hệ thống</span>
             </div>
           </IconButton>
         </Tooltip>
@@ -112,7 +119,7 @@ const stringName = (name) => {
           <EditIcon />
           Hồ sơ
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={DongCaLamViec} disableRipple>
           <FileCopyIcon />
           Đóng ca
         </MenuItem>

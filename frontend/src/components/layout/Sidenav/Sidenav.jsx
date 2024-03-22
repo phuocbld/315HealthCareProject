@@ -13,8 +13,10 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Navbar } from "../../../data/header/hearderData";
-import StarPurple500RoundedIcon from '@mui/icons-material/StarPurple500Rounded';
+import StarPurple500RoundedIcon from "@mui/icons-material/StarPurple500Rounded";
 import { useNavigate } from "react-router-dom";
+import Header from "../Header/Header";
+import ModalMoca from "../../common/ModalMoCa/ModalMoca";
 const drawerWidth = 250;
 
 const openedMixin = (theme) => ({
@@ -71,7 +73,7 @@ const Sidenav = (props) => {
   const [open, setOpen] = React.useState(true);
   const [isActive, setActive] = useState(false);
   const [openIndex, setOpenIndex] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // * xử lí show bản sideNav trên page
   const handleDrawer = () => {
     setOpen(!open);
@@ -84,17 +86,39 @@ const Sidenav = (props) => {
     setOpen(true);
   };
   return (
-    <Box sx={{display: "flex", height: "100vh", paddingTop: "75px" }}>
+    <>
+     <Box sx={{ display: "flex", height: "100vh" }}>
       <Drawer
-        sx={{ height: "100%",  }}
+        sx={{ height: "100%",zIndex:999 }}
         variant="permanent"
-        className=" flex justify-center relative}"
+        className=" flex justify-center relative }"
         open={open}
       >
-        <List sx={{ maxHeight:'90%', overflowX:'hidden', overflowY:'auto' }}>
-          {Navbar.map(({ label, icon,child }, index) => (
+        <DrawerHeader
+          className="bg-[#00ADEF]  absolute w-full flex justify-start p-0 "
+          onClick={()=>{navigate('/')}}
+        >
+          <IconButton
+            sx={{
+              width:'100%',
+              minHeight: 48,
+              justifyContent: open ? "initial" : "center",
+              borderRadius: "8px",
+            }}
+          >
+            {open ? <ListItemText sx={{color:'#ffff'}}  primary={<span className="font-semibold  text-lg">Hệ thống 315</span>}/> : <img className="w-10 h-10 " src="images/logo/logo_nhidong315.jpg" alt="logo Nhi đong 315" />}
+            
+            
+          </IconButton>
+        </DrawerHeader>
+        <List
+          className="bg-[#00ADEF]  h-full"
+          sx={{ marginTop: 8, overflowX: "hidden", overflowY: "auto", padding:0, }}
+        >
+          {Navbar.map(({ label, icon, child }, index) => (
             <>
               <ListItem
+                className="bg-[#00ADEF] "
                 onClick={() => handleItem(index)}
                 key={label}
                 disablePadding
@@ -104,22 +128,23 @@ const Sidenav = (props) => {
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? "initial" : "center",
-                    px: 1.5,
-                    mx: 1,
                     borderRadius: "8px",
                     transition: "all .2s",
-                    color:'#727272',
-                    "&:hover": { backgroundColor: "#00ADEF", color: "#FFFF" },
+                    color: "#DFF5FF",
+                    "&:hover": { color: "#FFFF" },
                   }}
                 >
                   <div className="mr-3">{icon}</div>
-                  <ListItemText primary={label} sx={{ opacity: open ? 1 : 0}} /> 
-                  
+                  <ListItemText
+                    primary={<span className="text-sm">{label}</span>}
+                    sx={{ opacity: open ? 1 : 0,}}
+                  />
+
                   {open ? (
                     openIndex === index ? (
-                      <ExpandLess fontSize='small' />
+                      <ExpandLess fontSize="small" />
                     ) : (
-                      <ExpandMore  fontSize='small' />
+                      <ExpandMore fontSize="small" />
                     )
                   ) : (
                     ""
@@ -128,47 +153,49 @@ const Sidenav = (props) => {
               </ListItem>
               <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  {child?.map(({label,path}) => ( 
+                  {child?.map(({ label, path }) => (
                     <ListItemButton
-                    onClick={()=>{navigate(path)}}
-                    className="bg-[#00ADEF] text-white"
-                    sx={{
-                      pl:3,
-                      mx: 1,
-                      borderRadius: "8px",
-                      transition: "all .2s",
-                      "&:hover": {
-                        backgroundColor: "#00ADEF",
-                        color: "#FFFF",
-                      },
-                    }}
-                  >
-                    <div className="mr-2">
-                      <StarPurple500RoundedIcon />
-                    </div>
+                      onClick={() => {
+                        navigate(path);
+                      }}
+                      sx={{
+                        color:'#DDDDDD',
+                        pl: 3,
+                        mx: 1,
+                        fontSize:'12px',
+                        borderRadius: "8px",
+                        transition: "all .2s",
+                        "&:hover": {
+                          backgroundColor: "#00ADEF",
+                          color: "#FFFF",
+                        },
+                      }}
+                    >
+                      <div className="mr-2">
+                        <StarPurple500RoundedIcon />
+                      </div>
 
-                    <ListItemText primary={label} />
-                  </ListItemButton>
+                      <ListItemText primary={<span className="text-sm">{label}</span>} />
+                    </ListItemButton>
                   ))}
-                  
                 </List>
               </Collapse>
             </>
           ))}
         </List>
-        <DrawerHeader
-          className="bg-sky-200 absolute w-full bottom-0 "
-          onClick={handleDrawer}
-        >
-          <IconButton>
-            {isActive ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
       </Drawer>
-      <Box component="main" className="  w-full h-full hidden lg:block bg-[#F4F5F7] ">
-        {props.children}
+      <Box
+        component="main"
+        className="w-full h-full hidden lg:block bg-[#F4F5F7] "
+      >
+        <Header open={open} handleDrawer={handleDrawer} />
+        <main className="mt-16">{props.children}</main>
       </Box>
+     
     </Box>
+    <ModalMoca />
+    </>
+   
   );
 };
 

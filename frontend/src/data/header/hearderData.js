@@ -50,6 +50,12 @@ export const Navbar = [
   {
     label: "Tiếp nhận",
     icon: <MarkunreadMailboxIcon />,
+    child: [
+      {
+        label:'Nhận bệnh',
+        path:'/nhan-benh'
+      }
+    ]
   },
   {
     label: "phòng khám",
@@ -91,6 +97,7 @@ export const Navbar = [
     child: [
       {
         label: "Chi nhánh",
+        path:'/chi-nhanh'
       },
       {
         label: "Công ty",

@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj": {}
   },
   "projects": {
@@ -12,9 +13,22 @@
         "projectPath": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
         "packagesPath": "C:\\Users\\Software\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\obj\\",
+=======
+    "D:\\code Tài Nguyễn\\Project 315healthcare\\backend\\315HealthCareProject.csproj": {}
+  },
+  "projects": {
+    "D:\\code Tài Nguyễn\\Project 315healthcare\\backend\\315HealthCareProject.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\code Tài Nguyễn\\Project 315healthcare\\backend\\315HealthCareProject.csproj",
+        "projectName": "315HealthCareProject",
+        "projectPath": "D:\\code Tài Nguyễn\\Project 315healthcare\\backend\\315HealthCareProject.csproj",
+        "packagesPath": "C:\\Users\\Tai Nguyen\\.nuget\\packages\\",
+        "outputPath": "D:\\code Tài Nguyễn\\Project 315healthcare\\backend\\obj\\",
+>>>>>>> 9085cac40e8c132d1a5f7cfe293bccaa84df96e6
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Software\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tai Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
