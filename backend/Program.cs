@@ -24,7 +24,6 @@ builder.Services.AddScoped<MenuService>();
 
 
 
-
 builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
 {
     build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();

@@ -29,6 +29,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<NhomQuyen> NhomQuyens { get; set; }
     public DbSet<Menu> Menus { get; set; }
     public DbSet<NguoiDungNhomMenu> NGUOIDUNG_MENU_PERMISSION { get; set; }
+    public DbSet<ThongTinDangNhap> THONGTINDANGNHAP { get; set; }
+    public DbSet<PhuongThucThanhToan> PhuongThucThanhToans { get; set; }
 
 
 
@@ -47,14 +49,18 @@ public class ApplicationDbContext : DbContext
     public IEnumerable<object> nhomNguoiDungs { get; internal set; }
     public IEnumerable<object> nhomQuyens { get; internal set; }
     public IEnumerable<object> menus { get; internal set; }
+    public IEnumerable<object> caLamViecs { get; internal set; }
+    public IEnumerable<object> phuongThucThanhToans { get; internal set; }
+
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<CaLamViec>(entity =>
         {
             entity.ToTable("CALAMVIEC");
-            entity.HasKey(e => e.IdCalaMviec);
-            entity.Property(e => e.IdCalaMviec).HasColumnName("IDCALAMVIEC");
+            entity.HasKey(e => e.IdCalamViec);
+            entity.Property(e => e.IdCalamViec).HasColumnName("IDCALAMVIEC");
             entity.Property(e => e.MaCa).HasColumnName("MACA");
             entity.Property(e => e.TenCa).HasColumnName("TENCA");
             entity.Property(e => e.BatDau).HasColumnName("BATDAU");
@@ -74,6 +80,7 @@ public class ApplicationDbContext : DbContext
 
 
         modelBuilder.Entity<NguoiDungNhomMenu>().HasNoKey();
+        modelBuilder.Entity<ThongTinDangNhap>().HasNoKey();
 
 
 

@@ -11,16 +11,16 @@ namespace _315HealthCareProject.Models
 
         [Key]
         [Column("IDDANGNHAP")]
-        public int IdDangNhap { get; set; }
+        public int? IdDangNhap { get; set; }
 
         [Column("IDNGUOIDUNG")]
         public int IdNguoiDung { get; set; }
 
         [Column("DANGNHAP")]
-        public DateTime ThoiGianDangNhap { get; set; }
+        public DateTimeOffset ThoiGianDangNhap { get; set; }
 
         [Column("DANGXUAT")]
-        public DateTime DangXuat { get; set; }
+        public DateTimeOffset? DangXuat { get; set; }
 
         [Column("IP")]
         public string IP { get; set; }
@@ -31,7 +31,7 @@ namespace _315HealthCareProject.Models
         public int IdPK { get; set; }
 
         [Column("IDCALAMVIEC")]
-        public int IdCaLamViec { get; set; }
+        public int? IdCaLamViec { get; set; }
 
         [Column("IDCHINHANH")]
         public int IdChiNhanh { get; set; }

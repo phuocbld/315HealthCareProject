@@ -19,17 +19,6 @@ namespace _315HealthCareProject.Controllers
             _context = context;
 
         }
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<object>>> GetQuanHuyens()
-        {
-            var quanHuyens = await _context.QuanHuyens
-                .Select(q => new { q.IdQuan, q.TenQuan })
-                .ToListAsync();
-
-            return Ok(quanHuyens);
-        }
-
         [HttpGet("{idTinh}")]
         public async Task<IActionResult> GetQuanHuyenByTinhId(int idTinh)
         {

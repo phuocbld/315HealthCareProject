@@ -11,6 +11,6 @@
     "\\frontend\\src\\services",
     "\\frontend\\src\\services\\auth"
   ],
-  "SelectedNode": "\\backend\\315HealthCareProject.sln",
+  "SelectedNode": "\\backend\\Data\\ApplicationDbContext.cs",
   "PreviewInSolutionExplorer": false
 }

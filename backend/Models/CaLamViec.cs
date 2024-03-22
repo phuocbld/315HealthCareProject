@@ -8,7 +8,7 @@ public class CaLamViec
 {
     [Key]
     [Column("IDCALAMVIEC")]
-    public int? IdCalaMviec { get; set; }
+    public int? IdCalamViec { get; set; }
 
     [Column("MACA")]
     public string? MaCa { get; set; }

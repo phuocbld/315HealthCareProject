@@ -1984,19 +1984,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tai Nguyen\\.nuget\\packages\\": {}
+    "C:\\Users\\Software\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\code Tài Nguyễn\\Project 315healthcare\\backend\\315HealthCareProject.csproj",
+      "projectUniqueName": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
       "projectName": "315HealthCareProject",
-      "projectPath": "D:\\code Tài Nguyễn\\Project 315healthcare\\backend\\315HealthCareProject.csproj",
-      "packagesPath": "C:\\Users\\Tai Nguyen\\.nuget\\packages\\",
-      "outputPath": "D:\\code Tài Nguyễn\\Project 315healthcare\\backend\\obj\\",
+      "projectPath": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\315HealthCareProject.csproj",
+      "packagesPath": "C:\\Users\\Software\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Tai Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Software\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2071,8 +2071,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Software\\Source\\Repos\\315healthcare\\backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
