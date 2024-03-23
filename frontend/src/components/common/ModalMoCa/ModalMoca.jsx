@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Modal } from "antd";
+import { Input, Modal } from "antd";
 import Button from "@mui/material/Button";
-import { Col, Row, Statistic } from "antd";
+import { Statistic } from "antd";
 import { Table } from "antd";
 import { Divider } from "antd";
-import { Card, List } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 import * as typeAction from "../../../store/constants/constants";
 
@@ -20,7 +19,6 @@ const columns = [
     width: 150,
   },
 ];
-
 
 const data = [];
 for (let i = 0; i < 100; i++) {
@@ -54,36 +52,57 @@ const ModalMoca = () => {
         width={500}
       >
         <div>
-          <div className="text-base">
-            <h2 className="font-medium text-lg">CHI NHÁNH: 669 QUANG TRUNG - PHỤ SẢN </h2>
-            <div>
+          <div className="text-base ">
+            <h2 className="font-medium text-lg">
+              CHI NHÁNH: 207B HOÀNG VĂN THỤ - VP{" "}
+            </h2>
+            <div className="my-2">
               <div className="flex gap-2">
                 <div className="flex justify-between w-full">
-                <h2>  <span className="font-medium ">Nhân viên:</span>   Nguyễn Quốc Tài - NV0002</h2>
-                <h2> <span className="font-medium "> Vai trò:</span> Nhân viên IT</h2>
+                  <h2>
+                    {" "}
+                    <span className="font-medium ">Nhân viên:</span> Nguyễn Quốc
+                    Tài - NV0002
+                  </h2>
+                  <h2>
+                    {" "}
+                    <span className="font-medium "> Vai trò:</span> Nhân viên IT
+                  </h2>
                 </div>
               </div>
-              <div className="">
-                <h2 ><span className="font-medium ">Mở ca:</span> 16/3/2024-19:54:01</h2>
-                <h2 > <span className="font-medium ">Đóng ca:</span> 16/3/2024-19:54:01</h2>
+              <div className="flex my-2 flex-col gap-2">
+                <div className="flex">
+                  <label className="w-20 font-semibold ">Mở ca: </label>
+                  <Input className="w-1/3" size="small" />
+                </div>
+                <div className="flex">
+                  <label className="w-20 font-semibold">Đóng ca: </label>
+                  <Input className="w-1/3" size="small" />
+                </div>
+              </div>
+              <div className="flex my-2 gap-6 ">
+                <div className=" flex w-3/5">
+                  <label className=" w-24 font-semibold mr-1 ">Dịch vụ: </label>
+                  <Input value={0} addonBefore="SL" className="w-[80%]" size="small" />
+                  
+                </div>
+                <div className="flex w-1/2">
+                  <label className=" w-14 font-semibold">Thẻ: </label>
+                  <Input value={0} addonBefore="SL" size="small" />
+                </div>
               </div>
             </div>
-            <div>
-              <h2> <span className="font-medium ">Dịch vụ:</span> 25</h2>
-              <h2> <span className="font-medium "> Thẻ thành viên:</span> 25</h2>
-            </div>
-            
           </div>
           <Divider className="my-3" />
           <div className="flex justify-around">
-            <Statistic title="Thẻ thành viên" value={1128} suffix="VNĐ" />
-            <Statistic title="Doanh thu dịch vụ" value={9300} suffix="VNĐ" />
+            <Statistic title="Thẻ thành viên" value={0} suffix="VNĐ" />
+            <Statistic title="Doanh thu dịch vụ" value={0} suffix="VNĐ" />
             <Statistic
               valueStyle={{
                 color: "#3f8600",
               }}
               title="Tổng doanh thu"
-              value={11128 + 9300}
+              value={0}
               suffix="VNĐ"
             />
           </div>

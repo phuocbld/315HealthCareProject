@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\code Tài Nguyễn\\315healthcare meta\\backend\\315HealthCareProject.csproj": {}
+    "D:\\code Tài Nguyễn\\315healthcare meta v2\\backend\\315HealthCareProject.csproj": {}
   },
   "projects": {
-    "D:\\code Tài Nguyễn\\315healthcare meta\\backend\\315HealthCareProject.csproj": {
+    "D:\\code Tài Nguyễn\\315healthcare meta v2\\backend\\315HealthCareProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\code Tài Nguyễn\\315healthcare meta\\backend\\315HealthCareProject.csproj",
+        "projectUniqueName": "D:\\code Tài Nguyễn\\315healthcare meta v2\\backend\\315HealthCareProject.csproj",
         "projectName": "315HealthCareProject",
-        "projectPath": "D:\\code Tài Nguyễn\\315healthcare meta\\backend\\315HealthCareProject.csproj",
+        "projectPath": "D:\\code Tài Nguyễn\\315healthcare meta v2\\backend\\315HealthCareProject.csproj",
         "packagesPath": "C:\\Users\\Tai Nguyen\\.nuget\\packages\\",
-        "outputPath": "D:\\code Tài Nguyễn\\315healthcare meta\\backend\\obj\\",
+        "outputPath": "D:\\code Tài Nguyễn\\315healthcare meta v2\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tai Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",

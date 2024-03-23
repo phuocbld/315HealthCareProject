@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "K29Am82KZy91QfmoN+i3/dihMlIiww4Pmbnh3AEWLIX5pPnlwwa6rlbX16SjDNriWyk2I4ar6biohYFVjaQYcw==",
+  "dgSpecHash": "EZSiCHX8dwUNp3ZESMvwyOj0EEillo4BKXY7wqUWYIN1uKw64HB1UrMt8TXXZGilodgAywc1BcFHw+QXW7QFew==",
   "success": true,
-  "projectFilePath": "D:\\code Tài Nguyễn\\315healthcare meta\\backend\\315HealthCareProject.csproj",
+  "projectFilePath": "D:\\code Tài Nguyễn\\315healthcare meta v2\\backend\\315HealthCareProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tai Nguyen\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\Tai Nguyen\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",

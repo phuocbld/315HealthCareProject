@@ -7,3 +7,7 @@ export const demoModalCAction = (value) => ({
 export const listBranchAction = () => ({
   type: typeAction.GET_LIST_BRANCH_API,
 });
+export const defaultBranchAction = (payload) => ({
+  type: typeAction.GET_DEFAULT_BRANCH,
+  payload
+});

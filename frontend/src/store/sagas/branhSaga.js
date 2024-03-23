@@ -24,4 +24,21 @@ export function* branchSaga () {
         }
        
     } ) 
+    yield takeLatest(typeAction.GET_DEFAULT_BRANCH,function* getDefaultBranch({type,payload}){
+        // yield console.log(payload);
+        try{
+            const  result = yield call(() => branchService.getDefaultBranch(payload))
+            yield put({
+                type: typeAction.DISPATCH_DEFAULT_BRANCH,
+                payload:result.data.idChiNhanh
+            })
+        } catch(err){
+            yield put({
+                type: typeAction.DISPATCH_DEFAULT_BRANCH,
+                payload:''
+            })
+           yield console.log(err);
+        }
+       
+    } )
 }
