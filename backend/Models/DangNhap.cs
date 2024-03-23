@@ -10,8 +10,9 @@ namespace _315HealthCareProject.Models
     {
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("IDDANGNHAP")]
-        public int? IdDangNhap { get; set; }
+        public int IdDangNhap { get; set; }
 
         [Column("IDNGUOIDUNG")]
         public int IdNguoiDung { get; set; }
@@ -31,7 +32,7 @@ namespace _315HealthCareProject.Models
         public int IdPK { get; set; }
 
         [Column("IDCALAMVIEC")]
-        public int? IdCaLamViec { get; set; }
+        public int IdCaLamViec { get; set; }
 
         [Column("IDCHINHANH")]
         public int IdChiNhanh { get; set; }

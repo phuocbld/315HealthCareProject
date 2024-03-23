@@ -83,14 +83,18 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<ThongTinDangNhap>().HasNoKey();
 
 
+        modelBuilder.HasSequence<int>("DANGNHAP_SEQ")
+      .StartsAt(1)
+      .IncrementsBy(1);
+
+        modelBuilder.Entity<DangNhap>()
+            .Property(p => p.IdDangNhap)
+            .HasDefaultValueSql("DANGNHAP_SEQ.NEXTVAL");
 
 
 
 
         base.OnModelCreating(modelBuilder);
     }
-
-
-
 
 }

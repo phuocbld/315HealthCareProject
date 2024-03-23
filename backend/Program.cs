@@ -19,6 +19,7 @@ builder.Services.AddScoped<ICaLamViecService, CaLamViecService>();
 builder.Services.AddScoped<IChiNhanhRepository, ChiNhanhRepository>();
 builder.Services.AddScoped<IChiNhanhService, ChiNhanhService>();
 builder.Services.AddScoped<INguoiDungService, NguoiDungService>();
+builder.Services.AddScoped<ITimeComparisonService, TimeComparisonService>();
 builder.Services.AddScoped<MenuService>();
 
 
