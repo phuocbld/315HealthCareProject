@@ -1,25 +1,45 @@
 import Docxtemplater from 'docxtemplater';
 
 
-const generateDocument = () => {
-    // Tạo một instance của Docxtemplater với mẫu tài liệu Word
-    const doc = new Docxtemplater();
-    doc.loadFile('path/to/template.docx');
+const data = [{
+  name: 'John Doe',
+    age: 30,
+    address: '123 Main St, City, Country'
+}]
+export const handleGenerateDocx = () => {
+  const templateContent = ''; // Đọc nội dung của mẫu từ file hoặc từ một nguồn khác
+  const docx = new Docxtemplater();
 
-    // Chỉ định dữ liệu để thêm vào mẫu tài liệu
-  
+  docx.render({
+    rawXml: `
+    <w:p>
+        <w:pPr>
+            <w:rPr>
+                <w:color w:val="FF0000"/>
+            </w:rPr>
+        </w:pPr>
+        <w:r>
+            <w:rPr>
+                <w:color w:val="FF0000"/>
+            </w:rPr>
+            <w:t>
+                My custom
+            </w:t>
+        </w:r>
+        <w:r>
+            <w:rPr>
+                <w:color w:val="00FF00"/>
+            </w:rPr>
+            <w:t>
+                XML
+            </w:t>
+        </w:r>
+    </w:p>
+    `,
+});
+    
+    const output = docx.getZip().generate({ type: 'blob' });
+   console.log(output);
 
-    // Thêm dữ liệu vào mẫu tài liệu
-    // doc.setData(data);
 
-    // Kết xuất tài liệu đã được điền dữ liệu
-    doc.render();
-
-    // Chuyển đổi tài liệu thành ArrayBuffer
-    const buffer = doc.getZip().generate({ type: 'nodebuffer' });
-
-    // Tạo một URL tạm thời để tải xuống tài liệu
-    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-    const url = URL.createObjectURL(blob);
-    window.open(url);
-  };
+}

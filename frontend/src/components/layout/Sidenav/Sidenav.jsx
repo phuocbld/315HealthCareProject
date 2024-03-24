@@ -112,8 +112,11 @@ const Sidenav = (props) => {
           </IconButton>
         </DrawerHeader>
         <List
-          className="bg-[#00ADEF]  h-full"
-          sx={{ marginTop: 8, overflowX: "hidden", overflowY: "auto", padding:0, }}
+          className="bg-[#00ADEF]  h-full bg-scroll"
+          style={{
+            scrollbarColor:'#dceaf3'
+          }}
+          sx={{ marginTop: 8, overflowX: "hidden", overflowY: "auto", padding:0, scrollbarColor:'#dceaf3',  }}
         >
           {Navbar.map(({ label, icon, child }, index) => (
             <>
@@ -189,7 +192,7 @@ const Sidenav = (props) => {
         className="w-full h-full hidden lg:block bg-[#F4F5F7] "
       >
         <Header open={open} handleDrawer={handleDrawer} />
-        <main className="mt-16">{props.children}</main>
+        <main className="mt-16 h-[90%]">{props.children}</main>
       </Box>
      
     </Box>

@@ -24,7 +24,7 @@ code {
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #00ADEF;
+  background: transparent;
 }
 
 /* Handle */

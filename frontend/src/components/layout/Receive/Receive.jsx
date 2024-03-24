@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Layout from "../../../HOCs/Layout";
 import { Input, Tabs, Select } from "antd";
+import { useReactToPrint } from "react-to-print";
 import {
   MoreOutlined,
   CheckOutlined,
@@ -20,6 +21,7 @@ import TableHistory from "./Table/TableHistory";
 import { Button } from "@mui/material";
 import TabsChiDinh from "./TabsChiDinh/TabsChiDinh";
 import TablePay from "./Table/TablePay";
+import { handleGenerateDocx } from "../../../services/form/formLeTan";
 const columns = [
   {
     title: "STT",
@@ -50,8 +52,10 @@ const columns = [
   },
 ];
 
+
 const Receive = () => {
   const dispatch = useDispatch();
+  const componentRef = useRef();
   const {
     nguonKH,
     phongKham,
@@ -71,13 +75,20 @@ const Receive = () => {
   const handleXaPhuong = (value) => {
     dispatch(getXaAction(value));
   };
-
+  const handlPrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: "@page { size: A5 }", 
+    onAfterPrint: () => {console.log(componentRef.current);},
+  });
+  // const handlPrint = () =>{
+  //   handleGenerateDocx()
+  // }
   useEffect(() => {
     dispatch(getAllSelectClinicAction());
   }, []);
   return (
     <Layout>
-      <div>
+      <div className="overflow-auto h-full">
         <div
           className="bg-white m-5 p-5 rounded-lg "
           style={{
@@ -405,21 +416,23 @@ const Receive = () => {
                     <div className="w-1/3 font-semibold text-center text-lg">
                       <span className="text-red-500"> - 0 VNĐ</span>
                     </div>
-                  </div>  
-                      <div className="flex items-center gap-5">
-                      <Button
-                      className="w-2/3"
-                    variant="contained"
-                    size="small"
-                    color="success"
-                  >
-                    Thanh toán
-                  </Button>
-                  <div className="text-green-700 text-xl font-semibold w-1/3 text-center">
-                    1,800,000 VNĐ
                   </div>
-                      </div>
-                  
+                  <div className="flex items-center gap-5">
+                    <Button
+                      onClick={() => {
+                        handlPrint();
+                      }}
+                      className="w-2/3"
+                      variant="contained"
+                      size="small"
+                      color="success"
+                    >
+                      Thanh toán
+                    </Button>
+                    <div className="text-green-700 text-xl font-semibold w-1/3 text-center">
+                      1,800,000 VNĐ
+                    </div>
+                  </div>
                 </div>
               </div>
               <Divider>
@@ -432,6 +445,7 @@ const Receive = () => {
           </form>
         </div>
       </div>
+      <div ref={componentRef}>Hello Again</div>
     </Layout>
   );
 };
