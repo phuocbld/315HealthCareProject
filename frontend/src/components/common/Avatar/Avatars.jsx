@@ -10,8 +10,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../../store/actions/userAction';
+import * as typeACtion from '../../../store/constants/constants'
 const StyledMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -52,18 +57,35 @@ const StyledMenu = styled((props) => (
     },
   },
 }));
-const Avatars = () => {
+const Avatars = ( {info}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+  const logout = ()  =>{
+    dispatch(logoutUser(navigate))
+  }
+  const DongCaLamViec = () => {
+    handleClose()
+    dispatch({
+      type: typeACtion.OPEN_MODAL_MOCA,
+    });
+  };
 const stringName = (name) => {
-  const nameString = name.split('')[0][0]+name.split('')[1][0]
+  if(name){
+    const nameString = name.split('')[0][0]+name.split('')[1][0]
   return nameString.toUpperCase()
+  }else{
+    return ''
+  }
+  
 }
 
   return (
@@ -77,10 +99,10 @@ const stringName = (name) => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{bgcolor:'white',color:'#3b82f6'}} children={stringName('admin')}/>
+            <Avatar sx={{bgcolor:'white',color:'#3b82f6'}} children={stringName(info?.taiKhoan)}/>
             <div className='text-start flex flex-col ml-2 justify-center'>
-              <p className='font-semibold text-gray-100 text-sm'>Admin</p>
-              <span className='text-sm text-gray-300 font-semibold'>Quản trị hệ thống</span>
+              <p className='font-semibold text-black text-sm'>{info?.taiKhoan}</p>
+              <span className='text-sm text-gray-00 font-semibold'>Quản trị hệ thống</span>
             </div>
           </IconButton>
         </Tooltip>
@@ -97,13 +119,13 @@ const stringName = (name) => {
           <EditIcon />
           Hồ sơ
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={DongCaLamViec} disableRipple>
           <FileCopyIcon />
           Đóng ca
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <ArchiveIcon />
+        <MenuItem onClick={logout} disableRipple>
+          <ExitToAppIcon />
           Đăng xuất
         </MenuItem>
       </StyledMenu>

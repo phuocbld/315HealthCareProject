@@ -1,6 +1,6 @@
 /* add css tailwind */
 @tailwind base;
-@tailwind components;
+@tailwind components; 
 @tailwind utilities;
 
 body {
@@ -9,12 +9,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  font-family: GothamRounded, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -23,13 +24,19 @@ code {
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #dceaf3;
   border-radius: 12px;
-
 }
-
+:where(.css-dev-only-do-not-override-djtmh8).ant-btn-primary{
+  background-color:#1677ff ;
+}
+/* Thông báo phiên bản chưa dành cho điẹn thoại */
+@media screen {
+}
+#root {
+}

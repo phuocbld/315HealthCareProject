@@ -1,28 +1,23 @@
 import React, { useState } from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Navbar } from "../../../data/header/hearderData";
-const drawerWidth = 250;
+import StarPurple500RoundedIcon from "@mui/icons-material/StarPurple500Rounded";
+import { useNavigate } from "react-router-dom";
+import Header from "../Header/Header";
+import ModalMoca from "../../common/ModalMoCa/ModalMoca";
+const drawerWidth = 180;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -78,6 +73,7 @@ const Sidenav = (props) => {
   const [open, setOpen] = React.useState(true);
   const [isActive, setActive] = useState(false);
   const [openIndex, setOpenIndex] = useState(null);
+  const navigate = useNavigate();
   // * xử lí show bản sideNav trên page
   const handleDrawer = () => {
     setOpen(!open);
@@ -87,15 +83,45 @@ const Sidenav = (props) => {
   // * xử lí mở rộng hoặc thu gọn các thư mục con của mỗi ListItem
   const handleItem = (index) => {
     setOpenIndex(openIndex === index ? null : index);
-    setOpen(true)
+    setOpen(true);
   };
   return (
-    <Box  sx={{ display: "flex", height:'100vh',paddingTop:'75px'}}>
-      <Drawer sx={{height:'100%'}} variant="permanent" className=" flex justify-between }" open={open}>
-        <List sx={{maxHeight:'100%',overflow:'auto'}} >
-          {Navbar.map(({label,icon},index) => (
+    <>
+     <Box sx={{ display: "flex", height: "100vh" }}>
+      <Drawer
+        sx={{ height: "100%",zIndex:999 }}
+        variant="permanent"
+        className=" flex justify-center relative }"
+        open={open}
+      >
+        <DrawerHeader
+          className="bg-[#00ADEF]  absolute w-full flex justify-start p-0 "
+          onClick={()=>{navigate('/')}}
+        >
+          <IconButton
+            sx={{
+              width:'100%',
+              minHeight: 48,
+              justifyContent: open ? "initial" : "center",
+              borderRadius: "8px",
+            }}
+          >
+            {open ? <ListItemText sx={{color:'#ffff'}}  primary={<span className="font-semibold  text-lg">Hệ thống 315</span>}/> : <img className="w-10 h-10 " src="images/logo/logo_nhidong315.jpg" alt="logo Nhi đong 315" />}
+            
+            
+          </IconButton>
+        </DrawerHeader>
+        <List
+          className="bg-[#00ADEF]  h-full bg-scroll"
+          style={{
+            scrollbarColor:'#dceaf3'
+          }}
+          sx={{ marginTop: 8, overflowX: "hidden", overflowY: "auto", padding:0, scrollbarColor:'#dceaf3',  }}
+        >
+          {Navbar.map(({ label, icon, child }, index) => (
             <>
               <ListItem
+                className="bg-[#00ADEF] "
                 onClick={() => handleItem(index)}
                 key={label}
                 disablePadding
@@ -105,51 +131,74 @@ const Sidenav = (props) => {
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? "initial" : "center",
-                    px: 2.5,
+                    borderRadius: "8px",
+                    transition: "all .2s",
+                    color: "#DFF5FF",
+                    "&:hover": { color: "#FFFF" },
                   }}
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {icon}
-                  </ListItemIcon>
-                  {open ? <ListItemText primary={label}  /> : ''}
-                  {open ? openIndex === index ? <ExpandLess /> : <ExpandMore /> : '' }
+                  <div className="mr-3">{icon}</div>
+                  <ListItemText
+                    primary={<span className="text-[12px]">{label}</span>}
+                    sx={{ opacity: open ? 1 : 0,}}
+                  />
+
+                  {open ? (
+                    openIndex === index ? (
+                      <ExpandLess fontSize="small" />
+                    ) : (
+                      <ExpandMore fontSize="small" />
+                    )
+                  ) : (
+                    ""
+                  )}
                 </ListItemButton>
               </ListItem>
-              <Collapse className="" in={openIndex === index} timeout="auto" unmountOnExit>
+              <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItem button>
-                    <ListItemText primary="Thư mục con 1" />
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemText primary="Thư mục con 2" />
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemText primary="Thư mục con 1" />
-                  </ListItem>
-                  <ListItem button>
-                    <ListItemText primary="Thư mục con 2" />
-                  </ListItem>
+                  {child?.map(({ label, path }) => (
+                    <ListItemButton
+                      onClick={() => {
+                        navigate(path);
+                      }}
+                      sx={{
+                        color:'#DDDDDD',
+                        pl: 3,
+                        mx: 1,
+                        fontSize:'12px',
+                        borderRadius: "8px",
+                        transition: "all .2s",
+                        "&:hover": {
+                          backgroundColor: "#00ADEF",
+                          color: "#FFFF",
+                        },
+                      }}
+                    >
+                      <div className="mr-2">
+                        <StarPurple500RoundedIcon />
+                      </div>
+
+                      <ListItemText primary={<span className="text-[12px]">{label}</span>} />
+                    </ListItemButton>
+                  ))}
                 </List>
               </Collapse>
             </>
           ))}
         </List>
-        <DrawerHeader className="bg-sky-200 absolute w-full bottom-0 "  onClick={handleDrawer}>
-          <IconButton>
-            {isActive ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
       </Drawer>
-      <Box component="main" className="w-screen h-full" >
-        {props.children}
+      <Box
+        component="main"
+        className="w-full h-full hidden lg:block bg-[#F4F5F7] "
+      >
+        <Header open={open} handleDrawer={handleDrawer} />
+        <main className="mt-16 h-[90%]">{props.children}</main>
       </Box>
+     
     </Box>
+    <ModalMoca />
+    </>
+   
   );
 };
 

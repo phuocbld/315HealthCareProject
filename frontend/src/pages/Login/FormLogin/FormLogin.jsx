@@ -12,22 +12,64 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
+import * as typeAction from '../../../store/constants/constants'
 import { useTranslation } from "react-i18next";
 import { loginSchema } from "../../../schemas/loginSchema";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../../store/actions/userAction";
+import { useNavigate } from "react-router-dom";
+import { defaultBranchAction } from "../../../store/actions/BranchAction";
 const FormLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { t } = useTranslation("translation");
+  const { listBranch,  } = useSelector(
+    (state) => state.branchReducer
+  );
+  const {idDefaultChiNhanh,username} = useSelector(state => state.userReducer)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // debounce search
+  const debounce = (func, timeout) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func(...args), timeout);
+    };
+  };
+  const search = (term) => {
+    dispatch({
+      type:typeAction.DISPATCH_USERNAME,
+      payload:term
+    })
+    dispatch(defaultBranchAction(term));
+  };
+  const debouncedSearch = debounce(search, 600);
+
   const handleLogin = (values, action) => {
-    action.resetForm()
+    action.resetForm();
     // Xử lí đăng nhập
-    console.log(values);
+    // console.log(values);
+    //reset username
+    dispatch({
+      type:typeAction.DISPATCH_USERNAME,
+      payload:null
+    })
+    dispatch({
+      type:typeAction.DISPATCH_DEFAULT_BRANCH,
+      payload:null
+    })
+    dispatch(loginUser(values, navigate));
   };
   // xử lý selelect chọn phòng khám
   const handleSelect = (event, props) => {
     let value = event.target.value;
-    props.setFieldValue("maPhongKham", value); // setFieldValue maPhongKham vào >>>> form formik
+    props.setFieldValue("idChiNhanh", value); // setFieldValue maPhongKham vào >>>> form formik
   };
-
+  const handleChangeUsername = async  (e, props) => {
+    const value = e.target.value;
+     debouncedSearch(value);
+     props.setFieldValue('username',value)
+  };
   // show password
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -36,10 +78,11 @@ const FormLogin = () => {
   };
   return (
     <Formik
+      enableReinitialize = {true}
       initialValues={{
-        username: "",
+        username: username || '',
         password: "",
-        maPhongKham: "",
+        idChiNhanh: idDefaultChiNhanh || '',
       }}
       onSubmit={handleLogin}
       validationSchema={loginSchema}
@@ -56,22 +99,27 @@ const FormLogin = () => {
             <FormControl className="w-full" variant="outlined">
               <TextField
                 id="outlined-multiline-flexible"
-                label= {t("Tên tài khoản")}
+                label={t("Tên tài khoản")}
                 className="w-full "
                 size="small"
-                onBlur={props.handleBlur}
-                onChange={props.handleChange}
                 value={props.values.username}
+                onBlur={props.handleBlur}
+                onChange={(e) => {
+                  handleChangeUsername(e, props);
+                }}
                 name="username"
                 maxRows={4}
               />
-              {props.touched.username && props.errors.username && <span className="text-left text-red-500">* {t(props.errors.username)}</span> }
-              
+              {props.touched.username && props.errors.username && (
+                <span className="text-left text-red-500">
+                  * {t(props.errors.username)}
+                </span>
+              )}
             </FormControl>
 
             <FormControl className="w-full" size="small" variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">
-              {t("Mật khẩu")}
+                {t("Mật khẩu")}
               </InputLabel>
               <OutlinedInput
                 onChange={props.handleChange}
@@ -94,33 +142,44 @@ const FormLogin = () => {
                 }
                 label="Password"
               />
-              {props.touched.password && props.errors.password && <span className="text-left text-red-500">* {t(props.errors.password)}</span> }
+              {props.touched.password && props.errors.password && (
+                <span className="text-left text-red-500">
+                  * {t(props.errors.password)}
+                </span>
+              )}
             </FormControl>
             <FormControl sx={{ width: "100%" }} size="small">
               <InputLabel id="demo-select-small-label">
-              {t("Chọn phòng khám")}
+                {t("Chọn phòng khám")}
               </InputLabel>
               <Select
                 labelId="demo-select-small-label"
-                value={props.values.maPhongKham}
+                value={props.values.idChiNhanh}
                 id="demo-select-small"
                 label={t("Chọn phòng khám")}
-                name="maPhongkham"
+                name="idChiNhanh"
+                MenuProps={{ style: { maxHeight: 300 } }}
                 onChange={(e) => {
                   handleSelect(e, props);
                 }}
               >
-                <MenuItem value={"PS_HD"}>Phụ sản - Hoàng Diệu</MenuItem>
-                <MenuItem value={"VP_HVT"}>VP - 207b Hoàng Văn Thụ</MenuItem>
-                <MenuItem value={"ND_QT"}>Nhi - Quang Trung</MenuItem>
+                {listBranch?.map((items) => (
+                  <MenuItem key={items.idChiNhanh} value={items.idChiNhanh}>
+                    {items.tenChiNhanh}
+                  </MenuItem>
+                ))}
               </Select>
-              {props.touched.maPhongKham && props.errors.maPhongKham && <span className="text-left text-red-500">* {t(props.errors.maPhongKham)}</span> }
+              {props.touched.idChiNhanh && props.errors.idChiNhanh && (
+                <span className="text-left text-red-500">
+                  * {t(props.errors.idChiNhanh)}
+                </span>
+              )}
             </FormControl>
             <Box>
-              <p className="p-3 text-blue-500 cursor-pointer">
+              {/* <p className="p-3 text-blue-500 cursor-pointer">
                 {t("Quên mật khẩu")} ?
-              </p>
-              <Button type="submit" className="w-full" variant="contained">
+              </p> */}
+              <Button type="submit"  className="w-full"  variant="contained">
                 {t("Đăng nhập")}
               </Button>
             </Box>

@@ -23,7 +23,7 @@ const Notification = () => {
   return (
     <>
       <Badge onClick={handleClick} badgeContent={2} className="cursor-pointer hover:scale-110 duration-300" color="error" >
-        <MailIcon className="text-blue-50" />
+        <MailIcon className="text-[#00ADEF]" />
       </Badge>
       <Menu
         id="basic-menu"

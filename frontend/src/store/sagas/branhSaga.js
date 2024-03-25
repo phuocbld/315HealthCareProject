@@ -1,22 +1,44 @@
 import {call,delay,fork,put,take,takeEvery,takeLatest} from "redux-saga/effects";
-
-
-
+import * as typeAction from '../constants/constants'
+import { branchService } from "../../services/branch/branchService";
 export function* branchSaga () {
-    yield takeLatest('ACTION_DATA_BRANCH',function* fetchBranch({type, payload }){
-        try {
-            yield put({
-                type: 'FETCH_DATA_BRANCH'
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    })
+
 
     yield takeLatest('DEMO_MODAL',function* changeModal({type,payload}){
         // yield console.log(payload);
         yield put({
             type:"TRUE_MODAL"
         })
+    } )
+
+    yield takeLatest(typeAction.GET_LIST_BRANCH_API,function* ListBranch({type,payload}){
+        // yield console.log(payload);
+        try{
+            const  result = yield call(() => branchService.getListBranch())
+            yield put({
+                type: typeAction.DISPATCH_LIST_BRANCH,
+                payload:result.data
+            })
+        } catch(err){
+           yield console.log(err);
+        }
+       
+    } ) 
+    yield takeLatest(typeAction.GET_DEFAULT_BRANCH,function* getDefaultBranch({type,payload}){
+        // yield console.log(payload);
+        try{
+            const  result = yield call(() => branchService.getDefaultBranch(payload))
+            yield put({
+                type: typeAction.DISPATCH_DEFAULT_BRANCH,
+                payload:result.data.idChiNhanh
+            })
+        } catch(err){
+            yield put({
+                type: typeAction.DISPATCH_DEFAULT_BRANCH,
+                payload:''
+            })
+           yield console.log(err);
+        }
+       
     } )
 }
