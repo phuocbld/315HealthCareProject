@@ -3,6 +3,7 @@ import Layout from "../../../HOCs/Layout";
 import {  Input, Tabs } from "antd";
 import { Table, ConfigProvider } from "antd";
 import { Button } from "@mui/material";
+import ButtonLang from "../../common/ButtonLang/ButtonLang";
 
 const columns = [
   {

@@ -256,12 +256,12 @@ const Sidenav = (props) => {
                     )}
                   </ListItemButton>
                 </ListItem>
-                <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
+                {JSON.parse(chilD_MENUS)[0].IDMENU ? <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    {JSON.parse(chilD_MENUS)?.map(({ TENMENU }) => (
+                    {JSON.parse(chilD_MENUS)?.map(({IDMENU ,TENMENU }) => (
                       <ListItemButton
                         onClick={() => {
-                          navigate();
+                          IDMENU === 21 ? navigate('/nhan-benh') : IDMENU === 42 ? navigate('/thumuakho/chuyenkho') : navigate('/Dashboard')
                         }}
                         sx={{
                           color: "#DDDDDD",
@@ -286,7 +286,8 @@ const Sidenav = (props) => {
                       </ListItemButton>
                     ))}
                   </List>
-                </Collapse>
+                </Collapse> : ''}
+                
               </>
             ))}
           </List>

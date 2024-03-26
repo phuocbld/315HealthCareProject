@@ -5,12 +5,8 @@ import Sidenav from '../components/layout/Sidenav/Sidenav'
 
 const Layout = (props) => {
   return (
-    <>
-        
-        <Sidenav  children = {props.children}/>  
-      
-       
-             
+    <>     
+        <Sidenav  children = {props.children}/>    
     </>
   )
 }
