@@ -28,6 +28,20 @@ namespace _315HealthCareProject.Controllers
 
             return Ok(new { IdChiNhanh = chiNhanhId , TaiKhoan = username});
         }
+
+        [HttpGet]
+        [Route("id/{username}")]
+        public async Task<IActionResult> GetIdNguoiDungByTaiKhoan(string username)
+        {
+            var idNguoiDung = await _nguoiDungService.GetIdNguoiDungByTaiKhoan(username);
+
+            if (idNguoiDung == null)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+            return Ok(new {IDND = idNguoiDung });
+        }
     }
 }
 

@@ -25,6 +25,7 @@ namespace _315HealthCareProject.Services
                     IDMenu = menu.IDMenu,
                     TenMenu = menu.TenMenu,
                     IDMenuCha = menu.IDMenuCha,
+                    Links = menu.Links,
                     CHILD_MENUS = menu.CHILD_MENUS
                 })
                 .ToList();

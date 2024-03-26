@@ -31,6 +31,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<NguoiDungNhomMenu> NGUOIDUNG_MENU_PERMISSION { get; set; }
     public DbSet<ThongTinDangNhap> THONGTINDANGNHAP { get; set; }
     public DbSet<PhuongThucThanhToan> PhuongThucThanhToans { get; set; }
+    public DbSet<NhanVien> NhanViens { get; set; }
 
 
 
@@ -51,6 +52,7 @@ public class ApplicationDbContext : DbContext
     public IEnumerable<object> menus { get; internal set; }
     public IEnumerable<object> caLamViecs { get; internal set; }
     public IEnumerable<object> phuongThucThanhToans { get; internal set; }
+    public IEnumerable<object> nhanViens { get; internal set; }
 
 
 

@@ -32,7 +32,7 @@ code {
   background: #dceaf3;
   border-radius: 12px;
 }
-:where(.css-dev-only-do-not-override-djtmh8).ant-btn-primary{
+:where(.css-djtmh8).ant-btn-primary{
   background-color:#1677ff ;
 }
 /* Thông báo phiên bản chưa dành cho điẹn thoại */

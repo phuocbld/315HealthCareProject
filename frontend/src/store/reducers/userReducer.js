@@ -4,6 +4,7 @@ const initialState = {
   infoUser: null,
   username: null,
   idDefaultChiNhanh: null,
+  menu:null
 };
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -18,6 +19,9 @@ const userReducer = (state = initialState, { type, payload }) => {
       case typeAction.DISPATCH_DEFAULT_BRANCH:
         draft.idDefaultChiNhanh = payload;
         break;
+        case typeAction.DISPATCH_MENU:
+          draft.menu = payload;
+          break;
       default:
         return state;
     }

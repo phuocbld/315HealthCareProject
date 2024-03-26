@@ -11,3 +11,6 @@ export const defaultBranchAction = (payload) => ({
   type: typeAction.GET_DEFAULT_BRANCH,
   payload
 });
+export const listCaLamViec = () => ({
+  type: typeAction.GET_LIST_CALAMVIEC,
+});

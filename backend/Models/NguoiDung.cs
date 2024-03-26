@@ -20,7 +20,7 @@ using System.ComponentModel.DataAnnotations.Schema;
         public int? IdNhanVien { get; set; }
 
         [Column("IDCHINHANH")]
-        public int? IdChiNhanh { get; set; }
+        public int IdChiNhanh { get; set; }
 
         [Column("NGUOITAO")]
         public string? NguoiTao { get; set; }

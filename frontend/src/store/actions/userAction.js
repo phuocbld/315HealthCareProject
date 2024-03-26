@@ -10,3 +10,8 @@ export const logoutUser = (navigate) =>({
     type: typeAction.LOGOUT_USER,
     navigate
 })
+
+export const getListMenu = (payload) =>({
+    type:typeAction.GET_LIST_MENU,
+    payload
+})

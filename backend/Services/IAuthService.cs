@@ -1,12 +1,12 @@
-﻿//using System.Threading.Tasks;
+﻿//using System;
+//using _315HealthCareProject.DTO;
 //using _315HealthCareProject.Models;
 
 //namespace _315HealthCareProject.Services
 //{
 //    public interface IAuthService
 //    {
-
-//            Task<NguoiDung> AuthenticateAsync(string taiKhoan, string matKhau);
-//        }
+//        Task<DangNhapDTO> Login(LoginDTO request);
 //    }
+//}
 

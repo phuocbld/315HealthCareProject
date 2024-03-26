@@ -18,5 +18,13 @@ namespace _315HealthCareProject.Services
 
             return user?.IdChiNhanh;
         }
+
+        public async Task<int?> GetIdNguoiDungByTaiKhoan(string username)
+        {
+            var user = await _context.NguoiDungs
+                .FirstOrDefaultAsync(u => u.TaiKhoan == username);
+
+            return user?.IdNguoiDung; 
+        }
     }
 }

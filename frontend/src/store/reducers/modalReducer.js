@@ -2,7 +2,7 @@ import { produce } from "immer";
 import * as typeAction from "../constants/constants"
 const initialState = {
   loadingPage: false,
-  modalMoCa:true
+  modalMoCa:false
 };
 
 const modalReducer = (state = initialState, { type, payload }) => {
