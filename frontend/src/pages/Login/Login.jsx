@@ -49,10 +49,10 @@ const Login = () => {
                 }}
                 className="flex text-center items-center bg-blue-950 gap-2 rounded-r-3xl rounded-tl-3xl p-2"
               >
-                <span className="text-black bg-white rounded-full font-medium w-[40px] h-[40px] leading-[40px] ">
-                  315
+                <span className="text-black overflow-hidden bg-white rounded-full font-medium w-[40px] h-[40px] leading-[40px] ">
+                  <img src="https://media.licdn.com/dms/image/C560BAQG1c6ytBSbvuQ/company-logo_200_200/0/1630655164945/nhi_dong_315_logo?e=2147483647&v=beta&t=lSFNfgWyYlUe_3xDEf4j8HYiSOg1l68VZ1oqF4UzCfE" alt="nhidong315" />
                 </span>
-                <p>{t("Quảng lý phòng khám và bệnh viện")}</p>
+                <p>{t("Quản lý phòng khám và bệnh viện")}</p>
               </motion.li>
               <motion.li
                 initial={{ x: -150, opacity: 0 }}
@@ -63,10 +63,10 @@ const Login = () => {
                 }}
                 className="flex text-center items-center mt-4 bg-blue-950 gap-2 rounded-r-3xl rounded-tl-3xl p-2"
               >
-                <span className="text-black bg-white rounded-full font-medium w-[40px] h-[40px] leading-[40px] ">
-                  315
+                <span className="text-black overflow-hidden bg-white rounded-full font-medium w-[40px] h-[40px] leading-[40px] ">
+                <img src="https://media.licdn.com/dms/image/C560BAQG1c6ytBSbvuQ/company-logo_200_200/0/1630655164945/nhi_dong_315_logo?e=2147483647&v=beta&t=lSFNfgWyYlUe_3xDEf4j8HYiSOg1l68VZ1oqF4UzCfE" alt="nhidong315" />
                 </span>
-                <p>{t("Quản lý thông tin khách hàng")}</p>
+                <p>{t("Quản lý thông tin bệnh nhân")}</p>
               </motion.li>
             </ul>
           </div>

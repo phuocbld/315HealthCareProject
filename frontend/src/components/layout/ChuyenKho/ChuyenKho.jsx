@@ -4,6 +4,10 @@ import {  Input, Tabs } from "antd";
 import { Table, ConfigProvider } from "antd";
 import { Button } from "@mui/material";
 import ButtonLang from "../../common/ButtonLang/ButtonLang";
+import Receive from "./Satus/Receive/Receive";
+import Pedding from "./Satus/Pedding/Pedding";
+import Create from "./Satus/Create/Create";
+import Transfer from "./Satus/Transfer/Transfer";
 
 const columns = [
   {
@@ -266,22 +270,22 @@ const ChuyenKho = () => {
                     {
                         label:'Phiếu đã nhận',
                         key:2.1,
-                        children:'text2'
+                        children:<Receive />
                     },
                     {
                         label:'Phiếu chờ xác nhận',
                         key:2.2,
-                        children:'text2'
+                        children:<Pedding/>
                     },
                     {
                         label:'Phiếu tạo',
                         key:2.3,
-                        children:'text2'
+                        children:<Create/>
                     },
                     {
                         label:'Phiếu đã rời',
                         key:2.4,
-                        children:'text2'
+                        children: <Transfer/>
                     },
                   ]}
                 />,
