@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { routes } from './routes/router';
 import NotFound from './pages/NotFound/NotFound';
 import RouteComponent from './HOCs/AppRoute';
-import ModalMoca from './components/common/ModalMoCa/ModalMoca';
 
 function App() {
   return (

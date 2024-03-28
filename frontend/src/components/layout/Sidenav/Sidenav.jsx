@@ -31,6 +31,7 @@ import ModalMoca from "../../common/ModalMoCa/ModalMoca";
 import { useDispatch, useSelector } from "react-redux";
 import { getListMenu } from "../../../store/actions/userAction";
 import { customMenu } from "../../../utils/customMenu";
+import logo315 from '../../../assets/images/logo/logo_nhidong315.jpg'
 const drawerWidth = 180;
 
 const openedMixin = (theme) => ({
@@ -121,7 +122,10 @@ const Sidenav = (props) => {
           open={open}
         >
           <DrawerHeader
-            className="bg-[#00ADEF]  absolute w-full flex justify-start p-0 "
+          style={{
+            padding:0
+          }}
+            className="bg-[#00ADEF]  absolute w-full flex justify-start  "
             onClick={() => {
               navigate("/");
             }}
@@ -138,13 +142,13 @@ const Sidenav = (props) => {
                 <ListItemText
                   sx={{ color: "#ffff" }}
                   primary={
-                    <span className="font-semibold  text-lg">Hệ thống 315</span>
+                    <span className="font-semibold  text-[16px]">Hệ thống 315</span>
                   }
                 />
               ) : (
                 <img
                   className="w-10 h-10 "
-                  src="images/logo/logo_nhidong315.jpg"
+                  src={logo315}
                   alt="logo Nhi đong 315"
                 />
               )}
@@ -183,66 +187,70 @@ const Sidenav = (props) => {
                     }}
                   >
                     {idMenu === 1 ? (
-                      <div className="mr-3">
+                      <div>
                         <DisplaySettingsIcon />
                       </div>
                     ) : idMenu === 2 ? (
-                      <div className="mr-3">
+                      <div >
                         <GroupIcon />
                       </div>
                     ) : idMenu === 3 ? (
-                      <div className="mr-3">
+                      <div >
                         <MarkunreadMailboxIcon />
                       </div>
                     ) : idMenu === 4 ? (
-                      <div className="mr-3">
+                      <div >
                         <WarehouseIcon />
                       </div>
                     ): idMenu === 5 ? (
-                      <div className="mr-3">
+                      <div >
                         <StorefrontIcon />
                       </div>
                     ): idMenu === 6 ? (
-                      <div className="mr-3">
+                      <div >
                         <AddModeratorIcon />
                       </div>
                     ):idMenu === 7 ? (
-                      <div className="mr-3">
+                      <div >
                         <MedicationIcon />
                       </div>
                     ):idMenu === 8 ? (
-                      <div className="mr-3">
+                      <div >
                         <VaccinesIcon />
                       </div>
                     ): idMenu === 9 ? (
-                      <div className="mr-3">
+                      <div >
                         <AddCardIcon />
                       </div>
                     ): idMenu === 10 ? (
-                      <div className="mr-3">
+                      <div >
                         <ContentPasteSearchIcon />
                       </div>
                     ):idMenu === 11 ? (
-                      <div className="mr-3">
+                      <div>
                         <LineAxisIcon />
                       </div>
                     ):idMenu === 12 ? (
-                      <div className="mr-3">
+                      <div >
                         <CategoryIcon />
                       </div>
                     ):idMenu === 13 ? (
-                      <div className="mr-3">
+                      <div >
                         <AutoAwesomeIcon />
                       </div>
                     ):idMenu === 14 ? (
-                      <div className="mr-3">
+                      <div >
                         <SupportAgentIcon />
                       </div>
                     ):''}
                     {/* <div className="mr-3">{icon}</div> */}
                     <ListItemText
+                      
                       primary={<span className="text-[12px]">{tenMenu}</span>}
-                      sx={{ opacity: open ? 1 : 0 }}
+                      sx={{ opacity: open ? 1 : 0 ,
+                      marginLeft:open ? 2 : 0 ,
+                      textAlign:'unset'
+                      }}
                     />
 
                     {open ? (
@@ -256,12 +264,13 @@ const Sidenav = (props) => {
                     )}
                   </ListItemButton>
                 </ListItem>
-                <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
+                {JSON.parse(chilD_MENUS)[0].IDMENU ? <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    {JSON.parse(chilD_MENUS)?.map(({ TENMENU }) => (
+                    {JSON.parse(chilD_MENUS)?.map(({IDMENU ,TENMENU, LINKS }) => (
                       <ListItemButton
                         onClick={() => {
-                          navigate();
+                          navigate(LINKS)
+                          // IDMENU === 21 ? navigate('/nhan-benh') : IDMENU === 42 ? navigate('/thumuakho/chuyenkho') : navigate('/Dashboard')
                         }}
                         sx={{
                           color: "#DDDDDD",
@@ -286,7 +295,8 @@ const Sidenav = (props) => {
                       </ListItemButton>
                     ))}
                   </List>
-                </Collapse>
+                </Collapse> : ''}
+                
               </>
             ))}
           </List>
@@ -296,7 +306,7 @@ const Sidenav = (props) => {
           className="w-full h-full hidden lg:block bg-[#F4F5F7] "
         >
           <Header open={open} handleDrawer={handleDrawer} />
-          <main className="mt-16 h-[90%]">{props.children}</main>
+          <main className="mt-16 h-[93%]">{props.children}</main>
         </Box>
       </Box>
       <ModalMoca />

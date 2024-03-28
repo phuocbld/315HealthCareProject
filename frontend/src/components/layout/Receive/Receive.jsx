@@ -1,57 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import Layout from "../../../HOCs/Layout";
-import { Input, Tabs, Select } from "antd";
+import { Input, Tabs, Select, ConfigProvider, DatePicker, Divider } from "antd";
 import { useReactToPrint } from "react-to-print";
-import {
-  MoreOutlined,
-  CheckOutlined,
-  CloseOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
-
+import { CheckOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { Space, Table, Popover, Tag, Dropdown, Divider } from "antd";
 import {
   getAllSelectClinicAction,
   getQuanAction,
   getXaAction,
 } from "../../../store/actions/receiveAction";
-import DropDown from "./DropDown/DropDown";
 import TableHistory from "./Table/TableHistory";
 import { Button } from "@mui/material";
 import TabsChiDinh from "./TabsChiDinh/TabsChiDinh";
 import TablePay from "./Table/TablePay";
-import { handleGenerateDocx } from "../../../services/form/formLeTan";
-const columns = [
-  {
-    title: "STT",
-    dataIndex: "STT",
-    key: "STT",
-    width: 80,
-  },
-  {
-    title: "Tên bệnh nhân",
-    dataIndex: "TenBN",
-    key: "TenBN",
-  },
-  {
-    title: "Ngày sinh",
-    dataIndex: "date",
-    key: "date",
-  },
-  {
-    title: "Phòng khám",
-    dataIndex: "PK",
-    key: "PK",
-  },
-  {
-    title: "",
-    dataIndex: "action",
-    key: "action",
-    width: 50,
-  },
-];
-
+import TableChoKham from "./Table/TableChoKham";
 
 const Receive = () => {
   const dispatch = useDispatch();
@@ -77,8 +39,10 @@ const Receive = () => {
   };
   const handlPrint = useReactToPrint({
     content: () => componentRef.current,
-    pageStyle: "@page { size: A5 }", 
-    onAfterPrint: () => {console.log(componentRef.current);},
+    pageStyle: "@page { size: A5 }",
+    onAfterPrint: () => {
+      console.log(componentRef.current);
+    },
   });
   // const handlPrint = () =>{
   //   handleGenerateDocx()
@@ -90,9 +54,9 @@ const Receive = () => {
     <Layout>
       <div className="overflow-auto h-full">
         <div
-          className="bg-white m-5 p-5 rounded-lg "
+          className="bg-white m-2 p-2 rounded-lg "
           style={{
-            height: 875,
+            height: 858,
             border: "1px solid #B6BBC4",
             boxShadow:
               "0 1px 2px 0 rgba(60,64,67,.1),0 2px 6px 2px rgba(60,64,67,.15)",
@@ -118,7 +82,10 @@ const Receive = () => {
                           <div className="flex gap-5">
                             <div className="flex w-2/5 items-center">
                               <label className="w-1/3">Họ và tên:</label>
-                              <Input size="small" />
+                              <Input
+                                placeholder="Họ tên bệnh nhân"
+                                size="small"
+                              />
                             </div>
                             <div className="flex w-3/5 items-center">
                               <label className="w-[15.5%]">Mã BN:</label>
@@ -127,8 +94,67 @@ const Receive = () => {
                           </div>
                           <div className="flex gap-5">
                             <div className="flex w-2/5 items-center">
-                              <label className="w-1/3">Điện thoại:</label>
+                              <label className="w-1/3">Số TTV:</label>
+                              <Input
+                                placeholder="Số thẻ thành viên"
+                                size="small"
+                              />
+                            </div>
+                            <div className="flex w-3/5 items-center">
+                              <label className="w-[15.5%]">Loại TTV:</label>
                               <Input size="small" />
+                            </div>
+                          </div>
+                          <div className="flex gap-5">
+                            <div className="flex w-2/5 items-center">
+                              <label className="w-1/3">Người thân:</label>
+                              <Select
+                                placeholder="Chọn người ngân"
+                                size="small"
+                                className="w-full"
+                                options={[
+                                  {
+                                    label: "Cha",
+                                    value: 2,
+                                  },
+                                  {
+                                    label: "Mẹ",
+                                    value: 3,
+                                  },
+                                  {
+                                    label: "Cô/Dì",
+                                    value: 4,
+                                  },
+                                  {
+                                    label: "Chú/Dượng",
+                                    value: 1,
+                                  },
+                                  {
+                                    label: "Ông",
+                                    value: 5,
+                                  },
+                                  {
+                                    label: "Bà",
+                                    value: 6,
+                                  },
+                                ]}
+                              />
+                            </div>
+                            <div className="flex w-3/5 items-center">
+                              <label className="w-[15.5%]">Thông tin:</label>
+                              <Input
+                                placeholder="Thông tin người thân"
+                                size="small"
+                              />
+                            </div>
+                          </div>
+                          <div className="flex gap-5">
+                            <div className="flex w-2/5 items-center">
+                              <label className="w-1/3">Điện thoại:</label>
+                              <Input
+                                placeholder="SĐT bệnh nhân hoặc người giám hộ"
+                                size="small"
+                              />
                             </div>
                             <div className="flex w-3/5 gap-5 items-center">
                               <div className="flex w-1/2">
@@ -174,8 +200,11 @@ const Receive = () => {
                           </div>
                           <div className="flex gap-5">
                             <div className="flex w-2/5 items-center">
-                              <label className="w-1/3">Tình trạng:</label>
-                              <Input size="small" />
+                              <label className="w-1/3">Lý do:</label>
+                              <Input
+                                placeholder="Lý do khám bệnh"
+                                size="small"
+                              />
                             </div>
                             <div className="flex w-3/5 gap-5 items-center">
                               <div className="flex w-1/2">
@@ -228,6 +257,16 @@ const Receive = () => {
                           </div>
                           <div className="flex gap-5">
                             <div className="flex w-1/2 items-center">
+                              <label className="w-1/4">CCCD:</label>
+                              <Input size="small" />
+                            </div>
+                            <div className="flex gap-1 w-1/2 ">
+                              <label className="w-1/3">Ngày cấp:</label>
+                              <DatePicker className="w-full" size="small" />
+                            </div>
+                          </div>
+                          <div className="flex gap-5">
+                            <div className="flex w-1/2 items-center">
                               <label className="w-1/4">Mã TCQG:</label>
                               <Input size="small" />
                             </div>
@@ -247,6 +286,20 @@ const Receive = () => {
                             <div className="flex gap-1 w-1/3 ">
                               <label className="w-[42%]">Tỉnh/TP:</label>
                               <Select
+                                showSearch
+                                optionFilterProp="children"
+                                filterOption={(input, option) =>
+                                  (option?.label ?? "")
+                                    .toLowerCase()
+                                    .includes(input)
+                                }
+                                filterSort={(optionA, optionB) =>
+                                  (optionA?.label ?? "")
+                                    .toLowerCase()
+                                    .localeCompare(
+                                      (optionB?.label ?? "").toLowerCase()
+                                    )
+                                }
                                 onChange={handleTinh}
                                 options={tinhTP?.map((item) => ({
                                   label: item.tenTinh,
@@ -259,6 +312,20 @@ const Receive = () => {
                             <div className="flex gap-1 w-1/3 ">
                               <label>Q.Huyện:</label>
                               <Select
+                                showSearch
+                                optionFilterProp="children"
+                                filterOption={(input, option) =>
+                                  (option?.label ?? "")
+                                    .toLowerCase()
+                                    .includes(input)
+                                }
+                                filterSort={(optionA, optionB) =>
+                                  (optionA?.label ?? "")
+                                    .toLowerCase()
+                                    .localeCompare(
+                                      (optionB?.label ?? "").toLowerCase()
+                                    )
+                                }
                                 onChange={handleTinh}
                                 options={quanHuyen?.map((item) => ({
                                   label: item.tenQuan,
@@ -271,6 +338,20 @@ const Receive = () => {
                             <div className="flex gap-1 w-1/3 ">
                               <label>X.Phường:</label>
                               <Select
+                                showSearch
+                                optionFilterProp="children"
+                                filterOption={(input, option) =>
+                                  (option?.label ?? "")
+                                    .toLowerCase()
+                                    .includes(input)
+                                }
+                                filterSort={(optionA, optionB) =>
+                                  (optionA?.label ?? "")
+                                    .toLowerCase()
+                                    .localeCompare(
+                                      (optionB?.label ?? "").toLowerCase()
+                                    )
+                                }
                                 onChange={handleTinh}
                                 options={phuongXa?.map((item) => ({
                                   label: item.tenPhuong,
@@ -316,7 +397,12 @@ const Receive = () => {
                           <div className="flex gap-2 mt-3">
                             <div className="flex w-full gap-4 items-center">
                               <label className="w-[9%]">Ghi Chú</label>
-                              <Input.TextArea />
+                              <Input.TextArea
+                                size="small"
+                                autoSize={{
+                                  maxRows: 1,
+                                }}
+                              />
                             </div>
                           </div>
                         </div>
@@ -326,55 +412,14 @@ const Receive = () => {
                   {
                     label: "Danh sách chờ khám",
                     key: 2,
-                    children: (
-                      <>
-                        <div>
-                          <Table
-                            columns={columns}
-                            bordered
-                            style={{
-                              height: "600px",
-                            }}
-                            className="max-h-96"
-                            scroll={{ y: 273 }}
-                            pagination={{
-                              pageSize: 10,
-                            }}
-                            dataSource={[
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                              { TenBN: "Nguyễn Quốc Tài", PK: "Phòng Khám 1" },
-                            ].map((items) => ({
-                              key: items.TenBN,
-                              STT: "1001",
-                              TenBN: items.TenBN,
-                              date: "22/03/2024",
-                              PK: items.PK,
-                              action: (
-                                <>
-                                  <DropDown />
-                                </>
-                              ),
-                            }))}
-                          />
-                        </div>
-                      </>
-                    ),
+                    children: <TableChoKham />,
                   },
                 ]}
               />
               <TableHistory />
             </div>
             <div className="w-1/2 border p-2 rounded-lg">
-              <div className="border h-[292px] rounded-md">
+              <div className="border h-[248px] rounded-md">
                 <TablePay />
               </div>
               <div className="flex w-full gap-5 py-3">
@@ -417,25 +462,42 @@ const Receive = () => {
                       <span className="text-red-500"> - 0 VNĐ</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-5">
+                  <div className="flex items-center justify-center gap-5">
+                    <div className="w-2/3 flex gap-5">
                     <Button
+                    className="w-1/2"
                       onClick={() => {
                         handlPrint();
                       }}
-                      className="w-2/3"
+                      
+                      variant="contained"
+                      size="small"
+                      color="primary"
+                    >
+                      In
+                    </Button>
+                    <Button
+                    className="w-1/2"
+                      onClick={() => {
+                        handlPrint();
+                      }}
                       variant="contained"
                       size="small"
                       color="success"
                     >
-                      Thanh toán
+                      Lưu & In
                     </Button>
+                    </div>
+                    
                     <div className="text-green-700 text-xl font-semibold w-1/3 text-center">
                       1,800,000 VNĐ
                     </div>
                   </div>
                 </div>
               </div>
-              <Divider>
+              <Divider style={{
+                margin:'10px 0'
+              }}>
                 <span className="text-blue-500">CHỈ ĐỊNH</span>
               </Divider>
               <div className="border h-96 rounded-md">
@@ -445,7 +507,7 @@ const Receive = () => {
           </form>
         </div>
       </div>
-      <div ref={componentRef}>Hello Again</div>
+      {/* <div ref={componentRef}>Hello Again</div> */}
     </Layout>
   );
 };
