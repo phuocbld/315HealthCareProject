@@ -4,6 +4,8 @@ namespace _315HealthCareProject.Models
 {
     public class NguoiDungNhomMenu
     {
+        [Column("STT")]
+        public int STT { get; set; }
         [Column("TAIKHOAN")]
         public string TaiKhoan { get; set; }
         [Column("IDMENU")]

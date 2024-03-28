@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\backend",
-    "\\backend\\Controllers",
-    "\\backend\\Data"
+    "\\backend"
   ],
-  "SelectedNode": "\\backend\\Controllers\\MoCaLamViecController.cs",
   "PreviewInSolutionExplorer": false
 }

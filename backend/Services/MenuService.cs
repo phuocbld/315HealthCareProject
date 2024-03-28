@@ -21,6 +21,7 @@ namespace _315HealthCareProject.Services
                 .Where(menu => menu.TaiKhoan == taiKhoan)
                 .Select(menu => new NguoiDungNhomMenu
                 {
+                    STT = menu.STT,
                     TaiKhoan = menu.TaiKhoan,
                     IDMenu = menu.IDMenu,
                     TenMenu = menu.TenMenu,
