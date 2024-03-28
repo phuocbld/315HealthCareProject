@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\code Tài Nguyễn\\315healthcare\\V1.3\\315healthcare\\backend\\315HealthCareProject.csproj": {}
+    "C:\\Users\\quoct\\Desktop\\Project Font-end\\315healthcare\\V1.3\\backend\\315HealthCareProject.csproj": {}
   },
   "projects": {
-    "D:\\code Tài Nguyễn\\315healthcare\\V1.3\\315healthcare\\backend\\315HealthCareProject.csproj": {
+    "C:\\Users\\quoct\\Desktop\\Project Font-end\\315healthcare\\V1.3\\backend\\315HealthCareProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\code Tài Nguyễn\\315healthcare\\V1.3\\315healthcare\\backend\\315HealthCareProject.csproj",
+        "projectUniqueName": "C:\\Users\\quoct\\Desktop\\Project Font-end\\315healthcare\\V1.3\\backend\\315HealthCareProject.csproj",
         "projectName": "315HealthCareProject",
-        "projectPath": "D:\\code Tài Nguyễn\\315healthcare\\V1.3\\315healthcare\\backend\\315HealthCareProject.csproj",
-        "packagesPath": "C:\\Users\\Tai Nguyen\\.nuget\\packages\\",
-        "outputPath": "D:\\code Tài Nguyễn\\315healthcare\\V1.3\\315healthcare\\backend\\obj\\",
+        "projectPath": "C:\\Users\\quoct\\Desktop\\Project Font-end\\315healthcare\\V1.3\\backend\\315HealthCareProject.csproj",
+        "packagesPath": "C:\\Users\\quoct\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\quoct\\Desktop\\Project Font-end\\315healthcare\\V1.3\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tai Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\quoct\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
