@@ -32,6 +32,10 @@ public class ApplicationDbContext : DbContext
     public DbSet<ThongTinDangNhap> THONGTINDANGNHAP { get; set; }
     public DbSet<PhuongThucThanhToan> PhuongThucThanhToans { get; set; }
     public DbSet<NhanVien> NhanViens { get; set; }
+    public DbSet<KhoNhapXuat> KhoNhapXuats { get; set; }
+    public DbSet<Kho> Khos {  get; set; }
+    public DbSet<KhoChiNhanh> KhoChiNhanhs { get; set; }
+    public DbSet<KhoChiTiet> KhoChiTiets { get; set; }
 
 
 
@@ -53,6 +57,11 @@ public class ApplicationDbContext : DbContext
     public IEnumerable<object> caLamViecs { get; internal set; }
     public IEnumerable<object> phuongThucThanhToans { get; internal set; }
     public IEnumerable<object> nhanViens { get; internal set; }
+    public IEnumerable<object> khos { get; internal set; }
+    public IEnumerable<object> khoChiNhanhs { get; internal set; }
+    public IEnumerable<object> khoNhapXuats { get; internal set; }
+    public IEnumerable<object> khoChiTiets { get; internal set; }
+
 
 
 

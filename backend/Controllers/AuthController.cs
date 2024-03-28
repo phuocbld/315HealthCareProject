@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using _315HealthCareProject.Models;
 using _315HealthCareProject.Data;
 using _315HealthCareProject.DTO;
-using _315HealthCareProject.Services;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using _315HealthCareProject.Services;
 
 namespace _315HealthCareProject.Controllers
 {

@@ -1,5 +1,4 @@
-﻿
-namespace _315HealthCareProject.Services;
+﻿namespace _315HealthCareProject.Services;
 
 using _315HealthCareProject.DTO;
 using _315HealthCareProject.Models;

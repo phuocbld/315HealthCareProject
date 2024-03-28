@@ -24,6 +24,7 @@ builder.Services.AddScoped<MenuService>();
 builder.Services.AddScoped<INhanVienService, NhanVienService>();
 builder.Services.AddScoped<IDangNhapService, DangNhapService>();
 builder.Services.AddScoped<INhomNguoiDungService, NhomNguoiDungService>();
+builder.Services.AddScoped<IKhoNhapXuatService , KhoNhapXuatService>();
 
 
 
