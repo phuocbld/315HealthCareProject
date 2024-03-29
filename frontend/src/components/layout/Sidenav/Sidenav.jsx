@@ -302,8 +302,11 @@ const Sidenav = (props) => {
           </List>
         </Drawer>
         <Box
+        sx={{
+          width: open  ? '90.6%' : '96.6%'
+        }}
           component="main"
-          className="w-full h-full hidden lg:block bg-[#F4F5F7] "
+          className="  h-full  hidden lg:block bg-[#F4F5F7] "
         >
           <Header open={open} handleDrawer={handleDrawer} />
           <main className="mt-16 h-[93%]">{props.children}</main>

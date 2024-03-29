@@ -42,6 +42,7 @@ export function* authSaga() {
           payload: infoUser.data,
         });
         localStorage.setItem("USER_INFO", JSON.stringify(infoUser.data));
+        localStorage.setItem("BRANH_LOGIN", JSON.stringify(payload.idChiNhanh));
         yield delay(500);
         // lấy ra tên và id chi nhánh đăng nhập
         const branchLogin = yield call(() =>
