@@ -1,4 +1,6 @@
-﻿namespace _315HealthCareProject.Services
+﻿using _315HealthCareProject.Services.Interface;
+
+namespace _315HealthCareProject.Services
 {
     public class TimeComparisonService :ITimeComparisonService
     {

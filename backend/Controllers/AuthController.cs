@@ -6,7 +6,7 @@ using _315HealthCareProject.DTO;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using _315HealthCareProject.Services;
+using _315HealthCareProject.Services.Interface;
 
 namespace _315HealthCareProject.Controllers
 {

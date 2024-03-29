@@ -30,10 +30,10 @@ namespace _315HealthCareProject.Models
         public string NoiDung { get; set; }
 
         [Column("NVXUAT")]
-        public int? NhanVienXuat { get; set; }
+        public string? NhanVienXuat { get; set; }
 
         [Column("NVNHAN")]
-        public int? NhanVienNhan { get; set; }
+        public string? NhanVienNhan { get; set; }
 
         [Column("NGAYXUAT")]
         public DateTime? NgayXuat { get; set; }

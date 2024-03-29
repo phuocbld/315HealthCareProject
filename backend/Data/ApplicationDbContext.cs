@@ -36,6 +36,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Kho> Khos {  get; set; }
     public DbSet<KhoChiNhanh> KhoChiNhanhs { get; set; }
     public DbSet<KhoChiTiet> KhoChiTiets { get; set; }
+    public DbSet<ThuocVatTu> ThuocVatTus { get; set; }
+    public DbSet<DoiTac> DoiTacs { get; set; }
 
 
 
@@ -61,6 +63,8 @@ public class ApplicationDbContext : DbContext
     public IEnumerable<object> khoChiNhanhs { get; internal set; }
     public IEnumerable<object> khoNhapXuats { get; internal set; }
     public IEnumerable<object> khoChiTiets { get; internal set; }
+    public IEnumerable<object> thuocVatTus { get; internal set; }
+    public IEnumerable<object> doiTacs { get; internal set; }
 
 
 

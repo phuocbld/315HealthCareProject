@@ -1,5 +1,7 @@
 using _315HealthCareProject.Models;
 using _315HealthCareProject.Repositories;
+using _315HealthCareProject.Repositories.Interface;
+using _315HealthCareProject.Services.Interface;
 
 namespace _315HealthCareProject.Services;
 

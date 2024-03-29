@@ -1,7 +1,7 @@
 ﻿namespace _315HealthCareProject.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using _315HealthCareProject.Services;
+using _315HealthCareProject.Services.Interface;
 
 [ApiController]
 [Route("api/[controller]")]

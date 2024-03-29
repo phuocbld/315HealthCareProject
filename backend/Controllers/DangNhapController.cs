@@ -4,7 +4,7 @@ using _315HealthCareProject.Data;
 using _315HealthCareProject.DTO;
 using System;
 using System.Threading.Tasks;
-using _315HealthCareProject.Services;
+using _315HealthCareProject.Services.Interface;
 
 namespace _315HealthCareProject.Controllers
 {

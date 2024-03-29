@@ -8,7 +8,6 @@ namespace _315HealthCareProject.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         [Column("IDCHITIETNX")]
         public int IdChiTietNX { get; set; }
 
@@ -20,9 +19,6 @@ namespace _315HealthCareProject.Models
 
         [Column("IDTHUOC")]
         public int IdThuoc { get; set; }
-
-        [Column("IDHANGHOA")]
-        public int IdHangHoa { get; set; }
 
         [Column("SOLO")]
         public string SoLo { get; set; }
@@ -50,5 +46,24 @@ namespace _315HealthCareProject.Models
 
         [Column("TRANGTHAICHUYENKHO")]
         public int TrangThaiChuyenKho { get; set; }
+
+        [Column("PTCKTRUOCVAT")]
+        public int PTCKTruocVat { get; set; }
+
+        [Column("CKTRUOCVAT")]
+        public int CKTruocVat { get; set; }
+
+        [Column("VAT5")]
+        public int? Vat5 { get; set; }
+        [Column("VAT8")]
+        public int? Vat8 { get; set; }
+        [Column("VAT10")]
+        public int? Vat10 { get; set; }
+
+        [Column("THANHTIEN")]
+        public int ThanhTien { get; set; }
+
+        [Column("THUCTRA")]
+        public int ThucTra { get; set; }
     }
 }

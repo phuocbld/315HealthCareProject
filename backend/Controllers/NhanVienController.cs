@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using _315HealthCareProject.Models;
 using Microsoft.EntityFrameworkCore;
 using _315HealthCareProject.Data;
-using _315HealthCareProject.Services;
+using _315HealthCareProject.Services.Interface;
 
 namespace _315HealthCareProject.Controllers
 {

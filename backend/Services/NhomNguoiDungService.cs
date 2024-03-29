@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using _315HealthCareProject.Data;
 using _315HealthCareProject.Models;
+using _315HealthCareProject.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace _315HealthCareProject.Services

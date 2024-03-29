@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using _315HealthCareProject.Services;
+using _315HealthCareProject.Services.Interface;
 
 namespace _315HealthCareProject.Controllers
 {
