@@ -9,5 +9,6 @@ const https = axios.create({
 })
 
 export const NhapKhoService = {
-    getBranch: (id) => https.get(`ChiNhanh/${id}`)
+    getBranch: (id) => https.get(`ChiNhanh/${id}`),
+    getListKhoNhap: (id) => https.get(`KhoChiNhanh/${id}`)
 }

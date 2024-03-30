@@ -1,20 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../../HOCs/Layout";
 import { Input, Select, Tabs } from "antd";
 import { Button } from "@mui/material";
 import { Formik } from "formik";
+import moment from "moment";
 import TableChiTiet from "./TableChiTiet/TableChiTiet";
 import Attach from "./Attach/Attach";
 import ListKho from "./ListKho/ListKho";
 import { useDispatch, useSelector } from "react-redux";
 import { getBranchNhapKho } from "../../../store/actions/NhapKhoAction";
 const Nhapkho = () => {
-  const dispatch = useDispatch()
-  const handleSave = () => {};
-  const {branch} = useSelector(state => state.NhapKhoReducer)
-  useEffect(()=>{
+  const dispatch = useDispatch();
+
+  const handleSave = (values, actions) => {
+    actions.resetForm();
+    console.log(values);
+  };
+  const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
+  const hanldeSaveAndPrint = (values, actions) => {
+    console.log(values);
+  };
+
+  // xử lý choose kho nhập
+  const handleSelectKhoNhap = (value, props) => {
+    props.setFieldValue("idKhoNhap", value);
+  };
+  const now = moment();
+  const { branch, listKhoNhap,} = useSelector((state) => state.NhapKhoReducer);
+  useEffect( () => {
     dispatch(getBranchNhapKho())
-  },[])
+  }, []);
   return (
     <Layout>
       <div
@@ -35,11 +50,11 @@ const Nhapkho = () => {
                   <Formik
                     initialValues={{
                       tenPhieu: "",
-                      idKhoNhap: localStorage.getItem('BRANH_LOGIN'),
+                      idKhoNhap: '',
                       NoiDung: "",
-                      nhanVienNhan: "",
+                      nhanVienNhan: infoUser?.tenNV,
                       ngayNhan: "",
-                      trangThai: 3,
+                      trangThai: "",
                       IidDoiTac: "",
                       soHoaDon: "",
                       ngayHoaDon: "",
@@ -48,7 +63,9 @@ const Nhapkho = () => {
                     }}
                     onSubmit={handleSave}
                   >
+                    
                     {(props) => (
+                      
                       <form onSubmit={props.handleSubmit}>
                         <div>
                           <div className="flex gap-2">
@@ -59,8 +76,8 @@ const Nhapkho = () => {
                                     Người nhập:{" "}
                                   </label>
                                   <Input
-                                    name="nhanVienNhan"
                                     value={props.values.nhanVienNhan}
+                                    name="nhanVienNhan"
                                     size="small"
                                   />
                                 </div>
@@ -68,7 +85,11 @@ const Nhapkho = () => {
                                   <label className="w-1/4 font-semibold">
                                     Nơi Nhập:{" "}
                                   </label>
-                                  <Input  value={branch} className="w-full" size="small" />
+                                  <Input
+                                    value={branch}
+                                    className="w-full"
+                                    size="small"
+                                  />
                                 </div>
                               </div>
                               <div className="flex ">
@@ -103,7 +124,19 @@ const Nhapkho = () => {
                                 <label className="w-1/3 font-semibold">
                                   Kho nhập:
                                 </label>
-                                <Select className="w-full" size="small" />
+                                <Select
+                                  onChange={(value) =>
+                                    handleSelectKhoNhap(value, props)
+                                  }
+                                  options={listKhoNhap?.map(
+                                    ({ idKho, tenKho }) => ({
+                                      label: tenKho,
+                                      value: idKho,
+                                    })
+                                  )}
+                                  className="w-full"
+                                  size="small"
+                                />
                               </div>
                               <div className="flex ">
                                 <label className="w-1/3 font-semibold">
@@ -129,7 +162,10 @@ const Nhapkho = () => {
                                 <label className="w-1/3 font-semibold">
                                   Ngày nhập:
                                 </label>
-                                <Input value={new Date} size="small" />
+                                <Input
+                                  // value={now.format("DD-MM-YYYY HH:mm:ss")}
+                                  size="small"
+                                />
                               </div>
                               <div className="flex ">
                                 <label className="w-1/3 font-semibold">
@@ -291,6 +327,7 @@ const Nhapkho = () => {
                             Làm mới
                           </Button>
                           <Button
+                            type="submit"
                             variant="contained"
                             color="primary"
                             size="small"

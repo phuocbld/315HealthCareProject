@@ -12,6 +12,21 @@ export function* NhapKhoSaga () {
             type:typeAction.DISPATCH_BRANCH_NHAPKHO,
             payload:result.data
         })
-    } )
+    })
+
+    //get kho nhập
+    yield takeLatest(typeAction.GET_BRANCH_NHAPKHO,function* listKhoNhap({type,payload}){
+        // yield console.log(payload);
+        const idBranch = localStorage.getItem('BRANH_LOGIN')
+        const result = yield call(()=> NhapKhoService.getListKhoNhap(idBranch))
+        yield put({
+            type:typeAction.DISPATCH_LIST_KHONHAP,
+            payload:result.data
+        })
+        yield put({
+            type:typeAction.DISPATCH_DEFAULT_KHONHAP,
+            payload:result.data[0].idKho
+        })
+    })
 
 }
