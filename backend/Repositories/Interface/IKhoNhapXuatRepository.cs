@@ -6,5 +6,6 @@ namespace _315HealthCareProject.Repositories.Interface
     {
         Task<IEnumerable<KhoNhapXuat>> GetAllPhieuNhapAsync();
         Task<IEnumerable<KhoNhapXuat>> GetAllPhieuXuatAsync();
+        Task<IEnumerable<KhoNhapXuat>> GetAllPhieuNhapXuatAsync();
     }
 }

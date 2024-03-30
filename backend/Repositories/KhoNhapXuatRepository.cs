@@ -15,12 +15,22 @@ namespace _315HealthCareProject.Repositories
         }
         public async Task<IEnumerable<KhoNhapXuat>> GetAllPhieuNhapAsync()
         {
-            return await _context.KhoNhapXuats.Where(k => k.IdKhoNhap.HasValue).ToListAsync();
+            return await _context.KhoNhapXuats
+                .Where(k => k.MaPhieu.StartsWith("PN"))
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<KhoNhapXuat>> GetAllPhieuXuatAsync()
         {
-            return await _context.KhoNhapXuats.Where(k => k.IdKhoXuat.HasValue).ToListAsync();
+            return await _context.KhoNhapXuats
+                .Where(k => k.MaPhieu.StartsWith("PX"))
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<KhoNhapXuat>> GetAllPhieuNhapXuatAsync()
+        {
+            return await _context.KhoNhapXuats.ToListAsync();
         }
     }
 }
+

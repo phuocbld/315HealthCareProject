@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using _315HealthCareProject.Data;
-using _315HealthCareProject.Models;
 using _315HealthCareProject.Repositories.Interface;
+using _315HealthCareProject.DTO;
 
 namespace _315HealthCareProject.Repositories
 {
@@ -17,14 +17,14 @@ namespace _315HealthCareProject.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<KhoInfo>> GetKhoInfoByChiNhanhIdAsync(int idChiNhanh)
+        public async Task<IEnumerable<KhoInfoDTO>> GetKhoInfoByChiNhanhIdAsync(int idChiNhanh)
         {
             return await _context.KhoChiNhanhs
                 .Where(k => k.IdCN == idChiNhanh)
                 .Join(_context.Khos,
                       kcn => kcn.IdKho,
                       k => k.IdKho,
-                      (kcn, k) => new KhoInfo
+                      (kcn, k) => new KhoInfoDTO
                       {
                           IDKho = k.IdKho,
                           TenKho = k.TenKho
@@ -32,5 +32,5 @@ namespace _315HealthCareProject.Repositories
                 .ToListAsync();
         }
     }
-    }
+}
 

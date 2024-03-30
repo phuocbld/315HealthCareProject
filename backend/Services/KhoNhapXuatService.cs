@@ -12,9 +12,10 @@ namespace _315HealthCareProject.Services
         private readonly ApplicationDbContext _context;
         private readonly IKhoNhapXuatRepository _repository;
 
-        public KhoNhapXuatService(ApplicationDbContext context)
+        public KhoNhapXuatService(ApplicationDbContext context , IKhoNhapXuatRepository repository)
         {
             _context = context;
+            _repository = repository;
         }
 
         public KhoNhapXuat CreateKhoNhap(string tenPhieu, string noiDung, int trangThai)
@@ -83,11 +84,7 @@ namespace _315HealthCareProject.Services
 
         public async Task<IEnumerable<KhoNhapXuat>> GetAllPhieuNhapXuatAsync()
         {
-            var phieuNhap = await _repository.GetAllPhieuNhapAsync();
-            var phieuXuat = await _repository.GetAllPhieuXuatAsync();
-
-            return phieuNhap.Concat(phieuXuat);
+            return await _repository.GetAllPhieuNhapXuatAsync();
         }
-
     }
 }

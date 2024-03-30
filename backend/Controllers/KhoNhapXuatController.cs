@@ -12,12 +12,12 @@ namespace _315HealthCareProject.Controllers
     [Route("api/[controller]")]
     public class KhoNhapXuatController : ControllerBase
     {
-        private readonly IKhoNhapXuatService _khoNhapXuatService;
+        private readonly IKhoNhapXuatService _service;
         private readonly ApplicationDbContext _context;
 
-        public KhoNhapXuatController(IKhoNhapXuatService khoNhapXuatService, ApplicationDbContext context)
+        public KhoNhapXuatController(IKhoNhapXuatService service, ApplicationDbContext context)
         {
-            _khoNhapXuatService = khoNhapXuatService;
+            _service = service;
             _context = context;
         }
 
@@ -27,7 +27,7 @@ namespace _315HealthCareProject.Controllers
         {
             try
             {
-                var newKhoNhap = _khoNhapXuatService.CreateKhoNhap(
+                var newKhoNhap = _service.CreateKhoNhap(
                       khoNhap.TenPhieu,
                       khoNhap.NoiDung,
                       khoNhap.TrangThai
@@ -67,7 +67,7 @@ namespace _315HealthCareProject.Controllers
         {
             try
             {
-                var newKhoXuat = _khoNhapXuatService.CreateKhoXuat(
+                var newKhoXuat = _service.CreateKhoXuat(
                       khoXuat.TenPhieu,
 
                       khoXuat.NoiDung,
@@ -109,25 +109,48 @@ namespace _315HealthCareProject.Controllers
         [HttpGet("phieunhap")]
         public async Task<IActionResult> GetAllPhieuNhap()
         {
-            var phieuNhap = await _khoNhapXuatService.GetAllPhieuNhapAsync();
-            return Ok(phieuNhap);
+            try
+            {
+                var phieuNhap = await _service.GetAllPhieuNhapAsync();
+                return Ok(phieuNhap);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
         }
 
         [HttpGet("phieuxuat")]
         public async Task<IActionResult> GetAllPhieuXuat()
         {
-            var phieuXuat = await _khoNhapXuatService.GetAllPhieuXuatAsync();
-            return Ok(phieuXuat);
+            try
+            {
+                var phieuXuat = await _service.GetAllPhieuXuatAsync();
+                return Ok(phieuXuat);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
         }
 
         [HttpGet("phieunhapxuat")]
         public async Task<IActionResult> GetAllPhieuNhapXuat()
         {
-            var phieuNhapXuat = await _khoNhapXuatService.GetAllPhieuNhapXuatAsync();
-            return Ok(phieuNhapXuat);
+            try
+            {
+                var phieuNhapXuat = await _service.GetAllPhieuNhapXuatAsync();
+                return Ok(phieuNhapXuat);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
         }
     }
 }
+
+
         
 
 

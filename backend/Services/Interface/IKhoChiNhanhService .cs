@@ -1,9 +1,9 @@
-﻿using _315HealthCareProject.Models;
+﻿using _315HealthCareProject.DTO;
 
 namespace _315HealthCareProject.Services.Interface
 {
     public interface IKhoChiNhanhService
     {
-        Task<IEnumerable<KhoInfo>> GetKhoInfoByChiNhanhIdAsync(int idChiNhanh);
+        Task<IEnumerable<KhoInfoDTO>> GetKhoInfoByChiNhanhIdAsync(int idChiNhanh);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using _315HealthCareProject.Models;
+using _315HealthCareProject.DTO;
 using _315HealthCareProject.Repositories.Interface;
 using _315HealthCareProject.Services.Interface;
 
@@ -15,7 +15,7 @@ namespace _315HealthCareProject.Services
             _repository = repository;
         }
 
-        public async Task<IEnumerable<KhoInfo>> GetKhoInfoByChiNhanhIdAsync(int idChiNhanh)
+        public async Task<IEnumerable<KhoInfoDTO>> GetKhoInfoByChiNhanhIdAsync(int idChiNhanh)
         {
             return await _repository.GetKhoInfoByChiNhanhIdAsync(idChiNhanh);
         }

@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\backend"
+    "\\backend",
+    "\\backend\\Services"
   ],
   "SelectedNode": "\\backend\\315HealthCareProject.sln",
   "PreviewInSolutionExplorer": false
