@@ -29,4 +29,24 @@ export function* NhapKhoSaga () {
         })
     })
 
+    //get list đối tác 
+    yield takeLatest(typeAction.GET_LIST_DOITAC,function* listDoiTac({type,payload}){
+        // yield console.log(payload);
+       
+        const result = yield call(()=> NhapKhoService.getListDoiTac())
+        yield put({
+            type:typeAction.DISPATCH_LIST_DOITAC,
+            payload:result.data
+        })
+    })
+    //get info Đối tác 
+    yield takeLatest(typeAction.GET_INFO_DOITCA,function* infoDoiTac({type,payload}){
+        // yield console.log(payload);
+        const result = yield call(()=> NhapKhoService.getInfoDoiTac(payload))
+        yield put({
+            type:typeAction.DISPATCH_INFO_DOITAC,
+            payload:result.data
+        })
+    })
+
 }

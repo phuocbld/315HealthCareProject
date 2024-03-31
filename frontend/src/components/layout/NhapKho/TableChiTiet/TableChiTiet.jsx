@@ -1,8 +1,91 @@
-import { ConfigProvider, Table } from "antd";
+import { ConfigProvider, Table,Input, InputNumber,Form } from "antd";
 import {CloseOutlined} from '@ant-design/icons'
-import React from "react";
+import React,{  useContext, useEffect, useRef, useState } from "react";
+const EditableContext = React.createContext(null);
+const EditableRow = ({ index, ...props }) => {
+  const [form] = Form.useForm();
+  return (
+    <Form form={form} component={false}>
+      <EditableContext.Provider value={form}>
+        <tr {...props} />
+      </EditableContext.Provider>
+    </Form>
+  );
+};
+const EditableCell = ({
+  title,
+  editable,
+  children,
+  dataIndex,
+  record,
+  handleSave,
+  ...restProps
+}) => {
+  const [editing, setEditing] = useState(false);
+  const inputRef = useRef(null);
+  const form = useContext(EditableContext);
+  useEffect(() => {
+    if (editing) {
+      inputRef.current.focus();
+    }
+  }, [editing]);
+  const toggleEdit = () => {
+    setEditing(!editing);
+    form.setFieldsValue({
+      [dataIndex]: record[dataIndex],
+    });
+  };
+  const save = async () => {
+    try {
+      const values = await form.validateFields();
+      toggleEdit();
+      handleSave({
+        ...record,
+        ...values,
+      });
+    } catch (errInfo) {
+      console.log('Save failed:', errInfo);
+    }
+  };
+  let childNode = children;
+  if (editable) {
+    childNode = editing ? (
+      <Form.Item
+        style={{
+          margin: 0,
+        }}
+        name={dataIndex}
+        rules={[
+          {
+            required: true,
+            message: `${title} is required.`,
+          },
+        ]}
+      >
+        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+      </Form.Item>
+    ) : (
+      <div
+        className="editable-cell-value-wrap"
+        style={{
+          paddingRight: 24,
+        }}
+        onClick={toggleEdit}
+      >
+        {children}
+      </div>
+    );
+  }
+  return <td {...restProps}>{childNode}</td>;
+};
 
 const TableChiTiet = () => {
+  const components = {
+    body: {
+      row: EditableRow,
+      cell: EditableCell,
+    },
+  };
   return (
     <>
       <ConfigProvider
@@ -15,6 +98,8 @@ const TableChiTiet = () => {
       >
         <Table
           className="h-full "
+          components={components}
+          rowClassName={() => 'editable-row'}
           bordered
           pagination={false}
           scroll={{
@@ -30,7 +115,7 @@ const TableChiTiet = () => {
                   key: 1.1,
                   title: "STT",
                   dataIndex: "STT",
-                  width:50,
+                  width:40,
                   fixed:true,
                   align:'center'
                 },
@@ -38,14 +123,14 @@ const TableChiTiet = () => {
                   key: 1.2,
                   title: "Tên hàng",
                   dataIndex: "TENHANG",
-                  width:250,
+                  width:200,
                   fixed:true,
                 },
                 {
                   key: 1.3,
                   title: "Mã hàng",
                   dataIndex: "MAHANG",
-                  width:100,
+                  width:70,
                   fixed:true,
                 },
               ],
@@ -56,22 +141,25 @@ const TableChiTiet = () => {
               children: [
                 {
                   key: 2.1,
-                  title: "Số lượng",
+                  title: "SL",
                   dataIndex: "SLCHAN",
-                  width:100,
+                  width:40,
+                  align:'center',
                   editable: true,
                 },
                 {
                   key: 2.2,
                   title: "Đơn vị",
                   dataIndex: "DVCHAN",
-                  width:100
+                  align:'center',
+                  width:60
                 },
                 {
                   key: 2.3,
                   title: "Đơn giá",
                   dataIndex: "DGCHAN",
-                  width:100
+                  align:'center',
+                  width:80
                 },
               ],
             },
@@ -81,21 +169,24 @@ const TableChiTiet = () => {
               children: [
                 {
                   key: 3.1,
-                  title: "Số lượng",
+                  title: "SL",
                   dataIndex: "SLLE",
-                  width:100
+                  width:40,
+                  align:'center',
                 },
                 {
                   key: 3.2,
                   title: "Đơn vị",
                   dataIndex: "DVLE",
-                  width:100
+                  align:'center',
+                  width:60
                 },
                 {
                   key: 3.3,
                   title: "Đơn giá",
                   dataIndex: "DGLE",
-                  width:100
+                  align:'center',
+                  width:80
                 },
               ],
             },{
@@ -105,52 +196,62 @@ const TableChiTiet = () => {
                     key:4.1,
                     title:'Tổng tiền',
                     dataIndex:'TONGTIEN',
-                    width:100
+                    align:'center',
+                    width:90
                 },{
                     key:4.2,
-                    title:'Phí gia công',
+                    title:'P. Gia công',
                     dataIndex:'PHIGIACONG',
-                    width:100
+                    width:75,
+                    align:'center',
                 },{
                     key:4.3,
-                    title:'Phí vận chuyển',
+                    title:'P. Vận chuyển',
                     dataIndex:'PHIVANCHUYEN',
-                    width:100
+                    width:89,
+                    align:'center',
                 },{
                     key:4.4,
                     title:'%CK trước VAT',
                     dataIndex:'CKTRUOCVAT',
-                    width:100
+                    width:95,
+                    align:'center',
                 },{
                     key:4.5,
                     title:'Tiền CK trước VAT',
                     dataIndex:'TIENCKTRUOCVAT',
-                    width:140
+                    width:110,
+                    align:'center',
                 },{
                     key:4.6,
                     title:'VAT 5%',
                     dataIndex:'VAT5%',
-                    width:100
+                    width:55,
+                    align:'center'
                 },{
                     key:4.7,
                     title:'VAT 8%',
                     dataIndex:'VAT8%',
-                    width:100
+                    width:55,
+                    align:'center'
                 },{
                     key:4.8,
                     title:'VAT 10%',
                     dataIndex:'VAT10%',
-                    width:100
+                    width:60,
+                    align:'center'
                 },{
                     key:4.9,
                     title:'Thành tiền',
                     dataIndex:'THANHTIEN',
-                    width:100
+                    width:90,
+                    align:'center'
                 },{
                     key:4.10,
                     title:'Thực trả',
                     dataIndex:'THUCTRA',
-                    width:100
+                    width:90,
+                    align:'center'
                 },
             ]
             },{
@@ -161,13 +262,15 @@ const TableChiTiet = () => {
                     key: 5.1,
                     title: "Số lô",
                     dataIndex: "SOLO",
-                    width:100,
+                    width:70,
+                    align:'center'
                   },
                   {
                     key: 5.2,
                     title: "Hạn dùng",
                     dataIndex: "HANDUNG",
-                    width:100,
+                    align:'center',
+                    width:70,
                   },
                 ],
               },{

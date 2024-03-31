@@ -4,6 +4,8 @@ const initialState = {
   branch: null,
   listKhoNhap: null,
   defaultKhoNhap: undefined,
+  listDoiTac: null,
+  infoDoiTac: null,
 };
 
 const NhapKhoReducer = (state = initialState, { type, payload }) => {
@@ -17,6 +19,15 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
         break;
       case typeAction.DISPATCH_DEFAULT_KHONHAP:
         draft.defaultKhoNhap = payload;
+        break;
+      case typeAction.DISPATCH_LIST_DOITAC:
+        draft.listDoiTac = payload;
+        break;
+      case typeAction.DISPATCH_INFO_DOITAC:
+        draft.infoDoiTac = payload;
+        break;
+      case typeAction.DISPATCH_RESET_INFO_DOITAC:
+        draft.infoDoiTac = null;
         break;
       default:
         return state;
