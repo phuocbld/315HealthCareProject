@@ -16,25 +16,19 @@ namespace _315HealthCareProject.Services
 
         public async Task<DangNhap> CheckAndCreateDangNhapAsync(string taiKhoan, int chiNhanhDangNhap)
         {
-
             var nguoiDung = await _context.NguoiDungs.FirstOrDefaultAsync(nd => nd.TaiKhoan == taiKhoan);
 
             if (nguoiDung == null)
             {
-
                 return null;
             }
 
-
             var existingDangNhap = await _context.DangNhaps.FirstOrDefaultAsync(dn => dn.IdNguoiDung == nguoiDung.IdNguoiDung
-
-                                                                                        && dn.DangXuat == null);
-
-            //&& dn.ThoiGianDangNhap.Date == DateTime.UtcNow.Date
+                                                                                    && dn.DangXuat == null);
 
             if (existingDangNhap == null)
             {
-                // Case 1: Create new DangNhap record
+                // Nếu không tìm thấy bản ghi có ThoiGianDangNhap và DangXuat là null, tạo mới DangNhap
                 var newDangNhap = new DangNhap
                 {
                     IdNguoiDung = nguoiDung.IdNguoiDung,
@@ -47,7 +41,6 @@ namespace _315HealthCareProject.Services
                     GhiChu = null
                 };
 
-
                 _context.DangNhaps.Add(newDangNhap);
                 await _context.SaveChangesAsync();
 
@@ -55,10 +48,11 @@ namespace _315HealthCareProject.Services
             }
             else
             {
-                // Case 2: Return existing DangNhap
+                // Nếu đã tồn tại bản ghi có ThoiGianDangNhap và DangXuat là null, trả về bản ghi đó
                 return existingDangNhap;
             }
         }
+
 
 
         public async Task<DangNhap> GetByIdAsync(int id)

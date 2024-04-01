@@ -40,6 +40,11 @@ namespace _315HealthCareProject.Services
 
             return idCaLamViec;
         }
+
+        private string FormatDateTime(DateTime thoiGian)
+        {
+            return thoiGian.ToString("MMMM dd, yyyy h:mm tt");
+        }
     }
 }
     

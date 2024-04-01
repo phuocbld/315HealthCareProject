@@ -15,7 +15,7 @@ namespace _315HealthCareProject.Models
         public int IdNhapXuat { get; set; }
 
         [Column("MACHITIETNX")]
-        public string MaChiTietNX { get; set; }
+        public string? MaChiTietNX { get; set; }
 
         [Column("IDTHUOC")]
         public int IdThuoc { get; set; }

@@ -24,6 +24,7 @@ namespace _315HealthCareProject.Controllers
         }
 
         [HttpPost]
+        [Route("MoCa")]
         public async Task<IActionResult> UpdateDangNhap([FromBody] DangNhapDTO dangNhapDTO)
         {
             try
@@ -46,8 +47,6 @@ namespace _315HealthCareProject.Controllers
                 {
                     return BadRequest("Invalid login time");
                 }
-
-                // Cập nhật thông tin đăng nhập
                 existingDangNhap.ThoiGianDangNhap = dangNhapDTO.ThoiGianDangNhap;
                 existingDangNhap.IP = dangNhapDTO.IP;
                 existingDangNhap.GhiChu = dangNhapDTO.GhiChu;
@@ -57,12 +56,45 @@ namespace _315HealthCareProject.Controllers
 
                 await _dangNhapService.UpdateAsync(existingDangNhap);
 
-                return Ok("Đã mở ca thành công");
+                return Ok(existingDangNhap);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        [HttpPut]
+        [Route("DongCa")]
+        public async Task<IActionResult> CloseSession(int idDangNhap)
+        {
+            try
+            {
+                // Kiểm tra xem IDDangNhap có tồn tại không
+                var existingDangNhap = await _dangNhapService.GetByIdAsync(idDangNhap);
+                if (existingDangNhap == null)
+                {
+                    return NotFound("DangNhap not found");
+                }
+
+                
+                if (existingDangNhap.ThoiGianDangNhap == null || existingDangNhap.DangXuat != null)
+                {
+                    return BadRequest("Invalid session to close");
+                }
+
+                
+                existingDangNhap.DangXuat = DateTime.UtcNow;
+
+                await _dangNhapService.UpdateAsync(existingDangNhap);
+
+                return Ok("Đã đóng ca thành công");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
     }
 }
