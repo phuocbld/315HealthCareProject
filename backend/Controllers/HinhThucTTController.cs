@@ -25,5 +25,18 @@ namespace _315HealthCareProject.Controllers
 
             return Ok(hinhThucs);
         }
+
+        [HttpGet("HinhThuc")]
+        public async Task<ActionResult<IEnumerable<object>>> GetHinhThucThanhToan()
+        {
+            var hinhThucThanhToan = await _context.HinhThucs
+                .Where(ht => ht.IdHinhThuc == 1 || ht.IdHinhThuc == 2)
+                .Select(ht => new { ht.IdHinhThuc, ht.TenHinhThuc })
+                .ToListAsync();
+
+            return Ok(hinhThucThanhToan);
+        }
+
+
     }
 }

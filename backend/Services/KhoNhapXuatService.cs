@@ -18,17 +18,79 @@ namespace _315HealthCareProject.Services
             _repository = repository;
         }
 
-        public KhoNhapXuat CreateKhoNhap(string tenPhieu, string noiDung, int trangThai)
-        {
-            int currentSequenceNumber = 0;
+        //public KhoNhapXuat CreateKhoNhap(string tenPhieu, string noiDung, int trangThai)
+        //{
+        //    int currentSequenceNumber = 0;
 
-            if (currentSequenceNumber == 0)
+        //    if (currentSequenceNumber == 0)
+        //    {
+        //        currentSequenceNumber = _context.KhoNhapXuats.Count() + 1;
+        //    }
+
+        //    string currentDate = DateTime.Now.ToString("yyyyMM");
+        //    string newPhieu = $"PNOA{currentDate}{currentSequenceNumber:D6}";
+
+        //    var khoNhap = new KhoNhapXuat
+        //    {
+        //        MaPhieu = newPhieu,
+        //        TenPhieu = tenPhieu,
+        //        NoiDung = noiDung,
+        //        TrangThai = trangThai
+        //    };
+
+        //    currentSequenceNumber++;
+        //    _context.KhoNhapXuats.Add(khoNhap);
+        //    _context.SaveChanges();
+
+        //    return khoNhap;
+        //}
+
+        //public KhoNhapXuat CreateKhoXuat(string tenPhieu, string noiDung, int trangThai)
+        //{
+        //    int currentSequenceNumber = 0;
+
+        //    if (currentSequenceNumber == 0)
+        //    {
+        //        currentSequenceNumber = _context.KhoNhapXuats.Count() + 1;
+        //    }
+
+        //    string currentDate = DateTime.Now.ToString("yyyyMM");
+        //    string newPhieu = $"CKOA{currentDate}{currentSequenceNumber:D6}";
+
+        //    var khoXuat = new KhoNhapXuat
+        //    {
+        //        MaPhieu = newPhieu,
+        //        TenPhieu = tenPhieu,
+        //        NoiDung = noiDung,
+        //        TrangThai = trangThai
+        //    };
+
+        //    currentSequenceNumber++;
+        //    _context.KhoNhapXuats.Add(khoXuat);
+        //    _context.SaveChanges();
+
+        //    return khoXuat;
+        //}
+        public async Task<KhoNhapXuat> CreateKhoNhap(string tenPhieu, string noiDung, int trangThai)
+        {
+            string currentDate = DateTime.Now.ToString("yyyyMM");
+
+            string maxMaPhieu = await _context.KhoNhapXuats
+                .Where(k => EF.Functions.Like(k.MaPhieu, $"PN0A{currentDate}%"))
+                .MaxAsync(k => k.MaPhieu);
+
+            int currentSequenceNumber = 1;
+            if (!string.IsNullOrEmpty(maxMaPhieu))
             {
-                currentSequenceNumber = _context.KhoNhapXuats.Count() + 1;
+                string lastDigits = maxMaPhieu.Substring(10); // Lấy các ký tự cuối cùng sau "PNOAyyyyMM"
+                if (int.TryParse(lastDigits, out currentSequenceNumber))
+                {
+                    currentSequenceNumber++;
+                }
             }
 
-            string currentDate = DateTime.Now.ToString("yyyyMM");
-            string newPhieu = $"PNOA{currentDate}{currentSequenceNumber:D6}";
+            string uniqueNumber = currentSequenceNumber.ToString("D6"); // Số tự tăng độ dài 6 ký tự
+            string newPhieu = $"PN0A{currentDate}{uniqueNumber}";
 
             var khoNhap = new KhoNhapXuat
             {
@@ -38,24 +100,32 @@ namespace _315HealthCareProject.Services
                 TrangThai = trangThai
             };
 
-            currentSequenceNumber++;
             _context.KhoNhapXuats.Add(khoNhap);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return khoNhap;
         }
 
-        public KhoNhapXuat CreateKhoXuat(string tenPhieu, string noiDung, int trangThai)
+        public async Task<KhoNhapXuat> CreateKhoXuat(string tenPhieu, string noiDung, int trangThai)
         {
-            int currentSequenceNumber = 0;
+            string currentDate = DateTime.Now.ToString("yyyyMM");
 
-            if (currentSequenceNumber == 0)
+            string maxMaPhieu = await _context.KhoNhapXuats
+                .Where(k => EF.Functions.Like(k.MaPhieu, $"CK0A{currentDate}%"))
+                .MaxAsync(k => k.MaPhieu);
+
+            int currentSequenceNumber = 1;
+            if (!string.IsNullOrEmpty(maxMaPhieu))
             {
-                currentSequenceNumber = _context.KhoNhapXuats.Count() + 1;
+                string lastDigits = maxMaPhieu.Substring(10);
+                if (int.TryParse(lastDigits, out currentSequenceNumber))
+                {
+                    currentSequenceNumber++;
+                }
             }
 
-            string currentDate = DateTime.Now.ToString("yyyyMM");
-            string newPhieu = $"CKOA{currentDate}{currentSequenceNumber:D6}";
+            string uniqueNumber = currentSequenceNumber.ToString("D6"); 
+            string newPhieu = $"CK0A{currentDate}{uniqueNumber}";
 
             var khoXuat = new KhoNhapXuat
             {
@@ -65,12 +135,12 @@ namespace _315HealthCareProject.Services
                 TrangThai = trangThai
             };
 
-            currentSequenceNumber++;
             _context.KhoNhapXuats.Add(khoXuat);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return khoXuat;
         }
+
 
         public async Task<IEnumerable<KhoNhapXuat>> GetAllPhieuNhapAsync()
         {

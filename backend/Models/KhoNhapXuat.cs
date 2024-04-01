@@ -30,10 +30,10 @@ namespace _315HealthCareProject.Models
         public string NoiDung { get; set; }
 
         [Column("NVXUAT")]
-        public string? NhanVienXuat { get; set; }
+        public int? NhanVienXuat { get; set; }
 
         [Column("NVNHAN")]
-        public string? NhanVienNhan { get; set; }
+        public int? NhanVienNhan { get; set; }
 
         [Column("NGAYXUAT")]
         public DateTime? NgayXuat { get; set; }
@@ -64,5 +64,14 @@ namespace _315HealthCareProject.Models
 
         [Column("FILEHOADON")]
         public byte[]? FileHoaDon { get; set; }
+
+        [Column("IDHINHTHUC")]
+        public int? IdHinhThuc { get; set; }
+
+        [Column("IDPHUONGTHUC")]
+        public int? IdPhuongThuc { get; set; }
+
+
+
     }
 }

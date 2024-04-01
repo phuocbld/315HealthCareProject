@@ -1,6 +1,4 @@
-﻿// Trong file ThuocVatTu.cs
-
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -23,10 +21,10 @@ namespace _315HealthCareProject.Models
         public string TenHoatChat { get; set; }
 
         [Column("DVT")]
-        public string? Dvt { get; set; }
+        public string Dvt { get; set; }
 
         [Column("QUYCACH")]
-        public string? QuyCach { get; set; }
+        public string QuyCach { get; set; }
 
         [Column("NONGDO")]
         public string? NongDo { get; set; }

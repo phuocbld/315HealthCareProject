@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\services\\khonhapxuatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\khonhapxuatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\controllers\\thuocvattucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:controllers\\thuocvattucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\controllers\\khonhapxuatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:controllers\\khonhapxuatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\models\\thuocvattu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:models\\thuocvattu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\services\\interface\\ikhonhapxuatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\interface\\ikhonhapxuatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\repositories\\khonhapxuatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\khonhapxuatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\repositories\\interface\\ithuocvatturepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\interface\\ithuocvatturepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\models\\khonhapxuat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:models\\khonhapxuat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\services\\interface\\ithuocvattuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\interface\\ithuocvattuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\repositories\\interface\\ikhonhapxuatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\interface\\ikhonhapxuatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\services\\thuocvattuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\thuocvattuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\repositories\\thuocvatturepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\thuocvatturepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,81 +38,98 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "KhoNhapXuatController.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Controllers\\KhoNhapXuatController.cs",
-              "RelativeDocumentMoniker": "Controllers\\KhoNhapXuatController.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Controllers\\KhoNhapXuatController.cs",
-              "RelativeToolTip": "Controllers\\KhoNhapXuatController.cs",
-              "ViewState": "AQIAAEEAAAAAAAAAAAA9wEUAAAA4AAAA",
+              "DocumentIndex": 4,
+              "Title": "IThuocVatTuService.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Services\\Interface\\IThuocVatTuService.cs",
+              "RelativeDocumentMoniker": "Services\\Interface\\IThuocVatTuService.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Services\\Interface\\IThuocVatTuService.cs",
+              "RelativeToolTip": "Services\\Interface\\IThuocVatTuService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-30T04:09:44.734Z",
+              "WhenOpened": "2024-04-01T07:17:59.674Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "KhoNhapXuatRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Repositories\\KhoNhapXuatRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\KhoNhapXuatRepository.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Repositories\\KhoNhapXuatRepository.cs",
-              "RelativeToolTip": "Repositories\\KhoNhapXuatRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAJAAAA",
+              "Title": "IThuocVatTuRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Repositories\\Interface\\IThuocVatTuRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interface\\IThuocVatTuRepository.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Repositories\\Interface\\IThuocVatTuRepository.cs",
+              "RelativeToolTip": "Repositories\\Interface\\IThuocVatTuRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAYAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-30T04:09:13.053Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IKhoNhapXuatRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Repositories\\Interface\\IKhoNhapXuatRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\Interface\\IKhoNhapXuatRepository.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Repositories\\Interface\\IKhoNhapXuatRepository.cs",
-              "RelativeToolTip": "Repositories\\Interface\\IKhoNhapXuatRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-30T04:08:57.35Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IKhoNhapXuatService.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Services\\Interface\\IKhoNhapXuatService.cs",
-              "RelativeDocumentMoniker": "Services\\Interface\\IKhoNhapXuatService.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Services\\Interface\\IKhoNhapXuatService.cs",
-              "RelativeToolTip": "Services\\Interface\\IKhoNhapXuatService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-30T04:08:33.485Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "KhoNhapXuatService.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Services\\KhoNhapXuatService.cs",
-              "RelativeDocumentMoniker": "Services\\KhoNhapXuatService.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Services\\KhoNhapXuatService.cs",
-              "RelativeToolTip": "Services\\KhoNhapXuatService.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAowC0AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-30T04:08:24.045Z",
+              "WhenOpened": "2024-04-01T07:14:22.658Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "KhoNhapXuat.cs",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Models\\KhoNhapXuat.cs",
-              "RelativeDocumentMoniker": "Models\\KhoNhapXuat.cs",
-              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Models\\KhoNhapXuat.cs",
-              "RelativeToolTip": "Models\\KhoNhapXuat.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAA9wDQAAAAcAAAA",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-01T06:58:14.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ThuocVatTuController.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Controllers\\ThuocVatTuController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ThuocVatTuController.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Controllers\\ThuocVatTuController.cs",
+              "RelativeToolTip": "Controllers\\ThuocVatTuController.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAowCgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-30T04:07:18.045Z"
+              "WhenOpened": "2024-04-01T06:48:45.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ThuocVatTu.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Models\\ThuocVatTu.cs",
+              "RelativeDocumentMoniker": "Models\\ThuocVatTu.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Models\\ThuocVatTu.cs",
+              "RelativeToolTip": "Models\\ThuocVatTu.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-01T06:47:24.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ThuocVatTuRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Repositories\\ThuocVatTuRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\ThuocVatTuRepository.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Repositories\\ThuocVatTuRepository.cs",
+              "RelativeToolTip": "Repositories\\ThuocVatTuRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-01T06:46:50.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ThuocVatTuService.cs",
+              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Services\\ThuocVatTuService.cs",
+              "RelativeDocumentMoniker": "Services\\ThuocVatTuService.cs",
+              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Services\\ThuocVatTuService.cs",
+              "RelativeToolTip": "Services\\ThuocVatTuService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-01T06:46:45.334Z",
+              "EditorCaption": ""
             }
           ]
         }

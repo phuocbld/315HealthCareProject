@@ -26,10 +26,7 @@ namespace _315HealthCareProject.Repositories
                 .ToListAsync();
         }
 
-        public async Task<ThuocVatTu> GetThuocVatTuByIdAsync(int id)
-        {
-            return await _context.ThuocVatTus.FindAsync(id);
-        }
+    
 
 
     }

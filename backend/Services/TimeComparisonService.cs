@@ -8,6 +8,7 @@ namespace _315HealthCareProject.Services
         {
             // Chuyển đổi thời gian từ DateTimeOffset sang DateTime
             DateTime thoiGianDangNhapDateTime = thoiGianDangNhap.UtcDateTime;
+       
 
 
             // Tính toán IDCaLamViec dựa trên thời gian DangNhap

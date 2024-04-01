@@ -18,10 +18,5 @@ namespace _315HealthCareProject.Services
             return await _repository.GetAllThuocVatTuAsync();
         }
 
-        public async Task<ThuocVatTu> GetThuocVatTuByIdAsync(int id)
-        {
-            var thuocVatTus = await _repository.GetAllThuocVatTuAsync();
-            return thuocVatTus.FirstOrDefault(t => t.IdThuoc == id);
-        }
     }
 }
