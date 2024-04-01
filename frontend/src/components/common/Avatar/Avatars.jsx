@@ -14,7 +14,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../../store/actions/userAction';
 import * as typeACtion from '../../../store/constants/constants'
 const StyledMenu = styled((props) => (
@@ -59,6 +59,7 @@ const StyledMenu = styled((props) => (
 }));
 const Avatars = ( {info}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const {infoUser} = useSelector(state => state.userReducer)
   const open = Boolean(anchorEl);
   const navigate = useNavigate()
   const dispatch = useDispatch();
@@ -69,8 +70,9 @@ const Avatars = ( {info}) => {
     setAnchorEl(null);
   };
   
-  const logout = ()  =>{
+  const logout = () =>{
     dispatch(logoutUser(navigate))
+    console.log('123456');
   }
   const DongCaLamViec = () => {
     handleClose()
@@ -99,10 +101,10 @@ const stringName = (name) => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{bgcolor:'white',color:'#3b82f6', border:'1px solid #3b82f6'}} children={stringName(info?.taiKhoan)}/>
+            <Avatar sx={{bgcolor:'white',color:'#3b82f6', border:'1px solid #3b82f6'}} children={stringName(infoUser?.tenNV)}/>
             <div className='text-start flex  ml-2 justify-center  text-black  text-sm'>
-              <p >{info?.taiKhoan}</p>
-              <span > - Quản trị hệ thống</span>
+              <p >{infoUser?.tenNV}</p>
+              <span > - {infoUser?.tenNhom}</span>
             </div>
           </IconButton>
         </Tooltip>

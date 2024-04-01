@@ -1,21 +1,19 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { demoModalCAction } from '../../store/actions/BranchAction'
 import Layout from '../../HOCs/Layout'
+import Dashboard from '../../components/layout/Dashboard/Dashboard'
 
 const Home = () => {
   const dispatch = useDispatch()
+  const {infoUser} = useSelector(state=> state.userReducer)
   const demoAction = () => {
     dispatch(demoModalCAction({value:123}))
   } 
   return (
     <Layout>
-      <div className='flex justify-center p-10 flex-col h-full'>
-      <div className='h-5/6 text-center flex justify-center'>
-      {/* <img className='bg-cover bg-no-repeat p-2 ' src="https://cdn.dribbble.com/users/1502817/screenshots/6372301/glowbabyedit6.gif" alt="coming soon" />  */}
-      </div>
-    </div>
+     {infoUser?.tenNhom === 'Ban Giám đốc' ? <Dashboard/> :''}
     </Layout>
     
     

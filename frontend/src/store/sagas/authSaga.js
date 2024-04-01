@@ -80,11 +80,13 @@ export function* authSaga() {
   yield takeLatest(typeAction.LOGOUT_USER, function* logout({ navigate }) {
     try {
       yield localStorage.removeItem("USER_INFO");
+      yield localStorage.removeItem("BRANH_LOGIN");
+      yield navigate("/login");
       yield put({
         type: typeAction.DISPATCH_LOGOUT_USER,
         payload: null,
       });
-      yield navigate("/login");
+      
       Toast.fire({
         icon: "success",
         title: "Đăng xuất thành công !",

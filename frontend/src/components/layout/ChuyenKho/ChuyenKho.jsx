@@ -114,10 +114,6 @@ const ChuyenKho = () => {
   
   return (
     <Layout>
-      <div ref={componentRef}>
-      <embed  src={PDFfile} type="application/pdf" />
-      </div>
-      
       <div className="h-full w-full p-2">
         <div
           className="h-full w-full bg-white rounded-md border"
