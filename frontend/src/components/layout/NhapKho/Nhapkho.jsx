@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import * as typeAction from "../../../store/constants/constants";
 import Layout from "../../../HOCs/Layout";
-import { Input, Select, Tabs, DatePicker,notification } from "antd";
+import { Input, Select, Tabs, DatePicker, notification } from "antd";
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import moment from "moment";
@@ -20,9 +20,9 @@ const Nhapkho = () => {
   const dispatch = useDispatch();
   const now = moment();
   const [date, setDate] = useState(now.format()); // set time lại thời gian thực
-  const { branch, listKhoNhap, listDoiTac, infoDoiTac, thuocVT,infoThuocVT } = useSelector(
-    (state) => state.NhapKhoReducer
-  );
+  const [totalPrice,setTotalPrice] = useState(0)
+  const { branch, listKhoNhap, listDoiTac, infoDoiTac, thuocVT, infoThuocVT } =
+    useSelector((state) => state.NhapKhoReducer);
   const [api, contextHolder] = notification.useNotification();
   // xử lí button submit
   const handleSave = (values, action) => {
@@ -33,14 +33,13 @@ const Nhapkho = () => {
     console.log(values);
     formik.setFieldValue("ngayNhan", now.format()); // set lại thời gian nhận
   };
-// modal hiện thong báo 
-const openNotificationWithIcon = (type) => {
-  api[type]({
-    message: 'Chọn thuốc và vật tư',
-    description:
-      'Sản phẩm đã được chọn, hãy tăng số lượng sản phẩm !',
-  });
-};
+  // modal hiện thong báo
+  const openNotificationWithIcon = (type) => {
+    api[type]({
+      message: "Chọn thuốc và vật tư",
+      description: "Sản phẩm đã được chọn, hãy tăng số lượng sản phẩm !",
+    });
+  };
   // lấy thông tin người dùng >> tạm thời
   const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
   const hanldeSaveAndPrint = (values, actions) => {
@@ -56,18 +55,20 @@ const openNotificationWithIcon = (type) => {
   };
 
   const checkStoreThuocVT = (value) => {
-    for(const obj of infoThuocVT){
-      if(obj.idThuoc ===  value){
-        return false ; // trả về false nếu trùng
+    for (const obj of infoThuocVT) {
+      if (obj.IDTHUOC === value) {
+        return false; // trả về false nếu trùng
       }
     }
-    return true; 
-  }
+    return true;
+  };
   // xử lí chọn kho chi tiết
-  const handleChoose  =  async (value) => {
-    const validate = await checkStoreThuocVT(value)
-    validate ? dispatch(fetchInfoThuocVT(value)): openNotificationWithIcon('error')
-  }
+  const handleChoose = async (value) => {
+    const validate = await checkStoreThuocVT(value);
+    validate
+      ? dispatch(fetchInfoThuocVT(value))
+      : openNotificationWithIcon("error");
+  };
   const handleChangeDoiTac = (name) => (value) => {
     formik.setFieldValue(name, value);
     dispatch(getInfoDoitac(value));
@@ -98,7 +99,7 @@ const openNotificationWithIcon = (type) => {
 
   return (
     <Layout>
-       {contextHolder}
+      {contextHolder}
       <div
         style={{
           boxShadow:
@@ -276,8 +277,8 @@ const openNotificationWithIcon = (type) => {
                           </div>
                         </div>
                       </div>
-                      <div className="flex gap-2 mt-2">
-                        <div className="flex gap-2 flex-col w-1/2 ">
+                      <div className="flex gap-3 mt-2">
+                        <div className="flex gap-3 flex-col w-1/2 ">
                           <div className="flex">
                             <label className="w-[11%] font-semibold">
                               Tên phiếu:
@@ -290,29 +291,15 @@ const openNotificationWithIcon = (type) => {
                               className="w-full"
                             />
                           </div>
-                          <div className="flex items-center">
-                            <label className="w-[11%] font-semibold">
-                              Nội dung:
-                            </label>
-                            <Input.TextArea
-                              name="NoiDung"
-                              value={formik.values.NoiDung}
-                              onChange={formik.handleChange}
-                              className="max-h-[36.4px] w-full"
-                              autoSize={{
-                                minRows: 1,
-                              }}
-                            />
-                          </div>
                           <div className="flex">
                             <label className="w-[11%] font-semibold">
                               Tìm kiếm:
                             </label>
                             <Select
-                            allowClear
-                            onChange={handleChoose}
-                            autoClearSearchValue='tags'
-                            value=''
+                              allowClear
+                              onChange={handleChoose}
+                              autoClearSearchValue="tags"
+                              value=""
                               showSearch
                               filterOption={(input, option) =>
                                 (option?.label ?? "")
@@ -328,7 +315,7 @@ const openNotificationWithIcon = (type) => {
                                   //   </span>
                                   //   {tenBietDuoc}
                                   // </li>,
-                                  value:idThuoc
+                                  value: idThuoc,
                                 })
                               )}
                               size="small"
@@ -337,85 +324,32 @@ const openNotificationWithIcon = (type) => {
                             />
                           </div>
                         </div>
-
                         <div className="flex gap-2 flex-col w-1/2">
-                          <div className="flex gap-2">
-                            <div className="flex w-1/3">
-                              <label className="w-1/2 font-semibold">
-                                Tổng tiền :
-                              </label>
-                              <p className="font-semibold w-full">
-                                0 <span> VNĐ</span>
-                              </p>
-                            </div>
-                            <div className="flex w-1/3">
-                              <label className="w-1/2 font-semibold">
-                                CK trước VAT 
-                              </label>
-                              <p className="font-semibold w-full">
-                                0 <span> VNĐ</span>
-                              </p>
-                            </div>
-                            <div className="flex w-1/3">
-                              <label className="w-1/2 font-semibold">
-                                Thành tiền :
-                              </label>
-                              <p className="font-semibold w-full">
-                                0 <span> VNĐ</span>
-                              </p>
-                            </div>
+                          <div className="flex items-center w-full">
+                            <label className="w-[13.5%] font-semibold">
+                              Nội dung:
+                            </label>
+                            <Input.TextArea
+                              name="NoiDung"
+                              value={formik.values.NoiDung}
+                              onChange={formik.handleChange}
+                              className="max-h-[36.4px] w-full"
+                              autoSize={{
+                                minRows: 1,
+                              }}
+                            />
                           </div>
-                          <div className="flex gap-2">
-                            <div className="flex w-1/3">
-                              <label className="w-1/2 font-semibold">
-                                VAT 5%:
-                              </label>
-                              <p className="font-semibold w-full">
-                                0 
-                              </p>
-                            </div>
-                            <div className="flex w-1/3">
-                              <label className="w-1/2 font-semibold">
-                                VAT 8%:
-                              </label>
-                              <p className="font-semibold w-full">
-                                0 
-                              </p>
-                            </div>
-                            <div className="flex w-1/3">
-                              <label className="w-1/2 font-semibold">
-                                VAT 10%:
-                              </label>
-                              <p className="font-semibold w-full">
-                                0 
-                              </p>
-                            </div>
-                          </div>
-                          <div className="flex gap-2">
-                            <div className="flex w-1/3">
-                              <label className="w-1/2 font-semibold">
-                                Thanh toán :
-                              </label>
-                              <p className="font-semibold w-full">
-                                0 <span> VNĐ</span>
-                              </p>
-                            </div>
-                            <div className="flex w-1/3">
-                              <label className="w-1/2 font-semibold">
-                                CK sau VAT :
-                              </label>
-                              <p className="font-semibold w-full">
-                                0 <span> VNĐ</span>
-                              </p>
-                            </div>
-                            <div className="flex w-1/3">
-                              <label className="w-1/2 font-semibold">
-                                Thực trả :
-                              </label>
-                              <p className="font-semibold w-full">
-                                0 <span> VNĐ</span>
-                              </p>
-                            </div>
+                          <div className="w-full">
+                            <ul className="flex font-semibold">
+                              <li className="flex w-1/2 text-orange-500">
+                                <h2>TỔNG TIỀN: </h2>
+                                <span> {totalPrice} VNĐ</span>
+                              </li>
+                              <li className="flex w-1/2 text-blue-500">
+                                <h2>TỔNG THỰC TRẢ: </h2> <span> 0 VNĐ</span>
+                                
+                              </li>
+                            </ul>
                           </div>
                         </div>
                       </div>

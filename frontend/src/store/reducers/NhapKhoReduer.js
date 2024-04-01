@@ -40,7 +40,7 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
       case typeAction.DELETE_INFO_THUOCVT_BY_ID:
         // tìm ID thuốc trong mãng và xoá nó ra khỏi mãng
         for(let i = 0; i < draft.infoThuocVT.length;i++){
-          if(draft.infoThuocVT[i].idThuoc === payload){
+          if(draft.infoThuocVT[i].IDTHUOC === payload){
             draft.infoThuocVT.splice(i,1)
             return;
           }

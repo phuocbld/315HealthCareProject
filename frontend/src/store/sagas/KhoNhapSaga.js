@@ -85,12 +85,12 @@ export function* NhapKhoSaga() {
     function* getInfoVTYT({ type, payload }) {
       const result = yield call(() => NhapKhoService.getInfoThuocVT(payload));
       const data = result.data;
-      const  khoChiTiet = yield {
-        idThuoc: data.idThuoc,
+      const  formKhoChiTiet = yield {
+        idThuoc: data.IDTHUOC,
         soLo: "",
         hanDung: null,
         soLuong: 1,
-        donGiaMua: data.donGia,
+        donGiaMua: data.DONGIA,
         donGiaBan: 0,
         phiVanChuyen: 0,
         phiGiaCong: 0,
@@ -101,12 +101,12 @@ export function* NhapKhoSaga() {
         vat5: 0,
         vat8: 0,
         vat10: 0,
-        thanhTien: 0,
-        thucTra: 0,
+        thanhTien:  data.DONGIA ,
+        thucTra:  data.DONGIA,
       }
       yield put({
         type: typeAction.DISPATCH_LIST_INFO_THUOCVT,
-        payload: {...data,...khoChiTiet}
+        payload: {...data,khoChiTiet:formKhoChiTiet}
       });
     }
   );

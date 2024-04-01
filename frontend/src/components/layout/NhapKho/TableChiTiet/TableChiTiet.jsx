@@ -27,7 +27,7 @@ const TableChiTiet = () => {
     });
   };
   return (
-    <>
+    <div>
       <ConfigProvider
         theme={{
           token: {
@@ -37,7 +37,6 @@ const TableChiTiet = () => {
         }}
       >
         <Table
-          className="h-full "
           bordered
           pagination={false}
           scroll={{
@@ -175,6 +174,13 @@ const TableChiTiet = () => {
                   align: "center",
                 },
                 {
+                  key: 4.7,
+                  title: "Tiền %VAT",
+                  dataIndex: "TIENVAT",
+                  width: 70,
+                  align: "center",
+                },
+                {
                   key: 4.9,
                   title: "Thành tiền",
                   dataIndex: "THANHTIEN",
@@ -221,8 +227,8 @@ const TableChiTiet = () => {
           ]}
           dataSource={infoThuocVT?.map((items, index) => ({
             STT: ++index,
-            TENHANG: items.tenBietDuoc,
-            MAHANG: items.maThuoc,
+            TENHANG: items.TENBIETDUOC,
+            MAHANG: items.MATHUOC,
             SLCHAN: (
               <Input
                 required
@@ -232,12 +238,12 @@ const TableChiTiet = () => {
                 onChange={onChangSLChan}
               />
             ),
-            DVCHAN: items.donViChan,
-            DGCHAN: formatNumberVND(items.donGia),
-            SLLE: "",
-            DVLE: "",
-            DGLE: "",
-            TONGTIEN: formatNumberVND(items.soLuong * items.donGiaMua),
+            DVCHAN: items.DONVICHAN,
+            DGCHAN: formatNumberVND(items.DONGIA),
+            SLLE: items.khoChiTiet.soLuong * items.QUYCACHDONGGOI,
+            DVLE: items.DVT,
+            DGLE: formatNumberVND(items.DONGIA / items.QUYCACHDONGGOI),
+            TONGTIEN: formatNumberVND(items.khoChiTiet.soLuong * items.DONGIA),
             PHIGIACONG: (
               <Input
                 type="number"
@@ -266,14 +272,14 @@ const TableChiTiet = () => {
                 ]}
               />
             ),
-            THANHTIEN: formatNumberVND(items.thanhTien),
-            THUCTRA: formatNumberVND(items.thucTra),
+            THANHTIEN: formatNumberVND(items.khoChiTiet.thanhTien),
+            THUCTRA: formatNumberVND(items.khoChiTiet.thucTra),
             SOLO: <Input className="p-0 text-center" />,
             HANDUNG: <Input className="p-0 text-center" />,
             ACTION: (
               <CloseOutlined
                 onClick={() => {
-                  deleteInfoThuocById(items.idThuoc);
+                  deleteInfoThuocById(items.IDTHUOC);
                 }}
                 className="text-white bg-red-500 p-1 rounded-md cursor-pointer hover:bg-red-400"
               />
@@ -281,7 +287,7 @@ const TableChiTiet = () => {
           }))}
         />
       </ConfigProvider>
-    </>
+    </div>
   );
 };
 
