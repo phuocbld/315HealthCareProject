@@ -2,7 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\backend",
-    "\\backend\\Services"
+    "\\backend\\Controllers",
+    "\\backend\\Services",
+    "\\frontend"
   ],
   "SelectedNode": "\\backend\\315HealthCareProject.sln",
   "PreviewInSolutionExplorer": false

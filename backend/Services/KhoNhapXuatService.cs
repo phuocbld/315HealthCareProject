@@ -28,7 +28,7 @@ namespace _315HealthCareProject.Services
             }
 
             string currentDate = DateTime.Now.ToString("yyyyMM");
-            string newPhieu = $"PN{currentDate}{currentSequenceNumber:D6}";
+            string newPhieu = $"PNOA{currentDate}{currentSequenceNumber:D6}";
 
             var khoNhap = new KhoNhapXuat
             {
@@ -55,7 +55,7 @@ namespace _315HealthCareProject.Services
             }
 
             string currentDate = DateTime.Now.ToString("yyyyMM");
-            string newPhieu = $"PX{currentDate}{currentSequenceNumber:D6}";
+            string newPhieu = $"CKOA{currentDate}{currentSequenceNumber:D6}";
 
             var khoXuat = new KhoNhapXuat
             {
