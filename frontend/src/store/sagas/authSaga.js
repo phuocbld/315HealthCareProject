@@ -77,10 +77,11 @@ export function* authSaga() {
   );
 
   //logout user
-  yield takeLatest(typeAction.LOGOUT_USER, function* logout({ navigate }) {
+  yield takeLatest(typeAction.LOGOUT_USER, function* logOut({ navigate }) {
     try {
       yield localStorage.removeItem("USER_INFO");
       yield localStorage.removeItem("BRANH_LOGIN");
+      console.log(123);
       yield navigate("/login");
       yield put({
         type: typeAction.DISPATCH_LOGOUT_USER,

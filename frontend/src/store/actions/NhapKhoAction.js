@@ -19,3 +19,7 @@ export const fetchInfoThuocVT = (idThuoc) => ({
     type:typeAction.GET_INFO_THUOCVT,
     payload:idThuoc
 })
+export const addPhieuNhapKho = (formData) => ({
+    type:typeAction.POST_PHIEU_NHAP_KHO,
+    payload:formData
+})

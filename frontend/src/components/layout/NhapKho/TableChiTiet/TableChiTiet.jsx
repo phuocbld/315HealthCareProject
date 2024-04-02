@@ -12,18 +12,92 @@ import * as typeAction from "../../../../store/constants/constants";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { formatNumberVND } from "../../../../utils/formatNumberVND";
+import moment from "moment";
 const TableChiTiet = () => {
   const { infoThuocVT } = useSelector((state) => state.NhapKhoReducer);
   const dispatch = useDispatch();
-  const onChangSLChan = (value) => {
-    console.log(value);
+
+  // thay đổi số lượng thuốc
+  const onChangSLChan = (e, idThuoc) => {
+    const value = e.target.value;
+    dispatch({
+      type: typeAction.EDIT_INFO_SL_THUOCVT_BY_ID,
+      payload: {
+        idThuoc: idThuoc,
+        value: Number(value),
+      },
+    });
   };
 
+  const handleVAT = (idThuoc) => (value) => {
+    dispatch({
+      type: typeAction.DISPATCH_VAT_THUOCVT,
+      payload: {
+        idThuoc,
+        value,
+      },
+    });
+  };
+  // thay đổi giá phi phát sing
+  const handlePhiVanChuyen = (idThuoc) => (e) => {
+    const value = e.target.value;
+    dispatch({
+      type: typeAction.EDIT_PHI_VAN_CHUYEN_BY_ID,
+      payload: {
+        idThuoc,
+        value: Number(value),
+      },
+    });
+  };
+  const handlePhiGiaCong = (idThuoc) => (e) => {
+    const value = e.target.value;
+    dispatch({
+      type: typeAction.EDIT_PHI_GIA_CONG_BY_ID,
+      payload: {
+        idThuoc,
+        value: Number(value),
+      },
+    });
+  };
+  // %CK trước VAT
+  const ptChiecKhauVAT = (idThuoc) => (e) => {
+    const value = e.target.value;
+    dispatch({
+      type: typeAction.EDIT_PT_CK_VAT_BY_ID,
+      payload: {
+        idThuoc,
+        value: Number(value),
+      },
+    });
+  };
   // remote infoThuocByID
   const deleteInfoThuocById = (idThuoc) => {
     dispatch({
       type: typeAction.DELETE_INFO_THUOCVT_BY_ID,
       payload: idThuoc,
+    });
+  };
+  // handle số lô
+  const hanldChangeSoLo = (idThuoc) => (e) => {
+    const value = e.target.value;
+    dispatch({
+      type: typeAction.DISPATCH_SOLO_THUOCVT,
+      payload: {
+        idThuoc,
+        value,
+      },
+    });
+  };
+
+  const handleHanDung = (idThuoc) => (e) => {
+    const value = e.target.value;
+    const date = moment(value).format();
+    dispatch({
+      type: typeAction.DISPATCH_HANDUNG_THUOCVT,
+      payload: {
+        date,
+        idThuoc,
+      },
     });
   };
   return (
@@ -80,7 +154,7 @@ const TableChiTiet = () => {
                   key: 2.1,
                   title: "SL",
                   dataIndex: "SLCHAN",
-                  width: 40,
+                  width: 60,
                   align: "center",
                   editable: true,
                 },
@@ -108,7 +182,7 @@ const TableChiTiet = () => {
                   key: 3.1,
                   title: "SL",
                   dataIndex: "SLLE",
-                  width: 40,
+                  width: 60,
                   align: "center",
                 },
                 {
@@ -212,7 +286,7 @@ const TableChiTiet = () => {
                   title: "Hạn dùng",
                   dataIndex: "HANDUNG",
                   align: "center",
-                  width: 90,
+                  width: 120,
                 },
               ],
             },
@@ -235,7 +309,9 @@ const TableChiTiet = () => {
                 defaultValue={1}
                 className="p-0 text-center"
                 type="number"
-                onChange={onChangSLChan}
+                onChange={(e) => {
+                  onChangSLChan(e, items.IDTHUOC);
+                }}
               />
             ),
             DVCHAN: items.DONVICHAN,
@@ -246,6 +322,7 @@ const TableChiTiet = () => {
             TONGTIEN: formatNumberVND(items.khoChiTiet.soLuong * items.DONGIA),
             PHIGIACONG: (
               <Input
+                onChange={handlePhiGiaCong(items.IDTHUOC)}
                 type="number"
                 defaultValue={0}
                 className="p-0 text-center"
@@ -253,17 +330,25 @@ const TableChiTiet = () => {
             ),
             PHIVANCHUYEN: (
               <Input
+                onChange={handlePhiVanChuyen(items.IDTHUOC)}
                 type="number"
                 defaultValue={0}
                 className="p-0 text-center"
               />
             ),
-            CKTRUOCVAT: <Input defaultValue={0} className="p-0 text-center" />,
-            TIENCKTRUOCVAT: (
-              <Input defaultValue={0} className="p-0 text-center" />
+            CKTRUOCVAT: (
+              <Input
+                onChange={ptChiecKhauVAT(items.IDTHUOC)}
+                defaultValue={0}
+                className="p-0 text-center"
+              />
             ),
+            TIENCKTRUOCVAT: formatNumberVND(items.khoChiTiet.ckTruocVat),
+            // <Input value={formatNumberVND(items.khoChiTiet.ckTruocVat)} className="p-0 text-center" />
+            // <Input defaultValue={items.khoChiTiet.ckTruocVat} className="p-0 text-center" />
             VAT: (
               <Select
+                onChange={handleVAT(items.IDTHUOC)}
                 className="w-full  h-[22px]"
                 options={[
                   { label: "5%", value: 0.05 },
@@ -272,10 +357,22 @@ const TableChiTiet = () => {
                 ]}
               />
             ),
+            TIENVAT: items.khoChiTiet.tienVAT,
             THANHTIEN: formatNumberVND(items.khoChiTiet.thanhTien),
             THUCTRA: formatNumberVND(items.khoChiTiet.thucTra),
-            SOLO: <Input className="p-0 text-center" />,
-            HANDUNG: <Input className="p-0 text-center" />,
+            SOLO: (
+              <Input
+                onChange={hanldChangeSoLo(items.IDTHUOC)}
+                className="p-0 text-center"
+              />
+            ),
+            HANDUNG: (
+              <Input
+                type="Date"
+                onChange={handleHanDung(items.IDTHUOC)}
+                className="p-0 text-center"
+              />
+            ),
             ACTION: (
               <CloseOutlined
                 onClick={() => {
