@@ -10,6 +10,7 @@ import Attach from "./Attach/Attach";
 import ListKho from "./ListKho/ListKho";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addPhieuNhapKho,
   fetchAllThuocVT,
   fetchInfoThuocVT,
   getBranchNhapKho,
@@ -17,10 +18,11 @@ import {
   getlistDoitac,
 } from "../../../store/actions/NhapKhoAction";
 const Nhapkho = () => {
-  const dispatch = useDispatch();
+  const [totalPrice, setTotalPrice] = useState(0);
   const now = moment();
   const [date, setDate] = useState(now.format()); // set time lại thời gian thực
-  const [totalPrice,setTotalPrice] = useState(0)
+  const dispatch = useDispatch();
+
   const { branch, listKhoNhap, listDoiTac, infoDoiTac, thuocVT, infoThuocVT } =
     useSelector((state) => state.NhapKhoReducer);
   const [api, contextHolder] = notification.useNotification();
@@ -31,6 +33,7 @@ const Nhapkho = () => {
       type: typeAction.DISPATCH_RESET_INFO_DOITAC,
     });
     console.log(values);
+    dispatch(addPhieuNhapKho(values))
     formik.setFieldValue("ngayNhan", now.format()); // set lại thời gian nhận
   };
   // modal hiện thong báo
@@ -62,6 +65,11 @@ const Nhapkho = () => {
     }
     return true;
   };
+
+  // xử lý phong các HÌnh thức và phương thức 
+  const handleSelect = (name) =>(value) =>{
+    formik.setFieldValue(name,value)
+  }
   // xử lí chọn kho chi tiết
   const handleChoose = async (value) => {
     const validate = await checkStoreThuocVT(value);
@@ -76,9 +84,9 @@ const Nhapkho = () => {
   const formik = useFormik({
     initialValues: {
       tenPhieu: "",
-      idKhoNhap: "",
+      idKhoNhap: 6,
       NoiDung: "",
-      nhanVienNhan: infoUser?.tenNV,
+      nhanVienNhan: infoUser?.dangNhap.idNguoiDung,
       ngayNhan: date,
       trangThai: 3, // để trạng thái mặc định là 3 vì là nhập kho ở trạng thái đã nhận hàng =>> xem table TRANGTHIAKHO ở database
       idDoiTac: "",
@@ -86,6 +94,8 @@ const Nhapkho = () => {
       ngayHoaDon: "",
       linkHoaDon: "",
       fileHoaDon: "",
+      idHinhThuc: '',
+      idPhuongThuc: '',
     },
     onSubmit: (value, action) => {
       handleSave(value, action);
@@ -96,7 +106,23 @@ const Nhapkho = () => {
     dispatch(getlistDoitac());
     dispatch(fetchAllThuocVT());
   }, []);
-
+  const setPricre = (sum) => {
+    setTotalPrice(sum);
+    console.log(sum);
+  };
+  // tính tổng tiền
+  useEffect(() => {
+    if (infoThuocVT.length !== 0) {
+      let sum = 0;
+      for (let item of infoThuocVT) {
+        sum += item.khoChiTiet.thanhTien;
+      }
+      setPricre(sum);
+      console.log(sum);
+    } else {
+      setTotalPrice(0);
+    }
+  }, [infoThuocVT]);
   return (
     <Layout>
       {contextHolder}
@@ -125,7 +151,7 @@ const Nhapkho = () => {
                                 Người nhập:{" "}
                               </label>
                               <Input
-                                value={formik.values.nhanVienNhan}
+                                value={infoUser?.tenNV}
                                 name="nhanVienNhan"
                                 size="small"
                               />
@@ -242,7 +268,22 @@ const Nhapkho = () => {
                             <label className="w-1/3 font-semibold">
                               Phương thức:
                             </label>
-                            <Select className="w-full" size="small" />
+                            <Select
+                              onChange={handleSelect('idPhuongThuc')}
+                              value={formik.values.idPhuongThuc}
+                              options={[
+                                {
+                                  label: "Thanh toán",
+                                  value: 1,
+                                },
+                                {
+                                  label: "Công nợ",
+                                  value: 2,
+                                },
+                              ]}
+                              className="w-full"
+                              size="small"
+                            />
                           </div>
                         </div>
                         <div className="flex flex-col w-1/4 gap-2">
@@ -273,7 +314,22 @@ const Nhapkho = () => {
                             <label className="w-1/3 font-semibold">
                               Hình thức:
                             </label>
-                            <Select className="w-full" size="small" />
+                            <Select
+                              onChange={handleSelect('idHinhThuc')}
+                              value={formik.values.idHinhThuc}
+                              options={[
+                                {
+                                  label: "Tiền mặt",
+                                  value: 1,
+                                },
+                                {
+                                  label: "Chuyển khoản",
+                                  value: 2,
+                                },
+                              ]}
+                              className="w-full"
+                              size="small"
+                            />
                           </div>
                         </div>
                       </div>
@@ -343,11 +399,17 @@ const Nhapkho = () => {
                             <ul className="flex font-semibold">
                               <li className="flex w-1/2 text-orange-500">
                                 <h2>TỔNG TIỀN: </h2>
-                                <span> {totalPrice} VNĐ</span>
+                                <span>
+                                  {" "}
+                                  {totalPrice.toLocaleString("en-US")} VNĐ
+                                </span>
                               </li>
                               <li className="flex w-1/2 text-blue-500">
-                                <h2>TỔNG THỰC TRẢ: </h2> <span> 0 VNĐ</span>
-                                
+                                <h2>TỔNG THỰC TRẢ: </h2>{" "}
+                                <span>
+                                  {" "}
+                                  {totalPrice.toLocaleString("en-US")} VNĐ
+                                </span>
                               </li>
                             </ul>
                           </div>

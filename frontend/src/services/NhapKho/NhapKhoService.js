@@ -6,5 +6,6 @@ export const NhapKhoService = {
     getListDoiTac: () => https.get('DoiTac'),
     getInfoDoiTac: (idDoiTac) => https.get(`DoiTac/IdDoiTac/${idDoiTac}`),
     getAllThuocVT: () => https.get(`ThuocVatTu`),
-    getInfoThuocVT: (idThuoc) =>https.get(`ThuocVatTu/${idThuoc}`)
+    getInfoThuocVT: (idThuoc) =>https.get(`ThuocVatTu/${idThuoc}`),
+    postPhieuNhap: (formData) => https.post('KhoNhapXuat/PhieuNhap',formData)
 }
