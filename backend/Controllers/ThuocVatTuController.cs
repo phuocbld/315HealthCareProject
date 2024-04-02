@@ -16,14 +16,16 @@ namespace _315HealthCareProject.Controllers
     {
         private readonly IThuocVatTuService _service;
         private readonly IConfiguration _configuration;
+        private readonly ApplicationDbContext _context;
 
-        public ThuocVatTuController(IThuocVatTuService service , IConfiguration configuration)
+        public ThuocVatTuController(IThuocVatTuService service, IConfiguration configuration, ApplicationDbContext context)
         {
             _service = service;
             _configuration = configuration;
+            _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<object>>> GetAll()
         {
             try
@@ -84,5 +86,173 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
+        [HttpDelete("{idthuoc}")]
+        public IActionResult Delete(string idthuoc)
+        {
+            try
+            {
+                string connectionString = _configuration.GetConnectionString("OracleDBConnection");
+                string query = $"DELETE FROM THUOCVATTU WHERE IDTHUOC = :idthuoc";
+
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    using (OracleCommand command = new OracleCommand(query, connection))
+                    {
+                        command.Parameters.Add("idthuoc", OracleDbType.Int32).Value = Convert.ToInt32(idthuoc);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            return Ok(new { message = "Xóa thành công bản ghi có IDThuoc: " + idthuoc });
+                        }
+                        else
+                        {
+                            return NotFound(new { message = "Không tìm thấy bản ghi có IDThuoc: " + idthuoc });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
+        }
+
+        [HttpGet("ThuocVatTu")]
+        public async Task<IActionResult> GetAllPhieuNhapXuat()
+        {
+            try
+            {
+                var thuocVatTu = await _service.GetAllAsync();
+                return Ok(thuocVatTu);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        [Route("ThemThuocVatTu")]
+        public async Task<IActionResult> AddThuoc(ThuocVatTu thuocVatTu)
+        {
+            try
+            {
+                var newThuocVatTuTask = _service.CreateThuocVatTu(
+                    thuocVatTu.MaThuoc,
+                    thuocVatTu.TenBietDuoc,
+                    thuocVatTu.TenHoatChat,
+                    thuocVatTu.Dvt,
+                    thuocVatTu.QuyCach,
+                    thuocVatTu.DonGia,
+                    thuocVatTu.IdNhom
+                );
+              
+                var newThuocVatTu = await newThuocVatTuTask;
+
+                newThuocVatTu.NongDo = thuocVatTu.NongDo;
+                newThuocVatTu.HamLuong = thuocVatTu.HamLuong;
+                newThuocVatTu.DuongDung = thuocVatTu.DuongDung;
+                newThuocVatTu.NuocSanXuat = thuocVatTu.NuocSanXuat;
+                newThuocVatTu.NhaSanXuat = thuocVatTu.NhaSanXuat;
+                newThuocVatTu.SuDung = thuocVatTu.SuDung;
+                newThuocVatTu.GhiChu = thuocVatTu.GhiChu;
+                newThuocVatTu.IdCt = thuocVatTu.IdCt;
+                newThuocVatTu.Barcode = thuocVatTu.Barcode;
+                newThuocVatTu.QrCode = thuocVatTu.QrCode;
+                newThuocVatTu.CachDung = thuocVatTu.CachDung;
+                newThuocVatTu.MaSoDangKy = thuocVatTu.MaSoDangKy;
+                newThuocVatTu.DonViChan = thuocVatTu.DonViChan;
+                newThuocVatTu.ChuyenKhoa = thuocVatTu.ChuyenKhoa;
+                newThuocVatTu.TenDoiTac = thuocVatTu.TenDoiTac;
+                newThuocVatTu.DonViDung = thuocVatTu.DonViDung;
+                newThuocVatTu.NguoiTao = thuocVatTu.NguoiTao;
+                newThuocVatTu.NgayTao = thuocVatTu.NgayTao;
+                newThuocVatTu.NguoiCapNhat = thuocVatTu.NguoiCapNhat;
+                newThuocVatTu.NgayCapNhat = thuocVatTu.NgayCapNhat;
+                newThuocVatTu.PtVatNhap = thuocVatTu.PtVatNhap;
+                newThuocVatTu.PtVatBanLe = thuocVatTu.PtVatBanLe;
+                newThuocVatTu.PtVatToa = thuocVatTu.PtVatToa;
+                newThuocVatTu.QuyCachDongGoi = thuocVatTu.QuyCachDongGoi;
+
+                _context.SaveChanges();
+
+                return Ok(new { message = "Thêm Thuốc/Vật Tư thành công", data = newThuocVatTu });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
+        }
+
+        //[HttpPost]
+        //[Route("ThuocVatTu")]
+        //public async Task<IActionResult> PostThuocVatTu(ThuocVatTu thuocVatTu)
+        //{
+        //    try
+        //    {
+        //        var newThuocVatTu = await _service.CreateThuocVatTu(
+        //             thuocVatTu.MaThuoc,
+        //            thuocVatTu.TenBietDuoc,
+        //            thuocVatTu.TenHoatChat,
+        //            thuocVatTu.Dvt,
+        //            thuocVatTu.QuyCach,
+        //            thuocVatTu.DonGia,
+        //            thuocVatTu.IdNhom,
+
+        //        thuocVatTu.NongDo,
+        //        thuocVatTu.HamLuong,
+        //        thuocVatTu.DuongDung,
+        //        thuocVatTu.NuocSanXuat,
+        //        thuocVatTu.NhaSanXuat,
+        //        thuocVatTu.SuDung,
+        //        thuocVatTu.GhiChu,
+        //        thuocVatTu.IdCt,
+        //        thuocVatTu.Barcode,
+        //       thuocVatTu.QrCode,
+        //        thuocVatTu.CachDung,
+        //     thuocVatTu.MaSoDangKy,
+        // thuocVatTu.DonViChan,
+        //     thuocVatTu.ChuyenKhoa,
+        //       thuocVatTu.TenDoiTac,
+        //      thuocVatTu.DonViDung,
+        //        thuocVatTu.NguoiTao,
+        //      thuocVatTu.NgayTao,
+        //        thuocVatTu.NguoiCapNhat,
+        //     thuocVatTu.NgayCapNhat,
+        //      thuocVatTu.PtVatNhap,
+        //    thuocVatTu.PtVatBanLe,
+        //    thuocVatTu.PtVatToa,
+        //    thuocVatTu.QuyCachDongGoi
+        //        );
+
+        //        return Ok(new { message = "Thêm thuốc vật tư thành công", data = newThuocVatTu });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+        //    }
+        //}
+
+        //[HttpPost]
+        //[Route("ThuocVatTu")]
+        //public async Task<IActionResult> PostThuocVatTu(ThuocVatTu thuocVatTu)
+        //{
+        //    try
+        //    {
+        //        var newThuocVatTu = await _service.CreateThuocVatTu(thuocVatTu);
+        //        return Ok(new { message = "Thêm thuốc vật tư thành công", data = newThuocVatTu });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+        //    }
+        //}
+
     }
+
 }
+
+

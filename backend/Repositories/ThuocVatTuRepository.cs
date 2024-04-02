@@ -26,7 +26,11 @@ namespace _315HealthCareProject.Repositories
                 .ToListAsync();
         }
 
-    
+
+        public async Task<IEnumerable<ThuocVatTu>> GetAllAsync()
+        {
+            return await _context.ThuocVatTus.ToListAsync();
+        }
 
 
     }

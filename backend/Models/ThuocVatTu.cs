@@ -8,6 +8,7 @@ namespace _315HealthCareProject.Models
     public class ThuocVatTu
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("IDTHUOC")]
         public int IdThuoc { get; set; }
 
@@ -33,7 +34,7 @@ namespace _315HealthCareProject.Models
         public string? HamLuong { get; set; }
 
         [Column("DUONGDUNG")]
-        public string? DuongDung { get; set; }
+        public string DuongDung { get; set; }
 
         [Column("NUOCSANXUAT")]
         public string? NuocSanXuat { get; set; }
@@ -75,7 +76,7 @@ namespace _315HealthCareProject.Models
         public string? TenDoiTac { get; set; }
 
         [Column("DONVIDUNG")]
-        public string? DonViDung { get; set; }
+        public string DonViDung { get; set; }
 
         [Column("IDNHOM")]
         public int IdNhom { get; set; }
@@ -84,7 +85,7 @@ namespace _315HealthCareProject.Models
         public string? NguoiTao { get; set; }
 
         [Column("NGAYTAO")]
-        public DateTime NgayTao { get; set; }
+        public DateTime? NgayTao { get; set; }
 
         [Column("NGUOICAPNHAT")]
         public string? NguoiCapNhat { get; set; }

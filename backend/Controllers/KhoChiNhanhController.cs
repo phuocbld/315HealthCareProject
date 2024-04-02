@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using _315HealthCareProject.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
-using _315HealthCareProject.Services.Interface;
+using System.Threading.Tasks;
 
 namespace _315HealthCareProject.Controllers
 {
@@ -24,7 +24,7 @@ namespace _315HealthCareProject.Controllers
             {
                 return NotFound("Không tìm thấy kho trong chi nhánh");
             }
-            
+
             return Ok(khoInfos);
         }
     }
