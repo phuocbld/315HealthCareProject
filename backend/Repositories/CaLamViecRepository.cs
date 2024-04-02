@@ -4,6 +4,7 @@ using _315HealthCareProject.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using _315HealthCareProject.Repositories.Interface;
 
 public class CaLamViecRepository : ICaLamViecRepository
 {

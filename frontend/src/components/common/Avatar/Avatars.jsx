@@ -99,10 +99,10 @@ const stringName = (name) => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{bgcolor:'white',color:'#3b82f6'}} children={stringName(info?.taiKhoan)}/>
-            <div className='text-start flex flex-col ml-2 justify-center'>
-              <p className='font-semibold text-black text-sm'>{info?.taiKhoan}</p>
-              <span className='text-sm text-gray-00 font-semibold'>Quản trị hệ thống</span>
+            <Avatar sx={{bgcolor:'white',color:'#3b82f6', border:'1px solid #3b82f6'}} children={stringName(info?.taiKhoan)}/>
+            <div className='text-start flex  ml-2 justify-center  text-black  text-sm'>
+              <p >{info?.taiKhoan}</p>
+              <span > - Quản trị hệ thống</span>
             </div>
           </IconButton>
         </Tooltip>

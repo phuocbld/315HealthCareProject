@@ -1,4 +1,5 @@
 ﻿using _315HealthCareProject.Data;
+using _315HealthCareProject.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace _315HealthCareProject.Services
@@ -17,6 +18,14 @@ namespace _315HealthCareProject.Services
                 .FirstOrDefaultAsync(u => u.TaiKhoan == username);
 
             return user?.IdChiNhanh;
+        }
+
+        public async Task<int?> GetIdNguoiDungByTaiKhoan(string username)
+        {
+            var user = await _context.NguoiDungs
+                .FirstOrDefaultAsync(u => u.TaiKhoan == username);
+
+            return user?.IdNguoiDung; 
         }
     }
 }

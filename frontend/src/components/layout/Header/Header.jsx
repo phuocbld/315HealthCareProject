@@ -8,9 +8,7 @@ import ClearAllIcon from "@mui/icons-material/ClearAll";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
 import * as typeACtion from "../../../store/constants/constants";
-const className_isActive = " text-blue-500 border-b-2 border-blue-500";
-const className_btn =
-  "text-black text-center px-2 py-4 font-medium hover:bg-sky-100 duration-300 cursor-pointer";
+
 
 const Header = ({ open, handleDrawer }) => {
   const [isActive, setIsActive] = useState(null);

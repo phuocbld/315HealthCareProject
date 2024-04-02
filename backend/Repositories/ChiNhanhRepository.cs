@@ -3,6 +3,7 @@ namespace _315HealthCareProject.Repositories;
 using _315HealthCareProject.Data;
 using _315HealthCareProject.DTO;
 using _315HealthCareProject.Models;
+using _315HealthCareProject.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;

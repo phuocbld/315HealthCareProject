@@ -41,4 +41,16 @@ export function* branchSaga () {
         }
        
     } )
+
+    yield takeLatest(typeAction.GET_LIST_CALAMVIEC,function* fetchListCaLamViec({type,payload}){
+        try{
+            const result = yield call(()=> branchService.getCaLamViet())
+            yield put({
+                type:typeAction.DISPATCH_lIST_CALAMVIEC,
+                payload:result.data
+            })
+        } catch(err){
+            console.log(err);
+        }
+    })
 }

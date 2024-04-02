@@ -1,4 +1,3 @@
-using _315HealthCareProject.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace _315HealthCareProject.Controllers;
@@ -8,6 +7,7 @@ using _315HealthCareProject.Models;
 using _315HealthCareProject.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using _315HealthCareProject.Services.Interface;
 
 [ApiController]
 [Route("api/calamviec")]

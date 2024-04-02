@@ -8,6 +8,8 @@ const https = axios.create({
     baseURL: URL
 })
 export const branchService = {
-    getListBranch: () => https.get('chinhanh'),
-    getDefaultBranch: (username) => https.get(`ChiNhanh/user/${username}`)
+    getListBranch: () => https.get(`chinhanh`),
+    getDefaultBranch: (username) => https.get(`ChiNhanh/user/${username}`),
+    getbranchLogin: (id) => https.get(`chinhanh/${id}`),
+    getCaLamViet: () => https.get('calamviec'),
 }

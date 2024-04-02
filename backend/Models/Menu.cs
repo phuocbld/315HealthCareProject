@@ -20,11 +20,12 @@ namespace _315HealthCareProject.Models
         [Column("TENVIETTAT")]
         public string TenVietTat { get; set; }
 
-        [Column("LINK")]
-        public string Link { get; set; }
 
         [Column("IDMENUCHA")]
         public int? IdMenuCha { get; set; }
+
+        [Column("LINKS")]
+        public string Links { get; set; }
 
         [Column("NGUOITAO")]
         public int NguoiTao { get; set; }

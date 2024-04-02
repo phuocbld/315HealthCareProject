@@ -18,7 +18,7 @@ namespace _315HealthCareProject.Models
         [Column("DANGNHAPLANCUOI")]
         public int? DangNhapLanCuoi { get; set; }
         [Column("IDNHOM")]
-        public string? IdNhom { get; set; }
+        public int? IdNhom { get; set; }
         [Column("IDDANGNHAP")]
         public int? IDDangNhap { get; set; }
         [Column("DANGNHAP")]
@@ -35,7 +35,9 @@ namespace _315HealthCareProject.Models
         public int? IDCaLamViec { get; set; }
         [Column("CHINHANH_DANGNHAP")]
         public int? ChiNhanhDangNhap { get; set; }
-       
+
+        [Column("TENNV")]
+         public string TenNV {  get; set; }       
 }
 
 }

@@ -48,7 +48,6 @@ const FormLogin = () => {
   const handleLogin = (values, action) => {
     action.resetForm();
     // Xử lí đăng nhập
-    // console.log(values);
     //reset username
     dispatch({
       type:typeAction.DISPATCH_USERNAME,

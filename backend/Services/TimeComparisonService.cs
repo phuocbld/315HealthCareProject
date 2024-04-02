@@ -1,4 +1,6 @@
-﻿namespace _315HealthCareProject.Services
+﻿using _315HealthCareProject.Services.Interface;
+
+namespace _315HealthCareProject.Services
 {
     public class TimeComparisonService :ITimeComparisonService
     {
@@ -6,6 +8,7 @@
         {
             // Chuyển đổi thời gian từ DateTimeOffset sang DateTime
             DateTime thoiGianDangNhapDateTime = thoiGianDangNhap.UtcDateTime;
+
 
             // Tính toán IDCaLamViec dựa trên thời gian DangNhap
             int idCaLamViec = TinhToanIDCaLamViec(thoiGianDangNhapDateTime);
