@@ -3,20 +3,7 @@ import React, { useState, useRef } from "react";
 import { Avatar, List, Image, Typography } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import style from "./style.module.css";
-const data = [
-  {
-    title: "Ant Design Title 1",
-  },
-  {
-    title: "Ant Design Title 2",
-  },
-  {
-    title: "Ant Design Title 3",
-  },
-  {
-    title: "Ant Design Title 4",
-  },
-];
+
 const Attach = ({ formik }) => {
   const [selectedFile, setSelectedFile] = useState("");
   const [imgSrc, setImgSrc] = useState("");
@@ -24,13 +11,16 @@ const Attach = ({ formik }) => {
     const formData = new FormData();
     let file = event.target.files[0];
     setSelectedFile(file);
+    const src = URL.createObjectURL(file)
+    console.log(file);
+    console.log(src);
     formik.setFieldValue("fileHoaDon", file);
     // console.log(formData);
 
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (e) => {
-      // console.log(e.target.result); // base 64 dùng để load hình
+      console.log(e.target.result); // base 64 dùng để load hình
       // console.log(e.target.result);
       setImgSrc(e.target.result);
     };

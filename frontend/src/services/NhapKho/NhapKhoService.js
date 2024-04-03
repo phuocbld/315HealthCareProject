@@ -5,7 +5,10 @@ export const NhapKhoService = {
     getListKhoNhap: (id) => https.get(`KhoChiNhanh/${id}`),
     getListDoiTac: () => https.get('DoiTac'),
     getInfoDoiTac: (idDoiTac) => https.get(`DoiTac/IdDoiTac/${idDoiTac}`),
-    getAllThuocVT: () => https.get(`ThuocVatTu`),
+    getAllThuocVT: () => https.get(`ThuocVatTu/all`),
     getInfoThuocVT: (idThuoc) =>https.get(`ThuocVatTu/${idThuoc}`),
-    postPhieuNhap: (formData) => https.post('KhoNhapXuat/PhieuNhap',formData)
+    postPhieuNhap: (formData) => https.post('KhoNhapXuat/PhieuNhap',formData),
+    postkhoChiTiet: (data) => https.post('khoChiTiet',data),
+    getPhieuNhapKho: () => https.get('KhoNhapXuat/phieunhap')
+
 }

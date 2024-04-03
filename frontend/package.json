@@ -16,6 +16,7 @@
     "antd": "^5.15.3",
     "apexcharts": "^3.48.0",
     "axios": "^1.6.7",
+    "dayjs": "^1.11.10",
     "devextreme": "23.2.5",
     "devextreme-react": "23.2.5",
     "docxtemplater": "^3.46.1",

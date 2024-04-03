@@ -154,15 +154,26 @@ export function* NhapKhoSaga() {
   //Phiếu nhập kho và kho chi tiết
   yield takeLatest(
     typeAction.POST_PHIEU_NHAP_KHO,
-    function* postPhieuNhapKho({ type, payload }) {
+    function* postPhieuNhapKho({ type, payload, ListThuocVT }) {
       // yield console.log(payload);
+      console.log(payload);
       try {
-        console.log(payload);
         const result = yield call(() => NhapKhoService.postPhieuNhap(payload));
-        console.log(result.data);
+        const id = yield result.data.data.idNhapXuat;
+        const array = [];
+        for (let item of ListThuocVT) {
+          const { khoChiTiet, ...others } = item;
+          const { tienVAT, ptVAT, ...data } = khoChiTiet;
+          data.idNhapXuat = id;
+          array.push(data);
+        }
+        console.log(array);
+        yield call(() => NhapKhoService.postkhoChiTiet(array));
+        console.log(array);
+        // console.log(result.data);
         Toast.fire({
           icon: "success",
-          title: "Thêm Phiếu nhập thành công !",
+          title: "Thêm Phiếu nhập thành công",
         });
       } catch (err) {
         console.log(err);
@@ -171,11 +182,22 @@ export function* NhapKhoSaga() {
           title: "Thêm Phiếu thất bại !",
         });
       }
-
-      // yield put({
-      //   type: typeAction.DISPATCH_ALL_THUOCVT,
-      //   payload: result.data,
-      // });
     }
   );
+    // get add list phiếu nhập kho
+    yield takeLatest(
+      typeAction.GET_ALL_PHIEU_NHAP,
+      function* getAllListPhieuNhap({ type, payload }) {
+        // yield console.log(payload);
+        try {
+          const result = yield call(() => NhapKhoService.getPhieuNhapKho());
+          yield put({
+            type: typeAction.DISPATCH_LIST_PHIEU_NHAP,
+            payload: result.data,
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    );
 }
