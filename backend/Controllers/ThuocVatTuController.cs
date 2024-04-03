@@ -25,21 +25,6 @@ namespace _315HealthCareProject.Controllers
             _context = context;
         }
 
-        [HttpGet("all")]
-        public async Task<ActionResult<IEnumerable<object>>> GetAll()
-        {
-            try
-            {
-                var thuocVatTus = await _service.GetAllThuocVatTuAsync();
-                // Chọn các thuộc tính cần trả về
-                var result = thuocVatTus.Select(t => new { t.IdThuoc, t.MaThuoc, t.TenBietDuoc });
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "An error occurred while fetching data: " + ex.Message);
-            }
-        }
 
 
         [HttpGet("{idthuoc}")]
@@ -145,13 +130,14 @@ namespace _315HealthCareProject.Controllers
                     thuocVatTu.TenBietDuoc,
                     thuocVatTu.TenHoatChat,
                     thuocVatTu.Dvt,
-                    thuocVatTu.QuyCach,
-                    thuocVatTu.DonGia,
-                    thuocVatTu.IdNhom
+                    thuocVatTu.IdNhom,
+                    thuocVatTu.IdCt
                 );
               
                 var newThuocVatTu = await newThuocVatTuTask;
-
+                
+                newThuocVatTu.QuyCach = thuocVatTu.QuyCach;
+                newThuocVatTu.DonGia = thuocVatTu.DonGia;
                 newThuocVatTu.NongDo = thuocVatTu.NongDo;
                 newThuocVatTu.HamLuong = thuocVatTu.HamLuong;
                 newThuocVatTu.DuongDung = thuocVatTu.DuongDung;
@@ -159,7 +145,7 @@ namespace _315HealthCareProject.Controllers
                 newThuocVatTu.NhaSanXuat = thuocVatTu.NhaSanXuat;
                 newThuocVatTu.SuDung = thuocVatTu.SuDung;
                 newThuocVatTu.GhiChu = thuocVatTu.GhiChu;
-                newThuocVatTu.IdCt = thuocVatTu.IdCt;
+                //newThuocVatTu.IdCt = thuocVatTu.IdCt;
                 newThuocVatTu.Barcode = thuocVatTu.Barcode;
                 newThuocVatTu.QrCode = thuocVatTu.QrCode;
                 newThuocVatTu.CachDung = thuocVatTu.CachDung;
@@ -187,69 +173,6 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Route("ThuocVatTu")]
-        //public async Task<IActionResult> PostThuocVatTu(ThuocVatTu thuocVatTu)
-        //{
-        //    try
-        //    {
-        //        var newThuocVatTu = await _service.CreateThuocVatTu(
-        //             thuocVatTu.MaThuoc,
-        //            thuocVatTu.TenBietDuoc,
-        //            thuocVatTu.TenHoatChat,
-        //            thuocVatTu.Dvt,
-        //            thuocVatTu.QuyCach,
-        //            thuocVatTu.DonGia,
-        //            thuocVatTu.IdNhom,
-
-        //        thuocVatTu.NongDo,
-        //        thuocVatTu.HamLuong,
-        //        thuocVatTu.DuongDung,
-        //        thuocVatTu.NuocSanXuat,
-        //        thuocVatTu.NhaSanXuat,
-        //        thuocVatTu.SuDung,
-        //        thuocVatTu.GhiChu,
-        //        thuocVatTu.IdCt,
-        //        thuocVatTu.Barcode,
-        //       thuocVatTu.QrCode,
-        //        thuocVatTu.CachDung,
-        //     thuocVatTu.MaSoDangKy,
-        // thuocVatTu.DonViChan,
-        //     thuocVatTu.ChuyenKhoa,
-        //       thuocVatTu.TenDoiTac,
-        //      thuocVatTu.DonViDung,
-        //        thuocVatTu.NguoiTao,
-        //      thuocVatTu.NgayTao,
-        //        thuocVatTu.NguoiCapNhat,
-        //     thuocVatTu.NgayCapNhat,
-        //      thuocVatTu.PtVatNhap,
-        //    thuocVatTu.PtVatBanLe,
-        //    thuocVatTu.PtVatToa,
-        //    thuocVatTu.QuyCachDongGoi
-        //        );
-
-        //        return Ok(new { message = "Thêm thuốc vật tư thành công", data = newThuocVatTu });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
-        //    }
-        //}
-
-        //[HttpPost]
-        //[Route("ThuocVatTu")]
-        //public async Task<IActionResult> PostThuocVatTu(ThuocVatTu thuocVatTu)
-        //{
-        //    try
-        //    {
-        //        var newThuocVatTu = await _service.CreateThuocVatTu(thuocVatTu);
-        //        return Ok(new { message = "Thêm thuốc vật tư thành công", data = newThuocVatTu });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
-        //    }
-        //}
 
     }
 

@@ -25,7 +25,7 @@ namespace _315HealthCareProject.Models
         public string Dvt { get; set; }
 
         [Column("QUYCACH")]
-        public string QuyCach { get; set; }
+        public string? QuyCach { get; set; }
 
         [Column("NONGDO")]
         public string? NongDo { get; set; }
@@ -34,7 +34,7 @@ namespace _315HealthCareProject.Models
         public string? HamLuong { get; set; }
 
         [Column("DUONGDUNG")]
-        public string DuongDung { get; set; }
+        public string? DuongDung { get; set; }
 
         [Column("NUOCSANXUAT")]
         public string? NuocSanXuat { get; set; }
@@ -43,7 +43,7 @@ namespace _315HealthCareProject.Models
         public string? NhaSanXuat { get; set; }
 
         [Column("SUDUNG")]
-        public int SuDung { get; set; }
+        public int? SuDung { get; set; }
 
         [Column("GHICHU")]
         public string? GhiChu { get; set; }
@@ -52,7 +52,7 @@ namespace _315HealthCareProject.Models
         public int IdCt { get; set; }
 
         [Column("DONGIA")]
-        public int DonGia { get; set; }
+        public int? DonGia { get; set; }
 
         [Column("BARCODE")]
         public string? Barcode { get; set; }
@@ -76,7 +76,7 @@ namespace _315HealthCareProject.Models
         public string? TenDoiTac { get; set; }
 
         [Column("DONVIDUNG")]
-        public string DonViDung { get; set; }
+        public string? DonViDung { get; set; }
 
         [Column("IDNHOM")]
         public int IdNhom { get; set; }

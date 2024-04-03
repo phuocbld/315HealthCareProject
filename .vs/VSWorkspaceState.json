@@ -3,9 +3,10 @@
     "",
     "\\backend",
     "\\backend\\Controllers",
+    "\\backend\\Repositories",
     "\\backend\\Services",
     "\\frontend"
   ],
-  "SelectedNode": "\\backend\\315HealthCareProject.sln",
+  "SelectedNode": "\\backend\\Repositories\\KhoChiNhanhRepository.cs",
   "PreviewInSolutionExplorer": false
 }

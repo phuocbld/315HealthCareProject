@@ -20,7 +20,7 @@ namespace _315HealthCareProject.Services
 
              public async Task<KhoNhapXuat> CreateKhoNhap(string tenPhieu, string noiDung, int trangThai)
         {
-            string currentDate = DateTime.Now.ToString("yyyyMM");
+            string currentDate = DateTime.Now.ToString("yyMM");
 
             string maxMaPhieu = await _context.KhoNhapXuats
                 .Where(k => EF.Functions.Like(k.MaPhieu, $"PN0A{currentDate}%"))
@@ -29,7 +29,7 @@ namespace _315HealthCareProject.Services
             int currentSequenceNumber = 1;
             if (!string.IsNullOrEmpty(maxMaPhieu))
             {
-                string lastDigits = maxMaPhieu.Substring(10);
+                string lastDigits = maxMaPhieu.Substring(8);
                 if (int.TryParse(lastDigits, out currentSequenceNumber))
                 {
                     currentSequenceNumber++;
@@ -55,7 +55,7 @@ namespace _315HealthCareProject.Services
 
         public async Task<KhoNhapXuat> CreateKhoXuat(string tenPhieu, string noiDung, int trangThai)
         {
-            string currentDate = DateTime.Now.ToString("yyyyMM");
+            string currentDate = DateTime.Now.ToString("yyMM");
 
             string maxMaPhieu = await _context.KhoNhapXuats
                 .Where(k => EF.Functions.Like(k.MaPhieu, $"CK0A{currentDate}%"))
@@ -64,7 +64,7 @@ namespace _315HealthCareProject.Services
             int currentSequenceNumber = 1;
             if (!string.IsNullOrEmpty(maxMaPhieu))
             {
-                string lastDigits = maxMaPhieu.Substring(10);
+                string lastDigits = maxMaPhieu.Substring(8);
                 if (int.TryParse(lastDigits, out currentSequenceNumber))
                 {
                     currentSequenceNumber++;

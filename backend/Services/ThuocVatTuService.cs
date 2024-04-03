@@ -29,7 +29,7 @@ namespace _315HealthCareProject.Services
             return await _repository.GetAllAsync();
         }
 
-        public async Task<ThuocVatTu> CreateThuocVatTu(string maThuoc, string tenBietDuoc, string tenHoatChat, string dvt, string quyCach, int donGia, int idNhom)
+        public async Task<ThuocVatTu> CreateThuocVatTu(string maThuoc, string tenBietDuoc, string tenHoatChat, string dvt, int idNhom , int idCT)
         {
 
             var thuocVatTu = new ThuocVatTu
@@ -38,9 +38,9 @@ namespace _315HealthCareProject.Services
                 TenBietDuoc = tenBietDuoc,
                 TenHoatChat = tenHoatChat,
                 Dvt = dvt,
-                QuyCach = quyCach,
-                DonGia = donGia,
-                IdNhom = idNhom
+                IdNhom = idNhom,
+                IdCt = idCT
+
             };
 
             _context.ThuocVatTus.Add(thuocVatTu);

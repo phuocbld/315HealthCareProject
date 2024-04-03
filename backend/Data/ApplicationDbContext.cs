@@ -5,6 +5,7 @@ using _315HealthCareProject.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using System.Xml;
 
 
 public class ApplicationDbContext : DbContext
@@ -98,13 +99,13 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<ThongTinDangNhap>().HasNoKey();
 
 
-        modelBuilder.HasSequence<int>("DANGNHAP_SEQ")
-      .StartsAt(1)
-      .IncrementsBy(1);
+        //  modelBuilder.HasSequence<int>("DANGNHAP_SEQ")
+        //.StartsAt(1)
+        //.IncrementsBy(1);
 
-        modelBuilder.Entity<DangNhap>()
-            .Property(p => p.IdDangNhap)
-            .HasDefaultValueSql("DANGNHAP_SEQ.NEXTVAL");
+        //  modelBuilder.Entity<DangNhap>()
+        //      .Property(p => p.IdDangNhap)
+        //      .HasDefaultValueSql("DANGNHAP_SEQ.NEXTVAL");
 
 
 
