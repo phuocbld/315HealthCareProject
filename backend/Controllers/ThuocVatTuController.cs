@@ -25,6 +25,22 @@ namespace _315HealthCareProject.Controllers
             _context = context;
         }
 
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<object>>> GetAll()
+        {
+            try
+            {
+                var thuocVatTus = await _service.GetAllThuocVatTuAsync();
+                var result = thuocVatTus.Select(t => new { t.IdThuoc, t.MaThuoc, t.TenBietDuoc });
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while fetching data: " + ex.Message);
+            }
+        }
+
+
 
 
         [HttpGet("{idthuoc}")]
@@ -71,6 +87,24 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
+        [HttpGet("/find/{id}")]
+        public async Task<IActionResult> GetThuocVatTuById(int id)
+        {
+            try
+            {
+                var thuocVatTu = await _service.GetThuocVatTuByIdAsync(id);
+                if (thuocVatTu == null)
+                {
+                    return NotFound($"Không tìm thấy ThuocVatTu với ID {id}");
+                }
+                return Ok(thuocVatTu);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
+        }
+
         [HttpDelete("{idthuoc}")]
         public IActionResult Delete(string idthuoc)
         {
@@ -105,19 +139,7 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
-        [HttpGet("ThuocVatTu")]
-        public async Task<IActionResult> GetAllPhieuNhapXuat()
-        {
-            try
-            {
-                var thuocVatTu = await _service.GetAllAsync();
-                return Ok(thuocVatTu);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
-            }
-        }
+      
 
         [HttpPost]
         [Route("ThemThuocVatTu")]
@@ -129,13 +151,13 @@ namespace _315HealthCareProject.Controllers
                     thuocVatTu.MaThuoc,
                     thuocVatTu.TenBietDuoc,
                     thuocVatTu.TenHoatChat,
-                    thuocVatTu.Dvt,
-                    thuocVatTu.IdNhom,
-                    thuocVatTu.IdCt
+                    thuocVatTu.Dvt
+
                 );
               
                 var newThuocVatTu = await newThuocVatTuTask;
-                
+                newThuocVatTu.IdNhom = thuocVatTu.IdNhom;
+                newThuocVatTu.IdCt = thuocVatTu.IdCt;
                 newThuocVatTu.QuyCach = thuocVatTu.QuyCach;
                 newThuocVatTu.DonGia = thuocVatTu.DonGia;
                 newThuocVatTu.NongDo = thuocVatTu.NongDo;
@@ -166,6 +188,24 @@ namespace _315HealthCareProject.Controllers
                 _context.SaveChanges();
 
                 return Ok(new { message = "Thêm Thuốc/Vật Tư thành công", data = newThuocVatTu });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateThuocVatTu(int id, [FromBody] ThuocVatTu thuocVatTu)
+        {
+            try
+            {
+                var updatedThuocVatTu = await _service.UpdateThuocVatTuAsync(id, thuocVatTu);
+                return Ok(updatedThuocVatTu);
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception ex)
             {

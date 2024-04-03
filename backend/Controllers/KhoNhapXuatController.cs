@@ -12,13 +12,15 @@ namespace _315HealthCareProject.Controllers
     [Route("api/[controller]")]
     public class KhoNhapXuatController : ControllerBase
     {
-        private readonly IKhoNhapXuatService _service;
+        private readonly IKhoNhapXuatService _khoNhapXuatService;
         private readonly ApplicationDbContext _context;
+        private readonly INhanVienService _nhanVienService;
 
-        public KhoNhapXuatController(IKhoNhapXuatService service, ApplicationDbContext context)
+        public KhoNhapXuatController(IKhoNhapXuatService service, ApplicationDbContext context , INhanVienService nhanVienService)
         {
-            _service = service;
+            _khoNhapXuatService = service;
             _context = context;
+            _nhanVienService = nhanVienService;
         }
 
         
@@ -28,7 +30,7 @@ namespace _315HealthCareProject.Controllers
         {
             try
             {
-                var newKhoNhapTask = _service.CreateKhoNhap(
+                var newKhoNhapTask = _khoNhapXuatService.CreateKhoNhap(
                     khoNhap.TenPhieu,
                     khoNhap.NoiDung,
                     khoNhap.TrangThai
@@ -53,7 +55,6 @@ namespace _315HealthCareProject.Controllers
                 newKhoNhap.IdPhuongThuc = khoNhap.IdPhuongThuc;
 
                 _context.SaveChanges();
-
                 return Ok(new { message = "Thêm phiếu nhập thành công", data = newKhoNhap });
             }
             catch (Exception ex)
@@ -68,7 +69,7 @@ namespace _315HealthCareProject.Controllers
         {
             try
             {
-                var newKhoXuatTask = _service.CreateKhoXuat(
+                var newKhoXuatTask = _khoNhapXuatService.CreateKhoXuat(
                       khoXuat.TenPhieu,
 
                       khoXuat.NoiDung,
@@ -118,7 +119,7 @@ namespace _315HealthCareProject.Controllers
         {
             try
             {
-                var phieuNhap = await _service.GetAllPhieuNhapAsync();
+                var phieuNhap = await _khoNhapXuatService.GetAllPhieuNhapAsync();
                 return Ok(phieuNhap);
             }
             catch (Exception ex)
@@ -132,7 +133,7 @@ namespace _315HealthCareProject.Controllers
         {
             try
             {
-                var phieuXuat = await _service.GetAllPhieuXuatAsync();
+                var phieuXuat = await _khoNhapXuatService.GetAllPhieuXuatAsync();
                 return Ok(phieuXuat);
             }
             catch (Exception ex)
@@ -146,7 +147,7 @@ namespace _315HealthCareProject.Controllers
         {
             try
             {
-                var phieuNhapXuat = await _service.GetAllPhieuNhapXuatAsync();
+                var phieuNhapXuat = await _khoNhapXuatService.GetAllPhieuNhapXuatAsync();
                 return Ok(phieuNhapXuat);
             }
             catch (Exception ex)

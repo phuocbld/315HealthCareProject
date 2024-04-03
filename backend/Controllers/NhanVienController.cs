@@ -39,5 +39,6 @@ namespace _315HealthCareProject.Controllers
             return Ok(tenNhanVien);
         }
 
+
     }
 }

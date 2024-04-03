@@ -6,5 +6,8 @@ namespace _315HealthCareProject.Repositories.Interface
     {
         Task<List<ThuocVatTu>> GetAllThuocVatTuAsync();
         Task<IEnumerable<ThuocVatTu>> GetAllAsync();
+        Task<ThuocVatTu> CreateThuocVatTu(string maThuoc, string tenBietDuoc, string tenHoatChat, string dvt);
+        Task<ThuocVatTu> GetThuocVatTuByIdAsync(int id);
+        Task UpdateAsync(ThuocVatTu thuocVatTu);
     }
 }

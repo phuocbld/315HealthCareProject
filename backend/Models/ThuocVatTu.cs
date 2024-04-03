@@ -49,7 +49,7 @@ namespace _315HealthCareProject.Models
         public string? GhiChu { get; set; }
 
         [Column("IDCT")]
-        public int IdCt { get; set; }
+        public int? IdCt { get; set; }
 
         [Column("DONGIA")]
         public int? DonGia { get; set; }

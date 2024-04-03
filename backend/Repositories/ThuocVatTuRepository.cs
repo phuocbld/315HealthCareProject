@@ -27,11 +27,37 @@ namespace _315HealthCareProject.Repositories
         }
 
 
+        public async Task<ThuocVatTu> CreateThuocVatTu(string maThuoc, string tenBietDuoc, string tenHoatChat, string dvt)
+        {
+            var thuocVatTu = new ThuocVatTu
+            {
+                MaThuoc = maThuoc,
+                TenBietDuoc = tenBietDuoc,
+                TenHoatChat = tenHoatChat,
+                Dvt = dvt
+            };
+
+            _context.ThuocVatTus.Add(thuocVatTu);
+            await _context.SaveChangesAsync();
+
+            return thuocVatTu;
+        }
+
         public async Task<IEnumerable<ThuocVatTu>> GetAllAsync()
         {
             return await _context.ThuocVatTus.ToListAsync();
         }
 
+        public async Task<ThuocVatTu> GetThuocVatTuByIdAsync(int id)
+        {
+            return await _context.ThuocVatTus.FirstOrDefaultAsync(t => t.IdThuoc == id);
+        }
+
+        public async Task UpdateAsync(ThuocVatTu thuocVatTu)
+        {
+            _context.Entry(thuocVatTu).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
 
     }
 }

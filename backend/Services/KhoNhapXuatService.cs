@@ -18,7 +18,7 @@ namespace _315HealthCareProject.Services
             _repository = repository;
         }
 
-             public async Task<KhoNhapXuat> CreateKhoNhap(string tenPhieu, string noiDung, int trangThai)
+             public async Task<KhoNhapXuat> CreateKhoNhap(string tenPhieu, string noiDung, int trangThai )
         {
             string currentDate = DateTime.Now.ToString("yyMM");
 

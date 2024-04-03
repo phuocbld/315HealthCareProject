@@ -6,8 +6,7 @@ namespace _315HealthCareProject.Services.Interface
 {
     public interface IKhoNhapXuatService
     {
-        //KhoNhapXuat CreateKhoNhap(string tenPhieu, string noiDung, int trangThai);
-        //KhoNhapXuat CreateKhoXuat(string tenPhieu, string noiDung, int trangThai);
+
         Task<KhoNhapXuat> CreateKhoNhap(string tenPhieu, string noiDung, int trangThai);
         Task<KhoNhapXuat> CreateKhoXuat(string tenPhieu, string noiDung, int trangThai);
 

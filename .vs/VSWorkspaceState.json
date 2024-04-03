@@ -3,10 +3,11 @@
     "",
     "\\backend",
     "\\backend\\Controllers",
+    "\\backend\\Models",
     "\\backend\\Repositories",
     "\\backend\\Services",
     "\\frontend"
   ],
-  "SelectedNode": "\\backend\\Repositories\\KhoChiNhanhRepository.cs",
+  "SelectedNode": "\\backend\\Models\\ThuocVatTu.cs",
   "PreviewInSolutionExplorer": false
 }
