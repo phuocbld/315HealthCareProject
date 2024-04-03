@@ -15,6 +15,7 @@ import { formatNumberVND } from "../../../../utils/formatNumberVND";
 import moment from "moment";
 const TableChiTiet = () => {
   const { infoThuocVT } = useSelector((state) => state.NhapKhoReducer);
+
   const dispatch = useDispatch();
 
   // thay đổi số lượng thuốc
@@ -100,6 +101,17 @@ const TableChiTiet = () => {
       },
     });
   };
+
+  // Tạo ngày của ngày mai
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  // Lấy ngày, tháng và năm của ngày mai
+  var tomorrowDate =
+    tomorrow.getFullYear() +
+    "-" +
+    ("0" + (tomorrow.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + tomorrow.getDate()).slice(-2);
   return (
     <div>
       <ConfigProvider
@@ -305,6 +317,7 @@ const TableChiTiet = () => {
             MAHANG: items.MATHUOC,
             SLCHAN: (
               <Input
+                min={0}
                 required
                 defaultValue={1}
                 className="p-0 text-center"
@@ -369,6 +382,7 @@ const TableChiTiet = () => {
             HANDUNG: (
               <Input
                 type="Date"
+                min={tomorrowDate}
                 onChange={handleHanDung(items.IDTHUOC)}
                 className="p-0 text-center"
               />

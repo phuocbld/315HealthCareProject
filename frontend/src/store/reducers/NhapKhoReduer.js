@@ -9,6 +9,7 @@ const initialState = {
   infoDoiTac: null,
   thuocVT: null,
   infoThuocVT: [],
+  listPhieuNhap: null,
 };
 
 const NhapKhoReducer = (state = initialState, { type, payload }) => {
@@ -198,12 +199,18 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
           }
         }
         break;
-        case typeAction.DISPATCH_HANDUNG_THUOCVT:
+      case typeAction.DISPATCH_HANDUNG_THUOCVT:
         for (let i of draft.infoThuocVT) {
           if (i.IDTHUOC === payload.idThuoc) {
             i.khoChiTiet.hanDung = payload.date;
           }
         }
+        break;
+      case typeAction.RESET_INFO_THUOVT:
+        draft.infoThuocVT = [];
+        break;
+      case typeAction.DISPATCH_LIST_PHIEU_NHAP:
+        draft.listPhieuNhap = payload;
         break;
       default:
         return state;

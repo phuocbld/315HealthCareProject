@@ -1,64 +1,130 @@
-import React from 'react'
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
+import React, { useEffect,useState } from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import moment from "moment";
+import {CloseCircleOutlined} from '@ant-design/icons'
+import { useSelector } from "react-redux";
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
-  
-  {
-    field: 'lastName',
-    headerName: 'Last name',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 110,
-    editable: true,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-  },
-];
-
-const rows = [
-  { id: 1, lastName: 'Snow', age: 14 },
-  { id: 2, lastName: 'Lannister', age: 31 },
-  { id: 3, lastName: 'Lannister',  age: 31 },
-  { id: 4, lastName: 'Stark',  age: 11 },
-  { id: 5, lastName: 'Targaryen',  age: null },
-  { id: 6, lastName: 'Melisandre', age: 150 },
-  { id: 7, lastName: 'Clifford',  age: 44 },
-  { id: 8, lastName: 'Frances',  age: 36 },
-  { id: 9, lastName: 'Roxie', age: 65 },
+  { id: "maPhieu", label: "Phiếu nhập", minWidth: 100 },
+  { id: "tenPhieu", label: "Tên phiếu", minWidth: 200 },
+  { id: "ngayNhan", label: "Ngày nhập", minWidth: 100 },
+  { id: "idKhoNhap", label: "Kho nhập", minWidth: 100 },
+  { id: "soHoaDon", label: "Số hoá đơn", minWidth: 100 },
+  { id: "ngayHoaDon", label: "Ngày hoá đơn", minWidth: 100 },
+  { id: "nhanVienNhan", label: "Người nhập", minWidth: 100 },
+  { id: "action", label: "Hành động", minWidth: 60 },
+  // {
+  //   id: "size",
+  //   label: "Size\u00a0(km\u00b2)",
+  //   minWidth: 170,
+  //   align: "right",
+  //   format: (value) => value.toLocaleString("en-US"),
+  // },
+  // {
+  //   id: "density",
+  //   label: "Density",
+  //   minWidth: 170,
+  //   align: "right",
+  //   format: (value) => value.toFixed(2),
+  // },
 ];
 
 
 const TableList = () => {
-  return (
-    <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
-    </Box>
-  )
-}
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const { listPhieuNhap } = useSelector((state) => state.NhapKhoReducer);
+      // reverse array 
+      const [reverseData, setReverseData] = useState([]);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-export default TableList
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+  useEffect(() => {
+    if (listPhieuNhap) {
+        const reversedData = [...listPhieuNhap].reverse();
+        setReverseData(reversedData);
+    }
+}, [listPhieuNhap]);
+  return (
+    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <TableContainer sx={{ maxHeight: 560 }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{
+                    minWidth: column.minWidth,
+                    fontWeight: 600,
+                    padding: 5,
+                  }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {reverseData
+    // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              ?.map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.idNhapXuat}>
+                    <TableCell sx={{ padding: 1 }} >
+                      {row.maPhieu}
+                    </TableCell>
+                    <TableCell sx={{ padding: 1 }} >
+                      {row.tenPhieu}
+                    </TableCell>
+                    <TableCell sx={{ padding: 1 }} >
+                      {moment(row.ngayNhan).format('DD-MM-YYYY h:mm:ss')}
+                    </TableCell>
+                    <TableCell sx={{ padding: 1 }} >
+                      {row.idKhoNhap}
+                    </TableCell>
+                    <TableCell sx={{ padding: 1 }} >
+                      {row.soHoaDon}
+                    </TableCell>
+                    <TableCell sx={{ padding: 1 }} >
+                      {moment(row.ngayHoaDon).format('DD-MM-YYYY')}
+                    </TableCell>
+                    <TableCell sx={{ padding: 1 }} >
+                      {row.nhanVienNhan}
+                    </TableCell>
+                    <TableCell sx={{ padding: 1 }}  >
+                    <CloseCircleOutlined className="text-xl text-red-500" />
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={listPhieuNhap?.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </Paper>
+  );
+};
+
+export default TableList;

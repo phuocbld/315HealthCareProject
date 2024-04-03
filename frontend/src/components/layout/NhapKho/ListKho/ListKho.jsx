@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Table, ConfigProvider, Input,Tooltip, Select, DatePicker } from "antd";
-import {FileSearchOutlined, DownloadOutlined,ContainerOutlined,EditOutlined,DeleteOutlined} from '@ant-design/icons'
+import {FileSearchOutlined, DownloadOutlined,ContainerOutlined,EditOutlined,DeleteOutlined,ReloadOutlined} from '@ant-design/icons'
 import TableList from './TableList';
+import { useDispatch } from 'react-redux';
+import { getAllPhieuNhapKho } from '../../../../store/actions/NhapKhoAction';
 const ListKho = () => {
+  const dispatch = useDispatch();
+  useEffect(()=>{
+      dispatch(getAllPhieuNhapKho())
+  },[])
   return (
    <>
-   <div className="flex gap-5">
+   <div className="flex gap-5 mb-5">
         <div className="flex gap-3">
           <div>
             <label className="font-semibold">Từ ngày: </label>
@@ -27,6 +33,11 @@ const ListKho = () => {
             <FileSearchOutlined /> Xem</button>
             <button className="bg-green-700 text-white rounded-md px-3 font-semibold py-[1px] hover:bg-green-600">
             <DownloadOutlined /> Xuất</button>
+        </div>
+        <div className='cursor-pointer text-orange-700 hover:bg-slate-200' onClick={()=>{
+           dispatch(getAllPhieuNhapKho())
+        }} >
+        <ReloadOutlined className='text-lg' />
         </div>
       </div>
       <div className='border'>

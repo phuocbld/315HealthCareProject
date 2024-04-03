@@ -17,6 +17,7 @@ import {
   getInfoDoitac,
   getlistDoitac,
 } from "../../../store/actions/NhapKhoAction";
+import { KhoNhapSchema } from "../../../schemas/KhoNhapSchema";
 const Nhapkho = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const now = moment();
@@ -28,19 +29,41 @@ const Nhapkho = () => {
   const [api, contextHolder] = notification.useNotification();
   // xử lí button submit
   const handleSave = (values, action) => {
+    if (infoThuocVT.length === 0) {
+      // check hàng có trong thuốc vó trong kho hay chưa
+      openNotificationWithIcon(
+        "warning",
+        "Lưu phiếu nhập kho",
+        "Vui lòng chọn sản phẩm để lưu phiếu !"
+      );
+      return;
+    }
+    // CHECK SỐ LÔ VÀ VÀ HẠN DÙNG CÁC HÀNG HOÁ
+    for (let items of infoThuocVT) {
+      if (items.khoChiTiet.soLo == "" || !items.khoChiTiet.hanDung) {
+        openNotificationWithIcon(
+          "warning",
+          "Lưu phiếu nhập kho",
+          "Vui lòng nhập số lô hoặc hạn dùng cho sản phẩm !"
+        );
+        return;
+      }
+    }
     action.resetForm();
     dispatch({
       type: typeAction.DISPATCH_RESET_INFO_DOITAC,
     });
-    console.log(values);
-    dispatch(addPhieuNhapKho(values))
+    dispatch({
+      type: typeAction.RESET_INFO_THUOVT,
+    });
+    dispatch(addPhieuNhapKho(values, infoThuocVT));
     formik.setFieldValue("ngayNhan", now.format()); // set lại thời gian nhận
   };
   // modal hiện thong báo
-  const openNotificationWithIcon = (type) => {
+  const openNotificationWithIcon = (type, message, desc) => {
     api[type]({
-      message: "Chọn thuốc và vật tư",
-      description: "Sản phẩm đã được chọn, hãy tăng số lượng sản phẩm !",
+      message,
+      description: desc,
     });
   };
   // lấy thông tin người dùng >> tạm thời
@@ -49,7 +72,8 @@ const Nhapkho = () => {
     console.log(values);
   };
   const onchangeDateHoaDon = (date, dateString) => {
-    const dateHoaDon = moment(date).format();
+    console.log(moment(dateString).format());
+    const dateHoaDon = moment(dateString).format();
     formik.setFieldValue("ngayHoaDon", dateHoaDon);
   };
   // xử lý thông tin chọn
@@ -65,17 +89,20 @@ const Nhapkho = () => {
     }
     return true;
   };
-
-  // xử lý phong các HÌnh thức và phương thức 
-  const handleSelect = (name) =>(value) =>{
-    formik.setFieldValue(name,value)
-  }
+  // xử lý phong các HÌnh thức và phương thức
+  const handleSelect = (name) => (value) => {
+    formik.setFieldValue(name, value);
+  };
   // xử lí chọn kho chi tiết
   const handleChoose = async (value) => {
     const validate = await checkStoreThuocVT(value);
     validate
       ? dispatch(fetchInfoThuocVT(value))
-      : openNotificationWithIcon("error");
+      : openNotificationWithIcon(
+          "error",
+          "Chọn thuốc vật tư",
+          "Sản phẩm đã có "
+        );
   };
   const handleChangeDoiTac = (name) => (value) => {
     formik.setFieldValue(name, value);
@@ -84,7 +111,7 @@ const Nhapkho = () => {
   const formik = useFormik({
     initialValues: {
       tenPhieu: "",
-      idKhoNhap: 6,
+      idKhoNhap: "",
       NoiDung: "",
       nhanVienNhan: infoUser?.dangNhap.idNguoiDung,
       ngayNhan: date,
@@ -93,10 +120,11 @@ const Nhapkho = () => {
       soHoaDon: "",
       ngayHoaDon: "",
       linkHoaDon: "",
-      fileHoaDon: "",
-      idHinhThuc: '',
-      idPhuongThuc: '',
+      fileHoaDon: "file",
+      idHinhThuc: "",
+      idPhuongThuc: "",
     },
+    validationSchema: KhoNhapSchema,
     onSubmit: (value, action) => {
       handleSave(value, action);
     },
@@ -108,7 +136,6 @@ const Nhapkho = () => {
   }, []);
   const setPricre = (sum) => {
     setTotalPrice(sum);
-    console.log(sum);
   };
   // tính tổng tiền
   useEffect(() => {
@@ -118,7 +145,6 @@ const Nhapkho = () => {
         sum += item.khoChiTiet.thanhTien;
       }
       setPricre(sum);
-      console.log(sum);
     } else {
       setTotalPrice(0);
     }
@@ -172,6 +198,8 @@ const Nhapkho = () => {
                               Tên đối tác:
                             </label>
                             <Select
+                              name="idDoiTac"
+                              status={formik.errors.idDoiTac ? "error" : ""}
                               showSearch
                               filterOption={(input, option) =>
                                 (option?.label ?? "")
@@ -209,6 +237,7 @@ const Nhapkho = () => {
                                 Số hóa đơn:{" "}
                               </label>
                               <Input
+                                status={formik.errors.soHoaDon ? "error" : ""}
                                 name="soHoaDon"
                                 onChange={formik.handleChange}
                                 value={formik.values.soHoaDon}
@@ -220,11 +249,14 @@ const Nhapkho = () => {
                                 Ngày HĐ :{" "}
                               </label>
                               <DatePicker
-                                value={
-                                  formik.values.ngayHoaDon !== ""
-                                    ? moment(formik.values.ngayHoaDon)
-                                    : ""
-                                }
+                                name="ngayHoaDon"
+                                status={formik.errors.ngayHoaDon ? "error" : ""}
+                                // value={
+                                //   formik.values.ngayHoaDon !== ""
+                                //     ? moment(formik.values.ngayHoaDon).format('DD/MM/YYYY')
+                                //     : ""
+                                // }
+                                format='DD/MM/YYYY'
                                 onChange={onchangeDateHoaDon}
                                 className="w-full"
                                 size="small"
@@ -238,14 +270,16 @@ const Nhapkho = () => {
                               Kho nhập:
                             </label>
                             <Select
+                              name="idKhoNhap"
+                              status={formik.errors.idKhoNhap ? "error" : ""}
                               onChange={handleChangeSelect("idKhoNhap")}
                               className="w-full"
                               size="small"
                               value={formik.values.idKhoNhap}
                               options={listKhoNhap?.map(
-                                ({ idKho, tenKho }) => ({
+                                ({ idKhoCN, tenKho }) => ({
                                   label: tenKho,
-                                  value: idKho,
+                                  value: idKhoCN,
                                 })
                               )}
                             />
@@ -269,7 +303,9 @@ const Nhapkho = () => {
                               Phương thức:
                             </label>
                             <Select
-                              onChange={handleSelect('idPhuongThuc')}
+                              status={formik.errors.idPhuongThuc ? "error" : ""}
+                              name="idPhuongThuc"
+                              onChange={handleSelect("idPhuongThuc")}
                               value={formik.values.idPhuongThuc}
                               options={[
                                 {
@@ -315,7 +351,9 @@ const Nhapkho = () => {
                               Hình thức:
                             </label>
                             <Select
-                              onChange={handleSelect('idHinhThuc')}
+                              name="idHinhThuc"
+                              status={formik.errors.idHinhThuc ? "error" : ""}
+                              onChange={handleSelect("idHinhThuc")}
                               value={formik.values.idHinhThuc}
                               options={[
                                 {
@@ -340,6 +378,7 @@ const Nhapkho = () => {
                               Tên phiếu:
                             </label>
                             <Input
+                              status={formik.errors.tenPhieu ? "error" : ""}
                               value={formik.values.tenPhieu}
                               onChangeCapture={formik.handleChange}
                               name="tenPhieu"
@@ -386,6 +425,7 @@ const Nhapkho = () => {
                               Nội dung:
                             </label>
                             <Input.TextArea
+                              status={formik.errors.NoiDung ? "error" : ""}
                               name="NoiDung"
                               value={formik.values.NoiDung}
                               onChange={formik.handleChange}
@@ -439,7 +479,7 @@ const Nhapkho = () => {
                       />
                     </div>
                     <div className="mt-5 flex gap-5 justify-end">
-                      <Button variant="outlined" color="info" size="small">
+                      <Button onClick={()=>{formik.handleReset()}} variant="outlined"  color="info" size="small">
                         Làm mới
                       </Button>
                       <Button
@@ -450,7 +490,7 @@ const Nhapkho = () => {
                       >
                         Lưu
                       </Button>
-                      <Button variant="contained" color="success" size="small">
+                      <Button disabled variant="contained" color="success" size="small">
                         Lưu & in
                       </Button>
                     </div>
