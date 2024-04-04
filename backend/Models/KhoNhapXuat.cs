@@ -71,7 +71,21 @@ namespace _315HealthCareProject.Models
         [Column("IDPHUONGTHUC")]
         public int? IdPhuongThuc { get; set; }
 
+        [Column("CHECKDELETE")]
+        public int? CheckDelete { get; set; }
 
+        [NotMapped]
+        public string TenKhoNhap { get; set; } 
 
+        [NotMapped]
+        public string TenKhoXuat { get; set; } 
+        [NotMapped] 
+        public string TenNVNhan { get; set; } 
+
+        [NotMapped]
+        public string TenNVXuat { get; set; } 
+
+        [NotMapped]
+        public string TenTrangThai { get; set; } 
     }
 }

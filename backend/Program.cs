@@ -4,6 +4,7 @@ using _315HealthCareProject.Repositories;
 using _315HealthCareProject.Repositories.Interface;
 using _315HealthCareProject.Services;
 using _315HealthCareProject.Services.Interface;
+using _315HealthCareProject.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,12 +29,14 @@ builder.Services.AddScoped<IDangNhapService, DangNhapService>();
 builder.Services.AddScoped<INhomNguoiDungService, NhomNguoiDungService>();
 builder.Services.AddScoped<IKhoNhapXuatService, KhoNhapXuatService>();
 builder.Services.AddScoped<IKhoChiNhanhRepository,  KhoChiNhanhRepository>();
+builder.Services.AddScoped<IKhoChiNhanhService, KhoChiNhanhService>();
 builder.Services.AddScoped<IDoiTacService , DoiTacService>();
 builder.Services.AddScoped<IDoiTacRepository , DoiTacRepository>();
 builder.Services.AddScoped<IKhoNhapXuatRepository , KhoNhapXuatRepository>();
 builder.Services.AddScoped<IKhoChiNhanhRepository , KhoChiNhanhRepository>();
 builder.Services.AddScoped<IKhoChiNhanhService , KhoChiNhanhService>();
 builder.Services.AddScoped<IKhoChiTietRepository , KhoChiTietRepository>();
+builder.Services.AddScoped<IKhoChiTietService , KhoChiTietService>();
 builder.Services.AddScoped<IThuocVatTuRepository , ThuocVatTuRepository>();
 builder.Services.AddScoped<IThuocVatTuService , ThuocVatTuService>();
 

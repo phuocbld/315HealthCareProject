@@ -1,6 +1,8 @@
-﻿using _315HealthCareProject.Data;
+﻿
+using _315HealthCareProject.Data;
 using _315HealthCareProject.Models;
 using _315HealthCareProject.Repositories.Interface;
+using System.Threading.Tasks;
 
 namespace _315HealthCareProject.Repositories
 {
@@ -19,5 +21,4 @@ namespace _315HealthCareProject.Repositories
             await _context.SaveChangesAsync();
         }
     }
-
 }

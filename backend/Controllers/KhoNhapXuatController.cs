@@ -5,6 +5,7 @@ using _315HealthCareProject.Models;
 using Microsoft.EntityFrameworkCore;
 using _315HealthCareProject.Data;
 using _315HealthCareProject.Services.Interface;
+using _315HealthCareProject.DTO;
 
 namespace _315HealthCareProject.Controllers
 {
@@ -12,25 +13,37 @@ namespace _315HealthCareProject.Controllers
     [Route("api/[controller]")]
     public class KhoNhapXuatController : ControllerBase
     {
-        private readonly IKhoNhapXuatService _khoNhapXuatService;
+        private readonly IKhoNhapXuatService _service;
         private readonly ApplicationDbContext _context;
-        private readonly INhanVienService _nhanVienService;
 
-        public KhoNhapXuatController(IKhoNhapXuatService service, ApplicationDbContext context , INhanVienService nhanVienService)
+        public KhoNhapXuatController(IKhoNhapXuatService service, ApplicationDbContext context)
         {
-            _khoNhapXuatService = service;
+            _service = service;
             _context = context;
-            _nhanVienService = nhanVienService;
         }
 
-        
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteKhoNhapXuat(int id)
+        //{
+        //    try
+        //    {
+        //        await _khoNhapXuatService.DeleteKhoNhapXuatAsync(id);
+        //        return Ok(new { message = "Xóa phiếu nhập/xuất thành công" });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+        //    }
+
+        //}
+
         [HttpPost]
         [Route("PhieuNhap")]
         public async Task<IActionResult> PostKhoNhap(KhoNhapXuat khoNhap)
         {
             try
             {
-                var newKhoNhapTask = _khoNhapXuatService.CreateKhoNhap(
+                var newKhoNhapTask = _service.CreateKhoNhap(
                     khoNhap.TenPhieu,
                     khoNhap.NoiDung,
                     khoNhap.TrangThai
@@ -69,7 +82,7 @@ namespace _315HealthCareProject.Controllers
         {
             try
             {
-                var newKhoXuatTask = _khoNhapXuatService.CreateKhoXuat(
+                var newKhoXuatTask = _service.CreateKhoXuat(
                       khoXuat.TenPhieu,
 
                       khoXuat.NoiDung,
@@ -119,7 +132,7 @@ namespace _315HealthCareProject.Controllers
         {
             try
             {
-                var phieuNhap = await _khoNhapXuatService.GetAllPhieuNhapAsync();
+                var phieuNhap = await _service.GetAllPhieuNhapAsync();
                 return Ok(phieuNhap);
             }
             catch (Exception ex)
@@ -133,7 +146,7 @@ namespace _315HealthCareProject.Controllers
         {
             try
             {
-                var phieuXuat = await _khoNhapXuatService.GetAllPhieuXuatAsync();
+                var phieuXuat = await _service.GetAllPhieuXuatAsync();
                 return Ok(phieuXuat);
             }
             catch (Exception ex)
@@ -143,20 +156,81 @@ namespace _315HealthCareProject.Controllers
         }
 
         [HttpGet("phieunhapxuat")]
-        public async Task<IActionResult> GetAllPhieuNhapXuat()
+        public async Task<IActionResult> GetAllKhoNhapXuat()
         {
             try
             {
-                var phieuNhapXuat = await _khoNhapXuatService.GetAllPhieuNhapXuatAsync();
-                return Ok(phieuNhapXuat);
+                var khoNhapXuat = await _service.GetAllKhoNhapXuatAsync();
+                return Ok(khoNhapXuat);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
             }
         }
+
+
+     
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetKhoNhapXuatById(int id)
+        {
+            try
+            {
+                var khoNhapXuat = await _service.GetKhoNhapXuatByIdAsync(id);
+                if (khoNhapXuat == null)
+                {
+                    return NotFound($"Không tìm thấy KhoNhapXuat với ID {id}");
+                }
+                return Ok(khoNhapXuat);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateKhoNhapXuat(int id, [FromBody] KhoNhapXuat khoNhapXuat)
+        {
+            try
+            {
+                var updatedKhoNhapXuat = await _service.UpdateKhoNhapXuatAsync(id, khoNhapXuat);
+                return Ok(updatedKhoNhapXuat);
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
+        }
+
+
+
+        [HttpPut("Delete/{idNhapXuat}")]
+        public async Task<IActionResult> UpdateCheckDelete(int idNhapXuat)
+        {
+            try
+            {
+                await _service.DeleteAsync(idNhapXuat);
+                return Ok(new { message = "Cập nhật CheckDelete thành công." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
+        }
+
+       
+
+
     }
 }
+
+
 
 
         

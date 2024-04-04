@@ -167,7 +167,7 @@ namespace _315HealthCareProject.Controllers
                 newThuocVatTu.NhaSanXuat = thuocVatTu.NhaSanXuat;
                 newThuocVatTu.SuDung = thuocVatTu.SuDung;
                 newThuocVatTu.GhiChu = thuocVatTu.GhiChu;
-                //newThuocVatTu.IdCt = thuocVatTu.IdCt;
+                newThuocVatTu.IdCt = thuocVatTu.IdCt;
                 newThuocVatTu.Barcode = thuocVatTu.Barcode;
                 newThuocVatTu.QrCode = thuocVatTu.QrCode;
                 newThuocVatTu.CachDung = thuocVatTu.CachDung;

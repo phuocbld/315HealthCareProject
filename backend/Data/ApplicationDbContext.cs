@@ -40,6 +40,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<ThuocVatTu> ThuocVatTus { get; set; }
     public DbSet<DoiTac> DoiTacs { get; set; }
     public DbSet<TrangThaiChuyenKho> TrangThaiChuyenKhos { get; set; }
+    public DbSet<ViewKhoNhapXuat> ViewKhoNhapXuats { get; set; }
 
 
 
@@ -68,6 +69,7 @@ public class ApplicationDbContext : DbContext
     public IEnumerable<object> thuocVatTus { get; internal set; }
     public IEnumerable<object> doiTacs { get; internal set; }
     public IEnumerable<object> trangThaiChuyenKhos { get; internal set; }
+    public IEnumerable<object> viewKhoNhapxuats { get; internal set; }
 
 
 
@@ -99,6 +101,7 @@ public class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<NguoiDungNhomMenu>().HasNoKey();
         modelBuilder.Entity<ThongTinDangNhap>().HasNoKey();
+        modelBuilder.Entity<ViewKhoNhapXuat>().HasNoKey();
 
 
         //  modelBuilder.HasSequence<int>("DANGNHAP_SEQ")

@@ -43,7 +43,7 @@ namespace _315HealthCareProject.Controllers
 
             var dangNhap = await _dangNhapService.CheckAndCreateDangNhapAsync(userInfo.TaiKhoan , request.ChiNhanh_DangNhap);
             var tenNhom = await _nhomNguoiDungService.GetTenNhomByIdAsync(userInfo.IdNhom ?? 0);
-            return Ok(new { userInfo.TaiKhoan, userInfo.TenNV, tenNhom, DangNhap = dangNhap });
+            return Ok(new { userInfo.TaiKhoan, userInfo.IDNV, userInfo.TenNV, tenNhom, DangNhap = dangNhap });
         }
     }
 }

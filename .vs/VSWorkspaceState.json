@@ -8,6 +8,6 @@
     "\\backend\\Services",
     "\\frontend"
   ],
-  "SelectedNode": "\\backend\\Models\\ThuocVatTu.cs",
+  "SelectedNode": "\\backend\\Controllers\\ThuocVatTuController.cs",
   "PreviewInSolutionExplorer": false
 }
