@@ -4,11 +4,13 @@ import modalReducer from'./reducers/modalReducer'
 import userReducer from './reducers/userReducer'
 import receiveReducer from './reducers/receiveReducer'
 import NhapKhoReducer from './reducers/NhapKhoReduer'
+import chuyenKhoReducer from './reducers/chuyenKhoReducer'
  export const rootReducer = combineReducers({
     branchReducer,
     modalReducer,
     userReducer,
     NhapKhoReducer,
-    receiveReducer
+    receiveReducer,
+    chuyenKhoReducer,
 
 })

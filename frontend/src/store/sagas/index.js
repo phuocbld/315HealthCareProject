@@ -4,6 +4,7 @@ import { branchSaga } from "./branhSaga";
 import { authSaga } from "./authSaga";
 import { receiveSaga } from "./receiveSaga";
 import { NhapKhoSaga } from "./KhoNhapSaga";
+import { ChuyenKhoSaga } from "./ChuyenKhoSaga";
 
 
 
@@ -13,5 +14,6 @@ export function* rootSaga() {
         authSaga(),
         receiveSaga(),
         NhapKhoSaga(),
+        ChuyenKhoSaga(),
     ])
 }

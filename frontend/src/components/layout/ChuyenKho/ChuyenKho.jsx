@@ -1,47 +1,61 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Layout from "../../../HOCs/Layout";
-import { Input, Tabs } from "antd";
-import DocViewer from "react-doc-viewer";
-import { Table, ConfigProvider } from "antd";
+import * as typeAction from "../../../store/constants/constants";
+import { Input, Tabs, Select, Table, ConfigProvider, notification } from "antd";
+import { CloseSquareOutlined } from "@ant-design/icons";
 import { Button } from "@mui/material";
-import ButtonLang from "../../common/ButtonLang/ButtonLang";
 import Receive from "./Satus/Receive/Receive";
 import Pedding from "./Satus/Pedding/Pedding";
 import Create from "./Satus/Create/Create";
 import Transfer from "./Satus/Transfer/Transfer";
 import { useReactToPrint } from "react-to-print";
-import Phieu from "../../../data/Form/phieu.docx";
-import PDFfile from "../../../data/Form/output.pdf"
-import Docxtemplater from "docxtemplater";
-import PizZip from "pizzip";
-import jsPDF from 'jspdf';
-import { saveAs } from "file-saver";
-import FormChuyenKho from "../../../utils/FormChuyenKho";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchAllThuocVT,
+  getBranchNhapKho,
+} from "../../../store/actions/NhapKhoAction";
+import { useFormik } from "formik";
+import { listBranchAction } from "../../../store/actions/BranchAction";
+import {
+  getKhoVTAction,
+  getListKhoNhanAction,
+  postPhieuCKAction,
+} from "../../../store/actions/chuyenKhoAction";
+import moment from "moment";
+import { chuyenKhoSchema } from "../../../schemas/chuyenKhoSchema";
 const columns = [
   {
     key: 1,
     title: "Thông tin hàng hoá",
     children: [
       {
+        title: "STT",
+        dataIndex: "STT",
+        key: 1.4,
+        width: 50,
+        align: "center",
+        // sorter: (a, b) => a.age - b.age,
+      },
+      {
         title: "Tên hàng",
         dataIndex: "tenHangHoa",
         key: 1.1,
-        sorter: (a, b) => a.age - b.age,
+        // sorter: (a, b) => a.age - b.age,
       },
       {
         title: "Mã hàng",
         dataIndex: "MaHangHoa",
         key: 1.2,
         width: 120,
-        sorter: (a, b) => a.age - b.age,
+        // sorter: (a, b) => a.age - b.age,
       },
-      {
-        title: "Số lô",
-        dataIndex: "MaHangHoa",
-        key: 1.3,
-        width: 120,
-        sorter: (a, b) => a.age - b.age,
-      },
+      // {
+      //   title: "Số lô",
+      //   dataIndex: "SOLO",
+      //   key: 1.3,
+      //   width: 120,
+      //   // sorter: (a, b) => a.age - b.age,
+      // },
     ],
   },
   {
@@ -50,17 +64,17 @@ const columns = [
     children: [
       {
         title: "Số lượng",
-        dataIndex: "tenHangHoa",
+        dataIndex: "SLCHAN",
         key: 2.1,
         width: 120,
-        sorter: (a, b) => a.age - b.age,
+        // sorter: (a, b) => a.age - b.age,
       },
       {
         title: "Đơn vi",
-        dataIndex: "MaHangHoa",
+        dataIndex: "DVCHAN",
         key: 2.2,
         width: 120,
-        sorter: (a, b) => a.age - b.age,
+        // sorter: (a, b) => a.age - b.age,
       },
     ],
   },
@@ -70,24 +84,24 @@ const columns = [
     children: [
       {
         title: "Quy cách",
-        dataIndex: "tenHangHoa",
+        dataIndex: "QUYCACH",
         key: 3.1,
         width: 120,
-        sorter: (a, b) => a.age - b.age,
+        // sorter: (a, b) => a.age - b.age,
       },
       {
         title: "Số lượng",
-        dataIndex: "tenHangHoa",
+        dataIndex: "SLLE",
         key: 3.2,
         width: 120,
-        sorter: (a, b) => a.age - b.age,
+        // sorter: (a, b) => a.age - b.age,
       },
       {
         title: "Đơn vi",
-        dataIndex: "MaHangHoa",
+        dataIndex: "DVLE",
         key: 3.3,
         width: 120,
-        sorter: (a, b) => a.age - b.age,
+        // sorter: (a, b) => a.age - b.age,
       },
     ],
   },
@@ -96,24 +110,114 @@ const columns = [
     title: "",
     dataIndex: "action",
     width: 50,
+    align: "center",
   },
 ];
 
 const ChuyenKho = () => {
   const docRef = useRef(null);
   const componentRef = useRef();
+  const now = moment();
   const [docx, setdocx] = useState(null);
+  const [date, setDate] = useState(now.format());
+  const { thuocVT, branch, listKhoNhap } = useSelector(
+    (state) => state.NhapKhoReducer
+  );
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type, message, description) => {
+    api[type]({
+      message,
+      description,
+    });
+  };
+  const { KhoNhan, KhoVT } = useSelector((state) => state.chuyenKhoReducer);
+  const { listBranch } = useSelector((state) => state.branchReducer);
+  const dispatch = useDispatch();
   const handlePrinter = useReactToPrint({
     content: () => componentRef.current,
   });
- 
+  // lấy thông tin người dùng >> tạm thời
+  const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
   const saveDocx = async () => {
-    handlePrinter()
+    handlePrinter();
     // generateDocx();
   };
-  
+  const handleSave = (values, action) => {
+    console.log(values);
+    if (KhoVT.length === 0) {
+      console.log('error');
+      openNotificationWithIcon(
+        "error",
+        "Lưu phiếu chuyển",
+        "Vui lòng chọn sản phẩm để tạo phiếu chuyển"
+      );
+      return;
+    }
+    setDate(now.format());
+    formik.setFieldValue("ngayXuat", date);
+    formik.handleReset()
+    dispatch(postPhieuCKAction(values,KhoVT))
+    dispatch({
+      type:typeAction.RESET_KHOVT_CK
+    })
+  };
+  // xử lý thông tin chọn
+  const handleChangeSelect = (name) => (value) => {
+    formik.setFieldValue(name, value);
+  };
+  // XỬ LÝ CHỌN CHI NHÁNH NHẬN KHO TRONG CHUYỂN KHO
+  const handleBranchNhanKho = (id) => {
+    // console.log(id);
+    dispatch(getListKhoNhanAction(id));
+  };
+  //XỬ LÍ LẤY THUỐC KHO VT
+  const handleKhoVT = (idThuoc) => {
+    dispatch(getKhoVTAction(idThuoc));
+  };
+
+  // XỬ LÝ TĂNG SỐ LƯỢNG THUỐC
+  const handleChangeSL = (idThuoc) => (e) => {
+    const value = Number(e.target.value);
+    dispatch({
+      type: typeAction.CHANGE_SL_THUOC_CK,
+      payload: {
+        idThuoc,
+        value: value < 0 || value == "" ? 0 : value,
+      },
+    });
+  };
+  // XỬ LÝ XOÁ 1 THUỐC TRONG KHO
+  const handleDeleteKhoVTById = (idThuoc) => {
+    dispatch({
+      type: typeAction.CLOSE_THUOC_CK_BY_ID,
+      payload: idThuoc,
+    });
+  };
+  const formik = useFormik({
+    initialValues: {
+      tenPhieu: "",
+      idKhoXuat: "",
+      idKhoNhap: "",
+      nhanVienXuat: infoUser?.dangNhap.idNguoiDung,
+      ngayXuat: date,
+      noiDung: "",
+      // daNhan: 0,
+      trangThai: 1,
+    },
+    onSubmit: (value, action) => {
+      handleSave(value, action);
+      // handleSave(value, action);
+    },
+    validationSchema: chuyenKhoSchema,
+  });
+  useEffect(() => {
+    dispatch(fetchAllThuocVT());
+    dispatch(getBranchNhapKho());
+    dispatch(listBranchAction());
+  }, []);
   return (
     <Layout>
+      {contextHolder}
       <div className="h-full w-full p-2">
         <div
           className="h-full w-full bg-white rounded-md border"
@@ -138,14 +242,42 @@ const ChuyenKho = () => {
                                 <label className="font-semibold w-1/4">
                                   Người chuyển:
                                 </label>
-                                <Input size="small" />
+                                <Input value={infoUser?.tenNV} size="small" />
                               </div>
-                              <Input
-                                size="small"
-                                addonBefore={<span>Tìm kiếm</span>}
-                                placeholder="Tìm hoàng hoá theo mã hoặt tên"
-                                allowClear
-                              />
+                              <div className="flex">
+                                <labe className="font-semibold w-1/4">
+                                  Tìm kiếm:{" "}
+                                </labe>
+                                <Select
+                                  allowClear
+                                  onChange={handleKhoVT}
+                                  autoClearSearchValue="tags"
+                                  value=""
+                                  showSearch
+                                  filterOption={(input, option) =>
+                                    (option?.label ?? "")
+                                      .toLowerCase()
+                                      .includes(input)
+                                  }
+                                  options={thuocVT?.map(
+                                    ({ idThuoc, maThuoc, tenBietDuoc }) => ({
+                                      label: (
+                                        // tenBietDuoc,
+                                        <li>
+                                          <span className=" border-r-2 pr-2 mr-2">
+                                            {maThuoc}
+                                          </span>
+                                          {tenBietDuoc}
+                                        </li>
+                                      ),
+                                      value: idThuoc,
+                                    })
+                                  )}
+                                  size="small"
+                                  placeholder="Nhập tên hàng hoá"
+                                  className="w-full"
+                                />
+                              </div>
                             </div>
                             <div className="flex flex-col gap-4 w-3/5">
                               <div className="w-full flex gap-2">
@@ -153,27 +285,70 @@ const ChuyenKho = () => {
                                   <label className="font-semibold w-1/3">
                                     Nơi chuyển:
                                   </label>
-                                  <Input size="small" />
+                                  <Input value={branch} size="small" />
                                 </div>
                                 <div className="flex w-1/2">
                                   <label className="font-semibold w-1/3">
-                                    Kho xuất:
+                                    Kho xuất:<span className="text-red-500">(*)</span>
                                   </label>
-                                  <Input size="small" />
+                                  <Select
+                                    name="idKhoXuat"
+                                    status={formik.errors.idKhoXuat ? "error" : ""}
+                                    onChange={handleChangeSelect("idKhoXuat")}
+                                    className="w-full"
+                                    size="small"
+                                    value={formik.values.idKhoXuat}
+                                    options={listKhoNhap?.map(
+                                      ({ idKhoCN, tenKho }) => ({
+                                        label: tenKho,
+                                        value: idKhoCN,
+                                      })
+                                    )}
+                                  />
                                 </div>
                               </div>
                               <div className="w-full flex gap-2">
                                 <div className="flex w-1/2">
                                   <label className="font-semibold w-1/3">
-                                    Nơi nhận:
+                                    Nơi nhận:<span className="text-red-500">(*)</span>
                                   </label>
-                                  <Input size="small" />
+                                  <Select
+                                    onChange={handleBranchNhanKho}
+                                    allowClear
+                                    showSearch
+                                    filterOption={(input, option) =>
+                                      (option?.label ?? "")
+                                        .toLowerCase()
+                                        .includes(input)
+                                    }
+                                    className="w-full"
+                                    options={listBranch?.map((items) => ({
+                                      label: items.tenChiNhanh,
+                                      value: items.idChiNhanh,
+                                    }))}
+                                    size="small"
+                                  />
                                 </div>
                                 <div className="flex w-1/2">
                                   <label className="font-semibold w-1/3">
-                                    Kho nhận:
+                                    Kho nhận:<span className="text-red-500">(*)</span>
                                   </label>
-                                  <Input size="small" />
+                                  <Select
+                                    name="idKhoNhap"
+                                    status={
+                                      formik.errors.idKhoNhap ? "error" : ""
+                                    }
+                                    onChange={handleChangeSelect("idKhoNhap")}
+                                    className="w-full"
+                                    size="small"
+                                    value={formik.values.idKhoNhap}
+                                    options={KhoNhan?.map(
+                                      ({ idKhoCN, tenKho }) => ({
+                                        label: tenKho,
+                                        value: idKhoCN,
+                                      })
+                                    )}
+                                  />
                                 </div>
                               </div>
                             </div>
@@ -193,10 +368,38 @@ const ChuyenKho = () => {
                               }}
                             >
                               <Table
+                              pagination={false}
                                 bordered
                                 columns={columns}
+                                dataSource={KhoVT?.map((items, index) => ({
+                                  STT: index++,
+                                  tenHangHoa: items.TENBIETDUOC,
+                                  MaHangHoa: items.MATHUOC,
+                                  SLCHAN: (
+                                    <Input
+                                      onChange={handleChangeSL(items.IDTHUOC)}
+                                      value={items.khoChiTiet.soLuong}
+                                      type="number"
+                                    />
+                                  ),
+                                  DVCHAN: items.DONVICHAN,
+                                  QUYCACH: items.QUYCACH,
+                                  SLLE:
+                                    items.khoChiTiet.soLuong *
+                                    items.QUYCACHDONGGOI,
+                                  DVLE: items.DVT,
+                                  action: (
+                                    <div
+                                      onClick={() => {
+                                        handleDeleteKhoVTById(items.IDTHUOC);
+                                      }}
+                                    >
+                                      <CloseSquareOutlined className="text-red-500 cursor-pointer" />
+                                    </div>
+                                  ),
+                                }))}
                                 scroll={{
-                                  y: 650,
+                                  y: 560,
                                 }}
                               />
                             </ConfigProvider>
@@ -208,16 +411,29 @@ const ChuyenKho = () => {
                               <div className="flex">
                                 <label className="w-1/3 font-medium">
                                   {" "}
-                                  Phiếu chuyển:
+                                  Tên Phiếu:<span className="text-red-500">(*)</span>
                                 </label>
-                                <Input value="PT00000012" size="small" />
+                                <Input
+                                status={
+                                  formik.errors.tenPhieu ? "error" : ""
+                                }
+                                  name="tenPhieu"
+                                  value={formik.values.tenPhieu}
+                                  onChange={formik.handleChange}
+                                  size="small"
+                                />
                               </div>
                               <div className="flex">
                                 <label className="w-1/3 font-medium">
                                   {" "}
                                   Ngày Chuyển:
                                 </label>
-                                <Input value="26/03/2024 4:23" size="small" />
+                                <Input
+                                  value={moment(formik.values.ngayXuat).format(
+                                    "DD/MM/YYYY h:mm:ss a"
+                                  )}
+                                  size="small"
+                                />
                               </div>
                               <div className="flex">
                                 <label className="w-1/3 font-medium">
@@ -229,9 +445,13 @@ const ChuyenKho = () => {
                               <div className="flex">
                                 <label className="w-1/3 font-medium">
                                   {" "}
-                                  Ghi chú:
+                                  Nội dung:<span className="text-red-500">(*)</span>
                                 </label>
                                 <Input.TextArea
+                                  value={formik.values.noiDung}
+                                  name="noiDung"
+                                  status={formik.errors.noiDung ? 'error' :''}
+                                  onChange={formik.handleChange}
                                   showCount
                                   maxLength={500}
                                   style={{
@@ -259,18 +479,23 @@ const ChuyenKho = () => {
                               </ul>
                               <div className=" overflow-auto border h-[430px]">
                                 <ul>
-                                  <li className="flex p-1 border-b">
-                                    <span className="w-3/4">
-                                      Thuốc AAAAAAAAAAAAAAAA
-                                    </span>
-                                    <span className="w-1/4 text-center">2</span>
-                                  </li>
+                                  {KhoVT?.map((items) => (
+                                    <li className="flex p-1 border-b">
+                                      <span className="w-3/4">
+                                        {items.TENBIETDUOC}
+                                      </span>
+                                      <span className="w-1/4 text-center">
+                                        {items.khoChiTiet.soLuong}
+                                      </span>
+                                    </li>
+                                  ))}
                                 </ul>
                               </div>
                             </div>
-                            <div className="flex items-center">
+                            <div className="flex items-center mt-1">
                               <div className="p-2 flex gap-5 w-2/3">
                                 <Button
+                                  disabled
                                   size="small"
                                   color="primary"
                                   variant="contained"
@@ -278,18 +503,14 @@ const ChuyenKho = () => {
                                   In phiếu
                                 </Button>
                                 <Button
-                                  onClick={saveDocx}
+                                  // onClick={saveDocx}
+                                  onClick={formik.handleSubmit}
                                   size="small"
                                   color="success"
                                   variant="contained"
                                 >
                                   Lưu phiếu
                                 </Button>
-                              </div>
-                              <div>
-                                <span className="font-semibold text-green-700 text-xl">
-                                  100,000 VNĐ
-                                </span>
                               </div>
                             </div>
                           </div>

@@ -156,7 +156,6 @@ export function* NhapKhoSaga() {
     typeAction.POST_PHIEU_NHAP_KHO,
     function* postPhieuNhapKho({ type, payload, ListThuocVT }) {
       // yield console.log(payload);
-      console.log(payload);
       try {
         const result = yield call(() => NhapKhoService.postPhieuNhap(payload));
         const id = yield result.data.data.idNhapXuat;
@@ -167,9 +166,7 @@ export function* NhapKhoSaga() {
           data.idNhapXuat = id;
           array.push(data);
         }
-        console.log(array);
         yield call(() => NhapKhoService.postkhoChiTiet(array));
-        console.log(array);
         // console.log(result.data);
         Toast.fire({
           icon: "success",

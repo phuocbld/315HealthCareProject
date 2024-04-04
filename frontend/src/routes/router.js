@@ -6,6 +6,7 @@ import Staff from "../components/layout/Staff/Staff";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Nhapkho from "../components/layout/NhapKho/Nhapkho";
+import ThuaMua from "../components/layout/ThuMua/ThuaMua";
 
 //Tạo các route
 export const routes = [ 
@@ -17,5 +18,6 @@ export const routes = [
     {path:'/Dashboard',Component: Dashboard, isAuth: true, redirectPath: '/login'},
     {path:'/thumuakho/chuyenkho',Component: ChuyenKho, isAuth: true, redirectPath: '/login'},
     {path:'/thumuakho/nhapkho',Component: Nhapkho, isAuth: true, redirectPath: '/login'},
+    {path:'/thumuakho/thuoc',Component: ThuaMua, isAuth: true, redirectPath: '/login'},
 
 ]

@@ -20,10 +20,9 @@ const Header = ({ open, handleDrawer }) => {
 
   return (
     <header
-      style={{ paddingLeft: open ? 180 : 65 }}
-      className="fixed right-0 duration-300 top-0 w-full z-50  border border-transparent bg-white text-[#00ADEF] border-b-gray-300 "
+      className=" relative h-14  border border-transparent bg-white text-[#00ADEF] border-b-gray-300 "
     >
-      <div className="p-1">
+      <div className=" fixed box-border w-full  px-5 ">
         <div className="flex justify-between items-center ">
           <IconButton onClick={handleDrawer}>
             {open ? (

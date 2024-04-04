@@ -80,7 +80,6 @@ const Nhapkho = () => {
   const handleChangeSelect = (name) => (value) => {
     formik.setFieldValue(name, value);
   };
-
   const checkStoreThuocVT = (value) => {
     for (const obj of infoThuocVT) {
       if (obj.IDTHUOC === value) {
@@ -121,8 +120,8 @@ const Nhapkho = () => {
       ngayHoaDon: "",
       linkHoaDon: "",
       fileHoaDon: "file",
-      idHinhThuc: "",
-      idPhuongThuc: "",
+      idHinhThuc: 1,
+      idPhuongThuc: 1,
     },
     validationSchema: KhoNhapSchema,
     onSubmit: (value, action) => {
@@ -194,8 +193,8 @@ const Nhapkho = () => {
                             </div>
                           </div>
                           <div className="flex ">
-                            <label className="w-[11%] font-semibold">
-                              Tên đối tác:
+                            <label className="w-[12%] font-semibold">
+                              Tên đối tác:<span className="text-red-500">(*)</span>
                             </label>
                             <Select
                               name="idDoiTac"
@@ -233,8 +232,8 @@ const Nhapkho = () => {
                           </div>
                           <div className="flex gap-2">
                             <div className="flex w-1/2">
-                              <label className="w-1/4 font-semibold ">
-                                Số hóa đơn:{" "}
+                              <label className="w-[30%] font-semibold ">
+                                Số hóa đơn:{" "}<span className="text-red-500 ">(*)</span>
                               </label>
                               <Input
                                 status={formik.errors.soHoaDon ? "error" : ""}
@@ -245,8 +244,8 @@ const Nhapkho = () => {
                               />
                             </div>
                             <div className="flex w-1/2">
-                              <label className="w-1/4 font-semibold">
-                                Ngày HĐ :{" "}
+                              <label className="font-semibold w-[33%]">
+                                Ngày HĐ :{" "}<span className="text-red-500 ">(*)</span>
                               </label>
                               <DatePicker
                                 name="ngayHoaDon"
@@ -267,7 +266,7 @@ const Nhapkho = () => {
                         <div className="flex flex-col w-1/4 gap-2">
                           <div className="flex ">
                             <label className="w-1/3 font-semibold">
-                              Kho nhập:
+                              Kho nhập:<span className="text-red-500">(*)</span>
                             </label>
                             <Select
                               name="idKhoNhap"
@@ -300,7 +299,7 @@ const Nhapkho = () => {
                           </div>
                           <div className="flex ">
                             <label className="w-1/3 font-semibold">
-                              Phương thức:
+                              Phương thức:<span className="text-red-500">(*)</span>
                             </label>
                             <Select
                               status={formik.errors.idPhuongThuc ? "error" : ""}
@@ -348,7 +347,7 @@ const Nhapkho = () => {
                           </div>
                           <div className="flex ">
                             <label className="w-1/3 font-semibold">
-                              Hình thức:
+                              Hình thức:<span className="text-red-500">(*)</span>
                             </label>
                             <Select
                               name="idHinhThuc"
@@ -375,7 +374,7 @@ const Nhapkho = () => {
                         <div className="flex gap-3 flex-col w-1/2 ">
                           <div className="flex">
                             <label className="w-[11%] font-semibold">
-                              Tên phiếu:
+                              Tên phiếu:<span className="text-red-500">(*)</span>
                             </label>
                             <Input
                               status={formik.errors.tenPhieu ? "error" : ""}
@@ -403,13 +402,14 @@ const Nhapkho = () => {
                               }
                               options={thuocVT?.map(
                                 ({ idThuoc, maThuoc, tenBietDuoc }) => ({
-                                  label: tenBietDuoc,
-                                  // <li>
-                                  //   <span className=" border-r-2 pr-2 mr-2">
-                                  //     {maThuoc}
-                                  //   </span>
-                                  //   {tenBietDuoc}
-                                  // </li>,
+                                  label: 
+                                  // tenBietDuoc,
+                                  <li>
+                                    <span className=" border-r-2 pr-2 mr-2">
+                                      {maThuoc}
+                                    </span>
+                                    {tenBietDuoc}
+                                  </li>,
                                   value: idThuoc,
                                 })
                               )}
@@ -422,7 +422,7 @@ const Nhapkho = () => {
                         <div className="flex gap-2 flex-col w-1/2">
                           <div className="flex items-center w-full">
                             <label className="w-[13.5%] font-semibold">
-                              Nội dung:
+                              Nội dung:<span className="text-red-500">(*)</span>
                             </label>
                             <Input.TextArea
                               status={formik.errors.NoiDung ? "error" : ""}
