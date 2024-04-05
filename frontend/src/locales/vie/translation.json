@@ -3,14 +3,15 @@
   
     "Đăng nhập" : "Đăng nhập",
     "Ngôn ngữ" :"Ngôn ngữ",
-    "Quảng lý phòng khám và bệnh viện" :"Quảng lý phòng khám và bệnh viện",
-    "Quản lý thông tin khách hàng" : "Quản lý thông tin khách hàng",
+    "Quản lý phòng khám và bệnh viện" :"Quản lý phòng khám và bệnh viện",
+    "Quản lý thông tin bệnh nhân" : "Quản lý thông tin bệnh nhân",
     "Quên mật khẩu" : "Quên mật khẩu " ,
     "Chọn phòng khám": "Chọn phòng khám",
     "Mật khẩu": "Mật khẩu",
     "Tên tài khoản": "Tên tài khoản",
     "Vui lòng nhập tài khoản của bạn": "Vui lòng nhập tài khoản của bạn",
     "Vui lòng nhập mật khẩu": "Vui lòng nhập mật khẩu",
-    "Vui lòng chọn phòng khám": "Vui lòng chọn phòng khám"
+    "Vui lòng chọn phòng khám": "Vui lòng chọn phòng khám",
+    "Tra cứu kết quả xét nghiệm Online": "Tra cứu kết quả xét nghiệm Online"
 
 }

@@ -9,14 +9,18 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 //cấu hình Oracle EF Core
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("OracleDBConnection")));
 
-// Add services to the container.
-builder.Services.AddControllers(); // Thêm dòng này để đăng ký các Controllers
+// Thêm dịch vụ để gửi tin nhắn SMS
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<ISmsService, SmsService>();
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient();
 builder.Services.AddScoped<ICaLamViecRepository, CaLamViecRepository>();
 builder.Services.AddScoped<ICaLamViecService, CaLamViecService>();
 builder.Services.AddScoped<IChiNhanhRepository, ChiNhanhRepository>();
@@ -39,6 +43,12 @@ builder.Services.AddScoped<IKhoChiTietRepository , KhoChiTietRepository>();
 builder.Services.AddScoped<IKhoChiTietService , KhoChiTietService>();
 builder.Services.AddScoped<IThuocVatTuRepository , ThuocVatTuRepository>();
 builder.Services.AddScoped<IThuocVatTuService , ThuocVatTuService>();
+builder.Services.AddScoped<ICongTyKhachKhamDoanRepository , CongTyKhachKhamDoanRepository>();
+builder.Services.AddScoped<ICongTyKhachKhamDoanService , CongTyKhachKhamDoanService>();
+builder.Services.AddScoped<ICongTyBenhNhanRepository, CongTyBenhNhanRepository>();
+builder.Services.AddScoped<ICongTyBenhNhanService , CongTyBenhNhanService>();
+builder.Services.AddScoped<ICongTyTrangThaiRepository , CongTyTrangThaiRepository>();
+builder.Services.AddScoped<ICongTyTrangThaiService , CongTyTrangThaiService>();
 
 
 
@@ -85,6 +95,28 @@ app.Use(async (context, next) =>
     }
     await next();
 });
+Action sendSmsOnStartup = async () =>
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var smsService = scope.ServiceProvider.GetRequiredService<ISmsService>();
+        try
+        {
+            // Gửi tin nhắn SMS
+            await smsService.SendSmsAsync("0904901686", "Nội dung tin nhắn của bạn");
+            Console.WriteLine("Đã gửi tin nhắn SMS khi khởi động ứng dụng");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Lỗi khi gửi tin nhắn SMS: {ex.Message}");
+        }
+    }
+};
+
+// Gọi action để gửi tin nhắn SMS khi ứng dụng khởi động
+sendSmsOnStartup();
+
+
 app.UseHttpsRedirection();
 
 app.MapControllers();

@@ -68,6 +68,20 @@ const Login = () => {
                 </span>
                 <p>{t("Quản lý thông tin bệnh nhân")}</p>
               </motion.li>
+              <motion.li
+                initial={{ x: -150, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{
+                  delay: 0.3,
+                  duration: 0.5,
+                }}
+                className="flex text-center items-center mt-4 bg-blue-950 gap-2 rounded-r-3xl rounded-tl-3xl p-2"
+              >
+                <span className="text-black overflow-hidden bg-white rounded-full font-medium w-[40px] h-[40px] leading-[40px] ">
+                <img src="https://media.licdn.com/dms/image/C560BAQG1c6ytBSbvuQ/company-logo_200_200/0/1630655164945/nhi_dong_315_logo?e=2147483647&v=beta&t=lSFNfgWyYlUe_3xDEf4j8HYiSOg1l68VZ1oqF4UzCfE" alt="nhidong315" />
+                </span>
+                <p>{t("Tra cứu kết quả xét nghiệm Online")}</p>
+              </motion.li>
             </ul>
           </div>
         </div>
