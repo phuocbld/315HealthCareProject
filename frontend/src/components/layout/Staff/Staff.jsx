@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../../HOCs/Layout";
+import LayoutApp from "../../../HOCs/LayoutApp";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
@@ -28,7 +28,7 @@ const Staff = () => {
     console.log(id);
   };
   return (
-    <Layout>
+    <LayoutApp>
       <div className="p-5 h-full w-full ">
         <div className=" flex justify-between pb-5">
           <h2 className="text-lg font-medium ">Nhân viên</h2>
@@ -149,7 +149,7 @@ const Staff = () => {
             </Box> */}
 
       </div>
-    </Layout>
+    </LayoutApp>
   );
 };
 

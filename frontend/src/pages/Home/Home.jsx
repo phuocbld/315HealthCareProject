@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { demoModalCAction } from '../../store/actions/BranchAction'
-import Layout from '../../HOCs/Layout'
+import LayoutApp from '../../HOCs/LayoutApp'
 import Dashboard from '../../components/layout/Dashboard/Dashboard'
 
 const Home = () => {
@@ -12,9 +12,9 @@ const Home = () => {
     dispatch(demoModalCAction({value:123}))
   } 
   return (
-    <Layout>
+    <LayoutApp>
      {infoUser?.tenNhom === 'Ban Giám đốc' ? <Dashboard/> :''}
-    </Layout>
+    </LayoutApp>
     
     
   )

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Layout from "../../../HOCs/Layout";
+import LayoutApp from "../../../HOCs/LayoutApp";
 import * as typeAction from "../../../store/constants/constants";
 import { Input, Tabs, Select, Table, ConfigProvider, notification } from "antd";
 import { CloseSquareOutlined } from "@ant-design/icons";
@@ -216,7 +216,7 @@ const ChuyenKho = () => {
     dispatch(listBranchAction());
   }, []);
   return (
-    <Layout>
+    <LayoutApp>
       {contextHolder}
       <div className="h-full w-full p-2">
         <div
@@ -557,7 +557,7 @@ const ChuyenKho = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </LayoutApp>
   );
 };
 

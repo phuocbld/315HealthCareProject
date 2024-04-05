@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import * as typeAction from "../../../store/constants/constants";
-import Layout from "../../../HOCs/Layout";
+import LayoutApp from "../../../HOCs/LayoutApp";
 import { Input, Select, Tabs, DatePicker, notification } from "antd";
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
@@ -149,7 +149,7 @@ const Nhapkho = () => {
     }
   }, [infoThuocVT]);
   return (
-    <Layout>
+    <LayoutApp>
       {contextHolder}
       <div
         style={{
@@ -506,7 +506,7 @@ const Nhapkho = () => {
           ]}
         />
       </div>
-    </Layout>
+    </LayoutApp>
   );
 };
 
