@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import Layout from '../../../HOCs/Layout'
+import LayoutApp from '../../../HOCs/LayoutApp'
 import { Divider, Table } from 'antd';
 import { Button } from '@mui/material';
 import { useReactToPrint } from 'react-to-print';
@@ -62,7 +62,7 @@ const Branch = () => {
     //     window.print();
     //   }
   return (
-    <Layout>
+    <LayoutApp>
         <div className='p-5 bg-white h-full'>
         <Button onClick={() => {
         handlePrint(null, () => contentToPrint.current);
@@ -72,7 +72,7 @@ const Branch = () => {
         </div>
     
         </div>
-    </Layout>
+    </LayoutApp>
   )
 }
 

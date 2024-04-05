@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Layout from "../../../HOCs/Layout";
+import LayoutApp from "../../../HOCs/LayoutApp";
 import { Input, Tabs, Select, ConfigProvider, DatePicker, Divider } from "antd";
 import { useReactToPrint } from "react-to-print";
 import { CheckOutlined, CloseOutlined, PlusOutlined } from "@ant-design/icons";
@@ -51,7 +51,7 @@ const Receive = () => {
     dispatch(getAllSelectClinicAction());
   }, []);
   return (
-    <Layout>
+    <LayoutApp>
       <div className="overflow-auto h-full">
         <div
           className="bg-white m-2 p-2 rounded-lg "
@@ -508,7 +508,7 @@ const Receive = () => {
         </div>
       </div>
       {/* <div ref={componentRef}>Hello Again</div> */}
-    </Layout>
+    </LayoutApp>
   );
 };
 

@@ -1,10 +1,10 @@
 import React from "react";
-import Layout from "../../../HOCs/Layout";
+import LayoutApp from "../../../HOCs/LayoutApp";
 const ThuaMua = () => {
   return (
-    <Layout>
+    <LayoutApp>
 
-    </Layout>
+    </LayoutApp>
   );
 };
 

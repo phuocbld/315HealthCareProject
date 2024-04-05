@@ -1,5 +1,4 @@
 import React, { useRef, useEffect} from 'react'
-import Layout from '../../../HOCs/Layout'
 import LineTotal from './LineTotal/LineTotal'
 import TotalHeThong from './TotalHeThong/TotalHeThong'
 import ColumBranch from './ColumBranch/ColumBranch'
