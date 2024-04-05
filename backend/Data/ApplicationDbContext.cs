@@ -41,6 +41,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<DoiTac> DoiTacs { get; set; }
     public DbSet<TrangThaiChuyenKho> TrangThaiChuyenKhos { get; set; }
     public DbSet<ViewKhoNhapXuat> ViewKhoNhapXuats { get; set; }
+    public DbSet<CongTyBenhNhan> CongTyBenhNhans { get; set; }
+    public DbSet<CongTyKhachKhamDoan> CongTyKhachKhamDoans { get; set; }    
+    public DbSet<CongTyTrangThai> CongTyTrangThais { get; set; }
 
 
 
@@ -70,7 +73,9 @@ public class ApplicationDbContext : DbContext
     public IEnumerable<object> doiTacs { get; internal set; }
     public IEnumerable<object> trangThaiChuyenKhos { get; internal set; }
     public IEnumerable<object> viewKhoNhapxuats { get; internal set; }
-
+    public IEnumerable<object> congTyKhachKhamDoans { get; internal set; }
+    public IEnumerable<object> congTyBenhNhans { get; internal set; }
+    public IEnumerable<object> congTyTrangThais { get; internal set; }
 
 
 

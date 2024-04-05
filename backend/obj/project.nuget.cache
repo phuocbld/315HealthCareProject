@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D6eFOoXlc9bPk/3n6l/s7UEWSgqazj+weZ+FpaKQok+23HC+qyP/n8gSXBYADxpgmi0KEPZyLemaMlJxYlTOMg==",
+  "dgSpecHash": "sY3Pd99vXkmCH/1S+Bop9fpe/4aP1fgm6w4lzRtJ197ZgLiZOe469pdtM8omFf8GE1TbEGNkVV50n/B65DzsHg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Software\\source\\repo\\315HealthCare\\backend\\315HealthCareProject.csproj",
+  "projectFilePath": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\315HealthCareProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Software\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Software\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
