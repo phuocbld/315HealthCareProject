@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "sY3Pd99vXkmCH/1S+Bop9fpe/4aP1fgm6w4lzRtJ197ZgLiZOe469pdtM8omFf8GE1TbEGNkVV50n/B65DzsHg==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\315HealthCareProject.csproj",
-=======
   "dgSpecHash": "uyWFR9506q7m07LsBVju1iuhM39XsjNObhgrkGnb39zWOSYUw/hqxoBxt9elOc+W+GqVHHeYeYYV4jc/+qS3eA==",
   "success": true,
   "projectFilePath": "D:\\code Tài Nguyễn\\V1.4.1\\backend\\315HealthCareProject.csproj",
->>>>>>> ad2bdf6c3baef42b597948b7bcdfd7d0e1db3e74
   "expectedPackageFiles": [
     "C:\\Users\\Tai Nguyen\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Tai Nguyen\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
@@ -62,5 +56,12 @@
     "C:\\Users\\Tai Nguyen\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
     "C:\\Users\\Tai Nguyen\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\code Tài Nguyễn\\V1.4.1\\backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
