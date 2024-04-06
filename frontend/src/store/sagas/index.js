@@ -5,6 +5,7 @@ import { authSaga } from "./authSaga";
 import { receiveSaga } from "./receiveSaga";
 import { NhapKhoSaga } from "./KhoNhapSaga";
 import { ChuyenKhoSaga } from "./ChuyenKhoSaga";
+import {khamDoanSaga} from './khamDoanSaga'
 
 
 
@@ -15,5 +16,6 @@ export function* rootSaga() {
         receiveSaga(),
         NhapKhoSaga(),
         ChuyenKhoSaga(),
+        khamDoanSaga(),
     ])
 }
