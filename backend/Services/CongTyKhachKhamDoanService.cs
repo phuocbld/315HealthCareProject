@@ -33,5 +33,11 @@ namespace _315HealthCareProject.Services
         {
             return await _repository.UpdateAsync(id, congTyKhachKhamDoan);
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            await _repository.DeleteAsync(id);
+        }
+
     }
 }

@@ -65,5 +65,20 @@ namespace _315HealthCareProject.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _service.DeleteAsync(id);
+                return Ok("Công ty đã được xóa thành công.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while deleting công ty: " + ex.Message);
+            }
+        }
+
     }
 }

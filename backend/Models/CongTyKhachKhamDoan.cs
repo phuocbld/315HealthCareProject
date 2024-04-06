@@ -36,5 +36,17 @@ namespace _315HealthCareProject.Models
 
         [Column("GHICHU")]
         public string? GHICHU { get; set; }
+
+        [Column("NGAYTAO")]
+        public DateTime? NGAYTAO { get; set; }
+
+        [Column("NGUOITAO")]
+        public string? NGUOITAO { get; set; }
+
+        [Column("NGAYSUA")]
+        public DateTime? NGAYSUA { get; set; }
+
+        [Column("NGUOISUA")]
+        public string? NGUOISUA { get; set; }
     }
 }
