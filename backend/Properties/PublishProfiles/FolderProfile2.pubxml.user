@@ -4,8 +4,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
+<<<<<<< HEAD
     <_PublishTargetUrl>C:\Users\Tai Nguyen\Desktop\Published</_PublishTargetUrl>
     <History>True|2024-04-05T12:41:52.1054595Z;</History>
+=======
+    <_PublishTargetUrl>C:\Users\Software\Desktop\New folder</_PublishTargetUrl>
+    <History>True|2024-04-06T08:22:06.1663626Z;</History>
+>>>>>>> eace44059e0a2ece68fabd90f719d78f6ffca2fa
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

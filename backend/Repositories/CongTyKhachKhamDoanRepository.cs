@@ -62,5 +62,34 @@ namespace _315HealthCareProject.Repositories
             return null;
         }
 
+        public async Task<string> GetTenCTByIdAsync(int id)
+        {
+            var tenCT = await _context.CongTyKhachKhamDoans
+                .Where(ct => ct.IDCT == id)
+                .Select(ct => ct.TENCT)
+                .FirstOrDefaultAsync();
+
+            return tenCT;
+        }
+
+        public async Task<string> GetMaCTByIdAsync(int id)
+        {
+            var tenCT = await _context.CongTyKhachKhamDoans
+                .Where(ct => ct.IDCT == id)
+                .Select(ct => ct.MACT)
+                .FirstOrDefaultAsync();
+
+            return tenCT;
+        }
+        public async Task DeleteAsync(int id)
+        {
+            var congTyDelete = await _context.CongTyKhachKhamDoans.FindAsync(id);
+            if (congTyDelete != null)
+            {
+                _context.CongTyKhachKhamDoans.Remove(congTyDelete);
+                await _context.SaveChangesAsync();
+            }
+        }
+
     }
 }

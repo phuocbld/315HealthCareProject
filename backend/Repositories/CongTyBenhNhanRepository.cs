@@ -53,7 +53,24 @@ namespace _315HealthCareProject.Repositories
             _context.Entry(benhNhan).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+        public async Task<CongTyBenhNhan> GetBenhNhanByIdAsync(int id)
+        {
+            return await _context.CongTyBenhNhans.FirstOrDefaultAsync(b => b.IDBN == id);
+        }
 
+        public async Task<IEnumerable<CongTyBenhNhan>> GetBenhNhanByTenAsync(string ten)
+        {
+            return await _context.CongTyBenhNhans.Where(b => b.TENBN.Contains(ten)).ToListAsync();
+        }
+        public async Task DeleteBenhNhanAsync(int id)
+        {
+            var benhNhanDelete = await _context.CongTyBenhNhans.FindAsync(id);
+            if (benhNhanDelete != null)
+            {
+                _context.CongTyBenhNhans.Remove(benhNhanDelete);
+                await _context.SaveChangesAsync();
+            }
+        }
 
 
     }

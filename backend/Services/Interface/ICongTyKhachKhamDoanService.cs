@@ -9,6 +9,7 @@ namespace _315HealthCareProject.Services.Interface
         Task<CongTyKhachKhamDoan> AddAsync(CongTyKhachKhamDoan congTyKhachKhamDoan);
         Task<CongTyKhachKhamDoan> GetByIdAsync(int id);
         Task<CongTyKhachKhamDoan> UpdateAsync(int id, CongTyKhachKhamDoan congTyKhachKhamDoan);
+        Task DeleteAsync(int id);
     }
 }
 

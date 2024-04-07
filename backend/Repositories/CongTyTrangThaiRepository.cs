@@ -26,5 +26,15 @@ namespace _315HealthCareProject.Repositories
         {
             return await _context.CongTyTrangThais.FindAsync(id);
         }
+
+        public async Task<string> GetTenTrangThaiByIdAsync(int id)
+        {
+            var tenTrangThai = await _context.CongTyTrangThais
+                .Where(tt => tt.IDTT == id)
+                .Select(tt => tt.TRANGTHAI)
+                .FirstOrDefaultAsync();
+
+            return tenTrangThai;
+        }
     }
 }

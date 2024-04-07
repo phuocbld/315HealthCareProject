@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace _315HealthCareProject.Models
 {
-
     [Table("CONGTY_BENHNHAN")]
     public class CongTyBenhNhan
     {
@@ -13,7 +13,6 @@ namespace _315HealthCareProject.Models
         public int? IDBN { get; set; }
 
         [Column("MABN")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string? MABN { get; set; }
 
         [Column("TENBN")]
@@ -34,8 +33,10 @@ namespace _315HealthCareProject.Models
         [Column("IDCT")]
         public int IDCT { get; set; }
 
+
         [Column("TRANGTHAIKHAM")]
-        public int? TRANGTHAIKHAM { get; set; }
+        public int TRANGTHAIKHAM { get; set; }
+
 
         [Column("KQXN")]
         public string? KQXN { get; set; }
@@ -43,8 +44,38 @@ namespace _315HealthCareProject.Models
         [Column("KQKHAM")]
         public string? KQKHAM { get; set; }
 
-        [Column("DAGUISMS")]
-        public int DAGUISMS { get; set; }
+        [Column("TRANGTHAISMS")]
+        public int? TRANGTHAISMS { get; set; }
+
+        [Column("NGAYTAO")]
+        public DateTime? NGAYTAO { get; set; }
+
+        [Column("NGUOITAO")]
+        public string? NGUOITAO { get; set; }
+
+        [Column("NGAYKQ")]
+        public DateTime? NGAYKQ { get; set; }
+
+        [Column("NGUOIKQ")]
+        public string? NGUOIKQ { get; set; }
+
+        [Column("NGAYGUISMS")]
+        public DateTime? NGAYGUISMS { get; set; }
+
+        [Column("NGUOIGUISMS")]
+        public string? NGUOIGUISMS { get; set; }
+
+        // Các thuộc tính không được ánh xạ từ cơ sở dữ liệu
+        [NotMapped]
+        public string? TRANGTHAI { get; set; }
+
+        [NotMapped]
+        public string? TENCT { get; set; }
+
+        [NotMapped]
+        public string? TENTRANGTHAISMS { get; set; }
+
+        [NotMapped]
+        public string? MACT { get; set; }
     }
 }
-

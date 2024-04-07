@@ -8,5 +8,6 @@ namespace _315HealthCareProject.Repositories.Interface
     {
         Task<IEnumerable<CongTyTrangThai>> GetAllAsync();
         Task<CongTyTrangThai> GetByIdAsync(int id);
+        Task<string> GetTenTrangThaiByIdAsync(int id);
     }
 }

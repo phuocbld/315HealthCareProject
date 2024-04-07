@@ -49,6 +49,8 @@ builder.Services.AddScoped<ICongTyBenhNhanRepository, CongTyBenhNhanRepository>(
 builder.Services.AddScoped<ICongTyBenhNhanService , CongTyBenhNhanService>();
 builder.Services.AddScoped<ICongTyTrangThaiRepository , CongTyTrangThaiRepository>();
 builder.Services.AddScoped<ICongTyTrangThaiService , CongTyTrangThaiService>();
+builder.Services.AddScoped<ICongTyTrangThaiSMSRepository ,  CongTyTrangThaiSMSRepository>();
+builder.Services.AddScoped<ICongTyTrangThaiSMSService, CongTyTrangThaiSMSService>();
 
 
 
@@ -95,26 +97,26 @@ app.Use(async (context, next) =>
     }
     await next();
 });
-Action sendSmsOnStartup = async () =>
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        var smsService = scope.ServiceProvider.GetRequiredService<ISmsService>();
-        try
-        {
-            // Gửi tin nhắn SMS
-            await smsService.SendSmsAsync("0904901686", "Nội dung tin nhắn của bạn");
-            Console.WriteLine("Đã gửi tin nhắn SMS khi khởi động ứng dụng");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Lỗi khi gửi tin nhắn SMS: {ex.Message}");
-        }
-    }
-};
+//Action sendSmsOnStartup = async () =>
+//{
+//    using (var scope = app.Services.CreateScope())
+//    {
+//        var smsService = scope.ServiceProvider.GetRequiredService<ISmsService>();
+//        try
+//        {
+//            // Gửi tin nhắn SMS
+//            await smsService.SendSmsAsync("0904901686", "Nội dung tin nhắn của bạn");
+//            Console.WriteLine("Đã gửi tin nhắn SMS khi khởi động ứng dụng");
+//        }
+//        catch (Exception ex)
+//        {
+//            Console.WriteLine($"Lỗi khi gửi tin nhắn SMS: {ex.Message}");
+//        }
+//    }
+//};
 
-// Gọi action để gửi tin nhắn SMS khi ứng dụng khởi động
-sendSmsOnStartup();
+//// Gọi action để gửi tin nhắn SMS khi ứng dụng khởi động
+//sendSmsOnStartup();
 
 
 app.UseHttpsRedirection();
