@@ -9,6 +9,7 @@ import Nhapkho from "../components/layout/NhapKho/Nhapkho";
 import ThuaMua from "../components/layout/ThuMua/ThuaMua";
 import TraCuu from "../components/layout/TraCuu/TraCuu";
 import KhachKhamDoan from "../components/layout/KhachKhamDoan/KhachKhamDoan";
+import CTyKhamDoan from "../components/layout/CTyKhamDoan/CTyKhamDoan";
 
 //Tạo các route
 export const routes = [ 
@@ -23,5 +24,6 @@ export const routes = [
     {path:'/thumuakho/thuoc',Component: ThuaMua, isAuth: true, redirectPath: '/login'},
     {path:'/traCuu',Component: TraCuu,  redirectPath: '/login'},
     {path:'/Khachkhamdoan/Khachkham',Component: KhachKhamDoan, isAuth: true, redirectPath: '/login'},
+    {path:'/Khachkhamdoan/congty',Component: CTyKhamDoan, isAuth: true, redirectPath: '/login'},
 
 ]
