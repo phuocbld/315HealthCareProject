@@ -53,6 +53,8 @@ namespace _315HealthCareProject.Repositories
             _context.Entry(benhNhan).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+
+     
         public async Task<CongTyBenhNhan> GetBenhNhanByIdAsync(int id)
         {
             return await _context.CongTyBenhNhans.FirstOrDefaultAsync(b => b.IDBN == id);

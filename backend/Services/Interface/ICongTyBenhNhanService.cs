@@ -13,6 +13,5 @@ namespace _315HealthCareProject.Services.Interface
         Task<IEnumerable<CongTyBenhNhan>> GetBenhNhanByTenAsync(string ten);
         Task DeleteBenhNhanAsync(int id);
         Task<string> GetSoDienThoaiByIdAsync(int id);
-
     }
 }

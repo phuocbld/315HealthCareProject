@@ -36,11 +36,11 @@ namespace _315HealthCareProject.Models
 
 
         [Column("TRANGTHAIKHAM")]
-        public int TRANGTHAIKHAM { get; set; }
+        public int? TRANGTHAIKHAM { get; set; }
 
 
         [Column("KQXN")]
-        public byte[]? KQXN { get; set; }
+        public byte[]? KQXN { get; set; } 
 
         [Column("KQKHAM")]
         public byte[]? KQKHAM { get; set; }
@@ -78,5 +78,6 @@ namespace _315HealthCareProject.Models
 
         [NotMapped]
         public string? MACT { get; set; }
+
     }
 }

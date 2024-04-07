@@ -1,4 +1,5 @@
 ﻿using _315HealthCareProject.Data;
+using _315HealthCareProject.Helper;
 using _315HealthCareProject.Models;
 using _315HealthCareProject.Repositories.Interface;
 using _315HealthCareProject.Services.Interface;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace _315HealthCareProject.Services
@@ -45,7 +47,7 @@ namespace _315HealthCareProject.Services
                     benhNhanCongTy.TRANGTHAISMS = 1;
                     benhNhanCongTy.MABN = await _benhNhanCT.GenerateMaBNAsync(idCT);
                     benhNhanCongTy.TENCT = await _congTyKhamDoan.GetTenCTByIdAsync(benhNhanCongTy.IDCT);
-                    benhNhanCongTy.TRANGTHAI = await _congTyTrangThai.GetTenTrangThaiByIdAsync(benhNhanCongTy.TRANGTHAIKHAM);
+                    benhNhanCongTy.TRANGTHAI = await _congTyTrangThai.GetTenTrangThaiByIdAsync(benhNhanCongTy.TRANGTHAIKHAM ?? 0);
                     benhNhanCongTy.TENTRANGTHAISMS = await _congTyTrangThaiSMS.GetTenTrangThaiSMSByIdAsync(benhNhanCongTy.TRANGTHAISMS ?? 0);
                     benhNhanCongTy.MACT = await _congTyKhamDoan.GetMaCTByIdAsync(benhNhanCongTy.IDCT);
                     await _benhNhanCT.AddBenhNhanCongTyAsync(benhNhanCongTy);
@@ -57,18 +59,7 @@ namespace _315HealthCareProject.Services
             }
         }
 
-        //public async Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan)
-        //{
-        //    try
-        //    {
-        //        _context.Entry(benhNhan).State = EntityState.Modified;
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("An error occurred while updating bệnh nhân: " + ex.Message);
-        //    }
-        //}
+
 
         public async Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan)
         {
@@ -96,13 +87,15 @@ namespace _315HealthCareProject.Services
         }
 
 
+
+
         public async Task<IEnumerable<CongTyBenhNhan>> GetAllAsync()
         {
             var benhNhanList = await _benhNhanCT.GetAllAsync();
             foreach (var benhNhan in benhNhanList)
             {
                 benhNhan.TENCT = await _congTyKhamDoan.GetTenCTByIdAsync(benhNhan.IDCT);
-                benhNhan.TRANGTHAI = await _congTyTrangThai.GetTenTrangThaiByIdAsync(benhNhan.TRANGTHAIKHAM);
+                benhNhan.TRANGTHAI = await _congTyTrangThai.GetTenTrangThaiByIdAsync(benhNhan.TRANGTHAIKHAM ?? 0);
                 benhNhan.TENTRANGTHAISMS = await _congTyTrangThaiSMS.GetTenTrangThaiSMSByIdAsync(benhNhan.TRANGTHAISMS ?? 0);
                 benhNhan.MACT = await _congTyKhamDoan.GetMaCTByIdAsync(benhNhan.IDCT);
 
@@ -115,7 +108,7 @@ namespace _315HealthCareProject.Services
             if (benhNhan != null)
             {
                 benhNhan.TENCT = await _congTyKhamDoan.GetTenCTByIdAsync(benhNhan.IDCT);
-                benhNhan.TRANGTHAI = await _congTyTrangThai.GetTenTrangThaiByIdAsync(benhNhan.TRANGTHAIKHAM);
+                benhNhan.TRANGTHAI = await _congTyTrangThai.GetTenTrangThaiByIdAsync(benhNhan.TRANGTHAIKHAM ?? 0);
                 benhNhan.TENTRANGTHAISMS = await _congTyTrangThaiSMS.GetTenTrangThaiSMSByIdAsync(benhNhan.TRANGTHAISMS ?? 0);
                 benhNhan.MACT = await _congTyKhamDoan.GetMaCTByIdAsync(benhNhan.IDCT);
             }
@@ -128,7 +121,7 @@ namespace _315HealthCareProject.Services
             foreach (var benhNhan in benhNhanList)
             {
                 benhNhan.TENCT = await _congTyKhamDoan.GetTenCTByIdAsync(benhNhan.IDCT);
-                benhNhan.TRANGTHAI = await _congTyTrangThai.GetTenTrangThaiByIdAsync(benhNhan.TRANGTHAIKHAM);
+                benhNhan.TRANGTHAI = await _congTyTrangThai.GetTenTrangThaiByIdAsync(benhNhan.TRANGTHAIKHAM ?? 0);
                 benhNhan.TENTRANGTHAISMS = await _congTyTrangThaiSMS.GetTenTrangThaiSMSByIdAsync(benhNhan.TRANGTHAISMS ?? 0);
                 benhNhan.MACT = await _congTyKhamDoan.GetMaCTByIdAsync(benhNhan.IDCT);
             }
@@ -157,6 +150,9 @@ namespace _315HealthCareProject.Services
         {
             return await _benhNhanCT.GetSoDienThoaiByIdAsync(id);
         }
+    
+
+
 
 
     }

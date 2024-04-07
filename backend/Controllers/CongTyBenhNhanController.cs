@@ -58,6 +58,9 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
+
+
+
         [HttpGet("FindByID/{id}")]
         public async Task<ActionResult<CongTyBenhNhan>> GetBenhNhanById(int id)
         {
@@ -114,6 +117,8 @@ namespace _315HealthCareProject.Controllers
         }
 
 
+     
+
 
     }
-}
+} 
