@@ -2490,11 +2490,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\code Tài Nguyễn\\V1.4.1\\backend\\315HealthCareProject.csproj",
+      "projectUniqueName": "D:\\code Tài Nguyễn\\V1.4.2\\backend\\315HealthCareProject.csproj",
       "projectName": "315HealthCareProject",
-      "projectPath": "D:\\code Tài Nguyễn\\V1.4.1\\backend\\315HealthCareProject.csproj",
+      "projectPath": "D:\\code Tài Nguyễn\\V1.4.2\\backend\\315HealthCareProject.csproj",
       "packagesPath": "C:\\Users\\Tai Nguyen\\.nuget\\packages\\",
-      "outputPath": "D:\\code Tài Nguyễn\\V1.4.1\\backend\\obj\\",
+      "outputPath": "D:\\code Tài Nguyễn\\V1.4.2\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Tai Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2580,7 +2580,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
@@ -2589,11 +2589,7 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-<<<<<<< HEAD
-      "message": "Problem reading the cache file D:\\code Tài Nguyễn\\V1.4.1\\backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-=======
-      "message": "Problem reading the cache file C:\\Users\\Software\\source\\repo\\315HealthCare\\backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
->>>>>>> eace44059e0a2ece68fabd90f719d78f6ffca2fa
+      "message": "Problem reading the cache file D:\\code Tài Nguyễn\\V1.4.2\\backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'logs[0].warningLevel', line 64, position 0."
     }
   ]
 }
