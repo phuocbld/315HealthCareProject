@@ -10,8 +10,8 @@ import {
   FundViewOutlined,
 } from "@ant-design/icons";
 import { FloatButton } from "antd";
-import filePDF from "../../../data/Form/20240403015210902.pdf";
-import PDFXetNghiem from "../../../data/Form/080324-10040769_NGUYEN QUANG THANH_1987.pdf";
+import filePDF from "../../../data/Form/KQK_TRUONG NIEM CHUNG.pdf";
+import PDFXetNghiem from "../../../data/Form/KQXN_TRƯƠNG NIỆM CHUNG.pdf";
 import { useFormik } from "formik";
 import { traCuuSchema } from "../../../schemas/traCuuSchema";
 import logo from "../../../assets/images/logo/logo_ivy.png";
@@ -179,8 +179,7 @@ const TraCuu = () => {
             <div className="flex justify-between items-center">
               <div>
                 <p className="sm:text-[16px] text-[14px]">
-                  <span className="font-semibold ">Tên BN: </span>Nguyễn Quang
-                  Thành
+                  <span className="font-semibold ">Tên BN: </span>Trương Niệm Chung
                 </p>
                 <p className="sm:text-[16px] text-[14px]">
                   <span className="font-semibold">Mã BN: </span> 1234567

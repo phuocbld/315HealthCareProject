@@ -3,7 +3,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { styled, alpha } from '@mui/material/styles';
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
@@ -59,7 +58,8 @@ const StyledMenu = styled((props) => (
 }));
 const Avatars = ( {info}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const {infoUser} = useSelector(state => state.userReducer)
+  // const {infoUser} = useSelector(state => state.userReducer)
+  const infoUser = JSON.parse(localStorage.getItem('USER_INFO'))
   const open = Boolean(anchorEl);
   const navigate = useNavigate()
   const dispatch = useDispatch();

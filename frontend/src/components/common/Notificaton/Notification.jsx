@@ -22,7 +22,7 @@ const Notification = () => {
   };
   return (
     <>
-      <Badge onClick={handleClick} badgeContent={2} className="cursor-pointer hover:scale-110 duration-300" color="error" >
+      <Badge onClick={handleClick} badgeContent={0} className="cursor-pointer hover:scale-110 duration-300" color="error" >
         <MailIcon className="text-[#00ADEF]" />
       </Badge>
       <Menu
@@ -36,7 +36,7 @@ const Notification = () => {
         className='mt-4 w-[400px]'
       >
          <List sx={{ width: 360, height: 400 ,bgcolor: 'background.paper' }}>
-        <MenuItem onClick={handleClose}>
+        {/* <MenuItem onClick={handleClose}>
           <ListItem>
         <ListItemText primary="Thuốc hết hạn" secondary="mã hàng: KM0016 - kẹo mút vị yaout" />
       </ListItem> 
@@ -47,7 +47,7 @@ const Notification = () => {
         <ListItemText primary="Yêu cầu đổi mật khẩu" secondary="mã NV: NV00023 - Nguyễn Quốc Tài" />
       </ListItem> 
         </MenuItem>
-        <Divider variant="inset" component="li" />
+        <Divider variant="inset" component="li" /> */}
         </List>
       </Menu>
     </>

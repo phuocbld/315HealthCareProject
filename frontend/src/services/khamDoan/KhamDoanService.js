@@ -1,7 +1,13 @@
 import { https } from "../apiService"
 
 export const khamDoanService = {
-    getAllBNKhamDoan: () => https.get('CongTyBenhNhan'),
-    postBNKhamDoan: (form) => https.post('CongTyBenhNhan',form),
+    getAllBNKhamDoan: () => https.get('AllBenhNhan'),
+    postBNKhamDoan: (form) => https.post('AddBenhNhan',form),
     getAllCtyKhamDoan: () => https.get('CongTyKhachKhamDoan'),
+    postCtyKhamDoan: (form) => https.post('CongTyKhachKhamDoan',form),
+    getCtyKhamDoanById: (id) => https.get(`CongTyKhachKhamDoan/${id}`),
+    putCtyKhamDoanById: (id,form) => https.put(`CongTyKhachKhamDoan/${id}`,form),
+    deleteBNKhamDoanById: (id) => https.delete(`DeleteBenhNhan/${id}`),
+    getInfoBNKhamDoanById: (id) => https.get(`FindByID/${id}`),
+    postInfoBNKhamDoanById: (id,form) => https.put(`/UpdateBenhNhan/${id}`,form)
 }

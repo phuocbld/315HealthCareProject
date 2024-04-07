@@ -3,11 +3,12 @@
     "",
     "\\backend",
     "\\backend\\Controllers",
+    "\\backend\\Data",
     "\\backend\\Models",
     "\\backend\\Repositories",
     "\\backend\\Services",
     "\\frontend"
   ],
-  "SelectedNode": "\\backend\\Controllers\\AuthController.cs",
+  "SelectedNode": "\\backend\\315HealthCareProject.sln",
   "PreviewInSolutionExplorer": false
 }

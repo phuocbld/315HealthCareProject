@@ -12,15 +12,19 @@ import {
   Mentions,
   Select,
   TreeSelect,
+  Radio,
 } from "antd";
 import { useFormik } from "formik";
 import moment from "moment";
 import { postBNKhamDoan } from "../../../../store/actions/khamDoanAction";
-
+import { addBNKhamDoanSchema } from "../../../../schemas/addBNKhamDoanSchema";
 
 const ModalAdd = () => {
   const dispatch = useDispatch();
   const { modalAddKhamDoan } = useSelector((state) => state.modalReducer);
+  const { listCTy } = useSelector((state) => state.khamDoanReducer);
+  const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
+  const now = moment();
   const formik = useFormik({
     initialValues: {
       tenbn: "",
@@ -29,26 +33,27 @@ const ModalAdd = () => {
       sodienthoai: "",
       ghichu: "",
       idct: "",
-      trangthaikham: 1,
+      ngaytao: moment(now).format(),
+      nguoitao: infoUser.tenNV,
     },
-    onSubmit: (value) => handleAddBN(value)
+    onSubmit: (value) => handleAddBN(value),
+    validationSchema: addBNKhamDoanSchema,
   });
-const handleChangeGioiTinh = (e) => {
-  const value = e.target.value
- formik.setFieldValue('gioitinh',value)
-}
+  const handleChangeGioiTinh = (e) => {
+    const value = e.target.value;
+    formik.setFieldValue("gioitinh", value);
+  };
   const handleAddBN = (value) => {
-    dispatch(postBNKhamDoan(value))
-    formik.handleReset()
-  }
+    dispatch(postBNKhamDoan(value));
+    handleCancel();
+    formik.handleReset();
+  };
   const handleIdCTy = (value) => {
-    formik.setFieldValue('idct',value)
-  }
-  const handleChangeDate = (e) => {
-    const value =e.target.value
-    console.log(value);
-    formik.setFieldValue('ngaysinh',moment(value).format())
-  }
+    formik.setFieldValue("idct", value);
+  };
+  const handleChangeDate = (value) => {
+    formik.setFieldValue("ngaysinh", moment(value).format());
+  };
   const handleOk = () => {
     dispatch({
       type: typeAction.CLOSE_ADD_KHAM_DOAN,
@@ -56,7 +61,7 @@ const handleChangeGioiTinh = (e) => {
   };
 
   const handleCancel = () => {
-    formik.handleReset()
+    formik.handleReset();
     dispatch({
       type: typeAction.CLOSE_ADD_KHAM_DOAN,
     });
@@ -77,6 +82,7 @@ const handleChangeGioiTinh = (e) => {
               class="block text-sm font-medium text-gray-700"
               for="username"
             >
+              <span className="text-red-500">*</span>
               Tên bệnh nhân
             </label>
             <div class="mt-1">
@@ -90,24 +96,29 @@ const handleChangeGioiTinh = (e) => {
                 name="tenbn"
                 id="username"
               />
+              {formik.errors.tenbn && (
+              <span className="text-red-500">* Vui lòng nhập tên bệnh nhân</span>
+            )}
             </div>
           </div>
 
           <div class="mt-2">
             <label class="block text-sm font-medium text-gray-700" for="email">
+              <span className="text-red-500">*</span>
               Số điện thoại
             </label>
             <div class="mt-1">
               <Input
-              value={formik.values.sodienthoai}
-              onChange={formik.handleChange}
+                value={formik.values.sodienthoai}
+                onChange={formik.handleChange}
                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 required=""
-                autocomplete="email"
-                type="number"
+                type="text"
                 name="sodienthoai"
-                id="email"
               />
+              {formik.errors.sodienthoai && (
+              <span className="text-red-500">* Vui lòng nhập số điện thoại</span>
+            )}
             </div>
           </div>
 
@@ -116,19 +127,27 @@ const handleChangeGioiTinh = (e) => {
               class="block text-sm font-medium text-gray-700"
               for="password"
             >
+              <span className="text-red-500">*</span>
               Chọn công ty
             </label>
             <div class="mt-1">
               <Select
-              onChange={handleIdCTy}
+                onChange={handleIdCTy}
+                value={formik.values.idct}
                 className=" w-full "
                 required=""
                 autocomplete="current-password"
                 type="password"
-                name="password"
+                name="idct"
                 id="password"
-                options={[{label:'Công ty khám đoàn',value:1}]}
+                options={listCTy?.map(({ tenct, idct }) => ({
+                  label: tenct,
+                  value: idct,
+                }))}
               />
+              {formik.errors.idct && (
+              <span className="text-red-500">* Vui lòng chọn công ty</span>
+            )}
             </div>
           </div>
 
@@ -141,57 +160,60 @@ const handleChangeGioiTinh = (e) => {
             </label>
             <div class="mt-1">
               <Input
-               value={formik.values.ghichu}
-               onChange={formik.handleChange}
+                value={formik.values.ghichu}
+                onChange={formik.handleChange}
                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 autocomplete="current-password"
                 type="text"
                 name="ghichu"
                 id="confirm-password"
               />
+              
             </div>
           </div>
 
           <div class="mt-2">
             <label class="block text-sm font-medium text-gray-700" for="dob">
+              <span className="text-red-500">*</span>
               Ngày sinh
             </label>
             <div class="mt-1">
-              <input
-              onChange={handleChangeDate}
-                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              <DatePicker
+                name="ngaySinh"
+                format={"DD/MM/YYYY"}
+                onChange={handleChangeDate}
+                className="appearance-none block w-full  border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 required=""
                 type="date"
-                name="dob"
                 id="dob"
               />
             </div>
+            {formik.errors.ngaysinh && (
+              <span className="text-red-500">* Vui lòng chọn ngày sinh</span>
+            )}
           </div>
 
           <div class="flex items-center justify-center mt-6">
-            <span class="mr-3 text-gray-700 font-medium">Giới tinh:</span>
-            <label class="inline-flex items-center">
-              <input
-                onChange={handleChangeGioiTinh}
-                type="radio"
-                class="form-radio h-5 w-5 text-pink-600"
-                name="gender"
-                value="Nam"
-              />
-              <span class="ml-2 text-gray-700">Nam</span>
-            </label>
-            <label class="inline-flex items-center ml-6">
-              <input
+            <span class="mr-3 text-gray-700 font-medium">
+              <span className="text-red-500">*</span>Giới tinh:
+            </span>
+            <Radio.Group
+              name="gioitinh"
               onChange={handleChangeGioiTinh}
-                type="radio"
-                class="form-radio h-5 w-5 text-purple-600"
-                name="gender"
-                value="Nữ"
-              />
-              <span class="ml-2 text-gray-700">Nữ</span>
-            </label>
+              value={formik.values.gioitinh}
+              options={[
+                {
+                  label: "Nam",
+                  value: "Nam",
+                },
+                {
+                  label: "Nữ",
+                  value: "Nữ",
+                },
+              ]}
+            />
           </div>
-
+          {formik.errors.gioitinh && <span className="text-red-500">* Vui lòng chọn giới tính</span>}
           <div class="mt-6">
             <button
               onClick={formik.handleSubmit}

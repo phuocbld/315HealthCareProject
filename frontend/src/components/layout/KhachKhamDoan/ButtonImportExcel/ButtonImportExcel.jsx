@@ -25,11 +25,11 @@ const ButtonImportExcel = () => {
   };
   return (
     <>
-      <Button className=" p-0 bg-blue-500 text-white">
+      <Button className="my-2 p-0 bg-blue-500 text-white">
         <label className="cursor-pointer px-4 py-1" for="file-upload">
-          import
+          Chọn file danh sách
         </label>
-        <input id="file-upload" type="file" value={''} onChange={handleFileChange} />
+        <input id="file-upload" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" value={''} onChange={handleFileChange} />
       </Button>
     </>
   );
