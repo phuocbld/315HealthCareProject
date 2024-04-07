@@ -72,6 +72,27 @@ namespace _315HealthCareProject.Repositories
             }
         }
 
+        public async Task<string> GetSoDienThoaiByIdAsync(int id)
+        {
+            var soDienThoai = await _context.CongTyBenhNhans
+                .Where(b => b.IDBN == id)
+                .Select(b => b.SODIENTHOAI)
+                .FirstOrDefaultAsync();
+
+            return soDienThoai;
+        }
+
+
+        public async Task<IEnumerable<CongTyBenhNhan>> GetPatientsToSendSmsAsync(int idCT)
+        {
+            return await _context.CongTyBenhNhans.Where(p => p.IDCT == idCT).ToListAsync();
+        }
+
+        public async Task UpdatePatientAsync(CongTyBenhNhan patient)
+        {
+            _context.Entry(patient).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
 
     }
 }

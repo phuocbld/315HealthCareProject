@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Oracle.ManagedDataAccess.Types;
 
 namespace _315HealthCareProject.Models
 {
@@ -39,10 +40,10 @@ namespace _315HealthCareProject.Models
 
 
         [Column("KQXN")]
-        public string? KQXN { get; set; }
+        public byte[]? KQXN { get; set; }
 
         [Column("KQKHAM")]
-        public string? KQKHAM { get; set; }
+        public byte[]? KQKHAM { get; set; }
 
         [Column("TRANGTHAISMS")]
         public int? TRANGTHAISMS { get; set; }

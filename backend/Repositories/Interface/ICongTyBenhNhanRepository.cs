@@ -11,6 +11,9 @@ namespace _315HealthCareProject.Repositories.Interface
         Task<CongTyBenhNhan> GetBenhNhanByIdAsync(int id);
         Task<IEnumerable<CongTyBenhNhan>> GetBenhNhanByTenAsync(string ten);
         Task DeleteBenhNhanAsync(int id);
+        Task<string> GetSoDienThoaiByIdAsync(int id);
+        Task UpdatePatientAsync(CongTyBenhNhan patient);
+        Task<IEnumerable<CongTyBenhNhan>> GetPatientsToSendSmsAsync(int idCT);
     }
 
 

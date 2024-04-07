@@ -95,6 +95,25 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
+        [HttpGet("FindSoDienThoaiById/{id}")]
+        public async Task<ActionResult<string>> GetSoDienThoaiById(int id)
+        {
+            try
+            {
+                var soDienThoai = await _service.GetSoDienThoaiByIdAsync(id);
+                if (string.IsNullOrEmpty(soDienThoai))
+                {
+                    return NotFound("Không tìm thấy số điện thoại với ID " + id);
+                }
+                return Ok(soDienThoai);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while getting Số điện thoại: " + ex.Message);
+            }
+        }
+
+
 
     }
 }

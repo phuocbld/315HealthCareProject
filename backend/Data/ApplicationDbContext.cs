@@ -6,12 +6,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using System.Xml;
-
+using Oracle.ManagedDataAccess.Types;
 
 public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-
     public DbSet<CaLamViec> CaLamViecs { get; set; }
     public DbSet<ChiNhanh> ChiNhanhs { get; set; }
     public DbSet<TinhTP> TinhTps { get; set; }
@@ -79,6 +78,7 @@ public class ApplicationDbContext : DbContext
     public IEnumerable<object> congTyTrangThais { get; internal set; }
     public IEnumerable<object> congTyTrangThaiSMS { get; internal set; }
 
+    
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -104,7 +104,6 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.TenChiNhanh).HasColumnName("TENCHINHANH");
            
         });
-
 
         modelBuilder.Entity<NguoiDungNhomMenu>().HasNoKey();
         modelBuilder.Entity<ThongTinDangNhap>().HasNoKey();

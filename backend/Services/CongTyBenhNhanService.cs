@@ -153,5 +153,11 @@ namespace _315HealthCareProject.Services
             }
         }
 
+        public async Task<string> GetSoDienThoaiByIdAsync(int id)
+        {
+            return await _benhNhanCT.GetSoDienThoaiByIdAsync(id);
+        }
+
+
     }
 }
