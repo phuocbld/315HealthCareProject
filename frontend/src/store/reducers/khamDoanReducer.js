@@ -6,6 +6,8 @@ const initialState = {
   listCTy: null,
   infoCtyKhamDoan: null,
   infoBNKhamDoan: null,
+  listSMS: [],
+  isLoadingBN: false,
 };
 
 const khamDoanReducer = (state = initialState, { type, payload }) => {
@@ -28,6 +30,15 @@ const khamDoanReducer = (state = initialState, { type, payload }) => {
         break;
       case typeAction.DISPATCH_INFO_BN_KHAM_DOAN:
         draft.infoBNKhamDoan = payload;
+        break;
+      case typeAction.ADD_LIST_INFO_SMS:
+        draft.listSMS = payload;
+        break;
+      case typeAction.OPEN_IS_LOADING_TABLE_BN_KHAM_DOAN:
+        draft.isLoadingBN = true;
+        break;
+      case typeAction.CLOSE_IS_LOADING_TABLE_BN_KHAM_DOAN:
+        draft.isLoadingBN = false;
         break;
       default:
         return state;

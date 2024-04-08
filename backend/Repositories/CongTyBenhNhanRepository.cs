@@ -24,29 +24,46 @@ namespace _315HealthCareProject.Repositories
             return await _context.CongTyBenhNhans.ToListAsync();
         }
 
+
         public async Task AddBenhNhanCongTyAsync(CongTyBenhNhan congTyBenhNhan)
         {
+            // Tạo mã BN
+            string maCT = congTyBenhNhan.MACT;
+            string maBN = await GenerateMaBNAsync(maCT);
+            congTyBenhNhan.MABN = maBN;
+
+            // Thêm bệnh nhân vào context và lưu thay đổi
             _context.CongTyBenhNhans.Add(congTyBenhNhan);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<string> GenerateMaBNAsync(int idCT)
+
+        public async Task<string> GenerateMaBNAsync(string maCT)
         {
+            // Kiểm tra xem mã CT có đúng định dạng không (6 ký tự)
+            if (maCT.Length != 6)
+            {
+                throw new Exception("Mã CT không hợp lệ.");
+            }
+
             string currentDate = DateTime.Now.ToString("yy");
-            string maCT = await _congTyKhachKhamDoanRepository.GetMaCTByIdCT(idCT);
 
             // Lấy ra số lượng bệnh nhân hiện tại của công ty
             int currentSequenceNumber = await _context.CongTyBenhNhans
-                .Where(k => k.IDCT == idCT)
+                .Where(k => k.MABN.StartsWith(maCT + currentDate))
                 .CountAsync();
 
-            currentSequenceNumber++; // Tăng số lượng lên 1 để làm mã mới
+            currentSequenceNumber++; 
 
+   
             string uniqueNumber = currentSequenceNumber.ToString("D6");
             string newMaBN = $"{maCT}{currentDate}{uniqueNumber}";
 
             return newMaBN;
         }
+
+
+
 
         public async Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan)
         {
@@ -63,6 +80,11 @@ namespace _315HealthCareProject.Repositories
         public async Task<IEnumerable<CongTyBenhNhan>> GetBenhNhanByTenAsync(string ten)
         {
             return await _context.CongTyBenhNhans.Where(b => b.TENBN.Contains(ten)).ToListAsync();
+        }
+
+        public async Task<IEnumerable<CongTyBenhNhan>> GetBenhNhanByMaBNAsync(string maBN)
+        {
+            return await _context.CongTyBenhNhans.Where(b => b.MABN.Contains(maBN)).ToListAsync();
         }
         public async Task DeleteBenhNhanAsync(int id)
         {
@@ -85,7 +107,7 @@ namespace _315HealthCareProject.Repositories
         }
 
 
-        public async Task<IEnumerable<CongTyBenhNhan>> GetPatientsToSendSmsAsync(int idCT)
+        public async Task<IEnumerable<CongTyBenhNhan>> GetBenhNhanByIdCTAsync(int idCT)
         {
             return await _context.CongTyBenhNhans.Where(p => p.IDCT == idCT).ToListAsync();
         }
@@ -96,5 +118,24 @@ namespace _315HealthCareProject.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<CongTyBenhNhan>> SearchBenhNhanAsync(string? keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                return await GetAllAsync(); 
+            }
+            else
+            {
+                keyword = keyword.ToLower(); 
+                return await _context.CongTyBenhNhans.Where(b =>
+                    b.TENBN.ToLower().Contains(keyword) || b.MABN.ToLower().Contains(keyword)
+                ).ToListAsync();
+            }
+        }
+
+        public async Task<IEnumerable<CongTyBenhNhan>> GetBenhNhanBySoDienThoaiAsync(string soDienThoai)
+        {
+            return await _context.CongTyBenhNhans.Where(b => b.SODIENTHOAI.Contains(soDienThoai)).ToListAsync();
+        }
     }
 }

@@ -41,3 +41,11 @@ export const UpdateBNKhamDoanAction = (id,form) => ({
   id,
   form
 });
+export const sendSMSKhamDoanAction = (payload) => ({
+  type: typeAction.SEND_SMS_BN_KHAM_DOAN,
+  payload
+});
+export const deleteCtykhamDoan = (id) => ({
+  type: typeAction.DELETE_CTY_KHAM_DOAN,
+  id
+});

@@ -33,7 +33,7 @@ const ModalEditBenhNham = () => {
   // xử lí file khám bệnh
   const handleChangeFileKham = (e) => {
     let File = e.target.files[0];
-    
+
     console.log(File);
     if (File) {
       if (File && fileType.includes(File.type)) {
@@ -154,6 +154,7 @@ const ModalEditBenhNham = () => {
                               Tên BN:
                             </label>
                             <Input
+                              status={formik.errors.tenbn ? "error" : ""}
                               name="tenbn"
                               onChange={formik.handleChange}
                               value={formik.values.tenbn}
@@ -179,6 +180,7 @@ const ModalEditBenhNham = () => {
                               Số điện thoại:
                             </label>
                             <Input
+                              status={formik.errors.sodienthoai ? "error" : ""}
                               onChange={formik.handleChange}
                               name="sodienthoai"
                               value={formik.values.sodienthoai}

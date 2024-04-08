@@ -4,12 +4,13 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import * as typeAction from "../../../../store/constants/constants";
 import { useFormik } from "formik";
-import { chuyenKhoSchema } from "../../../../schemas/addCtyKhamDoanSchema";
+import { addCtyKhamDoanSchema } from "../../../../schemas/addCtyKhamDoanSchema";
 import { addCtyKhamDoan } from "../../../../store/actions/khamDoanAction";
+import moment from "moment";
 const ModalAddCty = () => {
   const { modalAddCtyKhamDoan } = useSelector((state) => state.modalReducer);
   const dispatch = useDispatch();
-
+  const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
   const handleOk = () => {
     dispatch({
       type: typeAction.CLOSE_ADD_CTY_KHAM_DOAN,
@@ -28,12 +29,12 @@ const ModalAddCty = () => {
   };
 
   const handleAddCty = (value) => {
-    console.log(value);
-    dispatch(addCtyKhamDoan(value))
+    dispatch(addCtyKhamDoan(value));
     handleCancel();
   };
   const formik = useFormik({
     initialValues: {
+      mact: "",
       tenct: "",
       diachi: "",
       dienthoai: "",
@@ -41,8 +42,10 @@ const ModalAddCty = () => {
       email: "",
       website: "",
       ghichu: "",
+      ngaytao: "",
+      nguoitao: infoUser.tenNV,
     },
-    validationSchema: chuyenKhoSchema,
+    validationSchema: addCtyKhamDoanSchema,
     onSubmit: (value) => handleAddCty(value),
   });
   return (
@@ -68,6 +71,17 @@ const ModalAddCty = () => {
               onChange={formik.handleChange}
               name="tenct"
               status={formik.errors.tenct ? "error" : ""}
+            />
+          </div>
+          <div>
+            <label className="font-semibold">
+              <span className="text-red-500">*</span> Mã công ty
+            </label>
+            <Input
+              value={formik.values.mact}
+              onChange={formik.handleChange}
+              name="mact"
+              status={formik.errors.mact ? "error" : ""}
             />
           </div>
           <div>
@@ -115,13 +129,12 @@ const ModalAddCty = () => {
             />
           </div>
           <div>
-            <label className="font-semibold">website
-            </label>
+            <label className="font-semibold">website</label>
             <Input
               value={formik.values.website}
               onChange={formik.handleChange}
               name="website"
-            //   status={formik.errors.website ? "error" : ""}
+              //   status={formik.errors.website ? "error" : ""}
             />
           </div>
           <div>
@@ -130,14 +143,24 @@ const ModalAddCty = () => {
               value={formik.values.ghichu}
               onChange={formik.handleChange}
               name="ghichu"
-            //   status={formik.errors.website ? "error" : ""}
+              //   status={formik.errors.website ? "error" : ""}
             />
           </div>
           <div className="flex flex-col gap-2 mt-2">
-            <Button type="submit" variant="contained" color="success" size="small">
+            <Button
+              type="submit"
+              variant="contained"
+              color="success"
+              size="small"
+            >
               Lưu
             </Button>
-            <Button type="button" onClick={handleCancel} variant="outlined" size="small">
+            <Button
+              type="button"
+              onClick={handleCancel}
+              variant="outlined"
+              size="small"
+            >
               Huỷ bỏ
             </Button>
           </div>

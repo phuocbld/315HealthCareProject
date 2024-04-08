@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.IO.Compression;
+using _315HealthCareProject.DTO;
 
 namespace _315HealthCareProject.Controllers
 {
@@ -58,6 +61,40 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
+
+        //[HttpPut("UpdateBenhNhan/{id}")]
+        //public async Task<IActionResult> UpdateBenhNhan(int id, [FromBody] CongTyBenhNhan benhNhan, [FromForm] IFormFile pdfFile)
+        //{
+        //    if (id != benhNhan.IDBN)
+        //    {
+        //        return BadRequest("Invalid ID");
+        //    }
+
+        //    try
+        //    {
+        //        byte[] fileBytes = null;
+
+        //        // Kiểm tra xem có file PDF được gửi lên không
+        //        if (pdfFile != null && pdfFile.Length > 0)
+        //        {
+        //            using (var memoryStream = new MemoryStream())
+        //            {
+        //                // Đọc dữ liệu file PDF vào một mảng byte
+        //                await pdfFile.CopyToAsync(memoryStream);
+        //                fileBytes = memoryStream.ToArray();
+        //            }
+        //        }
+
+        //        // Gọi phương thức UpdateBenhNhanAsync từ service và truyền cả thông tin bệnh nhân lẫn dữ liệu file PDF
+        //        await _service.UpdateBenhNhanAsync(benhNhan, fileBytes);
+
+        //        return Ok(benhNhan);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, "An error occurred while updating bệnh nhân: " + ex.Message);
+        //    }
+        //}
 
 
 
@@ -117,8 +154,28 @@ namespace _315HealthCareProject.Controllers
         }
 
 
-     
 
+        [HttpGet("Search")]
+        public async Task<ActionResult<IEnumerable<CongTyBenhNhan>>> GetBenhNhanAsync(string? keyword)
+        {
+            try
+            {
+                if (keyword == null) 
+                {
+                    var allBenhNhan = await _service.GetAllAsync();
+                    return Ok(allBenhNhan);
+                }
+                else
+                {
+                    var benhNhanList = await _service.SearchBenhNhanAsync(keyword);
+                    return Ok(benhNhanList);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
 
     }
 } 

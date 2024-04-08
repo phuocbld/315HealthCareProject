@@ -2,12 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\backend",
-    "\\backend\\Controllers",
-    "\\backend\\Data",
     "\\backend\\Models",
     "\\backend\\Repositories",
-    "\\backend\\Services"
+    "\\backend\\Services",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\components",
+    "\\frontend\\src\\components\\common",
+    "\\frontend\\src\\components\\common\\test"
   ],
-  "SelectedNode": "\\backend\\Controllers\\SmsController.cs",
+  "SelectedNode": "\\frontend\\src\\components\\common\\test\\Test.jsx",
   "PreviewInSolutionExplorer": false
 }

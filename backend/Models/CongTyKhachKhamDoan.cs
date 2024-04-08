@@ -14,7 +14,8 @@ namespace _315HealthCareProject.Models
         public int? IDCT { get; set; }
 
         [Column("MACT")]
-        public string MACT { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string? MACT { get; set; }
 
         [Column("TENCT")]
         public string TENCT { get; set; }

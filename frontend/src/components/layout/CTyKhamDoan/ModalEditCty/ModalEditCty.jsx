@@ -1,26 +1,35 @@
 import React, { useState } from "react";
-import { Modal, Input, } from "antd";
+import { Modal, Input } from "antd";
 import { EditOutlined } from "@ant-design/icons";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import * as typeAction from '../../../../store/constants/constants'
-import { chuyenKhoSchema } from "../../../../schemas/addCtyKhamDoanSchema";
+import * as typeAction from "../../../../store/constants/constants";
+import { addCtyKhamDoanSchema } from "../../../../schemas/addCtyKhamDoanSchema";
 import { Button } from "@mui/material";
-import { editCtyKhamDoanById, getCtyKhamDoanById } from "../../../../store/actions/khamDoanAction";
+import {
+  editCtyKhamDoanById,
+  getCtyKhamDoanById,
+} from "../../../../store/actions/khamDoanAction";
+import { editCtyKhamDoanSchema } from "../../../../schemas/editCtyKhamDoanSchema";
 const ModalEditCty = ({ idct }) => {
-const {modalEditCtyKhamDoan} = useSelector(state=>state.modalReducer)
-const {infoCtyKhamDoan} = useSelector(state=> state.khamDoanReducer)
+  const { modalEditCtyKhamDoan } = useSelector((state) => state.modalReducer);
+  const { infoCtyKhamDoan } = useSelector((state) => state.khamDoanReducer);
+  const infoUser = JSON.parse(localStorage.getItem('USER_INFO'))
   const dispatch = useDispatch();
   const handleCancel = () => {
     dispatch({
-        type:typeAction.CLOSE_MODAL_EDIT_CTY_KHAM_DOAN
-    })}
+      type: typeAction.CLOSE_MODAL_EDIT_CTY_KHAM_DOAN,
+    });
+  };
   const handleEditCtyKhamDoan = (value) => {
-    dispatch(editCtyKhamDoanById(infoCtyKhamDoan?.idct,value))
+    dispatch(editCtyKhamDoanById(infoCtyKhamDoan?.idct, value));
+    handleCancel();
   };
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
+      idct: infoCtyKhamDoan?.idct,
+      mact: infoCtyKhamDoan?.mact,
       tenct: infoCtyKhamDoan?.tenct,
       diachi: infoCtyKhamDoan?.diachi,
       dienthoai: infoCtyKhamDoan?.dienthoai,
@@ -28,13 +37,14 @@ const {infoCtyKhamDoan} = useSelector(state=> state.khamDoanReducer)
       email: infoCtyKhamDoan?.email,
       website: infoCtyKhamDoan?.website,
       ghichu: infoCtyKhamDoan?.ghichu,
+      ngaysua: "",
+      nguoisua: infoUser.tenNV,
     },
-    validationSchema: chuyenKhoSchema,
+    validationSchema: editCtyKhamDoanSchema,
     onSubmit: (value) => handleEditCtyKhamDoan(value),
   });
   return (
     <>
-
       <Modal
         footer={null}
         className="text-center"
@@ -45,7 +55,8 @@ const {infoCtyKhamDoan} = useSelector(state=> state.khamDoanReducer)
         <form className="text-start" onSubmit={formik.handleSubmit}>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Tên công ty {infoCtyKhamDoan ? `- Mã CT: ${infoCtyKhamDoan.mact}` :''}
+              <span className="text-red-500">*</span> Tên công ty{" "}
+              {infoCtyKhamDoan ? `- Mã CT: ${infoCtyKhamDoan.mact}` : ""}
             </label>
             <Input
               value={formik.values.tenct}
