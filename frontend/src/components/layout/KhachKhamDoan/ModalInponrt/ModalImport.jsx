@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Modal, Table, ConfigProvider } from "antd";
+import { Modal, Table, ConfigProvider, notification } from "antd";
 import Button from "@mui/material/Button";
-import {ExclamationCircleFilled} from '@ant-design/icons'
+import { ExclamationCircleFilled } from "@ant-design/icons";
 import * as typeAction from "../../../../store/constants/constants";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonImportExcel from "../ButtonImportExcel/ButtonImportExcel";
@@ -12,7 +12,7 @@ const columns = [
     dataIndex: "STT",
     key: "STT",
     width: 40,
-    align:'center'
+    align: "center",
   },
   {
     title: "Tên BN",
@@ -46,10 +46,10 @@ const columns = [
     width: 200,
   },
   {
-    title: "IDCT",
-    dataIndex: "IDCT",
-    key: "IDCT",
-    width: 60,
+    title: "MACT",
+    dataIndex: "MACT",
+    key: "MACT",
+    width: 100,
     align: "center",
   },
 ];
@@ -63,19 +63,27 @@ const ModalImport = () => {
       type: typeAction.CLOSE_MODAL_IMPORT_KHAM_DOAN,
     });
   };
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type, desc) => {
+    api[type]({
+      message: "Lỗi thêm file",
+      description: desc,
+      placement: "top",
+    });
+  };
   const showConfirm = () => {
     confirm({
-      title: 'Bạn có chắc muốn thêm danh sách  ?',
+      title: "Bạn có chắc muốn thêm danh sách  ?",
       icon: <ExclamationCircleFilled />,
-      content: 'Danh sách sẽ được tạo nếu tiếp tục',
-      okText: 'Tạo',
-      cancelText: 'Huỷ',
+      content: "Danh sách sẽ được tạo nếu tiếp tục",
+      okText: "Tạo",
+      cancelText: "Huỷ",
       onOk() {
         dispatch(importListBNKhamDoan(listBNImport));
-        handleCancel()
+        handleCancel();
       },
       onCancel() {
-        console.log('Cancel');
+        console.log("Cancel");
       },
     });
   };
@@ -89,8 +97,11 @@ const ModalImport = () => {
         open={modalImportKhamDoan}
         onCancel={handleCancel}
       >
+        {contextHolder}
         <div className="text-start">
-          <ButtonImportExcel />
+            <ButtonImportExcel
+              openNotificationWithIcon={openNotificationWithIcon}
+            />
           <ConfigProvider
             theme={{
               token: {
@@ -102,10 +113,25 @@ const ModalImport = () => {
           </ConfigProvider>
         </div>
         <div className="flex gap-5 justify-end mt-2">
-          <Button disabled={listBNImport? false : true} onClick={showConfirm} variant="contained" size="small">
+          <Button
+            disabled={listBNImport ? false : true}
+            onClick={showConfirm}
+            variant="contained"
+            size="small"
+          >
             Tạo danh sách
           </Button>
-          <Button onClick={handleCancel} variant="outlined" color="warning" size="small">
+          <Button
+            onClick={() => {
+              handleCancel();
+              dispatch({
+                type: typeAction.RESET_DATA_BN_IMPORT,
+              });
+            }}
+            variant="outlined"
+            color="warning"
+            size="small"
+          >
             {" "}
             Huỷ
           </Button>

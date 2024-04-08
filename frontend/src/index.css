@@ -32,6 +32,6 @@ code {
   background: #dceaf3;
   border-radius: 12px;
 }
-:where(.css-djtmh8).ant-btn-primary{
+:where(.css-djtmh8).ant-btn-primary, :where(.css-kird3v).ant-btn-primary{
   background-color:#1677ff ;
 }
