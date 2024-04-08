@@ -11,5 +11,6 @@ export const khamDoanService = {
     getInfoBNKhamDoanById: (id) => https.get(`FindByID/${id}`),
     postInfoBNKhamDoanById: (id,form) => https.put(`/UpdateBenhNhan/${id}`,form),
     sendSMS:(sdt,message) => https.post(`Sms/Send?phoneNumber=${sdt}&message=${message}`),
-    deleteCTyKhamDoan: (id) => https.delete(`CongTyKhachKhamDoan/${id}`)
+    deleteCTyKhamDoan: (id) => https.delete(`CongTyKhachKhamDoan/${id}`),
+    searchBN: (keyword)=> https.get(`Search?keyword=${keyword}`)
 }

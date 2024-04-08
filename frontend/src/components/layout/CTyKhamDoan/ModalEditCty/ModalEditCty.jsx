@@ -14,7 +14,7 @@ import { editCtyKhamDoanSchema } from "../../../../schemas/editCtyKhamDoanSchema
 const ModalEditCty = ({ idct }) => {
   const { modalEditCtyKhamDoan } = useSelector((state) => state.modalReducer);
   const { infoCtyKhamDoan } = useSelector((state) => state.khamDoanReducer);
-  const infoUser = JSON.parse(localStorage.getItem('USER_INFO'))
+  const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
   const dispatch = useDispatch();
   const handleCancel = () => {
     dispatch({
@@ -35,6 +35,8 @@ const ModalEditCty = ({ idct }) => {
       dienthoai: infoCtyKhamDoan?.dienthoai,
       fax: infoCtyKhamDoan?.fax,
       email: infoCtyKhamDoan?.email,
+      ngaytao: infoCtyKhamDoan?.ngaytao,
+      nguoitao: infoCtyKhamDoan?.nguoitao,
       website: infoCtyKhamDoan?.website,
       ghichu: infoCtyKhamDoan?.ghichu,
       ngaysua: "",
@@ -55,7 +57,7 @@ const ModalEditCty = ({ idct }) => {
         <form className="text-start" onSubmit={formik.handleSubmit}>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Tên công ty{" "}
+              <span className="text-red-500">(*)</span> Tên công ty{" "}
               {infoCtyKhamDoan ? `- Mã CT: ${infoCtyKhamDoan.mact}` : ""}
             </label>
             <Input
@@ -67,7 +69,7 @@ const ModalEditCty = ({ idct }) => {
           </div>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Địa chỉ
+              <span className="text-red-500">(*)</span> Địa chỉ
             </label>
             <Input
               value={formik.values.diachi}
@@ -78,7 +80,7 @@ const ModalEditCty = ({ idct }) => {
           </div>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Điện thoại
+              <span className="text-red-500">(*)</span> Điện thoại
             </label>
             <Input
               value={formik.values.dienthoai}
@@ -89,7 +91,7 @@ const ModalEditCty = ({ idct }) => {
           </div>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Fax
+              <span className="text-red-500">(*)</span> Fax
             </label>
             <Input
               value={formik.values.fax}
@@ -100,7 +102,7 @@ const ModalEditCty = ({ idct }) => {
           </div>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Email
+              <span className="text-red-500">(*)</span> Email
             </label>
             <Input
               value={formik.values.email}

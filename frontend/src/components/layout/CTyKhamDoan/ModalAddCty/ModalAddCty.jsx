@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import { addCtyKhamDoanSchema } from "../../../../schemas/addCtyKhamDoanSchema";
 import { addCtyKhamDoan } from "../../../../store/actions/khamDoanAction";
 import moment from "moment";
-const ModalAddCty = () => {
+const ModalAddCty = ({ref}) => {
   const { modalAddCtyKhamDoan } = useSelector((state) => state.modalReducer);
   const dispatch = useDispatch();
   const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
@@ -34,7 +34,6 @@ const ModalAddCty = () => {
   };
   const formik = useFormik({
     initialValues: {
-      mact: "",
       tenct: "",
       diachi: "",
       dienthoai: "",
@@ -50,7 +49,7 @@ const ModalAddCty = () => {
   });
   return (
     <>
-      <Button onClick={handleShow} size="small" variant="contained">
+      <Button ref={ref} onClick={handleShow} size="small" variant="contained">
         Thêm Công ty
       </Button>
       <Modal
@@ -64,7 +63,7 @@ const ModalAddCty = () => {
         <form className="text-start" onSubmit={formik.handleSubmit}>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Tên công ty
+              <span className="text-red-500">(*)</span> Tên công ty
             </label>
             <Input
               value={formik.values.tenct}
@@ -75,18 +74,7 @@ const ModalAddCty = () => {
           </div>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Mã công ty
-            </label>
-            <Input
-              value={formik.values.mact}
-              onChange={formik.handleChange}
-              name="mact"
-              status={formik.errors.mact ? "error" : ""}
-            />
-          </div>
-          <div>
-            <label className="font-semibold">
-              <span className="text-red-500">*</span> Địa chỉ
+              <span className="text-red-500">(*)</span> Địa chỉ
             </label>
             <Input
               value={formik.values.diachi}
@@ -97,7 +85,7 @@ const ModalAddCty = () => {
           </div>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Điện thoại
+              <span className="text-red-500">(*)</span> Điện thoại
             </label>
             <Input
               value={formik.values.dienthoai}
@@ -108,7 +96,7 @@ const ModalAddCty = () => {
           </div>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Fax
+              <span className="text-red-500">(*)</span> Fax
             </label>
             <Input
               value={formik.values.fax}
@@ -119,7 +107,7 @@ const ModalAddCty = () => {
           </div>
           <div>
             <label className="font-semibold">
-              <span className="text-red-500">*</span> Email
+              <span className="text-red-500">(*)</span> Email
             </label>
             <Input
               value={formik.values.email}

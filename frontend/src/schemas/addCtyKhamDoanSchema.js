@@ -6,6 +6,6 @@ export const addCtyKhamDoanSchema = Yup.object().shape({
     dienthoai: Yup.string().required(),
     fax: Yup.string().required(),
     email: Yup.string().required(),
-    mact: Yup.string().required(),
+    // mact: Yup.string().required(),
     // website: Yup.string().required(),
 });

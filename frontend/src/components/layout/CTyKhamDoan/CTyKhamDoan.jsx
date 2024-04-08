@@ -7,6 +7,8 @@ import {
   Input,
   Popconfirm,
   ConfigProvider,
+  Tour,
+  FloatButton,
 } from "antd";
 import { Button } from "@mui/material";
 import Highlighter from "react-highlight-words";
@@ -17,6 +19,7 @@ import {
   ReloadOutlined,
   SearchOutlined,
   QuestionCircleOutlined,
+  ReadOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -30,9 +33,38 @@ import moment from "moment";
 
 const CTyKhamDoan = () => {
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
   const { listCTy, infoCtyKhamDoan } = useSelector(
     (state) => state.khamDoanReducer
   );
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const ref4 = useRef(null);
+  const steps = [
+    {
+      title: "Thêm công ty",
+      description: "Hiện form nhập thông tin công ty muốn tạo và lưu",
+      target: () => ref1.current,
+    },
+    {
+      title: "Xoá công ty",
+      description: "Chọn công ty muốn xoá và ok, lưu ý không thể xoá công ty đã có danh sách bệnh nhân",
+      target: () => ref2.current,
+    },
+    {
+      title: "Chỉnh sửa công ty",
+      description:
+        "Chọn công ty muốn chỉnh sửa điền form và cập nhập lại",
+      target: () => ref3.current,
+    },
+    {
+      title: "Mã công ty",
+      description:
+        "Sử dụng mã công ty này để thêm và file Excel import danh sách bệnh",
+      target: () => ref4.current,
+    },
+  ];
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
@@ -136,19 +168,12 @@ const CTyKhamDoan = () => {
   };
   //deleteCongty
   const deleteKhamDoan = (idcty) => {
-    dispatch(deleteCtykhamDoan(idcty))
+    dispatch(deleteCtykhamDoan(idcty));
   };
   useEffect(() => {
     dispatch(getListCtyKhamDoan());
   }, []);
   const columns = [
-    {
-      title: "ID Công ty",
-      dataIndex: "idct",
-      key: "idct",
-      width: 80,
-      align: "center",
-    },
     {
       title: "Mã Cty",
       dataIndex: "mact",
@@ -157,7 +182,7 @@ const CTyKhamDoan = () => {
       align: "center",
     },
     {
-      title: "Tên Cty",
+      title: "Tên công ty",
       dataIndex: "tenct",
       key: "tenct",
       width: 250,
@@ -167,7 +192,7 @@ const CTyKhamDoan = () => {
       title: "Địa chỉ",
       dataIndex: "diachi",
       key: "diachi",
-      width: 220,
+      width: 250,
       ...getColumnSearchProps("diachi"),
     },
     {
@@ -186,19 +211,19 @@ const CTyKhamDoan = () => {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      width: 120,
+      width: 250,
     },
     {
       title: "Website",
       dataIndex: "website",
       key: "website",
-      width: 120,
+      width: 200,
     },
     {
       title: "Ghi chú",
       dataIndex: "ghichu",
       key: "ghichu",
-      width: 120,
+      width: 200,
     },
     {
       title: "Người Tạo",
@@ -237,7 +262,9 @@ const CTyKhamDoan = () => {
     <LayoutApp>
       <div className="p-5">
         <div className="mb-5">
-          <ModalAddCty />
+          <div className="inline-block" ref={ref1}>
+            <ModalAddCty />
+          </div>
         </div>
         <div>
           <ConfigProvider
@@ -271,7 +298,7 @@ const CTyKhamDoan = () => {
                 }) => ({
                   key: idct,
                   idct,
-                  mact,
+                  mact: <div ref={ref4}>{mact}</div>,
                   tenct,
                   diachi,
                   dienthoai,
@@ -287,7 +314,7 @@ const CTyKhamDoan = () => {
                   nguoitao,
                   action: (
                     <ul className="flex gap-2 justify-around gap-2 ">
-                      <li className="text-lg text-red-500">
+                      <li ref={ref2} className="text-lg text-red-500">
                         <Tooltip
                           title="Xóa"
                           placement="top"
@@ -316,7 +343,7 @@ const CTyKhamDoan = () => {
                           </Popconfirm>
                         </Tooltip>
                       </li>
-                      <li className="text-lg text-green-500">
+                      <li ref={ref3} className="text-lg text-green-500">
                         <Tooltip
                           title="sửa"
                           className="cursor-pointer"
@@ -341,6 +368,18 @@ const CTyKhamDoan = () => {
           </ConfigProvider>
         </div>
       </div>
+      <FloatButton
+        onClick={() => {
+          setOpen(true);
+        }}
+        icon={<ReadOutlined />}
+        type="primary"
+        style={{
+          bottom: 20,
+          right: 100,
+        }}
+      />
+      <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
       <ModalEditCty />
     </LayoutApp>
   );

@@ -26,7 +26,7 @@ const khamDoanReducer = (state = initialState, { type, payload }) => {
         draft.infoCtyKhamDoan = payload;
         break;
       case typeAction.RESET_DATA_BN_IMPORT:
-        draft.infoCtyKhamDoan = null;
+        draft.listBNImport = null;
         break;
       case typeAction.DISPATCH_INFO_BN_KHAM_DOAN:
         draft.infoBNKhamDoan = payload;

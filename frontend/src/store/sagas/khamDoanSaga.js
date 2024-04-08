@@ -166,6 +166,7 @@ export function* khamDoanSaga() {
         Toast.fire({
           icon: "error",
           title: "Xoá bệnh nhân thất bại",
+
         });
       }
     }
@@ -202,7 +203,7 @@ export function* khamDoanSaga() {
           gioitinh: items.GIOITINH,
           ngaysinh: moment(items.NGAYSINH, "DD/MM/YYYY").format(),
           sodienthoai: items.SODIENTHOAI,
-          idct: items.IDCT,
+          mact: items.MACT,
           ngaytao: moment(now).format(),
           nguoitao: infoUser.tenNV,
         }));
@@ -276,6 +277,7 @@ export function* khamDoanSaga() {
           Toast.fire({
             icon: "error",
             title: "Xoá công ty thất bại",
+            text:'Công ty đã thêm nhân viên'
           });
         }
       }
@@ -316,4 +318,27 @@ export function* khamDoanSaga() {
       }
     }
   );
+  // SEARCH BỆNH NHÂN KHÁM ĐOÀN
+  yield takeLatest(typeAction.SEARCH_BN_KHAM_DOAN,
+    function* searchBN({type,keyword}){
+      try{
+        yield put({
+          type:typeAction.OPEN_IS_LOADING_TABLE_BN_KHAM_DOAN
+        })
+        const result = yield call(()=> khamDoanService.searchBN(keyword));
+        yield put({
+          type: typeAction.DISPATCH_LIST_ALL_BN_KHAM_DOAN,
+          payload: result.data,
+        });
+        yield put({
+          type:typeAction.CLOSE_IS_LOADING_TABLE_BN_KHAM_DOAN
+        })
+      }catch(error){
+        yield put({
+          type:typeAction.CLOSE_IS_LOADING_TABLE_BN_KHAM_DOAN
+        })
+        console.log(error);
+      }
+    }
+  )
 }

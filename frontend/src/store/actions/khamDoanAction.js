@@ -49,3 +49,7 @@ export const deleteCtykhamDoan = (id) => ({
   type: typeAction.DELETE_CTY_KHAM_DOAN,
   id
 });
+export const searchBnkhamDoanAction = (keyword) => ({
+  type: typeAction.SEARCH_BN_KHAM_DOAN,
+  keyword
+});

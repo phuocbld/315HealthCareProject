@@ -102,8 +102,11 @@ const ModalEditBenhNham = () => {
       sodienthoai: infoBNKhamDoan?.sodienthoai,
       ghichu: infoBNKhamDoan?.ghichu,
       idct: infoBNKhamDoan?.idct,
+      mact: infoBNKhamDoan?.mact,
       kqxn: infoBNKhamDoan?.kqxn,
       kqkham: infoBNKhamDoan?.kqkham,
+      ngaytao: infoBNKhamDoan?.ngaytao,
+      nguoitao: infoBNKhamDoan?.nguoitao,
       ngaykq: infoBNKhamDoan?.ngaykq,
       nguoikq: infoBNKhamDoan?.nguoikq,
       trangthaisms: infoBNKhamDoan?.trangthaisms,
@@ -192,11 +195,11 @@ const ModalEditBenhNham = () => {
                             </label>
                             <Select
                               className="w-full"
-                              onChange={handleSelected("idct")}
-                              value={formik.values.idct}
-                              options={listCTy?.map(({ idct, tenct }) => ({
+                              onChange={handleSelected("mact")}
+                              value={formik.values.mact}
+                              options={listCTy?.map(({ mact, tenct }) => ({
                                 label: tenct,
-                                value: idct,
+                                value: mact,
                               }))}
                             />
                           </div>
