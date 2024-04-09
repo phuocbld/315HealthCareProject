@@ -88,7 +88,8 @@ namespace _315HealthCareProject.Services
                 TenPhieu = tenPhieu,
                 NoiDung = noiDung,
                 TrangThai = trangThai
-            };
+                
+        };
 
             _context.KhoNhapXuats.Add(khoXuat);
             await _context.SaveChangesAsync();

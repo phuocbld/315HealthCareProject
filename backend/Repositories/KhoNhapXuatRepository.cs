@@ -13,37 +13,7 @@ namespace _315HealthCareProject.Repositories
         {
             _context = context;
         }
-        //public async Task DeleteKhoNhapXuatAsync(int idNhapXuat)
-        //{
-        //    var khoNhapXuat = await _context.KhoNhapXuats.FindAsync(idNhapXuat);
-
-        //    if (khoNhapXuat != null)
-        //    {
-        //        var hasCorrespondingData = await _context.KhoChiTiets.AnyAsync(k => k.IdNhapXuat == idNhapXuat);
-
-        //        if (!hasCorrespondingData)
-        //        {
-        //            _context.KhoNhapXuats.Remove(khoNhapXuat);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        else
-        //        {
-
-        //            var khoChiTiets = await _context.KhoChiTiets.Where(k => k.IdNhapXuat == idNhapXuat).ToListAsync();
-        //            _context.KhoChiTiets.RemoveRange(khoChiTiets);
-
-        //            _context.KhoNhapXuats.Remove(khoNhapXuat);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        throw new ArgumentException("Không tìm thấy ID nhập/xuất.");
-        //    }
-
-        //}
-
-
+     
         public async Task<IEnumerable<KhoNhapXuat>> GetAllPhieuNhapAsync()
         {
             return await _context.KhoNhapXuats

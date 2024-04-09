@@ -14,7 +14,6 @@ namespace _315HealthCareProject.Services.Interface
         Task DeleteBenhNhanAsync(int id);
         Task<string> GetSoDienThoaiByIdAsync(int id);
         Task<IEnumerable<CongTyBenhNhan>> SearchBenhNhanAsync(string keyword);
-        //Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan, byte[] pdfFile);
 
     }
 }

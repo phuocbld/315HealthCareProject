@@ -75,17 +75,17 @@ namespace _315HealthCareProject.Models
         public int? CheckDelete { get; set; }
 
         [NotMapped]
-        public string TenKhoNhap { get; set; } 
+        public string? TenKhoNhap { get; set; } 
 
         [NotMapped]
-        public string TenKhoXuat { get; set; } 
+        public string? TenKhoXuat { get; set; } 
         [NotMapped] 
-        public string TenNVNhan { get; set; } 
+        public string? TenNVNhan { get; set; } 
 
         [NotMapped]
-        public string TenNVXuat { get; set; } 
+        public string? TenNVXuat { get; set; } 
 
         [NotMapped]
-        public string TenTrangThai { get; set; } 
+        public string? TenTrangThai { get; set; } 
     }
 }
