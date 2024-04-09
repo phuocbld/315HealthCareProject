@@ -10,6 +10,7 @@ const initialState = {
   thuocVT: null,
   infoThuocVT: [],
   listPhieuNhap: null,
+  infoPTNhap: null,
 };
 
 const NhapKhoReducer = (state = initialState, { type, payload }) => {
@@ -211,6 +212,9 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
         break;
       case typeAction.DISPATCH_LIST_PHIEU_NHAP:
         draft.listPhieuNhap = payload;
+        break;
+      case typeAction.DISPATCH_INFO_PT_NHAP_KHO:
+        draft.infoPTNhap = payload;
         break;
       default:
         return state;

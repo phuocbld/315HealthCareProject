@@ -28,3 +28,13 @@ export const getAllPhieuNhapKho = () => ({
     type:typeAction.GET_ALL_PHIEU_NHAP,
 
 })
+export const deletePhieuNhapKhoAction = (idPhieu) => ({
+    type:typeAction.DELETE_PHIEU_NHAP_KHO,
+    idPhieu
+
+})
+export const getInfoPTNhapByIdAction = (idNhapXuat) => ({
+    type:typeAction.GET_INFO_PT_NHAP_KHO,
+    idNhapXuat
+
+})

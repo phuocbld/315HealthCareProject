@@ -198,7 +198,7 @@ const ChuyenKho = () => {
       tenPhieu: "",
       idKhoXuat: "",
       idKhoNhap: "",
-      nhanVienXuat: infoUser?.dangNhap.idNguoiDung,
+      nhanVienXuat: infoUser?.idnv,
       ngayXuat: date,
       noiDung: "",
       // daNhan: 0,
@@ -218,13 +218,13 @@ const ChuyenKho = () => {
   return (
     <LayoutApp>
       {contextHolder}
-      <div className="h-full w-full p-2">
+      <div >
         <div
-          className="h-full w-full bg-white rounded-md border"
-          style={{
-            boxShadow:
-              "0 1px 2px 0 rgba(60,64,67,.1),0 2px 6px 2px rgba(60,64,67,.15)",
-          }}
+          // className="h-full w-full bg-white rounded-md border"
+          // style={{
+          //   boxShadow:
+          //     "0 1px 2px 0 rgba(60,64,67,.1),0 2px 6px 2px rgba(60,64,67,.15)",
+          // }}
         >
           <div className="p-2">
             <Tabs

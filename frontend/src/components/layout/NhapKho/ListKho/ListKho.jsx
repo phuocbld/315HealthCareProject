@@ -1,11 +1,22 @@
-import React, { useEffect } from 'react'
-import { Table, ConfigProvider, Input,Tooltip, Select, DatePicker } from "antd";
+import React, { useEffect,useState } from 'react'
+import { Table, ConfigProvider, Input,Tooltip, Select, DatePicker, Modal } from "antd";
 import {FileSearchOutlined, DownloadOutlined,ContainerOutlined,EditOutlined,DeleteOutlined,ReloadOutlined} from '@ant-design/icons'
 import TableList from './TableList';
 import { useDispatch } from 'react-redux';
 import { getAllPhieuNhapKho } from '../../../../store/actions/NhapKhoAction';
+import ModalDetail from '../Modal/ModalDetail';
 const ListKho = () => {
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [show, setShow] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setShow(false)
+    setIsModalOpen(false);
+  };
   useEffect(()=>{
       dispatch(getAllPhieuNhapKho())
   },[])
@@ -40,9 +51,10 @@ const ListKho = () => {
         <ReloadOutlined className='text-lg' />
         </div>
       </div>
-      <div className='border'>
-            <TableList/>
+      <div className='border h-full'>
+            <TableList handleCancel={handleCancel} showModal={showModal} />
       </div>
+      <ModalDetail handleCancel={handleCancel} show={show} setShow={setShow} isModalOpen={isModalOpen}  />
    </>
   )
 }

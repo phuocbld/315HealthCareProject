@@ -24,7 +24,6 @@ const Toast = Swal.mixin({
 });
 export function* ChuyenKhoSaga() {
   // get chi nhanh
-
   yield takeLatest(
     typeAction.GET_LIST_Ck_KHO_NHAN,
     function* branch({ type, payload }) {
@@ -72,6 +71,7 @@ export function* ChuyenKhoSaga() {
         const result = yield call(() =>
           chuyenKhoService.postChuyenKho(payload)
         );
+        console.log(result);
         const id = yield result.data.data.idNhapXuat;
         const listKhoChiTiet = [];
         for (let items of khoVT) {

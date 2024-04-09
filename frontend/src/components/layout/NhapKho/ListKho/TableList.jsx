@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,10 +8,13 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import moment from "moment";
-import {CloseCircleOutlined} from '@ant-design/icons'
-import { useSelector } from "react-redux";
-
+import { Tooltip,Modal } from "antd";
+import { DeleteOutlined, FileDoneOutlined,ExclamationCircleFilled } from "@ant-design/icons";
+import { useSelector,useDispatch } from "react-redux";
+import { deletePhieuNhapKhoAction, getInfoPTNhapByIdAction } from "../../../../store/actions/NhapKhoAction";
+const { confirm } = Modal;
 const columns = [
+  { id: "SST", label: "STT", minWidth: 20, align: "center" },
   { id: "maPhieu", label: "Phiếu nhập", minWidth: 100 },
   { id: "tenPhieu", label: "Tên phiếu", minWidth: 200 },
   { id: "ngayNhan", label: "Ngày nhập", minWidth: 100 },
@@ -19,30 +22,16 @@ const columns = [
   { id: "soHoaDon", label: "Số hoá đơn", minWidth: 100 },
   { id: "ngayHoaDon", label: "Ngày hoá đơn", minWidth: 100 },
   { id: "nhanVienNhan", label: "Người nhập", minWidth: 100 },
-  { id: "action", label: "Hành động", minWidth: 60 },
-  // {
-  //   id: "size",
-  //   label: "Size\u00a0(km\u00b2)",
-  //   minWidth: 170,
-  //   align: "right",
-  //   format: (value) => value.toLocaleString("en-US"),
-  // },
-  // {
-  //   id: "density",
-  //   label: "Density",
-  //   minWidth: 170,
-  //   align: "right",
-  //   format: (value) => value.toFixed(2),
-  // },
+  { id: "action", label: "Hành động", minWidth: 40, align: "center" },
 ];
 
-
-const TableList = () => {
+const TableList = ({handleCancel,showModal}) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const { listPhieuNhap } = useSelector((state) => state.NhapKhoReducer);
-      // reverse array 
-      const [reverseData, setReverseData] = useState([]);
+  // reverse array
+  const dispatch = useDispatch()
+  const [reverseData, setReverseData] = useState([]);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -51,12 +40,29 @@ const TableList = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  // show delete phiếu thu
+  const showDeleteConfirm = (maPhieu,idPhieu) => {
+    confirm({
+      title: 'Bạn Có chắc muốn xoá phiếu thu ?',
+      icon: <ExclamationCircleFilled />,
+      content: `Phiếu thu muốn xoá là: ${maPhieu}`,
+      okText: 'Xoá',
+      okType: 'danger',
+      cancelText: 'Huỷ',
+      onOk() {
+        dispatch(deletePhieuNhapKhoAction(idPhieu))
+      },
+      onCancel() {
+        // console.log('Cancel');
+      }
+    });
+  };
   useEffect(() => {
     if (listPhieuNhap) {
-        const reversedData = [...listPhieuNhap].reverse();
-        setReverseData(reversedData);
+      const reversedData = [...listPhieuNhap].reverse();
+      setReverseData(reversedData);
     }
-}, [listPhieuNhap]);
+  }, [listPhieuNhap]);
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: 560 }}>
@@ -80,33 +86,45 @@ const TableList = () => {
           </TableHead>
           <TableBody>
             {reverseData
-    // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              ?.map((row) => {
+              // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              ?.map((row, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.idNhapXuat}>
-                    <TableCell sx={{ padding: 1 }} >
-                      {row.maPhieu}
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.idNhapXuat}
+                  >
+                    <TableCell sx={{ padding: 1, textAlign: "center" }}>
+                      {++index}
                     </TableCell>
-                    <TableCell sx={{ padding: 1 }} >
-                      {row.tenPhieu}
+                    <TableCell sx={{ padding: 1 }}>{row.maPhieu}</TableCell>
+                    <TableCell sx={{ padding: 1 }}>{row.tenPhieu}</TableCell>
+                    <TableCell sx={{ padding: 1 }}>
+                      {moment(row.ngayNhan).format("DD-MM-YYYY h:mm:ss")}
                     </TableCell>
-                    <TableCell sx={{ padding: 1 }} >
-                      {moment(row.ngayNhan).format('DD-MM-YYYY h:mm:ss')}
+                    <TableCell sx={{ padding: 1 }}>{row.tenKhoNhap}</TableCell>
+                    <TableCell sx={{ padding: 1 }}>{row.soHoaDon}</TableCell>
+                    <TableCell sx={{ padding: 1 }}>
+                      {moment(row.ngayHoaDon).format("DD-MM-YYYY")}
                     </TableCell>
-                    <TableCell sx={{ padding: 1 }} >
-                      {row.idKhoNhap}
-                    </TableCell>
-                    <TableCell sx={{ padding: 1 }} >
-                      {row.soHoaDon}
-                    </TableCell>
-                    <TableCell sx={{ padding: 1 }} >
-                      {moment(row.ngayHoaDon).format('DD-MM-YYYY')}
-                    </TableCell>
-                    <TableCell sx={{ padding: 1 }} >
-                      {row.nhanVienNhan}
-                    </TableCell>
-                    <TableCell sx={{ padding: 1 }}  >
-                    <CloseCircleOutlined className="text-xl text-red-500" />
+                    <TableCell sx={{ padding: 1 }}>{row.tenNVNhan}</TableCell>
+                    <TableCell
+                      sx={{
+                        padding: 1,
+                        display: "flex",
+                        justifyContent: "space-around",
+                      }}
+                    >
+                      <Tooltip title="Xoá" className="cursor-pointer" color="red">
+                        {" "}
+                        <DeleteOutlined onClick={()=>{showDeleteConfirm(row.maPhieu,row.idNhapXuat)}} className="text-xl text-red-500" />
+                      </Tooltip>
+                      <Tooltip color="blue" className="cursor-pointer" title="Xem">
+                        <FileDoneOutlined onClick={()=>{
+                          dispatch(getInfoPTNhapByIdAction(row.idNhapXuat))
+                          showModal()}} className="text-xl text-blue-500" />
+                      </Tooltip>
                     </TableCell>
                   </TableRow>
                 );

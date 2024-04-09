@@ -46,23 +46,22 @@ const LayoutApp = (props) => {
     dispatch(getListMenu(newInfoUser.taiKhoan));
   }, []);
   return (
-    <Layout>
+    <Layout className="hidden lg:flex">
       <ConfigProvider
         theme={{
-          components:{
-            Menu:{
-              darkItemBg:'#00AFEF',
+          components: {
+            Menu: {
+              darkItemBg: "#00AFEF",
               // darkPopupBg:'#00AFEF',
-              darkSubMenuItemBg:'#0396CD'
-            }
-          }
+              darkSubMenuItemBg: "#0396CD",
+            },
+          },
         }}
-        
       >
         <Sider
           trigger={null}
           style={{
-            backgroundColor:'#00AFEF',
+            backgroundColor: "#00AFEF",
             overflow: "auto",
             height: "100vh",
             position: "fixed",
@@ -210,8 +209,10 @@ const LayoutApp = (props) => {
         </Header>
         <Content
           style={{
+            boxShadow:
+              "0 1px 2px 0 rgba(60,64,67,.1),0 2px 6px 2px rgba(60,64,67,.15)",
             margin: "5px 5px",
-            minHeight: 280,
+            minHeight: 870,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
@@ -219,7 +220,7 @@ const LayoutApp = (props) => {
           {props.children}
         </Content>
       </Layout>
-      <Reponsive />
+      {/* <Reponsive /> */}
     </Layout>
     // <>
     //     <Sidenav  children = {props.children}/>
