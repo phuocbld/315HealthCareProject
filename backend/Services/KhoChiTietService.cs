@@ -35,5 +35,10 @@ namespace _315HealthCareProject.Services
                 throw new Exception("An error occurred while adding kho chi tiet: " + ex.Message);
             }
         }
+
+        public async Task<IEnumerable<KhoChiTiet>> GetKhoChiTietByNhapXuatIdAsync(int idNhapXuat)
+        {
+            return await _khoChiTietRepository.GetKhoChiTietByNhapXuatIdAsync(idNhapXuat);
+        }
     }
 }

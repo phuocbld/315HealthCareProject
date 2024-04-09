@@ -82,5 +82,33 @@ namespace _315HealthCareProject.Services
             return existingThuocVatTu;
         }
 
+
+
+
+        public async Task<IEnumerable<ThuocVatTu>> GetLazyLoadedAsync()
+        {
+            // Gán cứng giá trị cho startIndex và count
+            int startIndex = 0;
+            int count = 100;
+
+            try
+            {
+                // Sử dụng phương thức Skip và Take để lấy dữ liệu từ startIndex đến startIndex + count
+                var data = await _context.ThuocVatTus.Skip(startIndex).Take(count).ToListAsync();
+                return data;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các trường hợp ngoại lệ
+                throw new Exception("Error retrieving lazy loaded data", ex);
+            }
+        }
+
+
+        public async Task<IEnumerable<ThuocVatTu>> SearchThuocVatTuAsync(string? keyword)
+        {
+            return await _repository.SearchThuocVatTuAsync(keyword);
+        }
+
     }
 }

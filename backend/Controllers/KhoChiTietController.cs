@@ -33,5 +33,6 @@ namespace _315HealthCareProject.Controllers
                 return StatusCode(500, "An error occurred while adding kho chi tiet: " + ex.Message);
             }
         }
+       
     }
 }

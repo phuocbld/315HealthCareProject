@@ -139,7 +139,7 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
-      
+
 
         [HttpPost]
         [Route("ThemThuocVatTu")]
@@ -154,7 +154,7 @@ namespace _315HealthCareProject.Controllers
                     thuocVatTu.Dvt
 
                 );
-              
+
                 var newThuocVatTu = await newThuocVatTuTask;
                 newThuocVatTu.IdNhom = thuocVatTu.IdNhom;
                 newThuocVatTu.IdCt = thuocVatTu.IdCt;
@@ -212,6 +212,46 @@ namespace _315HealthCareProject.Controllers
                 return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
             }
         }
+
+
+
+        [HttpGet("Search")]
+        public async Task<ActionResult<IEnumerable<ThuocVatTu>>> GetThuocVatTuAsync(string? keyword)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(keyword))
+                {
+                    var allThuocVatTu = await _service.GetLazyLoadedAsync();
+                    return Ok(allThuocVatTu);
+                }
+                else
+                {
+                    var thuocVatTuList = await _service.SearchThuocVatTuAsync(keyword);
+                    return Ok(thuocVatTuList);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+
+
+        [HttpGet("AllThuoc")]
+        public async Task<ActionResult<IEnumerable<ThuocVatTu>>> GetAllThuocLazy()
+        {
+            try
+            {
+                var data = await _service.GetLazyLoadedAsync();
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
+        }
+
 
 
     }

@@ -101,6 +101,49 @@ namespace _315HealthCareProject.Repositories
 
             return trangThai;
         }
+        public async Task<string> GetTenChiNhanhAsync(int idKhoCN)
+        {
+            var tenChiNhanh = await _context.KhoChiNhanhs
+                .Where(kcn => kcn.IdKhoCN == idKhoCN)
+                .Join(_context.ChiNhanhs, kcn => kcn.IdCN, cn => cn.IdChiNhanh, (kcn, cn) => cn.TenChiNhanh)
+                .FirstOrDefaultAsync();
+
+            return tenChiNhanh;
+        }
+
+
+
+        public async Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByTimeAndBranchAsync(DateTime fromDate, DateTime toDate, int idChiNhanh)
+        {
+            return await _context.KhoNhapXuats
+                .Where(k => k.NgayNhan >= fromDate && k.NgayNhan <= toDate && k.CheckDelete != 1)
+                .Join(_context.KhoChiNhanhs, k => k.IdKhoNhap, kc => kc.IdKhoCN, (k, kc) => new { KhoNhapXuat = k, KhoChiNhanh = kc })
+                .Where(joinResult => joinResult.KhoChiNhanh.IdCN == idChiNhanh)
+                .Select(joinResult => joinResult.KhoNhapXuat)
+                .ToListAsync();
+        }
+
+
+        public async Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByTimeAsync(DateTime fromDate, DateTime toDate)
+        {
+            return await _context.KhoNhapXuats
+                .Where(k => k.NgayNhan >= fromDate && k.NgayNhan <= toDate && k.CheckDelete != 1)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByIdChiNhanhAsync(int idChiNhanh)
+        {
+            return await _context.KhoNhapXuats
+                .Join(_context.KhoChiNhanhs,
+                    k => k.IdKhoNhap, 
+                    kc => kc.IdKhoCN,
+                    (k, kc) => new { KhoNhapXuat = k, KhoChiNhanh = kc })
+                .Where(joinResult => joinResult.KhoChiNhanh.IdCN == idChiNhanh && joinResult.KhoNhapXuat.CheckDelete != 1)
+                .Select(joinResult => joinResult.KhoNhapXuat)
+                .ToListAsync();
+        }
+
+        
 
     }
 }

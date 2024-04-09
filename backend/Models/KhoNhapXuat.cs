@@ -86,6 +86,11 @@ namespace _315HealthCareProject.Models
         public string? TenNVXuat { get; set; } 
 
         [NotMapped]
-        public string? TenTrangThai { get; set; } 
+        public string? TenTrangThai { get; set; }
+        [NotMapped] 
+        public string? TenChiNhanhNhan { get; set; }
+
+        [NotMapped]
+        public string? TenChiNhanhXuat { get; set; }
     }
 }

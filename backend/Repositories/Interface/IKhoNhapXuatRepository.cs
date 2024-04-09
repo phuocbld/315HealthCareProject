@@ -16,6 +16,9 @@ namespace _315HealthCareProject.Repositories.Interface
         Task<string> GetTenKhoAsync(int idKhoCN);
         Task<string> GetTenNVAsync(int idNhanVien);
         Task<string> GetTrangThaiAsync(int idTrangThai);
-
+        Task<string> GetTenChiNhanhAsync(int idKhoCN);
+        Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByIdChiNhanhAsync(int idChiNhanh);
+        Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByTimeAsync(DateTime fromDate, DateTime toDate);
+        Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByTimeAndBranchAsync(DateTime fromDate, DateTime toDate, int idChiNhanh);
     }
 }

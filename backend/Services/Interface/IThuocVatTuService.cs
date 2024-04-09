@@ -9,5 +9,9 @@ namespace _315HealthCareProject.Services.Interface
         Task<ThuocVatTu> CreateThuocVatTu(string maThuoc, string tenBietDuoc, string tenHoatChat, string dvt);
         Task<ThuocVatTu> GetThuocVatTuByIdAsync(int id);
         Task<ThuocVatTu> UpdateThuocVatTuAsync(int id, ThuocVatTu thuocVatTu);
+        Task<IEnumerable<ThuocVatTu>> SearchThuocVatTuAsync(string? keyword);
+
+        Task<IEnumerable<ThuocVatTu>> GetLazyLoadedAsync();
+
     }
 }
