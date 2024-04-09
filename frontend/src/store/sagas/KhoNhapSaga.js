@@ -10,6 +10,7 @@ import {
 import * as typeAction from "../constants/constants";
 import { NhapKhoService } from "../../services/NhapKho/NhapKhoService";
 import Swal from "sweetalert2";
+import { getAllPhieuNhapKho } from "../actions/NhapKhoAction";
 const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
@@ -181,20 +182,58 @@ export function* NhapKhoSaga() {
       }
     }
   );
-    // get add list phiếu nhập kho
-    yield takeLatest(
-      typeAction.GET_ALL_PHIEU_NHAP,
-      function* getAllListPhieuNhap({ type, payload }) {
-        // yield console.log(payload);
-        try {
-          const result = yield call(() => NhapKhoService.getPhieuNhapKho());
-          yield put({
-            type: typeAction.DISPATCH_LIST_PHIEU_NHAP,
-            payload: result.data,
-          });
-        } catch (err) {
-          console.log(err);
-        }
+  // get add list phiếu nhập kho
+  yield takeLatest(
+    typeAction.GET_ALL_PHIEU_NHAP,
+    function* getAllListPhieuNhap({ type, payload }) {
+      // yield console.log(payload);
+      try {
+        const result = yield call(() => NhapKhoService.getPhieuNhapKho());
+        yield put({
+          type: typeAction.DISPATCH_LIST_PHIEU_NHAP,
+          payload: result.data,
+        });
+      } catch (err) {
+        console.log(err);
       }
-    );
+    }
+  );
+
+  // DELETE PHIẾU NHẬP KHO THEO ID PHIẾU NHẬP KHO
+  yield takeLatest(
+    typeAction.DELETE_PHIEU_NHAP_KHO,
+    function* deletePhieuNhap({ type, idPhieu }) {
+      try {
+        yield call(() => NhapKhoService.deletePhieu(idPhieu)); // sau khi xoá phiếu thành công tải lại danh sách phiếu nhập kho
+        yield put(getAllPhieuNhapKho());
+        Toast.fire({
+          icon: "success",
+          title: "Xoá phiếu thành công !",
+        });
+      } catch (err) {
+        Toast.fire({
+          icon: "error",
+          title: "Xoá phiếu thất bại !",
+        });
+        console.log(err);
+      }
+    }
+  );
+  // LẤY THÔNG TIN PHIẾU NHẬP KHO THEO ID
+  yield takeLatest(
+    typeAction.GET_INFO_PT_NHAP_KHO,
+    function* infoPTNhapKho({ type, idNhapXuat }) {
+      try {
+        const result = yield call(() =>
+          NhapKhoService.getInfoPTNhapKho(idNhapXuat)
+        ); //
+        yield put({
+          type: typeAction.DISPATCH_INFO_PT_NHAP_KHO,
+          payload: result.data,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  );
 }

@@ -152,11 +152,7 @@ const Nhapkho = () => {
     <LayoutApp>
       {contextHolder}
       <div
-        style={{
-          boxShadow:
-            "0 1px 2px 0 rgba(60,64,67,.1),0 2px 6px 2px rgba(60,64,67,.15)",
-        }}
-        className="bg-white h-[99%] w-[99%] rounded-md m-2 text-[12px]"
+
       >
         <Tabs
           className="p-3"
