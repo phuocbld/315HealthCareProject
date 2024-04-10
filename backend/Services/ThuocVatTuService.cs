@@ -51,7 +51,8 @@ namespace _315HealthCareProject.Services
             existingThuocVatTu.TenBietDuoc = thuocVatTu.TenBietDuoc;
             existingThuocVatTu.TenHoatChat = thuocVatTu.TenHoatChat;
             existingThuocVatTu.Dvt = thuocVatTu.Dvt;
-            existingThuocVatTu.DonGia = thuocVatTu.DonGia;
+            existingThuocVatTu.GiaBan = thuocVatTu.GiaBan;  
+            existingThuocVatTu.GiaMua = thuocVatTu.GiaMua;
             existingThuocVatTu.QuyCach = thuocVatTu.QuyCach;
             existingThuocVatTu.NongDo  = thuocVatTu.NongDo;
             existingThuocVatTu.HamLuong = thuocVatTu.HamLuong;

@@ -128,7 +128,7 @@ export function* NhapKhoSaga() {
           soLo: "",
           hanDung: null,
           soLuong: 1,
-          donGiaMua: data.DONGIA,
+          donGiaMua: data.GIABAN,
           donGiaBan: 0,
           phiVanChuyen: 0,
           phiGiaCong: 0,
@@ -139,8 +139,8 @@ export function* NhapKhoSaga() {
           vat5: 0,
           vat8: 0,
           vat10: 0,
-          thanhTien: data.DONGIA,
-          thucTra: data.DONGIA,
+          thanhTien: data.GIABAN,
+          thucTra: data.GIABAN,
         };
         yield put({
           type: typeAction.DISPATCH_LIST_INFO_THUOCVT,

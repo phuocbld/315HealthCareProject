@@ -51,8 +51,6 @@ namespace _315HealthCareProject.Models
         [Column("IDCT")]
         public int? IdCt { get; set; }
 
-        [Column("DONGIA")]
-        public int? DonGia { get; set; }
 
         [Column("BARCODE")]
         public string? Barcode { get; set; }
@@ -104,5 +102,12 @@ namespace _315HealthCareProject.Models
 
         [Column("QUYCACHDONGGOI")]
         public int? QuyCachDongGoi { get; set; }
+
+        [Column("GIABAN")]
+        public int? GiaBan { get; set; }
+
+        [Column("GIAMUA")]
+        public int? GiaMua { get; set; }
     }
 }
+

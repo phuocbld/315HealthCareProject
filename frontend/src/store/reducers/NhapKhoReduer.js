@@ -55,7 +55,7 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
             // cập nhập lại số lượng trong infoThuoc Theo ID
             i.khoChiTiet.soLuong = payload.value;
             i.khoChiTiet.tienVAT = Number(
-              (i.khoChiTiet.ptVAT * (i.khoChiTiet.soLuong * i.DONGIA)).toFixed(
+              (i.khoChiTiet.ptVAT * (i.khoChiTiet.soLuong * i.GIABAN)).toFixed(
                 0
               )
             );
@@ -63,12 +63,12 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
               (i.khoChiTiet.ptckTruocVat / 100) *
               (i.khoChiTiet.soLuong * i.khoChiTiet.donGiaMua);
             i.khoChiTiet.thanhTien =
-              i.khoChiTiet.soLuong * i.DONGIA +
+              i.khoChiTiet.soLuong * i.GIABAN +
               i.khoChiTiet.tienVAT -
               i.khoChiTiet.ckTruocVat;
             //THỰC TRẢ
             i.khoChiTiet.thucTra =
-              i.khoChiTiet.soLuong * i.DONGIA +
+              i.khoChiTiet.soLuong * i.GIABAN +
               i.khoChiTiet.tienVAT -
               i.khoChiTiet.ckTruocVat;
           }
@@ -107,12 +107,12 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
               (i.khoChiTiet.soLuong * i.khoChiTiet.donGiaMua);
             //THÀNH TIỀN
             i.khoChiTiet.thanhTien =
-              i.khoChiTiet.soLuong * i.DONGIA +
+              i.khoChiTiet.soLuong * i.GIABAN +
               i.khoChiTiet.tienVAT -
               i.khoChiTiet.ckTruocVat;
             //THỰC TRẢ
             i.khoChiTiet.thucTra =
-              i.khoChiTiet.soLuong * i.DONGIA +
+              i.khoChiTiet.soLuong * i.GIABAN +
               i.khoChiTiet.tienVAT -
               i.khoChiTiet.ckTruocVat;
           }
@@ -136,12 +136,12 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
               i.khoChiTiet.vat8 = 0;
               i.khoChiTiet.vat10 = 0;
               i.khoChiTiet.thanhTien =
-                i.khoChiTiet.soLuong * i.DONGIA +
+                i.khoChiTiet.soLuong * i.GIABAN +
                 i.khoChiTiet.tienVAT -
                 i.khoChiTiet.ckTruocVat;
               //THỰC TRẢ
               i.khoChiTiet.thucTra =
-                i.khoChiTiet.soLuong * i.DONGIA +
+                i.khoChiTiet.soLuong * i.GIABAN +
                 i.khoChiTiet.tienVAT -
                 i.khoChiTiet.ckTruocVat;
             }
@@ -160,12 +160,12 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
               i.khoChiTiet.vat5 = 0;
               i.khoChiTiet.vat10 = 0;
               i.khoChiTiet.thanhTien =
-                i.khoChiTiet.soLuong * i.DONGIA +
+                i.khoChiTiet.soLuong * i.GIABAN +
                 i.khoChiTiet.tienVAT -
                 i.khoChiTiet.ckTruocVat;
               //THỰC TRẢ
               i.khoChiTiet.thucTra =
-                i.khoChiTiet.soLuong * i.DONGIA +
+                i.khoChiTiet.soLuong * i.GIABAN +
                 i.khoChiTiet.tienVAT -
                 i.khoChiTiet.ckTruocVat;
             }
@@ -180,12 +180,12 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
               i.khoChiTiet.vat8 = 0;
               i.khoChiTiet.ptVAT = 0.1;
               i.khoChiTiet.thanhTien =
-                i.khoChiTiet.soLuong * i.DONGIA +
+                i.khoChiTiet.soLuong * i.GIABAN +
                 i.khoChiTiet.tienVAT -
                 i.khoChiTiet.ckTruocVat;
               //THỰC TRẢ
               i.khoChiTiet.thucTra =
-                i.khoChiTiet.soLuong * i.DONGIA +
+                i.khoChiTiet.soLuong * i.GIABAN +
                 i.khoChiTiet.tienVAT -
                 i.khoChiTiet.ckTruocVat;
             }
