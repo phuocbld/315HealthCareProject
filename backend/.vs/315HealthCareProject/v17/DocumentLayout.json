@@ -1,8 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\",
+  "WorkspaceRootPath": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\controllers\\congtybenhnhancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:controllers\\congtybenhnhancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -105,6 +106,50 @@
     {
       "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|c:\\users\\software\\source\\repo\\315healthcare\\backend\\models\\viewkhonhapxuat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:models\\viewkhonhapxuat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\models\\viewkhonhapxuat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:models\\viewkhonhapxuat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\repositories\\interface\\ithuocvatturepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\interface\\ithuocvatturepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\repositories\\thuocvatturepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\thuocvatturepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\services\\thuocvattuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\thuocvattuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\services\\interface\\ithuocvattuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\interface\\ithuocvattuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\services\\khonhapxuatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\khonhapxuatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\models\\khonhapxuat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:models\\khonhapxuat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\repositories\\khonhapxuatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\khonhapxuatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\controllers\\khonhapxuatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:controllers\\khonhapxuatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\services\\interface\\ikhonhapxuatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:services\\interface\\ikhonhapxuatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|d:\\code t\u00E0i nguy\u1EC5n\\v1.4.2\\backend\\repositories\\interface\\ikhonhapxuatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3932A236-A405-437C-9BFA-4DA17FF6FF74}|315HealthCareProject.csproj|solutionrelative:repositories\\interface\\ikhonhapxuatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> 775eafbe5ad26ed71923793d40f31ef7a7d242d6
     }
   ],
   "DocumentGroupContainers": [
@@ -114,6 +159,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
           "SelectedChildIndex": 14,
           "Children": [
             {
@@ -450,9 +496,146 @@
               "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Repositories\\KhoNhapXuatRepository.cs",
               "RelativeToolTip": "Repositories\\KhoNhapXuatRepository.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAowHYAAABkAAAA",
+=======
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ViewKhoNhapXuat.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Models\\ViewKhoNhapXuat.cs",
+              "RelativeDocumentMoniker": "Models\\ViewKhoNhapXuat.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Models\\ViewKhoNhapXuat.cs",
+              "RelativeToolTip": "Models\\ViewKhoNhapXuat.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAuwAAAAAAAAAAA",
+>>>>>>> 775eafbe5ad26ed71923793d40f31ef7a7d242d6
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T02:30:50.951Z",
+              "WhenOpened": "2024-04-09T03:06:26.49Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IThuocVatTuRepository.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Repositories\\Interface\\IThuocVatTuRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interface\\IThuocVatTuRepository.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Repositories\\Interface\\IThuocVatTuRepository.cs",
+              "RelativeToolTip": "Repositories\\Interface\\IThuocVatTuRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T03:05:32.098Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ThuocVatTuRepository.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Repositories\\ThuocVatTuRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\ThuocVatTuRepository.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Repositories\\ThuocVatTuRepository.cs",
+              "RelativeToolTip": "Repositories\\ThuocVatTuRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T03:05:28.194Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ThuocVatTuService.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Services\\ThuocVatTuService.cs",
+              "RelativeDocumentMoniker": "Services\\ThuocVatTuService.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Services\\ThuocVatTuService.cs",
+              "RelativeToolTip": "Services\\ThuocVatTuService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T03:05:01.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IThuocVatTuService.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Services\\Interface\\IThuocVatTuService.cs",
+              "RelativeDocumentMoniker": "Services\\Interface\\IThuocVatTuService.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Services\\Interface\\IThuocVatTuService.cs",
+              "RelativeToolTip": "Services\\Interface\\IThuocVatTuService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T03:04:59.122Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "KhoNhapXuatController.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Controllers\\KhoNhapXuatController.cs",
+              "RelativeDocumentMoniker": "Controllers\\KhoNhapXuatController.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Controllers\\KhoNhapXuatController.cs",
+              "RelativeToolTip": "Controllers\\KhoNhapXuatController.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAowCUAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T02:34:34.805Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IKhoNhapXuatService.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Services\\Interface\\IKhoNhapXuatService.cs",
+              "RelativeDocumentMoniker": "Services\\Interface\\IKhoNhapXuatService.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Services\\Interface\\IKhoNhapXuatService.cs",
+              "RelativeToolTip": "Services\\Interface\\IKhoNhapXuatService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T02:34:03.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "KhoNhapXuatService.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Services\\KhoNhapXuatService.cs",
+              "RelativeDocumentMoniker": "Services\\KhoNhapXuatService.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Services\\KhoNhapXuatService.cs",
+              "RelativeToolTip": "Services\\KhoNhapXuatService.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAQwKcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T02:33:52.171Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "KhoNhapXuat.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Models\\KhoNhapXuat.cs",
+              "RelativeDocumentMoniker": "Models\\KhoNhapXuat.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Models\\KhoNhapXuat.cs",
+              "RelativeToolTip": "Models\\KhoNhapXuat.cs",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAowFEAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T02:33:21.191Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IKhoNhapXuatRepository.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Repositories\\Interface\\IKhoNhapXuatRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interface\\IKhoNhapXuatRepository.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Repositories\\Interface\\IKhoNhapXuatRepository.cs",
+              "RelativeToolTip": "Repositories\\Interface\\IKhoNhapXuatRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T02:33:41.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "KhoNhapXuatRepository.cs",
+              "DocumentMoniker": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Repositories\\KhoNhapXuatRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\KhoNhapXuatRepository.cs",
+              "ToolTip": "D:\\code T\u00E0i Nguy\u1EC5n\\V1.4.2\\backend\\Repositories\\KhoNhapXuatRepository.cs",
+              "RelativeToolTip": "Repositories\\KhoNhapXuatRepository.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T02:30:50.951Z"
             }
           ]
         }

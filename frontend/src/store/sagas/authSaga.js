@@ -33,7 +33,7 @@ export function* authSaga() {
     function* login({ type, payload, navigate }) {
       try {
         const infoUser = yield call(() => authService.login(payload));
-        console.log(payload);
+        // console.log(payload);
         yield put({
           type: typeAction.OPEN_LOADING,
         });

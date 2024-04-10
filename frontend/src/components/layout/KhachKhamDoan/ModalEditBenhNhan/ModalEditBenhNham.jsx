@@ -179,11 +179,11 @@ const ModalEditBenhNham = () => {
                         <div className="flex gap-5">
                           <div className="w-1/2">
                             <label className="font-semibold">
-                              <span className="text-red-500">*</span>
+                              {/* <span className="text-red-500">*</span> */}
                               Số điện thoại:
                             </label>
                             <Input
-                              status={formik.errors.sodienthoai ? "error" : ""}
+                              // status={formik.errors.sodienthoai ? "error" : ""}
                               onChange={formik.handleChange}
                               name="sodienthoai"
                               value={formik.values.sodienthoai}

@@ -289,7 +289,7 @@ const CTyKhamDoan = () => {
                   dienthoai,
                   fax,
                   email,
-                  webside,
+                  website,
                   ghichu,
                   ngaysua,
                   nguoisua,
@@ -304,7 +304,7 @@ const CTyKhamDoan = () => {
                   dienthoai,
                   fax,
                   email,
-                  webside,
+                  website,
                   ghichu,
                   ngaysua:
                     ngaysua && moment(ngaysua).format("DD/MM/YYYY hh:mm:ss"),

@@ -328,11 +328,11 @@ const TableChiTiet = () => {
               />
             ),
             DVCHAN: items.DONVICHAN,
-            DGCHAN: formatNumberVND(items.DONGIA),
+            DGCHAN: formatNumberVND(items.GIABAN),
             SLLE: items.khoChiTiet.soLuong * items.QUYCACHDONGGOI,
             DVLE: items.DVT,
-            DGLE: formatNumberVND(items.DONGIA / items.QUYCACHDONGGOI),
-            TONGTIEN: formatNumberVND(items.khoChiTiet.soLuong * items.DONGIA),
+            DGLE: formatNumberVND(items.GIABAN / items.QUYCACHDONGGOI),
+            TONGTIEN: formatNumberVND(items.khoChiTiet.soLuong * items.GIABAN),
             PHIGIACONG: (
               <Input
                 onChange={handlePhiGiaCong(items.IDTHUOC)}

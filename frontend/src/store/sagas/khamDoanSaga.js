@@ -282,7 +282,7 @@ export function* khamDoanSaga() {
         }
       }
     );
-  // ADD LIST SMS
+  // SEND LIST SMS
   yield takeLatest(
     typeAction.SEND_SMS_BN_KHAM_DOAN,
     function* sendSMSKhamDoan({ type, payload }) {
@@ -290,14 +290,15 @@ export function* khamDoanSaga() {
         yield put({
           type:typeAction.OPEN_IS_LOADING_TABLE_BN_KHAM_DOAN
         })
-        for (let info of payload){
-          // const lastName = info.TENBN.substring(TENBN.lastIndexOf(' ') + 1) // LẤY TÊN CỦA BỆNH NHÂN
-          const sdt = info.SODIENTHOAI;
-          const maBN = info.MABN;
-          const message = `Tat ca cac xet nghiem cua ma ho so ${maBN} da hoan thanh. Xem chi tiet: benhandientu.ivyhealth.com`
-          // console.log('sdt: ', sdt , 'message: ', message);
-          yield call(() => khamDoanService.sendSMS(sdt,message));
-        }
+        console.log(payload);
+        // for (let info of payload){
+        //   // const lastName = info.TENBN.substring(TENBN.lastIndexOf(' ') + 1) // LẤY TÊN CỦA BỆNH NHÂN
+        //   const sdt = info.SODIENTHOAI;
+        //   const maBN = info.MABN;
+        //   const message = `Tat ca cac xet nghiem cua ma ho so ${maBN} da hoan thanh. Xem chi tiet: benhandientu.ivyhealth.com`
+        //   // console.log('sdt: ', sdt , 'message: ', message);
+        //   yield call(() => khamDoanService.sendSMS(sdt,message));
+        // }
         yield put(getAllBNKhamDoan());
         yield put({
           type:typeAction.CLOSE_IS_LOADING_TABLE_BN_KHAM_DOAN

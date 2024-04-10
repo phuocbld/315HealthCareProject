@@ -64,13 +64,13 @@ const ButtonImportExcel = ({ openNotificationWithIcon }) => {
           );
           return;
         }
-        if (!items.SODIENTHOAI) {
-          openNotificationWithIcon(
-            "error",
-            `chưa có số điện thoại , ô SST: ${items.STT}`
-          );
-          return;
-        }
+        // if (!items.SODIENTHOAI) {
+        //   openNotificationWithIcon(
+        //     "error",
+        //     `chưa có số điện thoại , ô SST: ${items.STT}`
+        //   );
+        //   return;
+        // }
         if (!items.MACT) {
           openNotificationWithIcon(
             "error",

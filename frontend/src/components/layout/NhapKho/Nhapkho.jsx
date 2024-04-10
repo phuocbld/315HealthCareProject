@@ -168,7 +168,7 @@ const Nhapkho = () => {
                         <div className="flex flex-col w-2/4 gap-2">
                           <div className="flex gap-2">
                             <div className="flex w-1/2">
-                              <label className="w-1/4 font-semibold ">
+                              <label className="w-[30%] font-semibold ">
                                 Người nhập:{" "}
                               </label>
                               <Input
@@ -189,8 +189,9 @@ const Nhapkho = () => {
                             </div>
                           </div>
                           <div className="flex ">
-                            <label className="w-[12%] font-semibold">
-                              Tên đối tác:<span className="text-red-500">(*)</span>
+                            <label className="w-[13%] font-semibold">
+                            <span className="text-red-500 text-xs">(*)</span>
+                              Tên đối tác:
                             </label>
                             <Select
                               name="idDoiTac"
@@ -221,7 +222,7 @@ const Nhapkho = () => {
                             />
                           </div>
                           <div className="flex ">
-                            <label className="w-[11%] font-semibold">
+                            <label className="w-[13%] font-semibold">
                               Địa chỉ:
                             </label>
                             <Input value={infoDoiTac?.diaChi} size="small" />
@@ -229,7 +230,8 @@ const Nhapkho = () => {
                           <div className="flex gap-2">
                             <div className="flex w-1/2">
                               <label className="w-[30%] font-semibold ">
-                                Số hóa đơn:{" "}<span className="text-red-500 ">(*)</span>
+                              <span className="text-red-500 text-sx">(*)</span>
+                                Số hóa đơn:{" "}
                               </label>
                               <Input
                                 status={formik.errors.soHoaDon ? "error" : ""}
@@ -241,7 +243,8 @@ const Nhapkho = () => {
                             </div>
                             <div className="flex w-1/2">
                               <label className="font-semibold w-[33%]">
-                                Ngày HĐ :{" "}<span className="text-red-500 ">(*)</span>
+                              <span className="text-red-500 text-xs">(*)</span>
+                                Ngày HĐ :{" "}
                               </label>
                               <DatePicker
                                 name="ngayHoaDon"
@@ -260,9 +263,10 @@ const Nhapkho = () => {
                           </div>
                         </div>
                         <div className="flex flex-col w-1/4 gap-2">
-                          <div className="flex ">
-                            <label className="w-1/3 font-semibold">
-                              Kho nhập:<span className="text-red-500">(*)</span>
+                          <div className="flex gap-1">
+                            <label className="w-1/3 text-end font-semibold">
+                            <span className="text-red-500 text-xs">(*)</span>
+                              Kho nhập:
                             </label>
                             <Select
                               name="idKhoNhap"
@@ -279,8 +283,8 @@ const Nhapkho = () => {
                               )}
                             />
                           </div>
-                          <div className="flex ">
-                            <label className="w-1/3 font-semibold">
+                          <div className="flex gap-1">
+                            <label className="w-1/3 text-end font-semibold">
                               Mã đối tác:
                             </label>
                             <Input
@@ -289,13 +293,14 @@ const Nhapkho = () => {
                               size="small"
                             />
                           </div>
-                          <div className="flex ">
-                            <label className="w-1/3 font-semibold">SĐT:</label>
+                          <div className="flex gap-1">
+                            <label className="w-1/3 font-semibold text-end">SĐT: </label>
                             <Input value={infoDoiTac?.dienThoai} size="small" />
                           </div>
-                          <div className="flex ">
-                            <label className="w-1/3 font-semibold">
-                              Phương thức:<span className="text-red-500">(*)</span>
+                          <div className="flex gap-1">
+                            <label className="w-1/3 font-semibold text-center">
+                            <span className="text-red-500 text-xs">(*)</span>
+                              Phương thức:
                             </label>
                             <Select
                               status={formik.errors.idPhuongThuc ? "error" : ""}
@@ -318,8 +323,8 @@ const Nhapkho = () => {
                           </div>
                         </div>
                         <div className="flex flex-col w-1/4 gap-2">
-                          <div className="flex ">
-                            <label className="w-1/3 font-semibold">
+                          <div className="flex gap-2">
+                            <label className="w-1/3 text-end font-semibold">
                               Ngày nhập:
                             </label>
                             <Input
@@ -329,21 +334,22 @@ const Nhapkho = () => {
                               size="small"
                             />
                           </div>
-                          <div className="flex ">
-                            <label className="w-1/3 font-semibold">
+                          <div className="flex gap-2">
+                            <label className="w-1/3 text-end font-semibold">
                               Mã số thuế:
                             </label>
                             <Input value={infoDoiTac?.maSoThue} size="small" />
                           </div>
-                          <div className="flex ">
-                            <label className="w-1/3 font-semibold">
+                          <div className="flex gap-2">
+                            <label className="w-1/3 text-end font-semibold">
                               Email:
                             </label>
                             <Input value={infoDoiTac?.email} size="small" />
                           </div>
-                          <div className="flex ">
-                            <label className="w-1/3 font-semibold">
-                              Hình thức:<span className="text-red-500">(*)</span>
+                          <div className="flex gap-2">
+                            <label className="w-1/3 text-end font-semibold">
+                            <span className="text-red-500">(*)</span>
+                              Hình thức:
                             </label>
                             <Select
                               name="idHinhThuc"
@@ -369,8 +375,9 @@ const Nhapkho = () => {
                       <div className="flex gap-3 mt-2">
                         <div className="flex gap-3 flex-col w-1/2 ">
                           <div className="flex">
-                            <label className="w-[11%] font-semibold">
-                              Tên phiếu:<span className="text-red-500">(*)</span>
+                            <label className="w-[13%]  font-semibold">
+                            <span className="text-red-500 text-xs">(*)</span>
+                              Tên phiếu:
                             </label>
                             <Input
                               status={formik.errors.tenPhieu ? "error" : ""}
@@ -382,7 +389,7 @@ const Nhapkho = () => {
                             />
                           </div>
                           <div className="flex">
-                            <label className="w-[11%] font-semibold">
+                            <label className="w-[13%] font-semibold">
                               Tìm kiếm:
                             </label>
                             <Select
@@ -417,8 +424,9 @@ const Nhapkho = () => {
                         </div>
                         <div className="flex gap-2 flex-col w-1/2">
                           <div className="flex items-center w-full">
-                            <label className="w-[13.5%] font-semibold">
-                              Nội dung:<span className="text-red-500">(*)</span>
+                            <label className="w-[13.5%] text-end font-semibold">
+                            <span className="text-red-500 text-xs">(*)</span>
+                              Nội dung:
                             </label>
                             <Input.TextArea
                               status={formik.errors.NoiDung ? "error" : ""}

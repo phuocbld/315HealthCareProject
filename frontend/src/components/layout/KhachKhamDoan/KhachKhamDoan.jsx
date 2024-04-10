@@ -53,10 +53,11 @@ const KhachKhamDoan = () => {
   const { listBNImport, ListBNKhamDoan, listSMS, isLoadingBN, listCty } =
     useSelector((state) => state.khamDoanReducer);
   const onSelectChange = (newSelectedRowKeys, infoBN) => {
-    dispatch({
-      type: typeAction.ADD_LIST_INFO_SMS,
-      payload: infoBN,
-    });
+    console.log(infoBN);
+    // dispatch({
+    //   type: typeAction.ADD_LIST_INFO_SMS,
+    //   payload: infoBN,
+    // });
     setSelectedRowKeys(newSelectedRowKeys);
   };
   const [open, setOpen] = useState(false);
@@ -221,6 +222,7 @@ const KhachKhamDoan = () => {
     selectedRowKeys,
     onChange: onSelectChange,
   };
+  // xử lý gửi sms
   const showConfirm = () => {
     confirm({
       title: "Bạn có muốn gửi sms hay không ?",
@@ -354,20 +356,6 @@ const KhachKhamDoan = () => {
         record.KQXN.props.children.indexOf(value) === 0,
     },
     {
-      title: "Người cập nhập KQ",
-      dataIndex: "NGUOIKQ",
-      key: "NGUOIKQ",
-      width: 150,
-      align: "center",
-    },
-    {
-      title: "Ngày cập nhập KQ",
-      dataIndex: "NGAYKQ",
-      key: "NGAYKQ",
-      width: 150,
-      align: "center",
-    },
-    {
       title: "SMS",
       dataIndex: "SMS",
       key: "SMS",
@@ -389,6 +377,20 @@ const KhachKhamDoan = () => {
       ],
       onFilter: (value, record) =>
         record.SMS.props.children.indexOf(value) === 0,
+    },
+    {
+      title: "Người cập nhập KQ",
+      dataIndex: "NGUOIKQ",
+      key: "NGUOIKQ",
+      width: 150,
+      align: "center",
+    },
+    {
+      title: "Ngày cập nhập KQ",
+      dataIndex: "NGAYKQ",
+      key: "NGAYKQ",
+      width: 150,
+      align: "center",
     },
     {
       title: "Người gửi SMS",

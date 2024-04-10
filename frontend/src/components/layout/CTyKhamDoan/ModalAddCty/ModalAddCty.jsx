@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import { addCtyKhamDoanSchema } from "../../../../schemas/addCtyKhamDoanSchema";
 import { addCtyKhamDoan } from "../../../../store/actions/khamDoanAction";
 import moment from "moment";
-const ModalAddCty = ({ref}) => {
+const ModalAddCty = ({ ref }) => {
   const { modalAddCtyKhamDoan } = useSelector((state) => state.modalReducer);
   const dispatch = useDispatch();
   const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
@@ -95,25 +95,21 @@ const ModalAddCty = ({ref}) => {
             />
           </div>
           <div>
-            <label className="font-semibold">
-              <span className="text-red-500">(*)</span> Fax
-            </label>
+            <label className="font-semibold">Fax</label>
             <Input
               value={formik.values.fax}
               onChange={formik.handleChange}
               name="fax"
-              status={formik.errors.fax ? "error" : ""}
+              // status={formik.errors.fax ? "error" : ""}
             />
           </div>
           <div>
-            <label className="font-semibold">
-              <span className="text-red-500">(*)</span> Email
-            </label>
+            <label className="font-semibold">Email</label>
             <Input
               value={formik.values.email}
               onChange={formik.handleChange}
               name="email"
-              status={formik.errors.email ? "error" : ""}
+              // status={formik.errors.email ? "error" : ""}
             />
           </div>
           <div>
