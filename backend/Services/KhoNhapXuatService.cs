@@ -108,6 +108,8 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
+                khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
             }
             return khoNhapXuatList;
         }
@@ -122,6 +124,8 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
+                khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
             }
             return khoNhapXuatList;
         }
@@ -144,6 +148,8 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(idNhanVienNhan);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(idNhanVienXuat);
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(idTrangThai);
+                khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
+                khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
             }
 
             return khoNhapXuatList;
@@ -160,6 +166,9 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
+                khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
+
 
             }
             return khoNhapXuat;
@@ -222,6 +231,66 @@ namespace _315HealthCareProject.Services
         {
             return await _repository.GetTrangThaiAsync(idTrangThai);
         }
+
+        public async Task<string> GetTenChiNhanhAsync(int idKhoCN)
+        {
+            return await _repository.GetTenChiNhanhAsync(idKhoCN);
+        }
+
+        public async Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByIdChiNhanhAsync(int idChiNhanh)
+        {
+            var khoNhapList = await _repository.GetPhieuNhapByIdChiNhanhAsync(idChiNhanh);
+            foreach (var khoNhapXuat in khoNhapList)
+            {
+                khoNhapXuat.TenKhoNhap = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoNhap ?? 0);
+                khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
+                khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
+                khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
+                khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
+
+            }
+            return khoNhapList;
+        }
+
+
+        public async Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByTimeAndBranchAsync(DateTime fromDate, DateTime toDate, int idChiNhanh)
+        {
+
+            var khoNhapList = await _repository.GetPhieuNhapByTimeAndBranchAsync(fromDate, toDate, idChiNhanh);
+            foreach (var khoNhapXuat in khoNhapList)
+            {
+                khoNhapXuat.TenKhoNhap = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoNhap ?? 0);
+                khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
+                khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
+                khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
+                khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
+
+            }
+            return khoNhapList;
+        }
+
+
+        public async Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByTimeAsync(DateTime fromDate, DateTime toDate)
+        {
+            var khoNhapList = await _repository.GetPhieuNhapByTimeAsync(fromDate, toDate);
+            foreach (var khoNhapXuat in khoNhapList)
+            {
+                khoNhapXuat.TenKhoNhap = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoNhap ?? 0);
+                khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
+                khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
+                khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
+                khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
+
+            }
+            return khoNhapList;
+        }
+
 
     }
 }

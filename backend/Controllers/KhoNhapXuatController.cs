@@ -224,18 +224,62 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
-       
 
+        [HttpGet("FindPhieuNhapByCondition")]
+        public async Task<IActionResult> GetPhieuNhapByConditions(DateTime? fromDate, DateTime? toDate, int? idChiNhanh)
+        {
+            try
+            {
+                IEnumerable<KhoNhapXuat> phieuNhap;
+
+                if (idChiNhanh.HasValue)
+                {
+                    if (fromDate.HasValue && toDate.HasValue && fromDate.HasValue)
+                    {
+                        // Lấy thông tin phiếu nhập theo khoảng thời gian và chi nhánh
+                        phieuNhap = await _service.GetPhieuNhapByTimeAndBranchAsync(fromDate.Value, toDate.Value, idChiNhanh.Value);
+                    }
+                    else
+                    {
+                        // Lấy thông tin phiếu nhập chỉ theo chi nhánh
+                        phieuNhap = await _service.GetPhieuNhapByIdChiNhanhAsync(idChiNhanh.Value);
+                    }
+                }
+                else
+                {
+                    if (fromDate.HasValue && toDate.HasValue)
+                    {
+                        // Lấy thông tin phiếu nhập theo khoảng thời gian
+                        phieuNhap = await _service.GetPhieuNhapByTimeAsync(fromDate.Value, toDate.Value);
+                    }
+                    else
+                    {
+                        
+                        phieuNhap = await _service.GetAllPhieuNhapAsync();
+                    }
+                }
+
+                return Ok(phieuNhap);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
+        }
+
+        //[HttpGet("FindPhieuNhapByIdChiNhanh")]
+        //public async Task<IActionResult> GetPhieuNhapByBranch(int idChiNhanh)
+        //{
+        //    try
+        //    {
+        //        var phieuNhap = await _service.GetPhieuNhapByIdChiNhanhAsync(idChiNhanh);
+        //        return Ok(phieuNhap);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+        //    }
+        //}
 
     }
 }
-
-
-
-
-        
-
-
-
-
-    

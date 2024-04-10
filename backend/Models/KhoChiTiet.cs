@@ -68,5 +68,8 @@ namespace _315HealthCareProject.Models
 
         [Column("CHECKDELETE")]
         public int? CheckDelete { get; set; }
+
+        [ForeignKey("IdThuoc")]
+        public ThuocVatTu ThuocVatTu { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace _315HealthCareProject.Repositories
         }
 
 
+
         public async Task<ThuocVatTu> CreateThuocVatTu(string maThuoc, string tenBietDuoc, string tenHoatChat, string dvt)
         {
             var thuocVatTu = new ThuocVatTu
@@ -58,6 +59,23 @@ namespace _315HealthCareProject.Repositories
             _context.Entry(thuocVatTu).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+
+
+        public async Task<IEnumerable<ThuocVatTu>> SearchThuocVatTuAsync(string? keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                return await GetAllAsync();
+            }
+            else
+            {
+                keyword = keyword.ToLower();
+                return await _context.ThuocVatTus.Where(t =>
+                    t.MaThuoc.ToLower().Contains(keyword) || t.TenBietDuoc.ToLower().Contains(keyword)
+                ).ToListAsync();
+            }
+        }
+
 
     }
 }

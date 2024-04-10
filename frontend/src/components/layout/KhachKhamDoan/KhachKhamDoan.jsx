@@ -53,10 +53,11 @@ const KhachKhamDoan = () => {
   const { listBNImport, ListBNKhamDoan, listSMS, isLoadingBN, listCty } =
     useSelector((state) => state.khamDoanReducer);
   const onSelectChange = (newSelectedRowKeys, infoBN) => {
-    dispatch({
-      type: typeAction.ADD_LIST_INFO_SMS,
-      payload: infoBN,
-    });
+    console.log(infoBN);
+    // dispatch({
+    //   type: typeAction.ADD_LIST_INFO_SMS,
+    //   payload: infoBN,
+    // });
     setSelectedRowKeys(newSelectedRowKeys);
   };
   const [open, setOpen] = useState(false);
@@ -221,6 +222,7 @@ const KhachKhamDoan = () => {
     selectedRowKeys,
     onChange: onSelectChange,
   };
+  // xử lý gửi sms
   const showConfirm = () => {
     confirm({
       title: "Bạn có muốn gửi sms hay không ?",
