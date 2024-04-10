@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Software\\source\\repo\\315HealthCare\\backend\\315HealthCareProject.csproj": {}
+    "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\315HealthCareProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Software\\source\\repo\\315HealthCare\\backend\\315HealthCareProject.csproj": {
+    "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\315HealthCareProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Software\\source\\repo\\315HealthCare\\backend\\315HealthCareProject.csproj",
+        "projectUniqueName": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\315HealthCareProject.csproj",
         "projectName": "315HealthCareProject",
-        "projectPath": "C:\\Users\\Software\\source\\repo\\315HealthCare\\backend\\315HealthCareProject.csproj",
+        "projectPath": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\315HealthCareProject.csproj",
         "packagesPath": "C:\\Users\\Software\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Software\\source\\repo\\315HealthCare\\backend\\obj\\",
+        "outputPath": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Software\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,9 +45,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "FluentFTP": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[32.0.0, )"
             },
             "Microsoft.AspNetCore.Cors": {
               "target": "Package",

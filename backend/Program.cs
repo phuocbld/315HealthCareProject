@@ -51,8 +51,7 @@ builder.Services.AddScoped<ICongTyTrangThaiRepository , CongTyTrangThaiRepositor
 builder.Services.AddScoped<ICongTyTrangThaiService , CongTyTrangThaiService>();
 builder.Services.AddScoped<ICongTyTrangThaiSMSRepository ,  CongTyTrangThaiSMSRepository>();
 builder.Services.AddScoped<ICongTyTrangThaiSMSService, CongTyTrangThaiSMSService>();
-
-
+builder.Services.AddScoped<IFtpService , FtpService>();
 
 
 builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
@@ -97,6 +96,7 @@ app.Use(async (context, next) =>
     }
     await next();
 });
+
 
 
 app.UseHttpsRedirection();

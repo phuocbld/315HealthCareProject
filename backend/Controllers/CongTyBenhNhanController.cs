@@ -42,93 +42,60 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
-        //[HttpPut("UpdateBenhNhan/{id}")]
-        //public async Task<IActionResult> UpdateBenhNhan(int id, CongTyBenhNhan benhNhan)
-        //{
-        //    if (id != benhNhan.IDBN)
-        //    {
-        //        return BadRequest("Invalid ID");
-        //    }
+        [HttpPut("UpdateBenhNhan/{id}")]
+        public async Task<IActionResult> UpdateBenhNhan(int id, CongTyBenhNhan benhNhan)
+        {
+            if (id != benhNhan.IDBN)
+            {
+                return BadRequest("Invalid ID");
+            }
 
-        //    try
-        //    {
-        //        await _service.UpdateBenhNhanAsync(benhNhan);
-        //        return Ok(benhNhan);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, "An error occurred while updating bệnh nhân: " + ex.Message);
-        //    }
-        //}
+            try
+            {
+                await _service.UpdateBenhNhanAsync(benhNhan);
+                return Ok(benhNhan);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating bệnh nhân: " + ex.Message);
+            }
+        }
 
 
-        //[HttpPut("UpdateBenhNhan/{id}")]
-        //public async Task<IActionResult> UpdateBenhNhan(int id, [FromBody] CongTyBenhNhan benhNhan, [FromForm] IFormFile pdfFile, [FromQuery] string fieldToUpdate)
-        //{
-        //    if (id != benhNhan.IDBN)
-        //    {
-        //        return BadRequest("Invalid ID");
-        //    }
+        [HttpPut("UpdateBenhNhanPDF/{id}")]
+        public async Task<IActionResult> UpdateBenhNhan(int id, [FromForm] CongTyBenhNhan benhNhan, [FromForm] IFormFile pdfFile, [FromQuery] string fieldToUpdate)
+        {
+            if (id != benhNhan.IDBN)
+            {
+                return BadRequest("Invalid ID");
+            }
 
-        //    try
-        //    {
-        //        byte[] fileBytes = null;
+            try
+            {
+                byte[] fileBytes = null;
 
-        //        // Kiểm tra xem có file PDF được gửi lên không
-        //        if (pdfFile != null && pdfFile.Length > 0)
-        //        {
-        //            using (var memoryStream = new MemoryStream())
-        //            {
-        //                // Đọc dữ liệu file PDF vào một mảng byte
-        //                await pdfFile.CopyToAsync(memoryStream);
-        //                fileBytes = memoryStream.ToArray();
-        //            }
-        //        }
+                // Kiểm tra xem có file PDF được gửi lên không
+                if (pdfFile != null && pdfFile.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        // Đọc dữ liệu file PDF vào một mảng byte
+                        await pdfFile.CopyToAsync(memoryStream);
+                        fileBytes = memoryStream.ToArray();
+                    }
+                }
 
-        //        // Gọi phương thức UpdateBenhNhanAsync từ service và truyền cả thông tin bệnh nhân lẫn dữ liệu file PDF
-        //        await _service.UpdateBenhNhanAsync(benhNhan, fileBytes, fieldToUpdate);
+                // Gọi phương thức UpdateBenhNhanWithPDFAsync từ service và truyền cả thông tin bệnh nhân lẫn dữ liệu file PDF
+                await _service.UpdateBenhNhanWithPDFAsync(benhNhan, fileBytes, fieldToUpdate);
 
-        //        return Ok(benhNhan);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, "An error occurred while updating bệnh nhân: " + ex.Message);
-        //    }
-        //}
+                return Ok(benhNhan);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating bệnh nhân: " + ex.Message);
+            }
+        }
 
-        //[HttpPut("UpdateBenhNhan/{id}")]
-        //public async Task<IActionResult> UpdateBenhNhan(int id, [FromBody] CongTyBenhNhan benhNhan, [FromForm] IFormFile pdfFile)
-        //{
-        //    if (id != benhNhan.IDBN)
-        //    {
-        //        return BadRequest("Invalid ID");
-        //    }
-
-        //    try
-        //    {
-        //        byte[] fileBytes = null;
-
-        //        // Kiểm tra xem có file PDF được gửi lên không
-        //        if (pdfFile != null && pdfFile.Length > 0)
-        //        {
-        //            using (var memoryStream = new MemoryStream())
-        //            {
-        //                // Đọc dữ liệu file PDF vào một mảng byte
-        //                await pdfFile.CopyToAsync(memoryStream);
-        //                fileBytes = memoryStream.ToArray();
-        //            }
-        //        }
-
-        //        // Gọi phương thức UpdateBenhNhanAsync từ service và truyền cả thông tin bệnh nhân lẫn dữ liệu file PDF
-        //        await _service.UpdateBenhNhanAsync(benhNhan, fileBytes);
-
-        //        return Ok(benhNhan);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, "An error occurred while updating bệnh nhân: " + ex.Message);
-        //    }
-        //}
 
 
 

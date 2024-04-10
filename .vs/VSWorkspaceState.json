@@ -11,6 +11,6 @@
     "\\frontend\\src\\components\\common",
     "\\frontend\\src\\components\\common\\test"
   ],
-  "SelectedNode": "\\backend\\Repositories\\KhoNhapXuatRepository.cs",
+  "SelectedNode": "\\backend\\Services\\FtpService.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -281,5 +281,46 @@ namespace _315HealthCareProject.Controllers
         //    }
         //}
 
+        [HttpGet("FindPhieuXuatByCondition")]
+        public async Task<IActionResult> GetPhieuXuatByConditions(DateTime? fromDate, DateTime? toDate, int? idChiNhanh)
+        {
+            try
+            {
+                IEnumerable<KhoNhapXuat> phieuXuat;
+
+                if (idChiNhanh.HasValue)
+                {
+                    if (fromDate.HasValue && toDate.HasValue && fromDate.HasValue)
+                    {
+                        // Lấy thông tin phiếu nhập theo khoảng thời gian và chi nhánh
+                        phieuXuat = await _service.GetPhieuXuatByTimeAndBranchAsync(fromDate.Value, toDate.Value, idChiNhanh.Value);
+                    }
+                    else
+                    {
+                        // Lấy thông tin phiếu nhập chỉ theo chi nhánh
+                        phieuXuat = await _service.GetPhieuXuatByIdChiNhanhAsync(idChiNhanh.Value);
+                    }
+                }
+                else
+                {
+                    if (fromDate.HasValue && toDate.HasValue)
+                    {
+                        // Lấy thông tin phiếu nhập theo khoảng thời gian
+                        phieuXuat = await _service.GetPhieuXuatByTimeAsync(fromDate.Value, toDate.Value);
+                    }
+                    else
+                    {
+
+                        phieuXuat = await _service.GetAllPhieuXuatAsync();
+                    }
+                }
+
+                return Ok(phieuXuat);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi nội bộ: {ex.Message}");
+            }
+        }
     }
 }

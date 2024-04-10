@@ -8,7 +8,8 @@ namespace _315HealthCareProject.Services.Interface
     {
         Task<IEnumerable<CongTyBenhNhan>> GetAllAsync();
         Task AddBenhNhanListAsync(List<CongTyBenhNhan> benhNhanList);
-        //Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan);
+        Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan);
+        Task UpdateBenhNhanWithPDFAsync(CongTyBenhNhan benhNhan, byte[] pdfFile, string fieldToUpdate);
         //Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan, byte[] pdfFile, string fieldToUpdate);
         //Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan, byte[]? pdfFile);
         Task<CongTyBenhNhan> GetBenhNhanByIdAsync(int id);
