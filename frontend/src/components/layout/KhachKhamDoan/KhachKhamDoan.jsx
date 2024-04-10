@@ -354,20 +354,6 @@ const KhachKhamDoan = () => {
         record.KQXN.props.children.indexOf(value) === 0,
     },
     {
-      title: "Người cập nhập KQ",
-      dataIndex: "NGUOIKQ",
-      key: "NGUOIKQ",
-      width: 150,
-      align: "center",
-    },
-    {
-      title: "Ngày cập nhập KQ",
-      dataIndex: "NGAYKQ",
-      key: "NGAYKQ",
-      width: 150,
-      align: "center",
-    },
-    {
       title: "SMS",
       dataIndex: "SMS",
       key: "SMS",
@@ -389,6 +375,20 @@ const KhachKhamDoan = () => {
       ],
       onFilter: (value, record) =>
         record.SMS.props.children.indexOf(value) === 0,
+    },
+    {
+      title: "Người cập nhập KQ",
+      dataIndex: "NGUOIKQ",
+      key: "NGUOIKQ",
+      width: 150,
+      align: "center",
+    },
+    {
+      title: "Ngày cập nhập KQ",
+      dataIndex: "NGAYKQ",
+      key: "NGAYKQ",
+      width: 150,
+      align: "center",
     },
     {
       title: "Người gửi SMS",
