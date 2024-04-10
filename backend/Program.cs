@@ -54,6 +54,7 @@ builder.Services.AddScoped<ICongTyTrangThaiSMSService, CongTyTrangThaiSMSService
 
 
 
+
 builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
 {
     build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
@@ -79,7 +80,6 @@ Action checkDatabaseConnection = () =>
 };
 
 
-app.UseCors("MyCors");
 // Gọi action để kiểm tra kết nối khi ứng dụng khởi động
 checkDatabaseConnection();
 
@@ -100,7 +100,7 @@ app.Use(async (context, next) =>
 
 
 app.UseHttpsRedirection();
-
+app.UseCors("MyCors");
 app.MapControllers();
 
 app.Run();

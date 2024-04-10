@@ -33,6 +33,20 @@ namespace _315HealthCareProject.Controllers
                 return StatusCode(500, "An error occurred while adding kho chi tiet: " + ex.Message);
             }
         }
-       
+
+
+        [HttpGet("{idNhapXuat}")]
+        public async Task<IActionResult> GetKhoChiTietByNhapXuatId(int idNhapXuat)
+        {
+            try
+            {
+                var khoChiTietList = await _khoChiTietService.GetKhoChiTietByNhapXuatIdAsync(idNhapXuat);
+                return Ok(khoChiTietList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while fetching kho chi tiet: " + ex.Message);
+            }
+        }
     }
 }

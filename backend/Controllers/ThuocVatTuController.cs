@@ -159,7 +159,8 @@ namespace _315HealthCareProject.Controllers
                 newThuocVatTu.IdNhom = thuocVatTu.IdNhom;
                 newThuocVatTu.IdCt = thuocVatTu.IdCt;
                 newThuocVatTu.QuyCach = thuocVatTu.QuyCach;
-                newThuocVatTu.DonGia = thuocVatTu.DonGia;
+                newThuocVatTu.GiaBan = thuocVatTu.GiaBan;
+                newThuocVatTu.GiaMua = thuocVatTu.GiaMua;
                 newThuocVatTu.NongDo = thuocVatTu.NongDo;
                 newThuocVatTu.HamLuong = thuocVatTu.HamLuong;
                 newThuocVatTu.DuongDung = thuocVatTu.DuongDung;
