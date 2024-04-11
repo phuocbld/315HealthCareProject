@@ -40,25 +40,6 @@ namespace _315HealthCareProject.Services
             }
         }
 
-        //public async Task UploadFileAsync(string localPath, string remotePath)
-        //{
-        //    using (var ftpClient = new FtpClient(_host, _username, _password))
-        //    {
-        //        try
-        //        {
-        //            await ftpClient.ConnectAsync();
-        //            await ftpClient.UploadFileAsync(localPath, Path.Combine(_remoteDirectory, remotePath));
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine($"An error occurred while uploading the file: {ex.Message}");
-        //        }
-        //        finally
-        //        {
-        //            ftpClient.Disconnect();
-        //        }
-        //    }
-        //}
         public async Task UploadFileAsync(byte[] fileBytes, string remoteFileName, string remoteDirectory)
         {
             using (var ftpClient = new FtpClient(_host, _username, _password))
@@ -78,5 +59,33 @@ namespace _315HealthCareProject.Services
                 }
             }
         }
+
+
+        public async Task<bool> IsLoginValidAsync()
+        {
+            using (var ftpClient = new FtpClient(_host, _username, _password))
+            {
+                try
+                {
+                    await ftpClient.ConnectAsync();
+                    return true;
+                }
+                catch (FtpAuthenticationException)
+                {
+                    // Xử lý trường hợp thông tin đăng nhập không đúng
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred while connecting to FTP server: {ex.Message}");
+                    return false;
+                }
+                finally
+                {
+                    ftpClient.Disconnect();
+                }
+            }
+        }
+
     }
 }

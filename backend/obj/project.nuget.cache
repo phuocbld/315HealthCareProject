@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vFqz8kmlRL/owSqarEh6Sun0IotIqQp8R9v1+yHlfEPei3yz8Hs8/iI+eckStiu/gRzV/NhopKGF0BaweKBPxA==",
+  "dgSpecHash": "LafYGN9pcNuNBFGKivqTu5tymdvn+NZEtJMPBkR+Tj6R9GV5gutGwtWr329FCwUBlRfkfBTLSTL2F0FbWYfD4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\315HealthCareProject.csproj",
+  "projectFilePath": "C:\\Users\\Software\\source\\repo\\315HealthCare\\backend\\315HealthCareProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Software\\.nuget\\packages\\fluentftp\\32.0.0\\fluentftp.32.0.0.nupkg.sha512",
     "C:\\Users\\Software\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",

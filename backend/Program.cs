@@ -65,6 +65,8 @@ builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
 }));
 var app = builder.Build();
 
+
+
 // Định nghĩa một action kiểm tra kết nối database
 Action checkDatabaseConnection = () =>
 {
