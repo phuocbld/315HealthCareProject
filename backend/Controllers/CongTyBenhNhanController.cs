@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.IO.Compression;
 using _315HealthCareProject.DTO;
+using System.Text;
 
 namespace _315HealthCareProject.Controllers
 {
@@ -15,10 +16,12 @@ namespace _315HealthCareProject.Controllers
     public class CongTyBenhNhanController : ControllerBase
     {
         private readonly ICongTyBenhNhanService _service;
+        private readonly IFtpService _ftpService;
 
-        public CongTyBenhNhanController(ICongTyBenhNhanService service)
+        public CongTyBenhNhanController(ICongTyBenhNhanService service, IFtpService ftpService)
         {
             _service = service;
+            _ftpService = ftpService;
         }
 
         [HttpGet("AllBenhNhan")]
@@ -72,21 +75,31 @@ namespace _315HealthCareProject.Controllers
 
             try
             {
-                byte[] fileBytes = null;
-
-                // Kiểm tra xem có file PDF được gửi lên không
                 if (pdfFile != null && pdfFile.Length > 0)
                 {
+                    byte[] fileBytes;
                     using (var memoryStream = new MemoryStream())
                     {
-                        // Đọc dữ liệu file PDF vào một mảng byte
                         await pdfFile.CopyToAsync(memoryStream);
                         fileBytes = memoryStream.ToArray();
                     }
+
+                    string remoteDirectory = fieldToUpdate == "KQXN" ? "KQXN" : "KQKham";
+                    string remoteFileName = Guid.NewGuid().ToString() + Path.GetExtension(pdfFile.FileName);
+
+                    await _ftpService.UploadFileAsync(fileBytes, remoteFileName, remoteDirectory);
+
+                    if (fieldToUpdate == "KQXN")
+                    {
+                        benhNhan.KQXN = Encoding.UTF8.GetBytes($"ftp://14.241.244.112:7777/{remoteDirectory}/{remoteFileName}");
+                    }
+                    else if (fieldToUpdate == "KQKham")
+                    {
+                        benhNhan.KQKHAM = Encoding.UTF8.GetBytes($"ftp://14.241.244.112:7777/{remoteDirectory}/{remoteFileName}");
+                    }
                 }
 
-                // Gọi phương thức UpdateBenhNhanWithPDFAsync từ service và truyền cả thông tin bệnh nhân lẫn dữ liệu file PDF
-                await _service.UpdateBenhNhanWithPDFAsync(benhNhan, fileBytes, fieldToUpdate);
+                await _service.UpdateBenhNhanAsync(benhNhan);
 
                 return Ok(benhNhan);
             }
@@ -95,8 +108,6 @@ namespace _315HealthCareProject.Controllers
                 return StatusCode(500, "An error occurred while updating bệnh nhân: " + ex.Message);
             }
         }
-
-
 
 
 

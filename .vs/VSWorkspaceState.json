@@ -2,19 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\backend",
-    "\\backend\\Models",
-    "\\backend\\Repositories",
-    "\\backend\\Services",
-    "\\frontend",
-    "\\frontend\\src",
-    "\\frontend\\src\\components",
-    "\\frontend\\src\\components\\common",
-    "\\frontend\\src\\components\\common\\test"
+    "\\backend\\Controllers",
+    "\\backend\\Services"
   ],
-<<<<<<< HEAD
   "SelectedNode": "\\backend\\Services\\FtpService.cs",
-=======
-  "SelectedNode": "\\backend\\Models\\ViewKhoNhapXuat.cs",
->>>>>>> 775eafbe5ad26ed71923793d40f31ef7a7d242d6
   "PreviewInSolutionExplorer": false
 }

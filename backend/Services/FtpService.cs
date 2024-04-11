@@ -40,14 +40,33 @@ namespace _315HealthCareProject.Services
             }
         }
 
-        public async Task UploadFileAsync(string localPath, string remotePath)
+        //public async Task UploadFileAsync(string localPath, string remotePath)
+        //{
+        //    using (var ftpClient = new FtpClient(_host, _username, _password))
+        //    {
+        //        try
+        //        {
+        //            await ftpClient.ConnectAsync();
+        //            await ftpClient.UploadFileAsync(localPath, Path.Combine(_remoteDirectory, remotePath));
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine($"An error occurred while uploading the file: {ex.Message}");
+        //        }
+        //        finally
+        //        {
+        //            ftpClient.Disconnect();
+        //        }
+        //    }
+        //}
+        public async Task UploadFileAsync(byte[] fileBytes, string remoteFileName, string remoteDirectory)
         {
             using (var ftpClient = new FtpClient(_host, _username, _password))
             {
                 try
                 {
                     await ftpClient.ConnectAsync();
-                    await ftpClient.UploadFileAsync(localPath, Path.Combine(_remoteDirectory, remotePath));
+                    await ftpClient.UploadAsync(new MemoryStream(fileBytes), Path.Combine(_remoteDirectory, remoteDirectory, remoteFileName));
                 }
                 catch (Exception ex)
                 {

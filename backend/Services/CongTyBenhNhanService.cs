@@ -87,11 +87,6 @@ namespace _315HealthCareProject.Services
         }
 
 
-        public async Task UpdateBenhNhanWithPDFAsync(CongTyBenhNhan benhNhan, byte[] pdfFile, string fieldToUpdate)
-        {
-            await _benhNhanCT.UpdateBenhNhanWithPDFAsync(benhNhan, pdfFile, fieldToUpdate);
-        }
-
 
 
         public async Task<IEnumerable<CongTyBenhNhan>> GetAllAsync()

@@ -116,7 +116,7 @@ namespace _315HealthCareProject.Repositories
         public async Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByTimeAndBranchAsync(DateTime fromDate, DateTime toDate, int idChiNhanh)
         {
             return await _context.KhoNhapXuats
-                .Where(k => k.NgayNhan >= fromDate && k.NgayNhan <= toDate && k.CheckDelete != 1 && k.MaPhieu.StartsWith("PN"))
+                .Where(k => k.NgayNhan >= fromDate && k.NgayNhan <= toDate && k.CheckDelete != 1 && k.MaPhieu.StartsWith("PN0A"))
                 .Join(_context.KhoChiNhanhs, k => k.IdKhoNhap, kc => kc.IdKhoCN, (k, kc) => new { KhoNhapXuat = k, KhoChiNhanh = kc })
                 .Where(joinResult => joinResult.KhoChiNhanh.IdCN == idChiNhanh)
                 .Select(joinResult => joinResult.KhoNhapXuat)
@@ -127,7 +127,7 @@ namespace _315HealthCareProject.Repositories
         public async Task<IEnumerable<KhoNhapXuat>> GetPhieuNhapByTimeAsync(DateTime fromDate, DateTime toDate)
         {
             return await _context.KhoNhapXuats
-                .Where(k => k.NgayNhan >= fromDate && k.NgayNhan <= toDate && k.CheckDelete != 1 && k.MaPhieu.StartsWith("PN"))
+                .Where(k => k.NgayNhan >= fromDate && k.NgayNhan <= toDate && k.CheckDelete != 1 && k.MaPhieu.StartsWith("PN0A"))
                 .ToListAsync();
         }
 
@@ -135,13 +135,16 @@ namespace _315HealthCareProject.Repositories
         {
             return await _context.KhoNhapXuats
                 .Join(_context.KhoChiNhanhs,
-                    k => k.IdKhoNhap, 
+                    k => k.IdKhoNhap,
                     kc => kc.IdKhoCN,
                     (k, kc) => new { KhoNhapXuat = k, KhoChiNhanh = kc })
-                .Where(joinResult => joinResult.KhoChiNhanh.IdCN == idChiNhanh && joinResult.KhoNhapXuat.CheckDelete != 1)
+                .Where(joinResult => joinResult.KhoChiNhanh.IdCN == idChiNhanh
+                                   && joinResult.KhoNhapXuat.CheckDelete != 1
+                                   && joinResult.KhoNhapXuat.MaPhieu.StartsWith("PN"))
                 .Select(joinResult => joinResult.KhoNhapXuat)
                 .ToListAsync();
         }
+
 
         public async Task<IEnumerable<KhoNhapXuat>> GetPhieuXuatByIdChiNhanhAsync(int idChiNhanh)
         {
@@ -150,7 +153,7 @@ namespace _315HealthCareProject.Repositories
                     k => k.IdKhoXuat,
                     kc => kc.IdKhoCN,
                     (k, kc) => new { KhoNhapXuat = k, KhoChiNhanh = kc })
-                .Where(joinResult => joinResult.KhoChiNhanh.IdCN == idChiNhanh && joinResult.KhoNhapXuat.CheckDelete != 1)
+                .Where(joinResult => joinResult.KhoChiNhanh.IdCN == idChiNhanh && joinResult.KhoNhapXuat.CheckDelete != 1 && joinResult.KhoNhapXuat.MaPhieu.StartsWith("CK"))
                 .Select(joinResult => joinResult.KhoNhapXuat)
                 .ToListAsync();
         }

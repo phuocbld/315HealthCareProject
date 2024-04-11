@@ -5,6 +5,7 @@ using _315HealthCareProject.Repositories.Interface;
 using _315HealthCareProject.Services;
 using _315HealthCareProject.Services.Interface;
 using _315HealthCareProject.Services.Interfaces;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -52,6 +53,10 @@ builder.Services.AddScoped<ICongTyTrangThaiService , CongTyTrangThaiService>();
 builder.Services.AddScoped<ICongTyTrangThaiSMSRepository ,  CongTyTrangThaiSMSRepository>();
 builder.Services.AddScoped<ICongTyTrangThaiSMSService, CongTyTrangThaiSMSService>();
 builder.Services.AddScoped<IFtpService , FtpService>();
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 209715200; // Giới hạn kích thước multipart body (200 MB)
+});                                
 
 
 builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
