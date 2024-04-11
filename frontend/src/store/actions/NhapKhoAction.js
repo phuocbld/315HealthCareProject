@@ -12,8 +12,12 @@ export const getInfoDoitac = (payload) => ({
     payload
 })
 
-export const fetchAllThuocVT = () => ({
-    type:typeAction.GET_ALL_THUOCVT
+// export const fetchAllThuocVT = () => ({
+//     type:typeAction.GET_ALL_THUOCVT
+// })
+export const searchThuocVT = (keyword) => ({
+    type:typeAction.GET_THUOCVT_BY_KEYWORD,
+    keyword
 })
 export const fetchInfoThuocVT = (idThuoc) => ({
     type:typeAction.GET_INFO_THUOCVT,
@@ -36,5 +40,10 @@ export const deletePhieuNhapKhoAction = (idPhieu) => ({
 export const getInfoPTNhapByIdAction = (idNhapXuat) => ({
     type:typeAction.GET_INFO_PT_NHAP_KHO,
     idNhapXuat
+
+})
+export const filterPTNhapKhoAction = (filter) => ({
+    type:typeAction.GET_FILTER_PT_NHAP_KHO,
+    filter
 
 })

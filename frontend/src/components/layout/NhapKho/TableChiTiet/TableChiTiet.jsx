@@ -2,9 +2,6 @@ import {
   ConfigProvider,
   Table,
   Input,
-  InputNumber,
-  Form,
-  DatePicker,
   Select,
 } from "antd";
 import { CloseOutlined } from "@ant-design/icons";

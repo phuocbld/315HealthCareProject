@@ -99,21 +99,21 @@ export function* NhapKhoSaga() {
     }
   );
   // get add list thuốc vật tư
-  yield takeLatest(
-    typeAction.GET_ALL_THUOCVT,
-    function* getAllVTYT({ type, payload }) {
-      // yield console.log(payload);
-      try {
-        const result = yield call(() => NhapKhoService.getAllThuocVT());
-        yield put({
-          type: typeAction.DISPATCH_ALL_THUOCVT,
-          payload: result.data,
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  );
+  // yield takeLatest(
+  //   typeAction.GET_ALL_THUOCVT,
+  //   function* getAllVTYT({ type, payload }) {
+  //     // yield console.log(payload);
+  //     try {
+  //       const result = yield call(() => NhapKhoService.getAllThuocVT());
+  //       yield put({
+  //         type: typeAction.DISPATCH_ALL_THUOCVT,
+  //         payload: result.data,
+  //       });
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // );
   // get info thuốc và vật tư
   yield takeLatest(
     typeAction.GET_INFO_THUOCVT,
@@ -236,4 +236,47 @@ export function* NhapKhoSaga() {
       }
     }
   );
+  // FILTER DANH SÁCH PHIẾU NHẬP KHO
+  yield takeLatest(
+    typeAction.GET_FILTER_PT_NHAP_KHO,
+    function* infoPTNhapKho({ type, filter }) {
+      try {
+        yield put({
+          type: typeAction.OPEN_LOADING_TABLE_NHAP_KHO,
+        });
+        const result = yield call(() =>
+          NhapKhoService.getPTBycondition(filter)
+        ); //
+        yield put({
+          type: typeAction.DISPATCH_LIST_PHIEU_NHAP,
+          payload: result.data,
+        });
+       yield put({
+          type: typeAction.CLOSE_LOADING_TABLE_NHAP_KHO,
+        });
+      } catch (err) {
+        yield put({
+          type: typeAction.OPEN_LOADING_TABLE_NHAP_KHO,
+        });
+        console.log(err);
+      }
+    }
+  );
+    // Lây Danh sách thuốc vật tư theo keyword
+    yield takeLatest(
+      typeAction.GET_THUOCVT_BY_KEYWORD,
+      function* SearchThuocVT({ type, keyword }) {
+        try {
+          const result = yield call(() =>
+            NhapKhoService.getThuocVTByKeyword(keyword)
+          ); //
+          yield put({
+            type: typeAction.DISPATCH_ALL_THUOCVT,
+            payload: result.data,
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    );
 }

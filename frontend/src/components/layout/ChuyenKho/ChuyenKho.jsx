@@ -11,7 +11,7 @@ import Transfer from "./Satus/Transfer/Transfer";
 import { useReactToPrint } from "react-to-print";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchAllThuocVT,
+  // fetchAllThuocVT,
   getBranchNhapKho,
 } from "../../../store/actions/NhapKhoAction";
 import { useFormik } from "formik";
@@ -211,7 +211,7 @@ const ChuyenKho = () => {
     validationSchema: chuyenKhoSchema,
   });
   useEffect(() => {
-    dispatch(fetchAllThuocVT());
+    // dispatch(fetchAllThuocVT()); 
     dispatch(getBranchNhapKho());
     dispatch(listBranchAction());
   }, []);
@@ -230,7 +230,7 @@ const ChuyenKho = () => {
             <Tabs
               items={[
                 {
-                  label: "Phiếu chuyển",
+                  label: "Chuyển kho",
                   key: 1,
                   children: (
                     <>
@@ -520,7 +520,7 @@ const ChuyenKho = () => {
                   ),
                 },
                 {
-                  label: "Danh sách phiếu",
+                  label: "Danh sách phiếu chuyển kho",
                   key: 2,
                   children: (
                     <Tabs

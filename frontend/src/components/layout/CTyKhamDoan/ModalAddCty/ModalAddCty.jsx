@@ -93,6 +93,11 @@ const ModalAddCty = ({ ref }) => {
               name="dienthoai"
               status={formik.errors.dienthoai ? "error" : ""}
             />
+                       {formik.errors.sodienthoai && (
+                <span className="text-red-500">
+                 {formik.errors.sodienthoai}
+                </span>
+              )}
           </div>
           <div>
             <label className="font-semibold">Fax</label>
