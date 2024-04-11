@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import * as typeAction from "../../../store/constants/constants";
 import LayoutApp from "../../../HOCs/LayoutApp";
+import _ from "lodash";
 import { Input, Select, Tabs, DatePicker, notification } from "antd";
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
@@ -11,11 +12,11 @@ import ListKho from "./ListKho/ListKho";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addPhieuNhapKho,
-  fetchAllThuocVT,
   fetchInfoThuocVT,
   getBranchNhapKho,
   getInfoDoitac,
   getlistDoitac,
+  searchThuocVT,
 } from "../../../store/actions/NhapKhoAction";
 import { KhoNhapSchema } from "../../../schemas/KhoNhapSchema";
 const Nhapkho = () => {
@@ -27,6 +28,7 @@ const Nhapkho = () => {
   const { branch, listKhoNhap, listDoiTac, infoDoiTac, thuocVT, infoThuocVT } =
     useSelector((state) => state.NhapKhoReducer);
   const [api, contextHolder] = notification.useNotification();
+
   // xử lí button submit
   const handleSave = (values, action) => {
     if (infoThuocVT.length === 0) {
@@ -68,6 +70,45 @@ const Nhapkho = () => {
   };
   // lấy thông tin người dùng >> tạm thời
   const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
+  // search lấy thông tin thuốc vật tư
+  const handleSearch = (value) => {
+    console.log(value);
+    dispatch(searchThuocVT(value));
+    // debounceDropDown(value)
+  };
+  const SearchInput = (props) => {
+
+    const debounceDropDown = useCallback(
+      _.debounce((nextValue) => {
+        dispatch(searchThuocVT(nextValue));
+      }, 300),
+      []
+    ); // sử dụng debounce để tối tiểu thánh server perfoman
+    // const handleSearch = (newValue) => {
+    //   fetch(newValue, setData);
+    // };
+    // const handleChange = (newValue) => {
+    //   setValue(newValue);
+    // };
+    return (
+      <Select
+        showSearch
+        // value={value}
+        placeholder={props.placeholder}
+        style={props.style}
+        defaultActiveFirstOption={false}
+        suffixIcon={null}
+        filterOption={false}
+        onSearch={handleSearch}
+        // onChange={handleChange}
+        notFoundContent={null}
+        options={(thuocVT || []).map((d) => ({
+          value: d.value,
+          label: d.text,
+        }))}
+      />
+    );
+  };
   const hanldeSaveAndPrint = (values, actions) => {
     console.log(values);
   };
@@ -95,6 +136,7 @@ const Nhapkho = () => {
   // xử lí chọn kho chi tiết
   const handleChoose = async (value) => {
     const validate = await checkStoreThuocVT(value);
+    console.log(value);
     validate
       ? dispatch(fetchInfoThuocVT(value))
       : openNotificationWithIcon(
@@ -131,7 +173,7 @@ const Nhapkho = () => {
   useEffect(() => {
     dispatch(getBranchNhapKho());
     dispatch(getlistDoitac());
-    dispatch(fetchAllThuocVT());
+    // dispatch(fetchAllThuocVT());
   }, []);
   const setPricre = (sum) => {
     setTotalPrice(sum);
@@ -151,9 +193,8 @@ const Nhapkho = () => {
   return (
     <LayoutApp>
       {contextHolder}
-      <div
-
-      >
+      <div>
+        {/* <SearchInput/> */}
         <Tabs
           className="p-3"
           items={[
@@ -190,7 +231,7 @@ const Nhapkho = () => {
                           </div>
                           <div className="flex ">
                             <label className="w-[13%] font-semibold">
-                            <span className="text-red-500 text-xs">(*)</span>
+                              <span className="text-red-500 text-xs">(*)</span>
                               Tên đối tác:
                             </label>
                             <Select
@@ -230,7 +271,9 @@ const Nhapkho = () => {
                           <div className="flex gap-2">
                             <div className="flex w-1/2">
                               <label className="w-[30%] font-semibold ">
-                              <span className="text-red-500 text-sx">(*)</span>
+                                <span className="text-red-500 text-sx">
+                                  (*)
+                                </span>
                                 Số hóa đơn:{" "}
                               </label>
                               <Input
@@ -243,7 +286,9 @@ const Nhapkho = () => {
                             </div>
                             <div className="flex w-1/2">
                               <label className="font-semibold w-[33%]">
-                              <span className="text-red-500 text-xs">(*)</span>
+                                <span className="text-red-500 text-xs">
+                                  (*)
+                                </span>
                                 Ngày HĐ :{" "}
                               </label>
                               <DatePicker
@@ -254,7 +299,7 @@ const Nhapkho = () => {
                                 //     ? moment(formik.values.ngayHoaDon).format('DD/MM/YYYY')
                                 //     : ""
                                 // }
-                                format='DD/MM/YYYY'
+                                format="DD/MM/YYYY"
                                 onChange={onchangeDateHoaDon}
                                 className="w-full"
                                 size="small"
@@ -265,7 +310,7 @@ const Nhapkho = () => {
                         <div className="flex flex-col w-1/4 gap-2">
                           <div className="flex gap-1">
                             <label className="w-1/3 text-end font-semibold">
-                            <span className="text-red-500 text-xs">(*)</span>
+                              <span className="text-red-500 text-xs">(*)</span>
                               Kho nhập:
                             </label>
                             <Select
@@ -294,12 +339,14 @@ const Nhapkho = () => {
                             />
                           </div>
                           <div className="flex gap-1">
-                            <label className="w-1/3 font-semibold text-end">SĐT: </label>
+                            <label className="w-1/3 font-semibold text-end">
+                              SĐT:{" "}
+                            </label>
                             <Input value={infoDoiTac?.dienThoai} size="small" />
                           </div>
                           <div className="flex gap-1">
                             <label className="w-1/3 font-semibold text-center">
-                            <span className="text-red-500 text-xs">(*)</span>
+                              <span className="text-red-500 text-xs">(*)</span>
                               Phương thức:
                             </label>
                             <Select
@@ -348,7 +395,7 @@ const Nhapkho = () => {
                           </div>
                           <div className="flex gap-2">
                             <label className="w-1/3 text-end font-semibold">
-                            <span className="text-red-500">(*)</span>
+                              <span className="text-red-500">(*)</span>
                               Hình thức:
                             </label>
                             <Select
@@ -376,7 +423,7 @@ const Nhapkho = () => {
                         <div className="flex gap-3 flex-col w-1/2 ">
                           <div className="flex">
                             <label className="w-[13%]  font-semibold">
-                            <span className="text-red-500 text-xs">(*)</span>
+                              <span className="text-red-500 text-xs">(*)</span>
                               Tên phiếu:
                             </label>
                             <Input
@@ -394,25 +441,29 @@ const Nhapkho = () => {
                             </label>
                             <Select
                               allowClear
+                              defaultActiveFirstOption={false}
+                              // notFoundContent={null}
+                              // onSearch={debounceDropDown}
                               onChange={handleChoose}
+                              // suffixIcon={null}
+                              // filterOption={false}
                               autoClearSearchValue="tags"
-                              value=""
+                              // value=""
                               showSearch
-                              filterOption={(input, option) =>
-                                (option?.label ?? "")
-                                  .toLowerCase()
-                                  .includes(input)
-                              }
-                              options={thuocVT?.map(
+                              // filterOption={(input, option) =>
+                              //   (option?.label ?? "")
+                              //     .toLowerCase()
+                              //     .includes(input)
+                              // }
+                              options={[thuocVT || []].map(
                                 ({ idThuoc, maThuoc, tenBietDuoc }) => ({
-                                  label: 
-                                  // tenBietDuoc,
-                                  <li>
-                                    <span className=" border-r-2 pr-2 mr-2">
-                                      {maThuoc}
-                                    </span>
-                                    {tenBietDuoc}
-                                  </li>,
+                                  label: tenBietDuoc,
+                                  // <li>
+                                  //   <span className=" border-r-2 pr-2 mr-2">
+                                  //     {maThuoc}
+                                  //   </span>
+                                  //   {tenBietDuoc}
+                                  // </li>,
                                   value: idThuoc,
                                 })
                               )}
@@ -425,7 +476,7 @@ const Nhapkho = () => {
                         <div className="flex gap-2 flex-col w-1/2">
                           <div className="flex items-center w-full">
                             <label className="w-[13.5%] text-end font-semibold">
-                            <span className="text-red-500 text-xs">(*)</span>
+                              <span className="text-red-500 text-xs">(*)</span>
                               Nội dung:
                             </label>
                             <Input.TextArea
@@ -483,7 +534,14 @@ const Nhapkho = () => {
                       />
                     </div>
                     <div className="mt-5 flex gap-5 justify-end">
-                      <Button onClick={()=>{formik.handleReset()}} variant="outlined"  color="info" size="small">
+                      <Button
+                        onClick={() => {
+                          formik.handleReset();
+                        }}
+                        variant="outlined"
+                        color="info"
+                        size="small"
+                      >
                         Làm mới
                       </Button>
                       <Button
@@ -494,7 +552,12 @@ const Nhapkho = () => {
                       >
                         Lưu
                       </Button>
-                      <Button disabled variant="contained" color="success" size="small">
+                      <Button
+                        disabled
+                        variant="contained"
+                        color="success"
+                        size="small"
+                      >
                         Lưu & in
                       </Button>
                     </div>

@@ -11,6 +11,7 @@ const initialState = {
   infoThuocVT: [],
   listPhieuNhap: null,
   infoPTNhap: null,
+  isLoading: false,
 };
 
 const NhapKhoReducer = (state = initialState, { type, payload }) => {
@@ -215,6 +216,12 @@ const NhapKhoReducer = (state = initialState, { type, payload }) => {
         break;
       case typeAction.DISPATCH_INFO_PT_NHAP_KHO:
         draft.infoPTNhap = payload;
+        break;
+      case typeAction.OPEN_LOADING_TABLE_NHAP_KHO:
+        draft.isLoading = true;
+        break;
+      case typeAction.CLOSE_LOADING_TABLE_NHAP_KHO:
+        draft.isLoading = false;
         break;
       default:
         return state;

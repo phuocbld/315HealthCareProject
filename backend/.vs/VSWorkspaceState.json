@@ -5,8 +5,9 @@
     "\\Data",
     "\\DTO",
     "\\Models",
+    "\\Repositories",
     "\\Services"
   ],
-  "SelectedNode": "\\Models\\CongTyBenhNhan.cs",
+  "SelectedNode": "\\Repositories\\KhoNhapXuatRepository.cs",
   "PreviewInSolutionExplorer": false
 }

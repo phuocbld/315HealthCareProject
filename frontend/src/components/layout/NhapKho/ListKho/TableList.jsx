@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import moment from "moment";
-import { Tooltip,Modal } from "antd";
+import { Tooltip,Modal,Spin } from "antd";
 import { DeleteOutlined, FileDoneOutlined,ExclamationCircleFilled } from "@ant-design/icons";
 import { useSelector,useDispatch } from "react-redux";
 import { deletePhieuNhapKhoAction, getInfoPTNhapByIdAction } from "../../../../store/actions/NhapKhoAction";
@@ -19,6 +19,7 @@ const columns = [
   { id: "tenPhieu", label: "Tên phiếu", minWidth: 200 },
   { id: "ngayNhan", label: "Ngày nhập", minWidth: 100 },
   { id: "idKhoNhap", label: "Kho nhập", minWidth: 100 },
+  { id: "tenChiNhanh", label: "Chi nhánh", minWidth: 100 },
   { id: "soHoaDon", label: "Số hoá đơn", minWidth: 100 },
   { id: "ngayHoaDon", label: "Ngày hoá đơn", minWidth: 100 },
   { id: "nhanVienNhan", label: "Người nhập", minWidth: 100 },
@@ -28,7 +29,7 @@ const columns = [
 const TableList = ({handleCancel,showModal}) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const { listPhieuNhap } = useSelector((state) => state.NhapKhoReducer);
+  const { listPhieuNhap,isLoading } = useSelector((state) => state.NhapKhoReducer); 
   // reverse array
   const dispatch = useDispatch()
   const [reverseData, setReverseData] = useState([]);
@@ -43,9 +44,9 @@ const TableList = ({handleCancel,showModal}) => {
   // show delete phiếu thu
   const showDeleteConfirm = (maPhieu,idPhieu) => {
     confirm({
-      title: 'Bạn Có chắc muốn xoá phiếu thu ?',
+      title: 'Bạn có chắc muốn xoá phiếu nhập kho ?',
       icon: <ExclamationCircleFilled />,
-      content: `Phiếu thu muốn xoá là: ${maPhieu}`,
+      content: `Phiếu nhập kho muốn xoá là: ${maPhieu}`,
       okText: 'Xoá',
       okType: 'danger',
       cancelText: 'Huỷ',
@@ -64,7 +65,7 @@ const TableList = ({handleCancel,showModal}) => {
     }
   }, [listPhieuNhap]);
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <Paper sx={{ width: "100%", overflow: "hidden", position:'relative' }}>
       <TableContainer sx={{ maxHeight: 560 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -105,6 +106,7 @@ const TableList = ({handleCancel,showModal}) => {
                     </TableCell>
                     <TableCell sx={{ padding: 1 }}>{row.tenKhoNhap}</TableCell>
                     <TableCell sx={{ padding: 1 }}>{row.soHoaDon}</TableCell>
+                    <TableCell sx={{ padding: 1 }}>{row.tenChiNhanhNhan}</TableCell>
                     <TableCell sx={{ padding: 1 }}>
                       {moment(row.ngayHoaDon).format("DD-MM-YYYY")}
                     </TableCell>
@@ -141,6 +143,12 @@ const TableList = ({handleCancel,showModal}) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      {isLoading && <div style={{
+        backgroundColor:'rgba(0, 0, 0, 0.05)',
+      }} className="absolute w-full h-full  top-0 flex items-center justify-center">
+      <Spin size="large"/>
+      </div>}
+      
     </Paper>
   );
 };
