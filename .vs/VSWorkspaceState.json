@@ -2,9 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\backend",
+    "\\backend\\.config",
     "\\backend\\Controllers",
+    "\\backend\\Models",
     "\\backend\\Services"
   ],
-  "SelectedNode": "\\backend\\Services\\FtpService.cs",
+  "SelectedNode": "\\backend\\Models\\KhoChiTiet.cs",
   "PreviewInSolutionExplorer": false
 }
