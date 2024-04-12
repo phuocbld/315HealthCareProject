@@ -79,7 +79,7 @@ namespace _315HealthCareProject.Controllers
         }
 
         [HttpPut("UpdateBenhNhanPDF/{id}")]
-        public async Task<IActionResult> UpdateBenhNhan(int id, [FromForm] CongTyBenhNhan benhNhan, [FromForm] IFormFile pdfFile, [FromQuery] string fieldToUpdate)
+        public async Task<IActionResult> UpdateBenhNhan(int id, [FromForm] CongTyBenhNhan benhNhan, [FromForm] IFormFile pdfFile, [FromQuery] string? fieldToUpdate)
         {
             if (id != benhNhan.IDBN)
             {
@@ -100,7 +100,7 @@ namespace _315HealthCareProject.Controllers
                     string remoteDirectory = fieldToUpdate == "KQXN" ? "KQXN" : "KQKham";
                     string remoteFileName = Guid.NewGuid().ToString() + Path.GetExtension(pdfFile.FileName);
 
-                    // Tải lên tập tin PDF lên máy chủ FTP
+                    // Upload file PDF lên máy chủ FTP
                     await _ftpService.UploadFileAsync(fileBytes, remoteFileName, remoteDirectory);
 
                     // Lưu đường dẫn FTP vào trường tương ứng trong đối tượng benhNhan
@@ -124,7 +124,6 @@ namespace _315HealthCareProject.Controllers
                 return StatusCode(500, "An error occurred while updating bệnh nhân: " + ex.Message);
             }
         }
-
 
 
 

@@ -53,11 +53,7 @@ builder.Services.AddScoped<ICongTyTrangThaiService , CongTyTrangThaiService>();
 builder.Services.AddScoped<ICongTyTrangThaiSMSRepository ,  CongTyTrangThaiSMSRepository>();
 builder.Services.AddScoped<ICongTyTrangThaiSMSService, CongTyTrangThaiSMSService>();
 builder.Services.AddScoped<IFtpService , FtpService>();
-builder.Services.Configure<FormOptions>(options =>
-{
-    options.MultipartBodyLengthLimit = 209715200; // Giới hạn kích thước multipart body (200 MB)
-});                                
-
+builder.Services.AddTransient<IFtpService , FtpService>();
 
 builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
 {

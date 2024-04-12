@@ -1,6 +1,11 @@
-﻿using _315HealthCareProject.Services.Interface;
-using FluentFTP;
+﻿using System;
+using System.IO;
+using System.Net;
+using System.Threading.Tasks;
+using _315HealthCareProject.Services.Interface;
 using Microsoft.Extensions.Configuration;
+using FluentFTP;
+
 namespace _315HealthCareProject.Services
 {
     public class FtpService : IFtpService
@@ -22,12 +27,26 @@ namespace _315HealthCareProject.Services
 
         public async Task DownloadFileAsync(string localPath, string remotePath)
         {
-            using (var ftpClient = new FtpClient(_host, _username, _password))
+            using (var ftpClient = new FtpClient())
             {
                 try
                 {
+                    ftpClient.Host = _host;
+                    ftpClient.Port = _port;
+                    ftpClient.Credentials = new NetworkCredential(_username, _password);
+
                     await ftpClient.ConnectAsync();
-                    await ftpClient.DownloadFileAsync(localPath, Path.Combine(_remoteDirectory, remotePath));
+
+                    if (!ftpClient.IsConnected)
+                    {
+                        Console.WriteLine("FTP client is not connected.");
+                        return;
+                    }
+
+                    using (var outputStream = File.OpenWrite(localPath))
+                    {
+                        await ftpClient.DownloadAsync(outputStream, Path.Combine(_remoteDirectory, remotePath));
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -42,16 +61,34 @@ namespace _315HealthCareProject.Services
 
         public async Task UploadFileAsync(byte[] fileBytes, string remoteFileName, string remoteDirectory)
         {
-            using (var ftpClient = new FtpClient(_host, _username, _password))
+            using (var ftpClient = new FtpClient())
             {
                 try
                 {
+                    ftpClient.Host = _host;
+                    ftpClient.Port = _port;
+                    ftpClient.Credentials = new NetworkCredential(_username, _password);
+
                     await ftpClient.ConnectAsync();
-                    await ftpClient.UploadAsync(new MemoryStream(fileBytes), Path.Combine(_remoteDirectory, remoteDirectory, remoteFileName));
+
+                    if (!ftpClient.IsConnected)
+                    {
+                        Console.WriteLine("FTP client is not connected.");
+                        return;
+                    }
+
+                    using (var inputStream = new MemoryStream(fileBytes))
+                    {
+                        await ftpClient.UploadAsync(inputStream, Path.Combine(_remoteDirectory, remoteDirectory, remoteFileName));
+                    }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"An error occurred while uploading the file: {ex.Message}");
+                    if (ex.InnerException != null)
+                    {
+                        Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                    }
                 }
                 finally
                 {
@@ -60,20 +97,20 @@ namespace _315HealthCareProject.Services
             }
         }
 
-
         public async Task<bool> IsLoginValidAsync()
         {
-            using (var ftpClient = new FtpClient(_host, _username, _password))
+            using (var ftpClient = new FtpClient())
             {
                 try
                 {
+                    ftpClient.Host = _host;
+                    ftpClient.Port = _port;
+                    ftpClient.Credentials = new NetworkCredential(_username, _password);
+
                     await ftpClient.ConnectAsync();
-                    return true;
-                }
-                catch (FtpAuthenticationException)
-                {
-                    // Xử lý trường hợp thông tin đăng nhập không đúng
-                    return false;
+
+                    // Kiểm tra trạng thái của kết nối để xác định tính hợp lệ của thông tin đăng nhập
+                    return ftpClient.IsConnected;
                 }
                 catch (Exception ex)
                 {
@@ -82,10 +119,9 @@ namespace _315HealthCareProject.Services
                 }
                 finally
                 {
-                    ftpClient.Disconnect();
+
                 }
             }
         }
-
     }
 }

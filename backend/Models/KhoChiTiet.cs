@@ -69,6 +69,13 @@ namespace _315HealthCareProject.Models
         [Column("CHECKDELETE")]
         public int? CheckDelete { get; set; }
 
+        [Column("SOLUONGLE")]
+        public int? SoLuongLe { get; set;}
+        [Column("SOLUONGDONGGOI")]
+        public int? SoLuongDongGoi { get; set; }
+        [Column("QUYCACHDONGGOI")]
+        public int? QuyCachDongGoi { get; set; }
+
         [ForeignKey("IdThuoc")]
         public ThuocVatTu? ThuocVatTu { get; set; }
     }
