@@ -141,6 +141,8 @@ export function* NhapKhoSaga() {
           vat10: 0,
           thanhTien: data.GIABAN,
           thucTra: data.GIABAN,
+          soLuongDongGoi: data.QUYCACHDONGGOI,
+          quyCachDongGoi: data.QUYCACH,
         };
         yield put({
           type: typeAction.DISPATCH_LIST_INFO_THUOCVT,
@@ -165,8 +167,10 @@ export function* NhapKhoSaga() {
           const { khoChiTiet, ...others } = item;
           const { tienVAT, ptVAT, ...data } = khoChiTiet;
           data.idNhapXuat = id;
+          data.soLuongLe = item.khoChiTiet.soLuong * item.QUYCACHDONGGOI
           array.push(data);
         }
+        console.log(array);
         yield call(() => NhapKhoService.postkhoChiTiet(array));
         // console.log(result.data);
         Toast.fire({
@@ -251,7 +255,7 @@ export function* NhapKhoSaga() {
           type: typeAction.DISPATCH_LIST_PHIEU_NHAP,
           payload: result.data,
         });
-       yield put({
+        yield put({
           type: typeAction.CLOSE_LOADING_TABLE_NHAP_KHO,
         });
       } catch (err) {
@@ -262,21 +266,21 @@ export function* NhapKhoSaga() {
       }
     }
   );
-    // Lây Danh sách thuốc vật tư theo keyword
-    yield takeLatest(
-      typeAction.GET_THUOCVT_BY_KEYWORD,
-      function* SearchThuocVT({ type, keyword }) {
-        try {
-          const result = yield call(() =>
-            NhapKhoService.getThuocVTByKeyword(keyword)
-          ); //
-          yield put({
-            type: typeAction.DISPATCH_ALL_THUOCVT,
-            payload: result.data,
-          });
-        } catch (err) {
-          console.log(err);
-        }
+  // Lây Danh sách thuốc vật tư theo keyword
+  yield takeLatest(
+    typeAction.GET_THUOCVT_BY_KEYWORD,
+    function* SearchThuocVT({ type, keyword }) {
+      try {
+        const result = yield call(() =>
+          NhapKhoService.getThuocVTByKeyword(keyword)
+        ); //
+        yield put({
+          type: typeAction.DISPATCH_ALL_THUOCVT,
+          payload: result.data,
+        });
+      } catch (err) {
+        console.log(err);
       }
-    );
+    }
+  );
 }

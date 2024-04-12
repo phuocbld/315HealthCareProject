@@ -32,35 +32,34 @@ const Nhapkho = () => {
 
   // xử lí button submit
   const handleSave = (values, action) => {
-    // if (infoThuocVT.length === 0) {
-    //   // check hàng có trong thuốc vó trong kho hay chưa
-    //   openNotificationWithIcon(
-    //     "warning",
-    //     "Lưu phiếu nhập kho",
-    //     "Vui lòng chọn sản phẩm để lưu phiếu !"
-    //   );
-    //   return;
-    // }
-    // // CHECK SỐ LÔ VÀ VÀ HẠN DÙNG CÁC HÀNG HOÁ
-    // for (let items of infoThuocVT) {
-    //   if (items.khoChiTiet.soLo == "" || !items.khoChiTiet.hanDung) {
-    //     openNotificationWithIcon(
-    //       "warning",
-    //       "Lưu phiếu nhập kho",
-    //       "Vui lòng nhập số lô hoặc hạn dùng cho sản phẩm !"
-    //     );
-    //     return;
-    //   }
-    // }
-    // action.resetForm();
-    // dispatch({
-    //   type: typeAction.DISPATCH_RESET_INFO_DOITAC,
-    // });
-    // dispatch({
-    //   type: typeAction.RESET_INFO_THUOVT,
-    // });
-    // dispatch(addPhieuNhapKho(values, infoThuocVT));
-    console.log(infoThuocVT);
+    if (infoThuocVT.length === 0) {
+      // check hàng có trong thuốc vó trong kho hay chưa
+      openNotificationWithIcon(
+        "warning",
+        "Lưu phiếu nhập kho",
+        "Vui lòng chọn sản phẩm để lưu phiếu !"
+      );
+      return;
+    }
+    // CHECK SỐ LÔ VÀ VÀ HẠN DÙNG CÁC HÀNG HOÁ
+    for (let items of infoThuocVT) {
+      if (items.khoChiTiet.soLo == "" || !items.khoChiTiet.hanDung) {
+        openNotificationWithIcon(
+          "warning",
+          "Lưu phiếu nhập kho",
+          "Vui lòng nhập số lô hoặc hạn dùng cho sản phẩm !"
+        );
+        return;
+      }
+    }
+    action.resetForm();
+    dispatch({
+      type: typeAction.DISPATCH_RESET_INFO_DOITAC,
+    });
+    dispatch({
+      type: typeAction.RESET_INFO_THUOVT,
+    });
+    dispatch(addPhieuNhapKho(values, infoThuocVT));
     formik.setFieldValue("ngayNhan", now.format()); // set lại thời gian nhận
   };
   // modal hiện thong báo
