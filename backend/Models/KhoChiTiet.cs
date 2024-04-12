@@ -30,16 +30,16 @@ namespace _315HealthCareProject.Models
         public int SoLuong { get; set; }
 
         [Column("DONGIAMUA")]
-        public int? DonGiaMua { get; set; }
+        public double? DonGiaMua { get; set; }
 
         [Column("DONGIABAN")]
-        public int? DonGiaBan { get; set; }
+        public double? DonGiaBan { get; set; }
 
         [Column("PHIVANCHUYEN")]
-        public int? PhiVanChuyen { get; set; }
+        public double? PhiVanChuyen { get; set; }
 
         [Column("PHIGIACONG")]
-        public int? PhiGiaCong { get; set; }
+        public double? PhiGiaCong { get; set; }
 
         [Column("SOLUONGNHAN")]
         public int? SoLuongNhan { get; set; }
@@ -48,23 +48,23 @@ namespace _315HealthCareProject.Models
         public int? TrangThaiChuyenKho { get; set; }
 
         [Column("PTCKTRUOCVAT")]
-        public int? PTCKTruocVat { get; set; }
+        public double? PTCKTruocVat { get; set; }
 
         [Column("CKTRUOCVAT")]
-        public int? CKTruocVat { get; set; }
+        public double? CKTruocVat { get; set; }
 
         [Column("VAT5")]
-        public int? Vat5 { get; set; }
+        public double? Vat5 { get; set; }
         [Column("VAT8")]
-        public int? Vat8 { get; set; }
+        public double? Vat8 { get; set; }
         [Column("VAT10")]
-        public int? Vat10 { get; set; }
+        public double? Vat10 { get; set; }
 
         [Column("THANHTIEN")]
-        public int? ThanhTien { get; set; }
+        public double? ThanhTien { get; set; }
 
         [Column("THUCTRA")]
-        public int? ThucTra { get; set; }
+        public double? ThucTra { get; set; }
 
         [Column("CHECKDELETE")]
         public int? CheckDelete { get; set; }

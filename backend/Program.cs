@@ -54,6 +54,10 @@ builder.Services.AddScoped<ICongTyTrangThaiSMSRepository ,  CongTyTrangThaiSMSRe
 builder.Services.AddScoped<ICongTyTrangThaiSMSService, CongTyTrangThaiSMSService>();
 builder.Services.AddScoped<IFtpService , FtpService>();
 builder.Services.AddTransient<IFtpService , FtpService>();
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 52428800; // 50 MB
+});
 
 builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
 {

@@ -31,6 +31,11 @@ namespace _315HealthCareProject.Services
                 TenChiNhanh = c.TenChiNhanh
             });
         }
+
+        public async Task<ChiNhanh> GetChiNhanhByIdAsync(int id)
+        {
+            return await _repository.GetByIdAsync(id);
+        }
     }
     }
 

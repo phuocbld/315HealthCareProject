@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using _315HealthCareProject.Services.Interface;
+using _315HealthCareProject.Models;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -47,6 +48,19 @@ public class ChiNhanhController : ControllerBase
         }
 
         return Ok(new { IdChiNhanh = chiNhanhId, TaiKhoan = username });
+    }
+
+    [HttpGet("/GetChiNhanh/{id}")]
+    public async Task<ActionResult<ChiNhanh>> GetChiNhanh(int id)
+    {
+        var chiNhanh = await _service.GetChiNhanhByIdAsync(id);
+
+        if (chiNhanh == null)
+        {
+            return NotFound();
+        }
+
+        return chiNhanh;
     }
 }
 

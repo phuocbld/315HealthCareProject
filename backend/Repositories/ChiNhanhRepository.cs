@@ -38,5 +38,10 @@ public class ChiNhanhRepository : IChiNhanhRepository
             })
             .ToListAsync();
     }
+
+    public async Task<ChiNhanh> GetByIdAsync(int id)
+    {
+        return await _context.ChiNhanhs.FindAsync(id);
+    }
 }
 
