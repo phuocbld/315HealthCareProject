@@ -50,106 +50,98 @@ namespace _315HealthCareProject.Controllers
             }
         }
 
-        //[HttpPut("UpdateBenhNhan/{id}")]
-        //public async Task<IActionResult> UpdateBenhNhan(int id, CongTyBenhNhan benhNhan)
-        //{
-        //    if (id != benhNhan.IDBN)
-        //    {
-        //        return BadRequest("Invalid ID");
-        //    }
 
-        //    try
-        //    {
-        //        await _service.UpdateBenhNhanAsync(benhNhan);
-        //        return Ok(benhNhan);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, "An error occurred while updating bệnh nhân: " + ex.Message);
-        //    }
-        //}
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCongTyBenhNhan(int id, [FromBody] CongTyBenhNhan benhNhan, [FromQuery] string ftpFolder)
+        [HttpPut("UpdateBenhNhan/{id}")]
+        public async Task<IActionResult> UpdateBenhNhan(int id, [FromForm] CongTyBenhNhanDTO benhNhanDTO )
         {
             try
             {
-                if (id != benhNhan.IDBN)
+                if (id != benhNhanDTO.IDBN)
                 {
                     return BadRequest("Invalid ID");
                 }
 
-                await _service.UpdateCongTyBenhNhan(benhNhan, ftpFolder);
-                return Ok("Update successfully");
+                await _service.UpdateCongTyBenhNhan(benhNhanDTO);
+                var benhNhan = await _service.GetBenhNhanByIdAsync(id);
+                return Ok(benhNhan);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-            [HttpGet]
-        public IActionResult TestFtpConnection()
+
+        [HttpGet("GetFileBase64")]
+
+        public IActionResult GetFile(string base64String)
         {
+            if (string.IsNullOrEmpty(base64String))
+            {
+                return BadRequest("Invalid base64 string");
+            }
+
             try
             {
+                // Giải mã base64 thành mảng byte
+                byte[] bytes = Convert.FromBase64String(base64String);
 
-                _ftpService.IsLoginValidAsync();
-                return Ok("Kết nối đến FTP thành công!");
+                string mimeType = "application/pdf";
+
+                // Trả về file
+                return File(bytes, mimeType);
+            }
+            catch (FormatException)
+            {
+                return BadRequest("Invalid base64 string");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Lỗi khi kết nối đến FTP: {ex.Message}");
+                return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
 
-        //[HttpPut("UpdateBenhNhanPDF/{id}")]
-        //public async Task<IActionResult> UpdateBenhNhan(int id, [FromForm] CongTyBenhNhan benhNhan, [FromForm] IFormFile pdfFile, [FromQuery] string? fieldToUpdate)
-        //{
-        //    if (id != benhNhan.IDBN)
-        //    {
-        //        return BadRequest("Invalid ID");
-        //    }
+        [HttpGet("DownloadBenhNhanFiles/{maBN}")]
+        public async Task<IActionResult> DownloadBenhNhanFiles(string maBN)
+        {
+            try
+            {
+                var benhNhanFiles = await _service.DownloadBenhNhanFileAsync(maBN);
 
-        //    try
-        //    {
-        //        if (pdfFile != null && pdfFile.Length > 0)
-        //        {
-        //            byte[] fileBytes;
-        //            using (var memoryStream = new MemoryStream())
-        //            {
-        //                await pdfFile.CopyToAsync(memoryStream);
-        //                fileBytes = memoryStream.ToArray();
-        //            }
+                // Kiểm tra xem cả hai file có tồn tại không
+                if (benhNhanFiles.KQXNFile == null || benhNhanFiles.KQKhamFile == null)
+                {
+                    return NotFound("Không tìm thấy file của bệnh nhân.");
+                }
 
-        //            string remoteDirectory = fieldToUpdate == "KQXN" ? "KQXN" : "KQKham";
-        //            string remoteFileName = Guid.NewGuid().ToString() + Path.GetExtension(pdfFile.FileName);
+                // Ghi các file vào response dưới dạng ZIP
+                using (var memoryStream = new MemoryStream())
+                {
+                    using (var zipArchive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                    {
+                        // Thêm file KQXN vào ZIP
+                        var entryKQXN = zipArchive.CreateEntry("KQXN.pdf");
+                        using (var entryStream = entryKQXN.Open())
+                        {
+                            await entryStream.WriteAsync(benhNhanFiles.KQXNFile, 0, benhNhanFiles.KQXNFile.Length);
+                        }
 
-        //            // Upload file PDF lên máy chủ FTP
-        //            await _ftpService.UploadFileAsync(fileBytes, remoteFileName, remoteDirectory);
+                        // Thêm file KQKham vào ZIP
+                        var entryKQKham = zipArchive.CreateEntry("KQKham.pdf");
+                        using (var entryStream = entryKQKham.Open())
+                        {
+                            await entryStream.WriteAsync(benhNhanFiles.KQKhamFile, 0, benhNhanFiles.KQKhamFile.Length);
+                        }
+                    }
 
-        //            // Lưu đường dẫn FTP vào trường tương ứng trong đối tượng benhNhan
-        //            if (fieldToUpdate == "KQXN")
-        //            {
-        //                benhNhan.KQXN = Encoding.UTF8.GetBytes($"ftp://14.241.244.112:7777/{remoteDirectory}/{remoteFileName}");
-        //            }
-        //            else if (fieldToUpdate == "KQKham")
-        //            {
-        //                benhNhan.KQKHAM = Encoding.UTF8.GetBytes($"ftp://14.241.244.112:7777/{remoteDirectory}/{remoteFileName}");
-        //            }
-        //        }
-
-        //        // Gọi service để cập nhật thông tin bệnh nhân
-        //        await _service.UpdateBenhNhanAsync(benhNhan);
-
-        //        return Ok(benhNhan);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, "An error occurred while updating bệnh nhân: " + ex.Message);
-        //    }
-        //}
-       
-
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+                    return File(memoryStream, "application/zip", "BenhNhanFiles.zip");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi khi tải file của bệnh nhân: {ex.Message}");
+            }
+        }
 
 
         [HttpGet("FindByID/{id}")]

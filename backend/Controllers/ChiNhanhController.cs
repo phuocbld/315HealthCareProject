@@ -50,7 +50,7 @@ public class ChiNhanhController : ControllerBase
         return Ok(new { IdChiNhanh = chiNhanhId, TaiKhoan = username });
     }
 
-    [HttpGet("/GetChiNhanh/{id}")]
+    [HttpGet("GetChiNhanh/{id}")]
     public async Task<ActionResult<ChiNhanh>> GetChiNhanh(int id)
     {
         var chiNhanh = await _service.GetChiNhanhByIdAsync(id);

@@ -67,47 +67,20 @@ namespace _315HealthCareProject.Repositories
 
         public async Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan)
         {
-            _context.Entry(benhNhan).State = EntityState.Modified;
+
+            if (benhNhan.KQXN != null)
+            {
+                benhNhan.TRANGTHAIKHAM = 2; // Nếu có KQXN thì TrangThaiKham là 2
+            }
+            else if (benhNhan.KQKHAM != null)
+            {
+                benhNhan.TRANGTHAIKHAM = 3; // Nếu có KQKham thì TrangThaiKham là 3
+            }
+
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateBenhNhanWithPDFAsync(CongTyBenhNhan benhNhan, byte[]? pdfFile, string fieldToUpdate)
-        {
-            try
-            {
-                // Cập nhật thông tin bệnh nhân
-                _context.Entry(benhNhan).State = EntityState.Modified;
-
-                // Kiểm tra và cập nhật file PDF nếu có
-                if (pdfFile != null && pdfFile.Length > 0)
-                {
-                    if (fieldToUpdate == "KQKham")
-                    {
-                        benhNhan.KQKHAM = pdfFile;
-                    }
-                    else if (fieldToUpdate == "KQXN")
-                    {
-                        benhNhan.KQXN = pdfFile;
-                    }
-                }
-
-                // Kiểm tra và cập nhật trạng thái TrangThaiKham
-                if (benhNhan.KQXN != null)
-                {
-                    benhNhan.TRANGTHAIKHAM = 2; // Nếu có KQXN thì TrangThaiKham là 2
-                }
-                else if (benhNhan.KQKHAM != null)
-                {
-                    benhNhan.TRANGTHAIKHAM = 3; // Nếu có KQKham thì TrangThaiKham là 3
-                }
-
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while updating bệnh nhân: " + ex.Message);
-            }
-        }
+       
 
         public async Task<CongTyBenhNhan> GetBenhNhanByIdAsync(int id)
         {
