@@ -74,7 +74,7 @@ namespace _315HealthCareProject.Models
         [Column("SOLUONGDONGGOI")]
         public int? SoLuongDongGoi { get; set; }
         [Column("QUYCACHDONGGOI")]
-        public int? QuyCachDongGoi { get; set; }
+        public string? QuyCachDongGoi { get; set; }
 
         [ForeignKey("IdThuoc")]
         public ThuocVatTu? ThuocVatTu { get; set; }
