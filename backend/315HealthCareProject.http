@@ -1,6 +1,0 @@
-@_315HealthCareProject_HostAddress = http://localhost:5234
-
-GET {{_315HealthCareProject_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

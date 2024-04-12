@@ -19,6 +19,7 @@ import {
   searchThuocVT,
 } from "../../../store/actions/NhapKhoAction";
 import { KhoNhapSchema } from "../../../schemas/KhoNhapSchema";
+import { formatNumberVND } from "../../../utils/formatNumberVND";
 const Nhapkho = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const now = moment();
@@ -71,49 +72,17 @@ const Nhapkho = () => {
   // lấy thông tin người dùng >> tạm thời
   const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
   // search lấy thông tin thuốc vật tư
-  const handleSearch = (value) => {
-    console.log(value);
-    dispatch(searchThuocVT(value));
-    // debounceDropDown(value)
-  };
-  const SearchInput = (props) => {
+  const debounceDropDown = useCallback(
+    _.debounce((nextValue) => {
+      dispatch(searchThuocVT(nextValue));
+    }, 300),
+    []
+  ); // sử dụng debounce để tối tiểu thánh server perfoman
 
-    const debounceDropDown = useCallback(
-      _.debounce((nextValue) => {
-        dispatch(searchThuocVT(nextValue));
-      }, 300),
-      []
-    ); // sử dụng debounce để tối tiểu thánh server perfoman
-    // const handleSearch = (newValue) => {
-    //   fetch(newValue, setData);
-    // };
-    // const handleChange = (newValue) => {
-    //   setValue(newValue);
-    // };
-    return (
-      <Select
-        showSearch
-        // value={value}
-        placeholder={props.placeholder}
-        style={props.style}
-        defaultActiveFirstOption={false}
-        suffixIcon={null}
-        filterOption={false}
-        onSearch={handleSearch}
-        // onChange={handleChange}
-        notFoundContent={null}
-        options={(thuocVT || []).map((d) => ({
-          value: d.value,
-          label: d.text,
-        }))}
-      />
-    );
-  };
   const hanldeSaveAndPrint = (values, actions) => {
     console.log(values);
   };
   const onchangeDateHoaDon = (date, dateString) => {
-    console.log(moment(dateString).format());
     const dateHoaDon = moment(dateString).format();
     formik.setFieldValue("ngayHoaDon", dateHoaDon);
   };
@@ -136,7 +105,6 @@ const Nhapkho = () => {
   // xử lí chọn kho chi tiết
   const handleChoose = async (value) => {
     const validate = await checkStoreThuocVT(value);
-    console.log(value);
     validate
       ? dispatch(fetchInfoThuocVT(value))
       : openNotificationWithIcon(
@@ -165,7 +133,7 @@ const Nhapkho = () => {
       idHinhThuc: 1,
       idPhuongThuc: 1,
     },
-    validationSchema: KhoNhapSchema,
+    // validationSchema: KhoNhapSchema,
     onSubmit: (value, action) => {
       handleSave(value, action);
     },
@@ -194,7 +162,6 @@ const Nhapkho = () => {
     <LayoutApp>
       {contextHolder}
       <div>
-        {/* <SearchInput/> */}
         <Tabs
           className="p-3"
           items={[
@@ -440,36 +407,34 @@ const Nhapkho = () => {
                               Tìm kiếm:
                             </label>
                             <Select
-                              allowClear
-                              defaultActiveFirstOption={false}
-                              // notFoundContent={null}
-                              // onSearch={debounceDropDown}
-                              onChange={handleChoose}
-                              // suffixIcon={null}
-                              // filterOption={false}
-                              autoClearSearchValue="tags"
-                              // value=""
-                              showSearch
-                              // filterOption={(input, option) =>
-                              //   (option?.label ?? "")
-                              //     .toLowerCase()
-                              //     .includes(input)
-                              // }
-                              options={[thuocVT || []].map(
-                                ({ idThuoc, maThuoc, tenBietDuoc }) => ({
-                                  label: tenBietDuoc,
-                                  // <li>
-                                  //   <span className=" border-r-2 pr-2 mr-2">
-                                  //     {maThuoc}
-                                  //   </span>
-                                  //   {tenBietDuoc}
-                                  // </li>,
-                                  value: idThuoc,
-                                })
-                              )}
-                              size="small"
-                              placeholder="Nhập tên hàng hoá"
                               className="w-full"
+                              size="small"
+                              showSearch
+                              allowClear
+                              onChange={handleChoose}
+                              placeholder="Nhập tên vật tư hàng hoá"
+                              value=''
+                              defaultActiveFirstOption={false}
+                              suffixIcon={null}
+                              filterOption={false}
+                              onSearch={debounceDropDown}
+                              notFoundContent={null}
+                              options={(thuocVT || []).map((d) => ({
+                                value: d.idThuoc,
+                                label: (
+                                  <u className="flex no-underline">
+                                    <li className="flex w-[95%]">
+                                      <p className="pr-2">{d.maThuoc}</p>
+                                      <p className="border-x-2 px-2 w-full ">
+                                        {d.tenBietDuoc}
+                                      </p>
+                                    </li>
+                                    <li className=" w-[15%] text-end">
+                                      {formatNumberVND(d.giaMua)} VNĐ
+                                    </li>
+                                  </u>
+                                ),
+                              }))}
                             />
                           </div>
                         </div>
