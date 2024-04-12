@@ -152,7 +152,7 @@ export function* NhapKhoSaga() {
     }
   );
 
-  //Phiếu nhập kho và kho chi tiết
+  //ADD Phiếu nhập kho và kho chi tiết
   yield takeLatest(
     typeAction.POST_PHIEU_NHAP_KHO,
     function* postPhieuNhapKho({ type, payload, ListThuocVT }) {
