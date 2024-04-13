@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -61,33 +62,70 @@ namespace _315HealthCareProject.Services
 
 
 
-        public async Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan)
+        //public async Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan)
+        //{
+        //    try
+        //    {
+        //        // Cập nhật thông tin bệnh nhân
+        //        _context.Entry(benhNhan).State = EntityState.Modified;
+
+        //        // Kiểm tra và cập nhật trạng thái TrangThaiKham
+        //        if (benhNhan.KQXN != null)
+        //        {
+        //            benhNhan.TRANGTHAIKHAM = 2; // Nếu có KQXN thì TrangThaiKham là 2
+        //        }
+        //        else if (benhNhan.KQKHAM != null)
+        //        {
+        //            benhNhan.TRANGTHAIKHAM = 3; // Nếu có KQKHAM thì TrangThaiKham là 3
+        //        }
+
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("An error occurred while updating bệnh nhân: " + ex.Message);
+        //    }
+        //}
+
+
+        public async Task UpdateCongTyBenhNhan(CongTyBenhNhan benhNhan, string ftpFolder)
         {
-            try
-            {
-                // Cập nhật thông tin bệnh nhân
-                _context.Entry(benhNhan).State = EntityState.Modified;
+            // Tải file lên máy chủ FTP
+            string ftpUrl = $"ftp://14.241.244.112:7777/{ftpFolder}/";
+            string fileName = $"{Guid.NewGuid()}.pdf"; // Tạo tên file ngẫu nhiên
+            string filePath = Path.Combine(ftpUrl, fileName);
 
-                // Kiểm tra và cập nhật trạng thái TrangThaiKham
-                if (benhNhan.KQXN != null)
-                {
-                    benhNhan.TRANGTHAIKHAM = 2; // Nếu có KQXN thì TrangThaiKham là 2
-                }
-                else if (benhNhan.KQKHAM != null)
-                {
-                    benhNhan.TRANGTHAIKHAM = 3; // Nếu có KQKHAM thì TrangThaiKham là 3
-                }
-
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
+            using (var client = new WebClient())
             {
-                throw new Exception("An error occurred while updating bệnh nhân: " + ex.Message);
+                client.Credentials = new NetworkCredential("ftp-user", "system@315#");
+                await client.UploadFileTaskAsync(new Uri(filePath), "STOR", "localFilePath");
             }
+
+            // Lưu đường dẫn vào cơ sở dữ liệu
+            if (ftpFolder == "KQXN")
+            {
+                benhNhan.KQXN = Encoding.UTF8.GetBytes(filePath);
+            }
+            else if (ftpFolder == "KQKham")
+            {
+                benhNhan.KQKHAM = Encoding.UTF8.GetBytes(filePath);
+            }
+            // Kiểm tra và cập nhật trạng thái TrangThaiKham
+            if (benhNhan.KQXN != null)
+            {
+                benhNhan.TRANGTHAIKHAM = 2; // Nếu có KQXN thì TrangThaiKham là 2
+            }
+            else if (benhNhan.KQKHAM != null)
+            {
+                benhNhan.TRANGTHAIKHAM = 3; // Nếu có KQKHAM thì TrangThaiKham là 3
+            }
+            // Cập nhật thông tin khác của bệnh nhân trong cơ sở dữ liệu
+            // Ví dụ: sử dụng Entity Framework để cập nhật thông tin trong cơ sở dữ liệu
+
+            _context.CongTyBenhNhans.Update(benhNhan);
+            await _context.SaveChangesAsync();
+
         }
-
-
-
 
         public async Task<IEnumerable<CongTyBenhNhan>> GetAllAsync()
         {

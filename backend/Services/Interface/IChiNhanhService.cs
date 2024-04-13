@@ -8,5 +8,6 @@ public interface IChiNhanhService
 {
     Task<string?> GetTenChiNhanhByIdAsync(int idChiNhanh);
     Task<IEnumerable<ChiNhanhDTO>> GetAllChiNhanhAsync();
+    Task<ChiNhanh> GetChiNhanhByIdAsync(int id);
 
 }
