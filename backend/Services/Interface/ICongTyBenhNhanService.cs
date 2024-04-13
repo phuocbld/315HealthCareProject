@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using _315HealthCareProject.DTO;
 using _315HealthCareProject.Models;
-using static _315HealthCareProject.Services.CongTyBenhNhanService;
 
 namespace _315HealthCareProject.Services.Interface
 {
@@ -11,13 +9,12 @@ namespace _315HealthCareProject.Services.Interface
         Task<IEnumerable<CongTyBenhNhan>> GetAllAsync();
         Task AddBenhNhanListAsync(List<CongTyBenhNhan> benhNhanList);
         //Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan);
-        Task UpdateCongTyBenhNhan(CongTyBenhNhanDTO benhNhanDTO);
+        Task UpdateCongTyBenhNhan(CongTyBenhNhan benhNhan, string ftpFolder);
         Task<CongTyBenhNhan> GetBenhNhanByIdAsync(int id);
         Task<IEnumerable<CongTyBenhNhan>> GetBenhNhanByTenAsync(string ten);
         Task DeleteBenhNhanAsync(int id);
         Task<string> GetSoDienThoaiByIdAsync(int id);
         Task<IEnumerable<CongTyBenhNhan>> SearchBenhNhanAsync(string keyword);
-        Task<BenhNhanFiles> DownloadBenhNhanFileAsync(string maBN);
 
     }
 }

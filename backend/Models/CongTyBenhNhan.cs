@@ -17,10 +17,10 @@ namespace _315HealthCareProject.Models
         public string? MABN { get; set; }
 
         [Column("TENBN")]
-        public string? TENBN { get; set; }
+        public string TENBN { get; set; }
 
         [Column("GIOITINH")]
-        public string? GIOITINH { get; set; }
+        public string GIOITINH { get; set; }
 
         [Column("NGAYSINH")]
         public DateTime? NGAYSINH { get; set; }
@@ -40,12 +40,10 @@ namespace _315HealthCareProject.Models
 
 
         [Column("KQXN")]
-        public byte[]? KQXN { get; set; }
+        public byte[]? KQXN { get; set; } 
 
         [Column("KQKHAM")]
         public byte[]? KQKHAM { get; set; }
-
-
 
         [Column("TRANGTHAISMS")]
         public int? TRANGTHAISMS { get; set; }
@@ -80,12 +78,6 @@ namespace _315HealthCareProject.Models
 
         [NotMapped]
         public string? MACT { get; set; }
-
-        [NotMapped]
-        public IFormFile? KQXNFile { get; set; }
-
-        [NotMapped]
-        public IFormFile? KQKHAMFile { get; set; }
 
     }
 }

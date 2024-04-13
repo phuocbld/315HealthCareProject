@@ -6,6 +6,7 @@ namespace _315HealthCareProject.Repositories.Interface
     {
         Task<IEnumerable<CongTyBenhNhan>> GetAllAsync();
         Task AddBenhNhanCongTyAsync(CongTyBenhNhan congTyBenhNhan);
+        Task UpdateBenhNhanWithPDFAsync(CongTyBenhNhan benhNhan, byte[]? pdfFile, string fieldToUpdate);
         Task<string> GenerateMaBNAsync(string maCT);
         Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan);
         Task<CongTyBenhNhan> GetBenhNhanByIdAsync(int id);

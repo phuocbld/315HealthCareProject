@@ -25,54 +25,16 @@ namespace _315HealthCareProject.Services
             _remoteDirectory = configuration["FTPSettings:RemoteDirectory"];
         }
 
-        public async Task<byte[]> DownloadFileAsync(string remotePath)
+        public async Task DownloadFileAsync(string localPath, string remotePath)
         {
-            using (var ftpClient = new WebClient())
+            using (var ftpClient = new FtpClient())
             {
-                ftpClient.Credentials = new NetworkCredential(_username, _password);
-                var tempFilePath = Path.GetTempFileName();
-                await ftpClient.DownloadFileTaskAsync(new Uri($"ftp://{_host}:{_port}/{remotePath}"), tempFilePath);
-                return await File.ReadAllBytesAsync(tempFilePath);
-            }
-        }
-
-
-        public async Task<string> UploadFileAsnyc(IFormFile? file, string directory, string fileName)
-        {
-            string ftpUrl = $"ftp://{_host}:{_port}/";
-            string fullFtpPath = $"{ftpUrl}{directory}/{fileName}";
-
-            try
-            {
-                using (var client = new WebClient())
+                try
                 {
-                    client.Credentials = new NetworkCredential(_username, _password);
-                    string localFilePath = Path.GetTempFileName();
-                    using (var stream = new FileStream(localFilePath, FileMode.Create))
-                    {
-                        await file.CopyToAsync(stream);
-                    }
+                    ftpClient.Host = _host;
+                    ftpClient.Port = _port;
+                    ftpClient.Credentials = new NetworkCredential(_username, _password);
 
-                    await client.UploadFileTaskAsync(new Uri(fullFtpPath), WebRequestMethods.Ftp.UploadFile, localFilePath);
-
-                    File.Delete(localFilePath);
-                    return fullFtpPath;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error uploading file to FTP: {ex.Message}");
-                throw;
-            }
-        }
-
-
-        public async Task ListFilesOnFtpServer(string directory)
-        {
-            try
-            {
-                using (var ftpClient = new FtpClient(_host, _username, _password))
-                {
                     await ftpClient.ConnectAsync();
 
                     if (!ftpClient.IsConnected)
@@ -81,21 +43,85 @@ namespace _315HealthCareProject.Services
                         return;
                     }
 
-                    var listing = await ftpClient.GetListingAsync(directory);
-
-                    Console.WriteLine($"Files in directory '{directory}':");
-                    foreach (var item in listing)
+                    using (var outputStream = File.OpenWrite(localPath))
                     {
-                        Console.WriteLine(item.FullName);
+                        await ftpClient.DownloadAsync(outputStream, Path.Combine(_remoteDirectory, remotePath));
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while listing files on the FTP server: {ex.Message}");
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred while downloading the file: {ex.Message}");
+                }
+                finally
+                {
+                    ftpClient.Disconnect();
+                }
             }
         }
 
+        public async Task UploadFileAsync(byte[] fileBytes, string remoteFileName, string remoteDirectory)
+        {
+            using (var ftpClient = new FtpClient())
+            {
+                try
+                {
+                    ftpClient.Host = _host;
+                    ftpClient.Port = _port;
+                    ftpClient.Credentials = new NetworkCredential(_username, _password);
+
+                    await ftpClient.ConnectAsync();
+
+                    if (!ftpClient.IsConnected)
+                    {
+                        Console.WriteLine("FTP client is not connected.");
+                        return;
+                    }
+
+                    using (var inputStream = new MemoryStream(fileBytes))
+                    {
+                        await ftpClient.UploadAsync(inputStream, Path.Combine(_remoteDirectory, remoteDirectory, remoteFileName));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred while uploading the file: {ex.Message}");
+                    if (ex.InnerException != null)
+                    {
+                        Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                    }
+                }
+                finally
+                {
+                    ftpClient.Disconnect();
+                }
+            }
+        }
+
+        public async Task<bool> IsLoginValidAsync()
+        {
+            using (var ftpClient = new FtpClient())
+            {
+                try
+                {
+                    ftpClient.Host = _host;
+                    ftpClient.Port = _port;
+                    ftpClient.Credentials = new NetworkCredential(_username, _password);
+
+                    await ftpClient.ConnectAsync();
+
+                    // Kiểm tra trạng thái của kết nối để xác định tính hợp lệ của thông tin đăng nhập
+                    return ftpClient.IsConnected;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred while connecting to FTP server: {ex.Message}");
+                    return false;
+                }
+                finally
+                {
+
+                }
+            }
+        }
     }
 }
-

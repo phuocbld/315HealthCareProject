@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\backend\\Controllers",
+    "\\backend\\DTO",
+    "\\backend\\Models"
+  ],
+  "SelectedNode": "\\backend\\Models\\KhoChiTiet.cs",
+  "PreviewInSolutionExplorer": false
+}
