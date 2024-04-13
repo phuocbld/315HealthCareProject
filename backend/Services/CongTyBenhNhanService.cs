@@ -1,33 +1,31 @@
 ﻿using _315HealthCareProject.Data;
+using _315HealthCareProject.DTO;
 using _315HealthCareProject.Models;
 using _315HealthCareProject.Repositories.Interface;
 using _315HealthCareProject.Services.Interface;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.IO.Compression;
-using System.Linq;
-using System.Net;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace _315HealthCareProject.Services
 {
     public class CongTyBenhNhanService : ICongTyBenhNhanService
     {
         private readonly ICongTyBenhNhanRepository _benhNhanCT;
+        private readonly IFtpService _ftpService;
         private readonly ApplicationDbContext _context;
         private readonly ICongTyTrangThaiRepository _congTyTrangThai;
         private readonly ICongTyKhachKhamDoanRepository _congTyKhamDoan;
         private readonly ICongTyTrangThaiSMSRepository _congTyTrangThaiSMS;
 
-        public CongTyBenhNhanService(ICongTyBenhNhanRepository repository, ApplicationDbContext context, 
-            ICongTyTrangThaiRepository congTyTrangThai , ICongTyKhachKhamDoanRepository congTyKhamDoan , ICongTyTrangThaiSMSRepository congTyTrangThaiSMS)
+        public CongTyBenhNhanService(ICongTyBenhNhanRepository repository, ApplicationDbContext context,
+            ICongTyTrangThaiRepository congTyTrangThai, ICongTyKhachKhamDoanRepository congTyKhamDoan,
+            ICongTyTrangThaiSMSRepository congTyTrangThaiSMS, IFtpService ftpService)
         {
             _benhNhanCT = repository;
             _context = context;
             _congTyTrangThai = congTyTrangThai;
             _congTyKhamDoan = congTyKhamDoan;
+            _ftpService = ftpService;
             _congTyTrangThaiSMS = congTyTrangThaiSMS;
         }
 
@@ -88,44 +86,69 @@ namespace _315HealthCareProject.Services
         //}
 
 
-        public async Task UpdateCongTyBenhNhan(CongTyBenhNhan benhNhan, string ftpFolder)
+        public async Task UpdateCongTyBenhNhan(CongTyBenhNhanDTO benhNhanDTO)
         {
-            // Tải file lên máy chủ FTP
-            string ftpUrl = $"ftp://14.241.244.112:7777/{ftpFolder}/";
-            string fileName = $"{Guid.NewGuid()}.pdf"; // Tạo tên file ngẫu nhiên
-            string filePath = Path.Combine(ftpUrl, fileName);
+            try
+            {
+                var existingBenhNhan = await _context.CongTyBenhNhans.FindAsync(benhNhanDTO.IDBN);
+                if (existingBenhNhan != null)
+                {
 
-            using (var client = new WebClient())
-            {
-                client.Credentials = new NetworkCredential("ftp-user", "system@315#");
-                await client.UploadFileTaskAsync(new Uri(filePath), "STOR", "localFilePath");
-            }
+                    string kqxFilePath = null;
+                    if (benhNhanDTO.KQXNFile != null)
+                    {
+                        string kqxFileName = $"KQXN_{existingBenhNhan.MABN}.pdf";
 
-            // Lưu đường dẫn vào cơ sở dữ liệu
-            if (ftpFolder == "KQXN")
-            {
-                benhNhan.KQXN = Encoding.UTF8.GetBytes(filePath);
-            }
-            else if (ftpFolder == "KQKham")
-            {
-                benhNhan.KQKHAM = Encoding.UTF8.GetBytes(filePath);
-            }
-            // Kiểm tra và cập nhật trạng thái TrangThaiKham
-            if (benhNhan.KQXN != null)
-            {
-                benhNhan.TRANGTHAIKHAM = 2; // Nếu có KQXN thì TrangThaiKham là 2
-            }
-            else if (benhNhan.KQKHAM != null)
-            {
-                benhNhan.TRANGTHAIKHAM = 3; // Nếu có KQKHAM thì TrangThaiKham là 3
-            }
-            // Cập nhật thông tin khác của bệnh nhân trong cơ sở dữ liệu
-            // Ví dụ: sử dụng Entity Framework để cập nhật thông tin trong cơ sở dữ liệu
+                        kqxFilePath = await _ftpService.UploadFileAsnyc(benhNhanDTO.KQXNFile, "KQXN", kqxFileName);
+                    }
 
-            _context.CongTyBenhNhans.Update(benhNhan);
-            await _context.SaveChangesAsync();
+                    string kqkFilePath = null;
+                    if (benhNhanDTO.KQKhamFile != null)
+                    {
+                        string kqkFileName = $"KQKham_{existingBenhNhan.MABN}.pdf";
+                        kqkFilePath = await _ftpService.UploadFileAsnyc(benhNhanDTO.KQKhamFile, "KQKham", kqkFileName);
+                    }
 
+
+                    // Cập nhật trạng thái tương ứng
+                    existingBenhNhan.TRANGTHAIKHAM =
+                        !string.IsNullOrEmpty(kqxFilePath) ? 2 : (!string.IsNullOrEmpty(kqkFilePath) ? 3 : existingBenhNhan.TRANGTHAIKHAM);
+
+                    existingBenhNhan.TENBN = benhNhanDTO.TENBN ?? existingBenhNhan.TENBN;
+                    existingBenhNhan.GIOITINH = benhNhanDTO.GIOITINH ?? existingBenhNhan.GIOITINH;
+                    existingBenhNhan.NGAYSINH = benhNhanDTO.NGAYSINH ?? existingBenhNhan.NGAYSINH;
+                    existingBenhNhan.SODIENTHOAI = benhNhanDTO.SODIENTHOAI ?? existingBenhNhan.SODIENTHOAI;
+                    existingBenhNhan.GHICHU = benhNhanDTO.GHICHU ?? existingBenhNhan.GHICHU;
+                    existingBenhNhan.IDCT = benhNhanDTO.IDCT ?? existingBenhNhan.IDCT;
+                    existingBenhNhan.TRANGTHAISMS = benhNhanDTO.TRANGTHAISMS ?? existingBenhNhan.TRANGTHAISMS;
+                    existingBenhNhan.NGAYKQ = benhNhanDTO.NGAYKQ ?? existingBenhNhan.NGAYKQ;
+                    existingBenhNhan.NGUOIKQ = benhNhanDTO.NGUOIKQ ?? existingBenhNhan.NGUOIKQ;
+                    existingBenhNhan.NGAYTAO = benhNhanDTO.NGAYTAO ?? existingBenhNhan.NGAYTAO;
+                    existingBenhNhan.NGUOITAO = benhNhanDTO.NGUOITAO ?? existingBenhNhan.NGUOITAO;
+                    existingBenhNhan.NGUOIGUISMS = benhNhanDTO.NGUOIGUISMS ?? existingBenhNhan.NGUOIGUISMS;
+                    existingBenhNhan.NGAYGUISMS = benhNhanDTO.NGAYGUISMS ?? existingBenhNhan.NGAYGUISMS;
+
+
+
+                    existingBenhNhan.KQXN = !string.IsNullOrEmpty(kqxFilePath) ? Encoding.UTF8.GetBytes(kqxFilePath) : existingBenhNhan.KQXN;
+                    existingBenhNhan.KQKHAM = !string.IsNullOrEmpty(kqkFilePath) ? Encoding.UTF8.GetBytes(kqkFilePath) : existingBenhNhan.KQKHAM;
+
+
+                    await _context.SaveChangesAsync();
+
+                }
+                else
+                {
+                    throw new Exception("Không tìm thấy bệnh nhân để cập nhật.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi cập nhật thông tin bệnh nhân: " + ex.Message, ex);
+            }
         }
+
+
 
         public async Task<IEnumerable<CongTyBenhNhan>> GetAllAsync()
         {
@@ -207,6 +230,40 @@ namespace _315HealthCareProject.Services
             return await _benhNhanCT.SearchBenhNhanAsync(keyword);
         }
 
+
+        public class BenhNhanFiles
+        {
+            public byte[] KQXNFile { get; set; }
+            public byte[] KQKhamFile { get; set; }
+        }
+
+        public async Task<BenhNhanFiles> DownloadBenhNhanFileAsync(string maBN)
+        {
+            try
+            {
+                // Tạo đường dẫn tạm cho cả hai file (KQXN và KQKham)
+                string kqxnFilePath = $"KQXN_{maBN}.pdf";
+                string kqkhamFilePath = $"KQKham_{maBN}.pdf";
+
+                // Download cả hai file từ FTP hoặc nơi lưu trữ khác
+                var kqxnFileTask = _ftpService.DownloadFileAsync(kqxnFilePath);
+                var kqkhamFileTask = _ftpService.DownloadFileAsync(kqkhamFilePath);
+
+                // Chờ cả hai file được tải xuống
+                await Task.WhenAll(kqxnFileTask, kqkhamFileTask);
+
+                // Trả về cả hai file dưới dạng một đối tượng BenhNhanFiles
+                return new BenhNhanFiles
+                {
+                    KQXNFile = await kqxnFileTask,
+                    KQKhamFile = await kqkhamFileTask
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi tải file của bệnh nhân: " + ex.Message, ex);
+            }
+        }
 
 
 

@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("315HealthCareProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+25ef2f76f9c37d9098128a075f00974a80c8b27b")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9c4bda3677e58023d218b0919d1fd2f1001d051")]
+>>>>>>> 4eb7df623b1416dfce3b46e4bfc1046968cff42c
 [assembly: System.Reflection.AssemblyProductAttribute("315HealthCareProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("315HealthCareProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

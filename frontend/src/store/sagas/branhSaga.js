@@ -4,10 +4,13 @@ import { branchService } from "../../services/branch/branchService";
 export function* branchSaga () {
 
 
-    yield takeLatest('DEMO_MODAL',function* changeModal({type,payload}){
+    yield takeLatest(typeAction.GET_INFO_BRANCH_LOGIN,function* branchLogin({type,idChiNhanh}){
         // yield console.log(payload);
+        const result = yield call(()=> branchService.getbranchLogin(idChiNhanh))
+        
         yield put({
-            type:"TRUE_MODAL"
+            type:typeAction.DISPATCH_BRANCH_LOGIN,
+            payload:result.data
         })
     } )
 

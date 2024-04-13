@@ -14,3 +14,9 @@ export const defaultBranchAction = (payload) => ({
 export const listCaLamViec = () => ({
   type: typeAction.GET_LIST_CALAMVIEC,
 });
+
+// action lấy thông tin cảu chi nhánh đăng nhập
+export const infoBranchLogin =(idChiNhanh) => ({
+  type:typeAction.GET_INFO_BRANCH_LOGIN,
+  idChiNhanh
+})

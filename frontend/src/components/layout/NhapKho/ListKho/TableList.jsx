@@ -105,8 +105,8 @@ const TableList = ({handleCancel,showModal}) => {
                       {moment(row.ngayNhan).format("DD-MM-YYYY h:mm:ss")}
                     </TableCell>
                     <TableCell sx={{ padding: 1 }}>{row.tenKhoNhap}</TableCell>
-                    <TableCell sx={{ padding: 1 }}>{row.soHoaDon}</TableCell>
                     <TableCell sx={{ padding: 1 }}>{row.tenChiNhanhNhan}</TableCell>
+                    <TableCell sx={{ padding: 1 }}>{row.soHoaDon}</TableCell>                  
                     <TableCell sx={{ padding: 1 }}>
                       {moment(row.ngayHoaDon).format("DD-MM-YYYY")}
                     </TableCell>

@@ -1,6 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import LayoutApp from "../../../HOCs/LayoutApp";
+import { formatNumberVND } from "../../../utils/formatNumberVND";
 import * as typeAction from "../../../store/constants/constants";
+import _ from "lodash";
 import { Input, Tabs, Select, Table, ConfigProvider, notification } from "antd";
 import { CloseSquareOutlined } from "@ant-design/icons";
 import { Button } from "@mui/material";
@@ -13,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   // fetchAllThuocVT,
   getBranchNhapKho,
+  searchThuocVT,
 } from "../../../store/actions/NhapKhoAction";
 import { useFormik } from "formik";
 import { listBranchAction } from "../../../store/actions/BranchAction";
@@ -120,7 +123,7 @@ const ChuyenKho = () => {
   const now = moment();
   const [docx, setdocx] = useState(null);
   const [date, setDate] = useState(now.format());
-  const { thuocVT, branch, listKhoNhap } = useSelector(
+  const { thuocVT, listKhoNhap, branch } = useSelector(
     (state) => state.NhapKhoReducer
   );
   const [api, contextHolder] = notification.useNotification();
@@ -136,6 +139,13 @@ const ChuyenKho = () => {
   const handlePrinter = useReactToPrint({
     content: () => componentRef.current,
   });
+  // search lấy thông tin thuốc vật tư
+  const debounceDropDown = useCallback(
+    _.debounce((nextValue) => {
+      dispatch(searchThuocVT(nextValue));
+    }, 300),
+    []
+  ); // sử dụng debounce để tối tiểu thánh server perfoman
   // lấy thông tin người dùng >> tạm thời
   const infoUser = JSON.parse(localStorage.getItem("USER_INFO"));
   const saveDocx = async () => {
@@ -145,7 +155,7 @@ const ChuyenKho = () => {
   const handleSave = (values, action) => {
     console.log(values);
     if (KhoVT.length === 0) {
-      console.log('error');
+      console.log("error");
       openNotificationWithIcon(
         "error",
         "Lưu phiếu chuyển",
@@ -155,11 +165,11 @@ const ChuyenKho = () => {
     }
     setDate(now.format());
     formik.setFieldValue("ngayXuat", date);
-    formik.handleReset()
-    dispatch(postPhieuCKAction(values,KhoVT))
+    formik.handleReset();
+    dispatch(postPhieuCKAction(values, KhoVT));
     dispatch({
-      type:typeAction.RESET_KHOVT_CK
-    })
+      type: typeAction.RESET_KHOVT_CK,
+    });
   };
   // xử lý thông tin chọn
   const handleChangeSelect = (name) => (value) => {
@@ -211,20 +221,20 @@ const ChuyenKho = () => {
     validationSchema: chuyenKhoSchema,
   });
   useEffect(() => {
-    // dispatch(fetchAllThuocVT()); 
+    // dispatch(fetchAllThuocVT());
     dispatch(getBranchNhapKho());
     dispatch(listBranchAction());
   }, []);
   return (
     <LayoutApp>
       {contextHolder}
-      <div >
+      <div>
         <div
-          // className="h-full w-full bg-white rounded-md border"
-          // style={{
-          //   boxShadow:
-          //     "0 1px 2px 0 rgba(60,64,67,.1),0 2px 6px 2px rgba(60,64,67,.15)",
-          // }}
+        // className="h-full w-full bg-white rounded-md border"
+        // style={{
+        //   boxShadow:
+        //     "0 1px 2px 0 rgba(60,64,67,.1),0 2px 6px 2px rgba(60,64,67,.15)",
+        // }}
         >
           <div className="p-2">
             <Tabs
@@ -249,33 +259,36 @@ const ChuyenKho = () => {
                                   Tìm kiếm:{" "}
                                 </labe>
                                 <Select
+                                  className="w-full"
+                                  size="small"
+                                  showSearch
                                   allowClear
                                   onChange={handleKhoVT}
-                                  autoClearSearchValue="tags"
+                                  placeholder="Nhập tên vật tư hàng hoá"
                                   value=""
-                                  showSearch
-                                  filterOption={(input, option) =>
-                                    (option?.label ?? "")
-                                      .toLowerCase()
-                                      .includes(input)
-                                  }
-                                  options={thuocVT?.map(
-                                    ({ idThuoc, maThuoc, tenBietDuoc }) => ({
-                                      label: (
-                                        // tenBietDuoc,
-                                        <li>
-                                          <span className=" border-r-2 pr-2 mr-2">
-                                            {maThuoc}
-                                          </span>
-                                          {tenBietDuoc}
+                                  defaultActiveFirstOption={false}
+                                  suffixIcon={null}
+                                  filterOption={false}
+                                  onSearch={debounceDropDown}
+                                  notFoundContent={null}
+                                  options={(thuocVT || []).map((d) => ({
+                                    value: d.idThuoc,
+                                    label: (
+                                      <u className="flex no-underline">
+                                        <li className="flex w-[95%]">
+                                          <p className=" border-r-2 pr-2">
+                                            {d.maThuoc}
+                                          </p>
+                                          <p className=" px-2 w-full ">
+                                            {d.tenBietDuoc}
+                                          </p>
                                         </li>
-                                      ),
-                                      value: idThuoc,
-                                    })
-                                  )}
-                                  size="small"
-                                  placeholder="Nhập tên hàng hoá"
-                                  className="w-full"
+                                        {/* <li className=" w-[15%] text-end">
+                                      {formatNumberVND(d.giaMua)} VNĐ
+                                    </li> */}
+                                      </u>
+                                    ),
+                                  }))}
                                 />
                               </div>
                             </div>
@@ -289,11 +302,14 @@ const ChuyenKho = () => {
                                 </div>
                                 <div className="flex w-1/2">
                                   <label className="font-semibold w-1/3">
-                                    Kho xuất:<span className="text-red-500">(*)</span>
+                                    Kho xuất:
+                                    <span className="text-red-500">(*)</span>
                                   </label>
                                   <Select
                                     name="idKhoXuat"
-                                    status={formik.errors.idKhoXuat ? "error" : ""}
+                                    status={
+                                      formik.errors.idKhoXuat ? "error" : ""
+                                    }
                                     onChange={handleChangeSelect("idKhoXuat")}
                                     className="w-full"
                                     size="small"
@@ -310,7 +326,8 @@ const ChuyenKho = () => {
                               <div className="w-full flex gap-2">
                                 <div className="flex w-1/2">
                                   <label className="font-semibold w-1/3">
-                                    Nơi nhận:<span className="text-red-500">(*)</span>
+                                    Nơi nhận:
+                                    <span className="text-red-500">(*)</span>
                                   </label>
                                   <Select
                                     onChange={handleBranchNhanKho}
@@ -331,7 +348,8 @@ const ChuyenKho = () => {
                                 </div>
                                 <div className="flex w-1/2">
                                   <label className="font-semibold w-1/3">
-                                    Kho nhận:<span className="text-red-500">(*)</span>
+                                    Kho nhận:
+                                    <span className="text-red-500">(*)</span>
                                   </label>
                                   <Select
                                     name="idKhoNhap"
@@ -368,7 +386,7 @@ const ChuyenKho = () => {
                               }}
                             >
                               <Table
-                              pagination={false}
+                                pagination={false}
                                 bordered
                                 columns={columns}
                                 dataSource={KhoVT?.map((items, index) => ({
@@ -411,12 +429,11 @@ const ChuyenKho = () => {
                               <div className="flex">
                                 <label className="w-1/3 font-medium">
                                   {" "}
-                                  Tên Phiếu:<span className="text-red-500">(*)</span>
+                                  Tên Phiếu:
+                                  <span className="text-red-500">(*)</span>
                                 </label>
                                 <Input
-                                status={
-                                  formik.errors.tenPhieu ? "error" : ""
-                                }
+                                  status={formik.errors.tenPhieu ? "error" : ""}
                                   name="tenPhieu"
                                   value={formik.values.tenPhieu}
                                   onChange={formik.handleChange}
@@ -445,12 +462,13 @@ const ChuyenKho = () => {
                               <div className="flex">
                                 <label className="w-1/3 font-medium">
                                   {" "}
-                                  Nội dung:<span className="text-red-500">(*)</span>
+                                  Nội dung:
+                                  <span className="text-red-500">(*)</span>
                                 </label>
                                 <Input.TextArea
                                   value={formik.values.noiDung}
                                   name="noiDung"
-                                  status={formik.errors.noiDung ? 'error' :''}
+                                  status={formik.errors.noiDung ? "error" : ""}
                                   onChange={formik.handleChange}
                                   showCount
                                   maxLength={500}

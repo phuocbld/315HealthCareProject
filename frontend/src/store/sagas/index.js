@@ -6,6 +6,7 @@ import { receiveSaga } from "./receiveSaga";
 import { NhapKhoSaga } from "./KhoNhapSaga";
 import { ChuyenKhoSaga } from "./ChuyenKhoSaga";
 import {khamDoanSaga} from './khamDoanSaga'
+import { ThuocVTSaga } from "./ThuocVTSaga";
 
 
 
@@ -17,5 +18,6 @@ export function* rootSaga() {
         NhapKhoSaga(),
         ChuyenKhoSaga(),
         khamDoanSaga(),
+        ThuocVTSaga(),
     ])
 }

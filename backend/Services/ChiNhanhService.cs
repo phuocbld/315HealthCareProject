@@ -37,6 +37,6 @@ namespace _315HealthCareProject.Services
             return await _repository.GetByIdAsync(id);
         }
     }
-    }
+}
 
 

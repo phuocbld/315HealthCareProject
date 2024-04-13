@@ -4,9 +4,16 @@
     "\\backend",
     "\\backend\\.config",
     "\\backend\\Controllers",
+<<<<<<< HEAD
     "\\backend\\Models",
     "\\backend\\Services"
   ],
   "SelectedNode": "\\backend\\Models\\KhoChiTiet.cs",
+=======
+    "\\backend\\DTO",
+    "\\backend\\Models"
+  ],
+  "SelectedNode": "\\backend\\DTO\\CongTyBenhNhanDTO.cs",
+>>>>>>> 4eb7df623b1416dfce3b46e4bfc1046968cff42c
   "PreviewInSolutionExplorer": false
 }
