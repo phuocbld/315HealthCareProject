@@ -70,7 +70,7 @@ namespace _315HealthCareProject.Models
         public int? CheckDelete { get; set; }
 
         [Column("SOLUONGLE")]
-        public int? SoLuongLe { get; set;}
+        public int? SoLuongLe { get; set; }
         [Column("SOLUONGDONGGOI")]
         public int? SoLuongDongGoi { get; set; }
         [Column("QUYCACHDONGGOI")]

@@ -9,9 +9,9 @@ using _315HealthCareProject.Models;
 public class ChiNhanhController : ControllerBase
 {
     private readonly IChiNhanhService _service;
-    private readonly INguoiDungService _nguoiDungService; 
+    private readonly INguoiDungService _nguoiDungService;
 
-    public ChiNhanhController(IChiNhanhService service , INguoiDungService nguoiDungService)
+    public ChiNhanhController(IChiNhanhService service, INguoiDungService nguoiDungService)
     {
         _service = service;
         _nguoiDungService = nguoiDungService;
@@ -50,7 +50,7 @@ public class ChiNhanhController : ControllerBase
         return Ok(new { IdChiNhanh = chiNhanhId, TaiKhoan = username });
     }
 
-    [HttpGet("/GetChiNhanh/{id}")]
+    [HttpGet("GetChiNhanh/{id}")]
     public async Task<ActionResult<ChiNhanh>> GetChiNhanh(int id)
     {
         var chiNhanh = await _service.GetChiNhanhByIdAsync(id);

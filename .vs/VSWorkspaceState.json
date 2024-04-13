@@ -6,6 +6,6 @@
     "\\backend\\DTO",
     "\\backend\\Models"
   ],
-  "SelectedNode": "\\backend\\Models\\KhoChiTiet.cs",
+  "SelectedNode": "\\backend\\DTO\\CongTyBenhNhanDTO.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -2,7 +2,7 @@
 
 namespace _315HealthCareProject.DTO
 {
- 
+
     public class CongTyBenhNhanDTO
     {
         public int? IDBN { get; set; }
