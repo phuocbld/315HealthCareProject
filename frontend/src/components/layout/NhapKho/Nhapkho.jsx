@@ -18,8 +18,10 @@ import {
   getlistDoitac,
   searchThuocVT,
 } from "../../../store/actions/NhapKhoAction";
-import { KhoNhapSchema } from "../../../schemas/KhoNhapSchema";
 import { formatNumberVND } from "../../../utils/formatNumberVND";
+import { listBranchAction } from "../../../store/actions/BranchAction";
+import { KhoNhapSchema } from "../../../schemas/KhoNhapSchema";
+import dayjs from "dayjs";
 const Nhapkho = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const now = moment();
@@ -28,6 +30,7 @@ const Nhapkho = () => {
 
   const { branch, listKhoNhap, listDoiTac, infoDoiTac, thuocVT, infoThuocVT } =
     useSelector((state) => state.NhapKhoReducer);
+  const { listBranch } = useSelector((state) => state.branchReducer);
   const [api, contextHolder] = notification.useNotification();
 
   // xử lí button submit
@@ -83,7 +86,7 @@ const Nhapkho = () => {
     console.log(values);
   };
   const onchangeDateHoaDon = (date, dateString) => {
-    const dateHoaDon = moment(dateString).format();
+    const dateHoaDon = moment(dateString,'DD/MM/YYYY').format();
     formik.setFieldValue("ngayHoaDon", dateHoaDon);
   };
   // xử lý thông tin chọn
@@ -117,12 +120,16 @@ const Nhapkho = () => {
     formik.setFieldValue(name, value);
     dispatch(getInfoDoitac(value));
   };
+  // lấy kho nhập
+  const hanldeKhoNhapByBranch = (idChiNhanh) => {
+    dispatch(getBranchNhapKho(idChiNhanh));
+  };
   const formik = useFormik({
     initialValues: {
       tenPhieu: "",
       idKhoNhap: "",
       NoiDung: "",
-      nhanVienNhan: infoUser?.dangNhap.idNguoiDung,
+      nhanVienNhan: infoUser?.idnv,
       ngayNhan: date,
       trangThai: 3, // để trạng thái mặc định là 3 vì là nhập kho ở trạng thái đã nhận hàng =>> xem table TRANGTHIAKHO ở database
       idDoiTac: "",
@@ -130,18 +137,18 @@ const Nhapkho = () => {
       ngayHoaDon: "",
       linkHoaDon: "",
       fileHoaDon: "file",
+      idct: 1, // set trạng thái mặc đình là 1 >> CTy y tế chấn văn 
       idHinhThuc: 1,
       idPhuongThuc: 1,
     },
-    // validationSchema: KhoNhapSchema,
+    validationSchema: KhoNhapSchema,
     onSubmit: (value, action) => {
       handleSave(value, action);
     },
   });
   useEffect(() => {
-    dispatch(getBranchNhapKho());
     dispatch(getlistDoitac());
-    // dispatch(fetchAllThuocVT());
+    dispatch(listBranchAction());
   }, []);
   const setPricre = (sum) => {
     setTotalPrice(sum);
@@ -187,10 +194,23 @@ const Nhapkho = () => {
                             </div>
                             <div className="flex w-1/2">
                               <label className="w-1/4 font-semibold">
+                                <span className="text-red-500 text-xs">
+                                  (*)
+                                </span>
                                 Nơi Nhập:{" "}
                               </label>
-                              <Input
-                                value={branch}
+                              <Select
+                                showSearch
+                                filterOption={(input, option) =>
+                                  (option?.label ?? "")
+                                    .toLowerCase()
+                                    .includes(input)
+                                }
+                                onChange={hanldeKhoNhapByBranch}
+                                options={listBranch?.map((items) => ({
+                                  label: items.tenChiNhanh,
+                                  value: items.idChiNhanh,
+                                }))}
                                 className="w-full"
                                 size="small"
                               />
@@ -253,19 +273,15 @@ const Nhapkho = () => {
                             </div>
                             <div className="flex w-1/2">
                               <label className="font-semibold w-[33%]">
-                                <span className="text-red-500 text-xs">
+                                {/* <span className="text-red-500 text-xs">
                                   (*)
-                                </span>
+                                </span> */}
                                 Ngày HĐ :{" "}
                               </label>
                               <DatePicker
                                 name="ngayHoaDon"
-                                status={formik.errors.ngayHoaDon ? "error" : ""}
-                                // value={
-                                //   formik.values.ngayHoaDon !== ""
-                                //     ? moment(formik.values.ngayHoaDon).format('DD/MM/YYYY')
-                                //     : ""
-                                // }
+                                // status={formik.errors.ngayHoaDon ? "error" : ""}
+                                // value={dayjs(formik.values.ngayHoaDon)}
                                 format="DD/MM/YYYY"
                                 onChange={onchangeDateHoaDon}
                                 className="w-full"
@@ -413,7 +429,7 @@ const Nhapkho = () => {
                               allowClear
                               onChange={handleChoose}
                               placeholder="Nhập tên vật tư hàng hoá"
-                              value=''
+                              value=""
                               defaultActiveFirstOption={false}
                               suffixIcon={null}
                               filterOption={false}
