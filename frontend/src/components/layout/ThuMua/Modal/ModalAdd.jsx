@@ -1,9 +1,9 @@
-import { Modal } from "antd";
+import { Input, Modal } from "antd";
 import { useFormik } from "formik";
 import React from "react";
 
 const ModalAdd = ({ isModalOpen, handleCancel }) => {
-    const userInfo = JSON.parse(localStorage.getItem('USER_INFO'))
+  const userInfo = JSON.parse(localStorage.getItem("USER_INFO"));
   // data form formik
   const formik = useFormik({
     initialValues: {
@@ -18,7 +18,7 @@ const ModalAdd = ({ isModalOpen, handleCancel }) => {
       nhaSanXuat: "",
       suDung: 0,
       ghiChu: "",
-      idCt: '',
+      idCt: "",
       barcode: "",
       qrCode: "",
       cachDung: "",
@@ -49,13 +49,26 @@ const ModalAdd = ({ isModalOpen, handleCancel }) => {
       onOk={handleCancel}
       onCancel={handleCancel}
     >
-      <form className="text-start">
-        <div>
-
+      <form className="text-start mt-5">
+        <div className="flex flex-col gap-2">
+          <div className="flex">
+            <label className="w-1/3 ">
+              <span className="text-red-500 text-xs">(*)</span>Tên biệt dược:
+            </label>
+            <Input size="small" />
+          </div>
+          <div className="flex">
+            <label className="w-1/3 ">Tên hoá chất:</label>
+            <Input size="small" />
+          </div>
+          <div>
+            <div className="flex">
+              <label className="">Đơn vị:</label>
+              <Input size="small" />
+            </div>
+          </div>
         </div>
-        <div>
-
-        </div>
+        <div></div>
       </form>
     </Modal>
   );

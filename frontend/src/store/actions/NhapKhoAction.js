@@ -1,7 +1,8 @@
 import * as typeAction from "../constants/constants";
 
-export const getBranchNhapKho = () => ({
-    type:typeAction.GET_BRANCH_NHAPKHO
+export const getBranchNhapKho = (idChiNhanh) => ({
+    type:typeAction.GET_BRANCH_NHAPKHO,
+    idChiNhanh
 })
 
 export const getlistDoitac = () => ({

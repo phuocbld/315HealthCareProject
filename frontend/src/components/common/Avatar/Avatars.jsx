@@ -72,7 +72,6 @@ const Avatars = ( {info}) => {
   
   const logout = () =>{
     dispatch(logoutUser(navigate))
-    console.log('123456');
   }
   const DongCaLamViec = () => {
     handleClose()

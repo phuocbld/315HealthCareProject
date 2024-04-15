@@ -82,44 +82,6 @@ const columns = [
     align: "center",
   },
 ];
-const data = [
-  {
-    MAPHIEU: "PT000021",
-    NGUOINHAN: "ds.Nguyen Quoc Tài",
-    NGAYNHAN: "20/23/2024 11:42",
-    KHONHAN: "kho duoc",
-    NGUOICHUYEN: "Nguyễn Văn A",
-    NGAYCHUYEN: "27/03/2024 11:56",
-    KHOCHUYEN: "kho Tổng",
-    XACNHAN: (
-      <>
-        <Button
-          size="small"
-          variant="contained"
-          style={{
-            fontSize: 12,
-            padding: 2,
-          }}
-        >
-          xuất kho
-        </Button>
-      </>
-    ),
-    ACTION: (
-      <div className="flex gap-4 justify-center ">
-        <Tooltip title="Xem chi tiết" color="#108ee9">
-          <ContainerOutlined className="text-xl text-[#108ee9]  cursor-pointer" />
-        </Tooltip>
-        <Tooltip title="Sửa phiếu" color="green">
-          <EditOutlined className="text-xl text-green-700  cursor-pointer" />
-        </Tooltip>
-        <Tooltip title="Xoá phiếu" color="red">
-          <DeleteOutlined className="text-xl text-red-500  cursor-pointer" />
-        </Tooltip>
-      </div>
-    ),
-  },
-];
 const Create = () => {
   const { listBranch } = useSelector((state) => state.branchReducer);
   const [branch, setBranch] = useState("");

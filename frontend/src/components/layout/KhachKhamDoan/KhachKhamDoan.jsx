@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import Highlighter from "react-highlight-words";
 import LayoutApp from "../../../HOCs/LayoutApp";
+// import XLSX from 'xlsx';
 import _, { values } from "lodash";
 import {
   Input,
@@ -14,6 +15,7 @@ import {
   Modal,
   Tour,
   FloatButton,
+  Select,
 } from "antd";
 import {
   DeleteOutlined,
@@ -23,6 +25,7 @@ import {
   SearchOutlined,
   ExclamationCircleFilled,
   ReadOutlined,
+  FileExcelOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import ModalAdd from "./ModalAddBenhNhan/ModalAdd";
@@ -53,7 +56,7 @@ const KhachKhamDoan = () => {
   const { listBNImport, ListBNKhamDoan, listSMS, isLoadingBN, listCty } =
     useSelector((state) => state.khamDoanReducer);
   const onSelectChange = (newSelectedRowKeys, infoBN) => {
-    console.log(infoBN);
+    // console.log(infoBN);
     // dispatch({
     //   type: typeAction.ADD_LIST_INFO_SMS,
     //   payload: infoBN,
@@ -206,9 +209,29 @@ const KhachKhamDoan = () => {
     dispatch(deleteBNKhamDoanById(idbn));
   };
   const debounceDropDown = useCallback(
-    _.debounce((nextValue) => {dispatch(searchBnkhamDoanAction(nextValue))}, 300),
+    _.debounce((nextValue) => {
+      dispatch(searchBnkhamDoanAction(nextValue));
+    }, 300),
     []
   ); // sử dụng debounce để tối tiểu thánh server perfoman
+  const onChangeTable = (values) => {
+    console.log(values);
+  }
+//  const exportToExcel = () => {
+//     const { dataSource, columns, fileName } = this.props;
+
+//     const worksheet = XLSX.utils.json_to_sheet(dataSource.map(item => {
+//       const rowData = {};
+//       columns.forEach(column => {
+//         rowData[column.dataIndex] = item[column.dataIndex];
+//       });
+//       return rowData;
+//     }));
+
+//     const workbook = XLSX.utils.book_new();
+//     XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+//     XLSX.writeFile(workbook, `${fileName}.xlsx`);
+//   };
   const handleSearchBN = (e) => {
     const { value } = e.target;
     debounceDropDown(value);
@@ -222,6 +245,10 @@ const KhachKhamDoan = () => {
     selectedRowKeys,
     onChange: onSelectChange,
   };
+
+  const handleSelectedCompany = (value) => {
+    console.log(value);
+  }
   // xử lý gửi sms
   const showConfirm = () => {
     confirm({
@@ -437,12 +464,18 @@ const KhachKhamDoan = () => {
     <LayoutApp>
       <div className="p-2">
         <div className="flex justify-between">
-          <div ref={ref1} className="flex gap-5">
+          <div ref={ref1} className="flex gap-5 items-center ">
             <Input.Search
+            size="small"
               onChange={handleSearchBN}
               className="w-72"
               placeholder="Tìm kiếm tên và mã bệnh nhân"
             />
+
+            <div className="w-72 flex">
+              <label className="w-1/3 font-semibold">Công ty</label>
+              <Select onChange={handleSelectedCompany} allowClear placeholder='Công ty khám đoàn' size="small" options={[{label:'CTY 1',value:'cty1'}]} className="w-full" />
+            </div>
             <Button
               ref={ref2}
               onClick={() => {
@@ -453,6 +486,17 @@ const KhachKhamDoan = () => {
             >
               {" "}
               Tải lại
+            </Button>
+            <Button
+              // onClick={() => {
+              //   dispatch(getAllBNKhamDoan());
+              // }}
+              className="text-green-700"
+              type="default"
+              icon={<FileExcelOutlined />}
+            >
+              {" "}
+              Xuất excel
             </Button>
           </div>
           <div className="flex items-center gap-5">
@@ -499,7 +543,7 @@ const KhachKhamDoan = () => {
           >
             <Table
               loading={isLoadingBN}
-              pagination={{pageSize:20}}
+              pagination={{ pageSize: 20 }}
               bordered
               rowSelection={rowSelection}
               className="mb-5 "

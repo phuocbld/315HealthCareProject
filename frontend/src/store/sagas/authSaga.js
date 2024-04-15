@@ -81,7 +81,6 @@ export function* authSaga() {
     try {
       yield localStorage.removeItem("USER_INFO");
       yield localStorage.removeItem("BRANH_LOGIN");
-      console.log(123);
       yield navigate("/login");
       yield put({
         type: typeAction.DISPATCH_LOGOUT_USER,

@@ -45,12 +45,11 @@ export function* NhapKhoSaga() {
   //get kho nhập
   yield takeLatest(
     typeAction.GET_BRANCH_NHAPKHO,
-    function* listKhoNhap({ type, payload }) {
+    function* listKhoNhap({ type, idChiNhanh }) {
       // yield console.log(payload);
       try {
-        const idBranch = localStorage.getItem("BRANH_LOGIN");
         const result = yield call(() =>
-          NhapKhoService.getListKhoNhap(idBranch)
+          NhapKhoService.getListKhoNhap(idChiNhanh)
         );
         yield put({
           type: typeAction.DISPATCH_LIST_KHONHAP,
@@ -160,6 +159,7 @@ export function* NhapKhoSaga() {
     function* postPhieuNhapKho({ type, payload, ListThuocVT }) {
       // yield console.log(payload);
       try {
+        console.log(payload);
         const result = yield call(() => NhapKhoService.postPhieuNhap(payload));
         const id = yield result.data.data.idNhapXuat;
         const array = [];
