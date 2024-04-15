@@ -196,6 +196,8 @@ D:\code Tài Nguyễn\315healthcare\V1.4.1\backend\obj\Debug\net8.0\refint\315He
 D:\code Tài Nguyễn\315healthcare\V1.4.1\backend\obj\Debug\net8.0\315HealthCareProject.pdb
 D:\code Tài Nguyễn\315healthcare\V1.4.1\backend\obj\Debug\net8.0\315HealthCareProject.genruntimeconfig.cache
 D:\code Tài Nguyễn\315healthcare\V1.4.1\backend\obj\Debug\net8.0\ref\315HealthCareProject.dll
+<<<<<<< HEAD
+=======
 D:\Code\backend\bin\Debug\net8.0\appsettings.Development.json
 D:\Code\backend\bin\Debug\net8.0\appsettings.json
 D:\Code\backend\bin\Debug\net8.0\315HealthCareProject.exe
@@ -261,3 +263,4 @@ D:\Code\backend\obj\Debug\net8.0\refint\315HealthCareProject.dll
 D:\Code\backend\obj\Debug\net8.0\315HealthCareProject.pdb
 D:\Code\backend\obj\Debug\net8.0\315HealthCareProject.genruntimeconfig.cache
 D:\Code\backend\obj\Debug\net8.0\ref\315HealthCareProject.dll
+>>>>>>> 4eb7df623b1416dfce3b46e4bfc1046968cff42c

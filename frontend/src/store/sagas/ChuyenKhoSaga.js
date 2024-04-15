@@ -92,4 +92,20 @@ export function* ChuyenKhoSaga() {
       }
     }
   );
+  yield takeLatest(
+    typeAction.GET_FILTER_CREATE_CHUYEN_KHO,
+    function* getPTCreateCK({ type, filter }) {
+      try {
+        const result = yield call(() =>
+          chuyenKhoService.getChuyenKhoFilter(filter)
+        ); //
+        yield put({
+          type: typeAction.DISPATCH_LIST_CREATE_CHUYEN_KHO,
+          payload: result.data,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  );
 }

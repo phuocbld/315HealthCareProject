@@ -44,20 +44,20 @@ export function* authSaga() {
         localStorage.setItem("USER_INFO", JSON.stringify(infoUser.data));
         localStorage.setItem("BRANH_LOGIN", JSON.stringify(payload.idChiNhanh));
         yield delay(500);
-        // lấy ra tên và id chi nhánh đăng nhập
-        const branchLogin = yield call(() =>
-          branchService.getbranchLogin(payload.idChiNhanh)
-        );
+        // // lấy ra tên và id chi nhánh đăng nhập
+        // const branchLogin = yield call(() =>
+        //   branchService.getbranchLogin(payload.idChiNhanh)
+        // );
         yield put({
           type: typeAction.CLOSE_LOADING,
         });
-        yield put({
-          type: typeAction.DISPATCH_BRANCH_LOGIN,
-          payload: {
-            idChiNhanh:payload.idChiNhanh,
-            tenChiNhanh:branchLogin.data
-          },
-        });
+        // yield put({
+        //   type: typeAction.DISPATCH_BRANCH_LOGIN,
+        //   payload: {
+        //     idChiNhanh:payload.idChiNhanh,
+        //     tenChiNhanh:branchLogin.data
+        //   },
+        // });
         yield navigate("/");
         Toast.fire({
           icon: "success",

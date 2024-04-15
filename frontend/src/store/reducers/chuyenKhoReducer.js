@@ -3,6 +3,7 @@ import * as typeAction from "../constants/constants";
 const initialState = {
   KhoNhan: null,
   KhoVT: [],
+  PTCreate: null,
 };
 
 const chuyenKhoReducer = (state = initialState, { type, payload }) => {
@@ -32,6 +33,9 @@ const chuyenKhoReducer = (state = initialState, { type, payload }) => {
         break;
       case typeAction.RESET_KHOVT_CK:
         draft.KhoVT = [];
+        break;
+      case typeAction.DISPATCH_LIST_CREATE_CHUYEN_KHO:
+        draft.PTCreate = payload;
         break;
       default:
         return state;
