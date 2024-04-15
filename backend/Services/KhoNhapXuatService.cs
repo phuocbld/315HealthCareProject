@@ -13,12 +13,14 @@ namespace _315HealthCareProject.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly IKhoNhapXuatRepository _repository;
+        private readonly ICongTyRepository _congTyRepository;
 
 
-        public KhoNhapXuatService(ApplicationDbContext context, IKhoNhapXuatRepository repository)
+        public KhoNhapXuatService(ApplicationDbContext context, IKhoNhapXuatRepository repository , ICongTyRepository congTyRepository)
         {
             _context = context;
             _repository = repository;
+            _congTyRepository = congTyRepository;
         }
 
         //public async Task DeleteKhoNhapXuatAsync(int id)
@@ -110,6 +112,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
+                khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
             }
             return khoNhapXuatList;
         }
@@ -126,6 +129,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
+                khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
             }
             return khoNhapXuatList;
         }
@@ -150,6 +154,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(idTrangThai);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
+                khoNhapXuat.TenCT =  _congTyRepository.GetTenCTById(khoNhapXuat.IDCT ?? 0);
             }
 
             return khoNhapXuatList;
@@ -168,7 +173,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
-
+                khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
 
             }
             return khoNhapXuat;
@@ -249,7 +254,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
-
+                khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
             }
             return khoNhapList;
         }
@@ -268,7 +273,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
-
+                khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
             }
             return khoNhapList;
         }
@@ -286,7 +291,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
-
+                //khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
             }
             return khoNhapList;
         }
@@ -304,7 +309,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
-
+                khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
             }
             return khoNhapList;
         }
@@ -323,7 +328,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
-
+                khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
             }
             return khoNhapList;
         }
@@ -341,7 +346,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
-
+                khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
             }
             return khoNhapList;
         }

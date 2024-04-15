@@ -44,6 +44,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<CongTyKhachKhamDoan> CongTyKhachKhamDoans { get; set; }
     public DbSet<CongTyTrangThai> CongTyTrangThais { get; set; }
     public DbSet<CongTyTrangThaiSMS> CongTyTrangThaiSMs { get; set; }
+    public DbSet<CongTy> CongTys { get; set; }
 
 
 
@@ -77,7 +78,7 @@ public class ApplicationDbContext : DbContext
     public IEnumerable<object> congTyBenhNhans { get; internal set; }
     public IEnumerable<object> congTyTrangThais { get; internal set; }
     public IEnumerable<object> congTyTrangThaiSMS { get; internal set; }
-
+    public IEnumerable<object> congTys {  get; internal set; }
     
 
 

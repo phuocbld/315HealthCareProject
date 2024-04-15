@@ -16,10 +16,11 @@ namespace _315HealthCareProject.Services
         private readonly ICongTyTrangThaiRepository _congTyTrangThai;
         private readonly ICongTyKhachKhamDoanRepository _congTyKhamDoan;
         private readonly ICongTyTrangThaiSMSRepository _congTyTrangThaiSMS;
+        private readonly IFileService _fileService;
 
         public CongTyBenhNhanService(ICongTyBenhNhanRepository repository, ApplicationDbContext context,
             ICongTyTrangThaiRepository congTyTrangThai, ICongTyKhachKhamDoanRepository congTyKhamDoan,
-            ICongTyTrangThaiSMSRepository congTyTrangThaiSMS, IFtpService ftpService)
+            ICongTyTrangThaiSMSRepository congTyTrangThaiSMS, IFtpService ftpService , IFileService fileService)
         {
             _benhNhanCT = repository;
             _context = context;
@@ -27,6 +28,7 @@ namespace _315HealthCareProject.Services
             _congTyKhamDoan = congTyKhamDoan;
             _ftpService = ftpService;
             _congTyTrangThaiSMS = congTyTrangThaiSMS;
+            _fileService = fileService;
         }
 
         //public async Task<IEnumerable<CongTyBenhNhan>> GetAllAsync()

@@ -8,6 +8,7 @@ namespace _315HealthCareProject.Repositories
     public class KhoNhapXuatRepository : IKhoNhapXuatRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly ICongTyRepository _congTyRepository;
 
         public KhoNhapXuatRepository(ApplicationDbContext context)
         {
@@ -100,6 +101,16 @@ namespace _315HealthCareProject.Repositories
                 .FirstOrDefaultAsync();
 
             return trangThai;
+        }
+
+        public async Task<string> GetTenCTAsync(int idCT)
+        {
+            var congTy = await _context.CongTys
+                .Where(ct => ct.IDCT == idCT)
+                .Select(ct => ct.TENCT)
+                .FirstOrDefaultAsync();
+
+            return congTy;
         }
         public async Task<string> GetTenChiNhanhAsync(int idKhoCN)
         {

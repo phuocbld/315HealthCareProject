@@ -9,10 +9,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\Controllers\\CongTyBenhNhanController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Controllers\\CongTyBenhNhanController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\315HealthCareProject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\315HealthCareProject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,7 +28,7 @@
               "RelativeDocumentMoniker": "backend\\DTO\\CongTyBenhNhanDTO.cs",
               "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\DTO\\CongTyBenhNhanDTO.cs",
               "RelativeToolTip": "backend\\DTO\\CongTyBenhNhanDTO.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABUAAAAtAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-13T01:26:25.291Z",
               "EditorCaption": ""
@@ -48,18 +44,6 @@
               "ViewState": "AQIAADMAAAAAAAAAAAAAAL4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-13T01:23:06.146Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "315HealthCareProject.csproj",
-              "DocumentMoniker": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\315HealthCareProject.csproj",
-              "RelativeDocumentMoniker": "backend\\315HealthCareProject.csproj",
-              "ToolTip": "C:\\Users\\Software\\source\\repo\\315healthcare\\backend\\315HealthCareProject.csproj",
-              "RelativeToolTip": "backend\\315HealthCareProject.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-04-13T01:18:01.712Z"
             }
           ]
         }

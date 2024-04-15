@@ -11,7 +11,7 @@ namespace _315HealthCareProject.Repositories.Interface
         Task<IEnumerable<KhoNhapXuat>> GetAllKhoNhapXuatAsync();
         Task<KhoNhapXuat> GetKhoNhapXuatByIdAsync(int id);
         Task UpdateAsync(KhoNhapXuat khoNhapXuat);
-
+        Task<string> GetTenCTAsync(int idCT);
         Task DeleteAsync(int idNhapXuat);
         Task<string> GetTenKhoAsync(int idKhoCN);
         Task<string> GetTenNVAsync(int idNhanVien);
