@@ -7,8 +7,8 @@ namespace _315HealthCareProject.Services.Interface
     public interface IKhoNhapXuatService
     {
         //Task DeleteKhoNhapXuatAsync(int id);
-        Task<KhoNhapXuat> CreateKhoNhap(string tenPhieu, string noiDung, int trangThai);
-        Task<KhoNhapXuat> CreateKhoXuat(string tenPhieu, string noiDung, int trangThai);
+        Task<KhoNhapXuat> CreateKhoNhap(string tenPhieu);
+        Task<KhoNhapXuat> CreateKhoXuat(string tenPhieu);
         Task<IEnumerable<KhoNhapXuat>> GetAllPhieuNhapAsync();
         Task<IEnumerable<KhoNhapXuat>> GetAllPhieuXuatAsync();
         Task<IEnumerable<KhoNhapXuat>> GetAllKhoNhapXuatAsync();

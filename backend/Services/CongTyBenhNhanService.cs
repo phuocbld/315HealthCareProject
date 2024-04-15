@@ -4,6 +4,7 @@ using _315HealthCareProject.Models;
 using _315HealthCareProject.Repositories.Interface;
 using _315HealthCareProject.Services.Interface;
 using System.Text;
+using static System.Net.WebRequestMethods;
 
 
 namespace _315HealthCareProject.Services
@@ -59,31 +60,65 @@ namespace _315HealthCareProject.Services
             }
         }
 
-
-
-
-        //public async Task UpdateBenhNhanAsync(CongTyBenhNhan benhNhan)
+        //public async Task UpdateCongTyBenhNhan(CongTyBenhNhanDTO benhNhanDTO)
         //{
         //    try
         //    {
-        //        // Cập nhật thông tin bệnh nhân
-        //        _context.Entry(benhNhan).State = EntityState.Modified;
-
-        //        // Kiểm tra và cập nhật trạng thái TrangThaiKham
-        //        if (benhNhan.KQXN != null)
+        //        var existingBenhNhan = await _context.CongTyBenhNhans.FindAsync(benhNhanDTO.IDBN);
+        //        if (existingBenhNhan != null)
         //        {
-        //            benhNhan.TRANGTHAIKHAM = 2; // Nếu có KQXN thì TrangThaiKham là 2
-        //        }
-        //        else if (benhNhan.KQKHAM != null)
-        //        {
-        //            benhNhan.TRANGTHAIKHAM = 3; // Nếu có KQKHAM thì TrangThaiKham là 3
-        //        }
 
-        //        await _context.SaveChangesAsync();
+        //            string kqxFilePath = null;
+        //            if (benhNhanDTO.KQXNFile != null)
+        //            {
+        //                string kqxFileName = $"KQXN_{existingBenhNhan.MABN}.pdf";
+
+        //                kqxFilePath = await _ftpService.UploadFileAsnyc(benhNhanDTO.KQXNFile, "KQXN", kqxFileName);
+        //            }
+
+        //            string kqkFilePath = null;
+        //            if (benhNhanDTO.KQKhamFile != null)
+        //            {
+        //                string kqkFileName = $"KQKham_{existingBenhNhan.MABN}.pdf";
+        //                kqkFilePath = await _ftpService.UploadFileAsnyc(benhNhanDTO.KQKhamFile, "KQKham", kqkFileName);
+        //            }
+
+
+        //            // Cập nhật trạng thái tương ứng
+        //            existingBenhNhan.TRANGTHAIKHAM =
+        //                !string.IsNullOrEmpty(kqxFilePath) ? 2 : (!string.IsNullOrEmpty(kqkFilePath) ? 3 : existingBenhNhan.TRANGTHAIKHAM);
+
+        //            existingBenhNhan.TENBN = benhNhanDTO.TENBN ?? existingBenhNhan.TENBN;
+        //            existingBenhNhan.GIOITINH = benhNhanDTO.GIOITINH ?? existingBenhNhan.GIOITINH;
+        //            existingBenhNhan.NGAYSINH = benhNhanDTO.NGAYSINH ?? existingBenhNhan.NGAYSINH;
+        //            existingBenhNhan.SODIENTHOAI = benhNhanDTO.SODIENTHOAI ?? existingBenhNhan.SODIENTHOAI;
+        //            existingBenhNhan.GHICHU = benhNhanDTO.GHICHU ?? existingBenhNhan.GHICHU;
+        //            existingBenhNhan.IDCT = benhNhanDTO.IDCT ?? existingBenhNhan.IDCT;
+        //            existingBenhNhan.TRANGTHAISMS = benhNhanDTO.TRANGTHAISMS ?? existingBenhNhan.TRANGTHAISMS;
+        //            existingBenhNhan.NGAYKQ = benhNhanDTO.NGAYKQ ?? existingBenhNhan.NGAYKQ;
+        //            existingBenhNhan.NGUOIKQ = benhNhanDTO.NGUOIKQ ?? existingBenhNhan.NGUOIKQ;
+        //            existingBenhNhan.NGAYTAO = benhNhanDTO.NGAYTAO ?? existingBenhNhan.NGAYTAO;
+        //            existingBenhNhan.NGUOITAO = benhNhanDTO.NGUOITAO ?? existingBenhNhan.NGUOITAO;
+        //            existingBenhNhan.NGUOIGUISMS = benhNhanDTO.NGUOIGUISMS ?? existingBenhNhan.NGUOIGUISMS;
+        //            existingBenhNhan.NGAYGUISMS = benhNhanDTO.NGAYGUISMS ?? existingBenhNhan.NGAYGUISMS;
+
+
+
+        //            existingBenhNhan.KQXN = !string.IsNullOrEmpty(kqxFilePath) ? Encoding.UTF8.GetBytes(kqxFilePath) : existingBenhNhan.KQXN;
+        //            existingBenhNhan.KQKHAM = !string.IsNullOrEmpty(kqkFilePath) ? Encoding.UTF8.GetBytes(kqkFilePath) : existingBenhNhan.KQKHAM;
+
+
+        //            await _context.SaveChangesAsync();
+
+        //        }
+        //        else
+        //        {
+        //            throw new Exception("Không tìm thấy bệnh nhân để cập nhật.");
+        //        }
         //    }
         //    catch (Exception ex)
         //    {
-        //        throw new Exception("An error occurred while updating bệnh nhân: " + ex.Message);
+        //        throw new Exception("Lỗi khi cập nhật thông tin bệnh nhân: " + ex.Message, ex);
         //    }
         //}
 
@@ -95,27 +130,36 @@ namespace _315HealthCareProject.Services
                 var existingBenhNhan = await _context.CongTyBenhNhans.FindAsync(benhNhanDTO.IDBN);
                 if (existingBenhNhan != null)
                 {
-
                     string kqxFilePath = null;
+                    string kqkFilePath = null;
+                    string kqxFileName = $"KQXN_{existingBenhNhan.MABN}.pdf";
+                    string kqkFileName = $"KQKham_{existingBenhNhan.MABN}.pdf";
+
                     if (benhNhanDTO.KQXNFile != null)
                     {
-                        string kqxFileName = $"KQXN_{existingBenhNhan.MABN}.pdf";
-
                         kqxFilePath = await _ftpService.UploadFileAsnyc(benhNhanDTO.KQXNFile, "KQXN", kqxFileName);
                     }
 
-                    string kqkFilePath = null;
                     if (benhNhanDTO.KQKhamFile != null)
                     {
-                        string kqkFileName = $"KQKham_{existingBenhNhan.MABN}.pdf";
                         kqkFilePath = await _ftpService.UploadFileAsnyc(benhNhanDTO.KQKhamFile, "KQKham", kqkFileName);
                     }
 
+                    //existingBenhNhan.TRANGTHAIKHAM = !string.IsNullOrEmpty(kqxFilePath) ? 2 : (!string.IsNullOrEmpty(kqkFilePath) ? 3 : existingBenhNhan.TRANGTHAIKHAM);
+                    if(existingBenhNhan.LiNK_KQXN != null)
+                    {
+                        existingBenhNhan.TRANGTHAIKHAM = 2;
+                    }
+                    if(existingBenhNhan.LINK_KQKHAM != null)
+                    {
+                        existingBenhNhan.TRANGTHAIKHAM = 3;
+                    }
+                    string BaseURL = "http://14.241.244.112:8080";
+                    // Cập nhật trường LINK_KQXN hoặc LINK_KQKHAM tùy theo việc file được đẩy lên folder nào
+                    existingBenhNhan.LiNK_KQXN = !string.IsNullOrEmpty(kqxFilePath) ? $"{BaseURL}/KQXN/{kqxFileName}" : existingBenhNhan.LiNK_KQXN;
+                    existingBenhNhan.LINK_KQKHAM = !string.IsNullOrEmpty(kqkFilePath) ? $"{BaseURL}/KQKham/{kqkFileName}" : existingBenhNhan.LINK_KQKHAM;
 
-                    // Cập nhật trạng thái tương ứng
-                    existingBenhNhan.TRANGTHAIKHAM =
-                        !string.IsNullOrEmpty(kqxFilePath) ? 2 : (!string.IsNullOrEmpty(kqkFilePath) ? 3 : existingBenhNhan.TRANGTHAIKHAM);
-
+                    // Cập nhật các trường thông tin khác
                     existingBenhNhan.TENBN = benhNhanDTO.TENBN ?? existingBenhNhan.TENBN;
                     existingBenhNhan.GIOITINH = benhNhanDTO.GIOITINH ?? existingBenhNhan.GIOITINH;
                     existingBenhNhan.NGAYSINH = benhNhanDTO.NGAYSINH ?? existingBenhNhan.NGAYSINH;
@@ -129,15 +173,9 @@ namespace _315HealthCareProject.Services
                     existingBenhNhan.NGUOITAO = benhNhanDTO.NGUOITAO ?? existingBenhNhan.NGUOITAO;
                     existingBenhNhan.NGUOIGUISMS = benhNhanDTO.NGUOIGUISMS ?? existingBenhNhan.NGUOIGUISMS;
                     existingBenhNhan.NGAYGUISMS = benhNhanDTO.NGAYGUISMS ?? existingBenhNhan.NGAYGUISMS;
-
-
-
-                    existingBenhNhan.KQXN = !string.IsNullOrEmpty(kqxFilePath) ? Encoding.UTF8.GetBytes(kqxFilePath) : existingBenhNhan.KQXN;
-                    existingBenhNhan.KQKHAM = !string.IsNullOrEmpty(kqkFilePath) ? Encoding.UTF8.GetBytes(kqkFilePath) : existingBenhNhan.KQKHAM;
-
+                    
 
                     await _context.SaveChangesAsync();
-
                 }
                 else
                 {
@@ -150,6 +188,30 @@ namespace _315HealthCareProject.Services
             }
         }
 
+
+
+
+        private async Task<byte[]> ProcessAndSaveBase64(IFormFile file, string folder, string mabn)
+        {
+            try
+            {
+                // Định dạng tên file theo yêu cầu
+                string fileName = $"{folder}_{mabn}.pdf";
+
+                // Đọc dữ liệu từ IFormFile
+                using (var memoryStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(memoryStream);
+                    byte[] fileBytes = memoryStream.ToArray();
+
+                    return fileBytes;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi xử lý và lưu base64: {ex.Message}", ex);
+            }
+        }
 
 
         public async Task<IEnumerable<CongTyBenhNhan>> GetAllAsync()

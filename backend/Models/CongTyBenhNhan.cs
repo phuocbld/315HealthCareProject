@@ -45,6 +45,11 @@ namespace _315HealthCareProject.Models
         [Column("KQKHAM")]
         public byte[]? KQKHAM { get; set; }
 
+        [Column("LINK_KQXN")]
+        public string? LiNK_KQXN { get; set; }
+
+        [Column("LINK_KQKHAM")]
+        public string? LINK_KQKHAM { get; set; }
 
 
         [Column("TRANGTHAISMS")]
@@ -86,6 +91,7 @@ namespace _315HealthCareProject.Models
 
         [NotMapped]
         public IFormFile? KQKHAMFile { get; set; }
+
 
     }
 }

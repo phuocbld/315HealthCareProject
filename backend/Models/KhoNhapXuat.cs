@@ -27,7 +27,7 @@ namespace _315HealthCareProject.Models
         public int? IdKhoNhap { get; set; }
 
         [Column("NOIDUNG")]
-        public string NoiDung { get; set; }
+        public string? NoiDung { get; set; }
 
         [Column("NVXUAT")]
         public int? NhanVienXuat { get; set; }
@@ -48,7 +48,7 @@ namespace _315HealthCareProject.Models
         public int? DaNhan { get; set; }
 
         [Column("TRANGTHAI")]
-        public int TrangThai { get; set; }
+        public int? TrangThai { get; set; }
 
         [Column("IDDOITAC")]
         public int? IdDoiTac { get; set; }

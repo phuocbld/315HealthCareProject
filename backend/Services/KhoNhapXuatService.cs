@@ -23,12 +23,9 @@ namespace _315HealthCareProject.Services
             _congTyRepository = congTyRepository;
         }
 
-        //public async Task DeleteKhoNhapXuatAsync(int id)
-        //{
-        //    await _repository.DeleteKhoNhapXuatAsync(id);
-        //}
 
-        public async Task<KhoNhapXuat> CreateKhoNhap(string tenPhieu, string noiDung, int trangThai)
+
+        public async Task<KhoNhapXuat> CreateKhoNhap(string tenPhieu)
         {
             string currentDate = DateTime.Now.ToString("yyMM");
 
@@ -52,9 +49,7 @@ namespace _315HealthCareProject.Services
             var khoNhap = new KhoNhapXuat
             {
                 MaPhieu = newPhieu,
-                TenPhieu = tenPhieu,
-                NoiDung = noiDung,
-                TrangThai = trangThai
+                TenPhieu = tenPhieu
             };
 
             _context.KhoNhapXuats.Add(khoNhap);
@@ -63,7 +58,7 @@ namespace _315HealthCareProject.Services
             return khoNhap;
         }
 
-        public async Task<KhoNhapXuat> CreateKhoXuat(string tenPhieu, string noiDung, int trangThai)
+        public async Task<KhoNhapXuat> CreateKhoXuat(string tenPhieu)
         {
             string currentDate = DateTime.Now.ToString("yyMM");
 
@@ -87,9 +82,7 @@ namespace _315HealthCareProject.Services
             var khoXuat = new KhoNhapXuat
             {
                 MaPhieu = newPhieu,
-                TenPhieu = tenPhieu,
-                NoiDung = noiDung,
-                TrangThai = trangThai
+                TenPhieu = tenPhieu
                 
         };
 
@@ -109,7 +102,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
-                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai ?? 0);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
@@ -126,7 +119,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
-                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai ?? 0);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
@@ -145,7 +138,7 @@ namespace _315HealthCareProject.Services
                 int idKhoXuat = khoNhapXuat.IdKhoXuat ?? 0;
                 int idNhanVienNhan = khoNhapXuat.NhanVienNhan ?? 0;
                 int idNhanVienXuat = khoNhapXuat.NhanVienXuat ?? 0;
-                int idTrangThai = khoNhapXuat.TrangThai;
+                int idTrangThai = khoNhapXuat.TrangThai ?? 0;
 
                 khoNhapXuat.TenKhoNhap = await _repository.GetTenKhoAsync(idKhoNhap);
                 khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(idKhoXuat);
@@ -170,7 +163,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
-                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai ?? 0);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
@@ -189,27 +182,29 @@ namespace _315HealthCareProject.Services
                 throw new ArgumentException($"Không tìm thấy ThuocVatTu với ID {id}");
             }
 
-            existingKhoNhapXuat.TenPhieu = khoNhapXuat.TenPhieu;
-            existingKhoNhapXuat.IdKhoXuat = khoNhapXuat.IdKhoXuat;
-            existingKhoNhapXuat.IdKhoNhap = khoNhapXuat.IdKhoNhap;
-            existingKhoNhapXuat.NoiDung = khoNhapXuat.NoiDung;
-            existingKhoNhapXuat.GhiChu = khoNhapXuat.GhiChu;
-            existingKhoNhapXuat.NgayNhan = khoNhapXuat.NgayNhan;
-            existingKhoNhapXuat.NgayXuat = khoNhapXuat.NgayXuat;
-            existingKhoNhapXuat.DaNhan = khoNhapXuat.DaNhan;
-            existingKhoNhapXuat.TrangThai = khoNhapXuat.TrangThai;
-            existingKhoNhapXuat.IdDoiTac = khoNhapXuat.IdDoiTac;
-            existingKhoNhapXuat.SoHoaDon = khoNhapXuat.SoHoaDon;
-            existingKhoNhapXuat.NgayHoaDon = khoNhapXuat.NgayHoaDon;
-            existingKhoNhapXuat.LinkHoaDon = khoNhapXuat.LinkHoaDon;
-            existingKhoNhapXuat.FileHoaDon = khoNhapXuat.FileHoaDon;
-            existingKhoNhapXuat.IdHinhThuc = khoNhapXuat.IdHinhThuc;
-            existingKhoNhapXuat.IdPhuongThuc = khoNhapXuat.IdPhuongThuc;
-            existingKhoNhapXuat.NhanVienNhan = khoNhapXuat.NhanVienNhan;
-            existingKhoNhapXuat.NhanVienXuat = khoNhapXuat.NhanVienXuat;
+            existingKhoNhapXuat.TenPhieu = khoNhapXuat.TenPhieu ?? existingKhoNhapXuat.TenPhieu;
+            existingKhoNhapXuat.IdKhoXuat = khoNhapXuat.IdKhoXuat ?? existingKhoNhapXuat.IdKhoXuat;
+            existingKhoNhapXuat.IdKhoNhap = khoNhapXuat.IdKhoNhap ?? existingKhoNhapXuat.IdKhoNhap;
+            existingKhoNhapXuat.NoiDung = khoNhapXuat.NoiDung ?? existingKhoNhapXuat.NoiDung;
+            existingKhoNhapXuat.GhiChu = khoNhapXuat.GhiChu ?? existingKhoNhapXuat.GhiChu;
+            existingKhoNhapXuat.NgayNhan = khoNhapXuat.NgayNhan ?? existingKhoNhapXuat.NgayNhan;
+            existingKhoNhapXuat.NgayXuat = khoNhapXuat.NgayXuat ?? existingKhoNhapXuat.NgayXuat;
+            existingKhoNhapXuat.DaNhan = khoNhapXuat.DaNhan ?? existingKhoNhapXuat.DaNhan;
+            existingKhoNhapXuat.TrangThai = khoNhapXuat.TrangThai ?? existingKhoNhapXuat.TrangThai;
+            existingKhoNhapXuat.IdDoiTac = khoNhapXuat.IdDoiTac ?? existingKhoNhapXuat.IdDoiTac;
+            existingKhoNhapXuat.SoHoaDon = khoNhapXuat.SoHoaDon ?? existingKhoNhapXuat.SoHoaDon;
+            existingKhoNhapXuat.NgayHoaDon = khoNhapXuat.NgayHoaDon ?? existingKhoNhapXuat.NgayHoaDon;
+            existingKhoNhapXuat.LinkHoaDon = khoNhapXuat.LinkHoaDon ?? existingKhoNhapXuat.LinkHoaDon;
+            existingKhoNhapXuat.FileHoaDon = khoNhapXuat.FileHoaDon ?? existingKhoNhapXuat.FileHoaDon;
+            existingKhoNhapXuat.IdHinhThuc = khoNhapXuat.IdHinhThuc ?? existingKhoNhapXuat.IdHinhThuc;
+            existingKhoNhapXuat.IdPhuongThuc = khoNhapXuat.IdPhuongThuc ?? existingKhoNhapXuat.IdPhuongThuc;
+            existingKhoNhapXuat.NhanVienNhan = khoNhapXuat.NhanVienNhan ?? existingKhoNhapXuat.NhanVienNhan;
+            existingKhoNhapXuat.NhanVienXuat = khoNhapXuat.NhanVienXuat ?? existingKhoNhapXuat.NhanVienXuat;
+
             await _repository.UpdateAsync(existingKhoNhapXuat);
             return existingKhoNhapXuat;
         }
+
 
 
 
@@ -251,7 +246,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
-                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai ?? 0);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
@@ -270,7 +265,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
-                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai ?? 0);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
@@ -288,10 +283,10 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
-                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai ?? 0);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
-                //khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
+                khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
             }
             return khoNhapList;
         }
@@ -306,7 +301,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
-                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai ?? 0);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
@@ -325,7 +320,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
-                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai ?? 0);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);
@@ -343,7 +338,7 @@ namespace _315HealthCareProject.Services
                 khoNhapXuat.TenKhoXuat = await _repository.GetTenKhoAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenNVNhan = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienNhan ?? 0);
                 khoNhapXuat.TenNVXuat = await _repository.GetTenNVAsync(khoNhapXuat.NhanVienXuat ?? 0);
-                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai);
+                khoNhapXuat.TenTrangThai = await _repository.GetTrangThaiAsync(khoNhapXuat.TrangThai ?? 0);
                 khoNhapXuat.TenChiNhanhNhan = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoNhap ?? 0);
                 khoNhapXuat.TenChiNhanhXuat = await _repository.GetTenChiNhanhAsync(khoNhapXuat.IdKhoXuat ?? 0);
                 khoNhapXuat.TenCT = await _repository.GetTenCTAsync(khoNhapXuat.IDCT ?? 0);

@@ -2,22 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\backend",
-    "\\backend\\.config",
-    "\\backend\\Controllers",
-<<<<<<< HEAD
-    "\\backend\\Models",
+    "\\backend\\DTO",
     "\\backend\\Services"
   ],
-  "SelectedNode": "\\backend\\Models\\KhoChiTiet.cs",
-=======
-    "\\backend\\DTO",
-    "\\backend\\Models"
-  ],
-<<<<<<< HEAD
-  "SelectedNode": "\\backend\\Controllers\\KhoNhapXuatController.cs",
-=======
-  "SelectedNode": "\\backend\\DTO\\CongTyBenhNhanDTO.cs",
->>>>>>> 4eb7df623b1416dfce3b46e4bfc1046968cff42c
->>>>>>> bfe0c1495e554044ee96d28ded3378133bb40ea1
+  "SelectedNode": "\\backend\\315HealthCareProject.sln",
   "PreviewInSolutionExplorer": false
 }

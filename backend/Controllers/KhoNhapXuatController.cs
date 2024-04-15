@@ -44,10 +44,8 @@ namespace _315HealthCareProject.Controllers
             try
             {
                 var newKhoNhapTask = _service.CreateKhoNhap(
-                    khoNhap.TenPhieu,
-                    khoNhap.NoiDung,
-                    khoNhap.TrangThai
-                );
+                    khoNhap.TenPhieu
+                    );
 
                 var newKhoNhap = await newKhoNhapTask;
 
@@ -66,6 +64,9 @@ namespace _315HealthCareProject.Controllers
                 newKhoNhap.FileHoaDon = khoNhap.FileHoaDon;
                 newKhoNhap.IdHinhThuc = khoNhap.IdHinhThuc;
                 newKhoNhap.IdPhuongThuc = khoNhap.IdPhuongThuc;
+                newKhoNhap.TrangThai = khoNhap.TrangThai;
+                newKhoNhap.NoiDung = khoNhap.NoiDung;
+                newKhoNhap.IDCT = 1;
 
                 _context.SaveChanges();
                 return Ok(new { message = "Thêm phiếu nhập thành công", data = newKhoNhap });
@@ -83,11 +84,7 @@ namespace _315HealthCareProject.Controllers
             try
             {
                 var newKhoXuatTask = _service.CreateKhoXuat(
-                      khoXuat.TenPhieu,
-
-                      khoXuat.NoiDung,
-
-                      khoXuat.TrangThai
+                      khoXuat.TenPhieu
   );
 
                 var newKhoXuat = await newKhoXuatTask;
@@ -107,6 +104,9 @@ namespace _315HealthCareProject.Controllers
                 newKhoXuat.FileHoaDon = khoXuat.FileHoaDon;
                 newKhoXuat.IdHinhThuc = khoXuat.IdHinhThuc;
                 newKhoXuat.IdPhuongThuc = khoXuat.IdPhuongThuc;
+                newKhoXuat.TrangThai = khoXuat.TrangThai;
+                newKhoXuat.NoiDung = khoXuat.NoiDung;
+                newKhoXuat.IDCT = 1;
 
 
                 _context.SaveChanges();
