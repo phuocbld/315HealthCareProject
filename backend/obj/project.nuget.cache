@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "AzT3mt5RhKuZfFyxj2ap1E7MIkIicr725kxifAGMCrvTdJ5rIsWBovcNK0SPqKWA0+dpH9Ih4TEV2SPgXJ8XIg==",
+  "dgSpecHash": "OFtN1T9uUPIGPQYulGPINBZFKoG1bFfAL6keNF69FhRJzT59r+IMT2CUYqeEQvRJ11roSIuNk6bmRSltpK3rVw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Software\\source\\repo\\315HealthCare\\backend\\315HealthCareProject.csproj",
-=======
-  "dgSpecHash": "RHDK0STiLQlz15Xek/n6Nfk8PCmEqm45Hf81KKBcEXaof5WFoOqAaM3AhVb2R6yjA8r/VAJK4qp4EeJ1+GfGKA==",
-  "success": true,
-  "projectFilePath": "D:\\code Tài Nguyễn\\315healthcare\\V1.4.1\\backend\\315HealthCareProject.csproj",
->>>>>>> bfe0c1495e554044ee96d28ded3378133bb40ea1
+  "projectFilePath": "D:\\code Tài Nguyễn\\315healthcare\\V1.4.2\\backend\\315HealthCareProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tai Nguyen\\.nuget\\packages\\fluentftp\\37.1.2\\fluentftp.37.1.2.nupkg.sha512",
     "C:\\Users\\Tai Nguyen\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
@@ -65,7 +59,7 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\code Tài Nguyễn\\315healthcare\\V1.4.1\\backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+      "message": "Problem reading the cache file D:\\code Tài Nguyễn\\315healthcare\\V1.4.2\\backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
     }
   ]
 }

@@ -4,8 +4,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
+<<<<<<< HEAD
     <_PublishTargetUrl>C:\Users\Software\Desktop\New folder</_PublishTargetUrl>
     <History>True|2024-04-04T08:49:44.1202686Z;</History>
+=======
+    <_PublishTargetUrl>C:\Users\quoct\Desktop\Project Font-end\315healthcare\V1.3\backend\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-03-30T17:29:47.5296451Z;</History>
+>>>>>>> 5b0b13e31b76924a4a8d3566cf101fc78e32c33a
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

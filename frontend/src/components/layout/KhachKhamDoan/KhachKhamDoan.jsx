@@ -217,21 +217,6 @@ const KhachKhamDoan = () => {
   const onChangeTable = (values) => {
     console.log(values);
   }
-//  const exportToExcel = () => {
-//     const { dataSource, columns, fileName } = this.props;
-
-//     const worksheet = XLSX.utils.json_to_sheet(dataSource.map(item => {
-//       const rowData = {};
-//       columns.forEach(column => {
-//         rowData[column.dataIndex] = item[column.dataIndex];
-//       });
-//       return rowData;
-//     }));
-
-//     const workbook = XLSX.utils.book_new();
-//     XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-//     XLSX.writeFile(workbook, `${fileName}.xlsx`);
-//   };
   const handleSearchBN = (e) => {
     const { value } = e.target;
     debounceDropDown(value);
