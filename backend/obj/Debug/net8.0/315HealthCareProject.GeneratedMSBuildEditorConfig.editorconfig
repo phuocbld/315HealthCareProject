@@ -9,19 +9,11 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = _315HealthCareProject
 build_property.RootNamespace = _315HealthCareProject
-<<<<<<< HEAD
-build_property.ProjectDir = C:\Users\Software\source\repo\315HealthCare\backend\
-=======
-build_property.ProjectDir = D:\code Tài Nguyễn\315healthcare\V1.4.1\backend\
->>>>>>> bfe0c1495e554044ee96d28ded3378133bb40ea1
+build_property.ProjectDir = D:\code Tài Nguyễn\315healthcare\V1.4.2\backend\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-<<<<<<< HEAD
-build_property.MSBuildProjectDirectory = C:\Users\Software\source\repo\315HealthCare\backend
-=======
-build_property.MSBuildProjectDirectory = D:\code Tài Nguyễn\315healthcare\V1.4.1\backend
->>>>>>> bfe0c1495e554044ee96d28ded3378133bb40ea1
+build_property.MSBuildProjectDirectory = D:\code Tài Nguyễn\315healthcare\V1.4.2\backend
 build_property._RazorSourceGeneratorDebug = 
